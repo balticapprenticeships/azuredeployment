@@ -453,7 +453,7 @@
                     "licenseType": {
                         "value": "[variables('licenseType')]"
                     },
-                    "enableHopPatching": {
+                    "enableHotPatching": {
                         "value": "[parameters('enableHotPatching')]"
                     },
                     "patchMode": {
