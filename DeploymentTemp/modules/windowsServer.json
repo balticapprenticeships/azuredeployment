@@ -99,7 +99,7 @@
         "_dscArtifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
         "_dscExtensionRepo": "main/extensions",
         "dscArchiveFolder": "DSC",
-        "dscArchiveFileName": "xBaLabWinSvrCgf.zip"
+        "dscArchiveFileName": "xBaLabWinSvrCfg.zip"
     },
     "resources": [
         {
