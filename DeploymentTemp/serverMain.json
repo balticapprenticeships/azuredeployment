@@ -176,12 +176,6 @@
                 "description": ""
             }
         },
-        "adminUsername": {
-            "type": "string",
-            "metadata": {
-                "description": "Administrator account username."
-            }
-        },
         "authenticationType": {
             "type": "string",
             "defaultValue": "Password",
@@ -191,12 +185,6 @@
             ],
             "metadata": {
                 "description": "The type of authentication used for the virtual machine. SSH is recommended fo Linux VM's."
-            }
-        },
-        "adminPassword": {
-            "type": "securestring",
-            "metadata": {
-                "description": "Admin password for the Virtual machines."
             }
         },
         "sshPublicKeyString": {
