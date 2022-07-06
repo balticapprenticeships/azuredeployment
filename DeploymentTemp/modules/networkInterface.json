@@ -67,7 +67,6 @@
                 "count": "[parameters('vmCount')]"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', 'virtualNetwork')]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -88,7 +87,9 @@
                     }
                 ],
                 "enableAcceleratedNetworking": "[if(equals(parameters('course'), 'WindowsServer'), variables('acceleratedNetworking'), json('null'))]",
-                "networkSecurityGroup": "[resourceId('Microsoft.Network/networkSecurityGroup', variables('nsgName'))]"
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroup', variables('nsgName'))]"
+                }
             }
         }
     ],
