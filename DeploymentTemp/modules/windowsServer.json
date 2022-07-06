@@ -135,7 +135,7 @@
                         "deleteOption": "[parameters('osDiskDeleteOption')]"
                     },
                     "imageReference": {
-                        "id": "[resourceId('Microsoft.Compute/galleries/images/versions', variables('galleryImageName'), variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, parameters('imageVersion'))]"
+                        "id": "[resourceId('Microsoft.Compute/galleries/images/versions', variables('galleryImageName'), variables('operatingSystemValues')['WindowsServer'].galleryImageDefinitionName, parameters('imageVersion'))]"
                     }
                 },
                 "networkProfile": {
