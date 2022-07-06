@@ -85,13 +85,13 @@
         "WindowsLicense": "Windows_Client",
         "operatingSystemValues": {
             "DataBootCamp": {
-                "galleryImageDefinitionName": "BA-Win10"
+                "galleryImageDefinitionName": "BA-Win10-Courses"
             },
             "Diploma": {
-                "galleryImageDefinitionName": "BA-Win10"
+                "galleryImageDefinitionName": "BA-Win10-Courses"
             },
             "RawDigital": {
-                "galleryImageDefinitionName": "BA-Win10"
+                "galleryImageDefinitionName": "BA-Win10-Courses"
             },
             "ExamTesting": {
                 "galleryImageDefinitionName": "BA-Testing"
