@@ -162,26 +162,16 @@
                 "description": ""
             }
         },
-        "adminUsername": {
-            "type": "string",
-            "metadata": {
-                "description": "Administrator account username."
-            }
-        },
-        "adminPassword": {
-            "type": "securestring",
-            "metadata": {
-                "description": "Admin password for the Virtual machines."
-            }
-        },
         "localUsername": {
             "type": "string",
+            "defaultValue": "",
             "metadata": {
                 "description": "Username for the non admin user."
             }
         },
         "localUserPassword": {
             "type": "securestring",
+            "defaultValue": "",
             "metadata": {
                 "description": "Non admin user password."
             }
@@ -237,7 +227,7 @@
         "vaultResourceGroup": "BalticTrainerOMS",
         "vaultName": "DeploymentVM",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
-        "_moduleRepo": "main/DeploymentTemp/modules"       
+        "_moduleRepo": "/main/DeploymentTemp/modules"       
     },
     "resources": [
         {

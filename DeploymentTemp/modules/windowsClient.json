@@ -30,7 +30,7 @@
             "type": "string"
         },
         "enableHotpatching": {
-            "type": "string"
+            "type": "bool"
         },
         "patchMode": {
             "type": "string"
@@ -39,10 +39,10 @@
             "type": "string"
         },
         "secureBoot": {
-            "type": "string"
+            "type": "bool"
         },
         "vTPM": {
-            "type": "string"
+            "type": "bool"
         },
         "idleVM": {
             "type": "string"
@@ -60,7 +60,7 @@
             "type": "string"
         },
         "localUserPassword": {
-            "type": "string"
+            "type": "securestring"
         },
         "createdBy": {
             "type": "string"
@@ -84,10 +84,16 @@
         "galleryImageName": "SharedImageGallery",
         "WindowsLicense": "Windows_Client",
         "operatingSystemValues": {
-            "WindowsClient": {
+            "DataBootCamp": {
                 "galleryImageDefinitionName": "BA-Win10"
             },
-            "WindowsTesting": {
+            "Diploma": {
+                "galleryImageDefinitionName": "BA-Win10"
+            },
+            "RawDigital": {
+                "galleryImageDefinitionName": "BA-Win10"
+            },
+            "ExamTesting": {
                 "galleryImageDefinitionName": "BA-Testing"
             }
         },

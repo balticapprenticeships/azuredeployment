@@ -30,7 +30,7 @@
             "type": "string"
         },
         "enableHotpatching": {
-            "type": "string"
+            "type": "bool"
         },
         "patchMode": {
             "type": "string"
@@ -39,10 +39,10 @@
             "type": "string"
         },
         "secureBoot": {
-            "type": "string"
+            "type": "bool"
         },
         "vTPM": {
-            "type": "string"
+            "type": "bool"
         },
         "idleVM": {
             "type": "string"
@@ -60,7 +60,7 @@
             "type": "string"
         },
         "localUserPassword": {
-            "type": "string"
+            "type": "securestring"
         },
         "createdBy": {
             "type": "string"
