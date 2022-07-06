@@ -128,11 +128,7 @@
         },
         "existingVnet": {
             "type": "string",
-            "defaultValue": "new",
-            "allowedValues": [
-                "new",
-                "existing"
-            ],
+            "defaultValue": "",
             "metadata": {
                 "description": ""
             }
