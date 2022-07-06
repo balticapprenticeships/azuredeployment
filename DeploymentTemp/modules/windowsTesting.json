@@ -29,7 +29,7 @@
         "licenseType": {
             "type": "string"
         },
-        "enableHotPatching": {
+        "enableHotpatching": {
             "type": "string"
         },
         "patchMode": {
@@ -156,7 +156,7 @@
                         "provisionVMAgent": true,
                         "timeZone": "GMT Standard Time",
                         "patchSettings": {
-                            "enableHotpatching": "[parameters('enableHotPatching')]",
+                            "enableHotpatching": "[parameters('enableHotpatching')]",
                             "patchMode": "[parameters('patchMode')]"
                         }
                     }

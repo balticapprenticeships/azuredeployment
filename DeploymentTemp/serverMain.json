@@ -108,7 +108,7 @@
                 "description": "Lab image version"
             }
         },
-        "enableHotPatching": {
+        "enableHotpatching": {
             "type": "bool",
             "defaultValue": false,
             "metadata": {
@@ -453,8 +453,8 @@
                     "licenseType": {
                         "value": "[variables('licenseType')]"
                     },
-                    "enableHotPatching": {
-                        "value": "[parameters('enableHotPatching')]"
+                    "enableHotpatching": {
+                        "value": "[parameters('enableHotpatching')]"
                     },
                     "patchMode": {
                         "value": "[variables('patchMode')]"
