@@ -1,0 +1,62 @@
+{
+    "properties": {
+        "roleName": "Custom Contributor (Learner)",
+        "description": "This definition is used to provides learners with the permissions needed to complete lab activites while not granting full access",
+        "assignableScopes": [
+            "/subscriptions/<SUBSCRIPTION-ID>"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "*"
+                ],
+                "notActions": [
+                    "Microsoft.AAD/domainServices/*",
+                    "Microsoft.AAD/register/action",
+                    "Microsoft.AppPlatform/Spring/*",
+                    "Microsoft.Automation/automationAccounts/*",
+                    "Microsoft.Authorization/*/Delete",
+                    "Microsoft.Authorization/*/Write",
+                    "Microsoft.Authorization/elevateAccess/Action",
+                    "Microsoft.AzureStack/*",
+                    "Microsoft.AzureStack/registrations/read",
+                    "Microsoft.Billing/billingPeriods/*",
+                    "Microsoft.Blueprint/blueprintAssignments/write",
+                    "Microsoft.Blueprint/blueprintAssignments/delete",
+                    "Microsoft.Cdn/operationresults/*",
+                    "Microsoft.Cdn/profiles/endpoints/*",
+                    "Microsoft.Consumption/aggregatedcost/*",
+                    "Microsoft.Consumption/balances/*",
+                    "Microsoft.Consumption/budgets/*",
+                    "Microsoft.Consumption/charges/*",
+                    "Microsoft.Consumption/credits/*",
+                    "Microsoft.Consumption/events/*",
+                    "Microsoft.Consumption/forecasts/*",
+                    "Microsoft.Consumption/lots/*",
+                    "Microsoft.Consumption/register/*",
+                    "Microsoft.Consumption/tenants/*",
+                    "Microsoft.Consumption/usageDetails/*",
+                    "Microsoft.CostManagement/*",
+                    "Microsoft.CognitiveServices/*/action",
+                    "Microsoft.CognitiveServices/*/write",
+                    "Microsoft.CognitiveServices/*/delete",
+                    "Microsoft.Compute/galleries/share/action",
+                    "Microsoft.DigitalTwins/*",
+                    "Microsoft.HpcWorkbench/*/write",
+                    "Microsoft.HpcWorkbench/*/delete",
+                    "microsoft.insights/workbooks/read",
+                    "microsoft.insights/workbooktemplates/read",
+                    "Microsoft.Management/managementGroups/delete",
+                    "Microsoft.Management/managementGroups/read",
+                    "Microsoft.Management/managementGroups/write",
+                    "Microsoft.Management/managementGroups/subscriptions/*",
+                    "Microsoft.Maps/*",
+                    "Microsoft.Relay/*",
+                    "Microsoft.ServiceBus/*"
+                ],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
