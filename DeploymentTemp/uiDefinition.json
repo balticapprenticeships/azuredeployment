@@ -256,12 +256,12 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "April",
-                                    "value": "1.04.22"
+                                    "label": "June",
+                                    "value": "1.06.22"
                                 },
                                 {
-                                    "label": "March",
-                                    "value": "1.03.22"
+                                    "label": "May",
+                                    "value": "1.05.22"
                                 }
                             ],
                             "required": true
