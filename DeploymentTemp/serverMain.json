@@ -189,18 +189,21 @@
         },
         "sshPublicKeyString": {
             "type": "securestring",
+            "defaultValue": "",
             "metadata": {
                 "description": "SSH key for the admin account."
             }
         },
         "localUsername": {
             "type": "string",
+            "defaultValue": "",
             "metadata": {
                 "description": "Username for the non admin user."
             }
         },
         "localUserPassword": {
             "type": "securestring",
+            "defaultValue": "",
             "metadata": {
                 "description": "Non admin user password."
             }
