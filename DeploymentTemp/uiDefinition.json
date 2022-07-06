@@ -270,7 +270,7 @@
                         "visible": "[equals(steps('vmConfig').vmInstance.osPlatform, 'Windows')]"
                     },
                     {
-                        "name": "enableHotPatching",
+                        "name": "enableHotpatching",
                         "label": "Enable Hotpatching",
                         "type": "Microsoft.Common.OptionsGroup",
                         "defaultValue": "No",
@@ -661,7 +661,7 @@
             "course": "[steps('osConfig').operatingSystem]",
             "linuxOS": "[steps('osConfig').linuxOS]",
             "imageVersion": "[steps('osConfig').imageVersion]",
-            "enableHotPatching": "[steps('osConfig').enableHotPatching]",
+            "enableHotpatching": "[steps('osConfig').enableHotpatching]",
             "patchMode": "[steps('osConfig').patchMode]",
             "licenseType": "[steps('osConfig').licenseType]",
             "trustedLaunch": "[steps('vmConfig').vmSecurity.trustedLaunch]",
