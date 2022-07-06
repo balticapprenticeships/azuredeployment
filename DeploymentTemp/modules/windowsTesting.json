@@ -95,8 +95,8 @@
                 "vTpmEnabled": "[parameters('vTPM')]"
             }
         },
-        "_artifactsLocation": "",
-        "_extensionRepo": "main/extensions",
+        "_dscArtifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
+        "_dscExtensionRepo": "main/extensions",
         "dscArchiveFolder": "DSC",
         "dscArchiveFileName": "xBaLabWindowsCfg.zip"
     },
@@ -193,9 +193,9 @@
                         "settings": {
                             "wmfVersion": "latest",
                             "configuration": {
-                                "url": "[concat(variables('_artifactsLocation'), '/', variables('_extensionRepo'), '/', variables('dscArchiveFolder'), '/', variables('operatingSystemDSC')[parameters('labConfig')].dscArchive)]",
-                                "script": "[variables('operatingSystemDsc')[parameters('labConfig')].dscScript]",
-                                "function": "[variables('operatingSystemDsc')[parameters('labConfig')].dscFunction]"
+                                "url": "[concat(variables('_dscArtifactsLocation'), '/', variables('_dscExtensionRepo'), '/', variables('dscArchiveFolder'), '/', variables('dscArchiveFileName'))]",
+                                "script": "xBaLabWinClientCfg.ps1",
+                                "function": "[variables('labConfigDscFunction')]"
                             }
                         },
                         "protectedSettings": {

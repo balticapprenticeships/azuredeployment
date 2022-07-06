@@ -76,12 +76,6 @@
         },
         "resourceGroupCleanup": {
             "type": "string"
-        },
-        "artifactsLocation": {
-            "type": "string"
-        },
-        "extensionRepo": {
-            "type": "string"
         }
     },
     "functions": [],
@@ -105,6 +99,8 @@
                 "vTpmEnabled": "[parameters('vTPM')]"
             }
         },
+        "_dscArtifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
+        "_dscExtensionRepo": "main/extensions",
         "dscArchiveFolder": "DSC",
         "dscArchiveFileName": "xBaLabWinClientCfg.zip"
     },
@@ -201,7 +197,7 @@
                         "settings": {
                             "wmfVersion": "latest",
                             "configuration": {
-                                "url": "[concat(parameters('artifactsLocation'), '/', parameters('extensionRepo'), '/', variables('dscArchiveFolder'), '/', variables('dscArchiveFileName'))]",
+                                "url": "[concat(variables('_dscArtifactsLocation'), '/', variables('_dscExtensionRepo'), '/', variables('dscArchiveFolder'), '/', variables('dscArchiveFileName'))]",
                                 "script": "xBaLabWinClientCfg.ps1",
                                 "function": "[variables('labConfigDscFunction')]"
                             }

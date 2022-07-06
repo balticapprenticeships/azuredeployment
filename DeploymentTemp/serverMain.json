@@ -271,8 +271,8 @@
         "idleVM": "No",
         "vaultResourceGroup": "BalticTrainerOMS",
         "vaultName": "DeploymentVM",
-        "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/",
-        "_extensionRepo": "main/extensions"        
+        "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
+        "_moduleRepo": "main/DeploymentTemp/modules"        
     },
     "resources": [
         {
@@ -282,7 +282,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "relativePath": "./modules/networkInterface.json",
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkInterface.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -337,7 +337,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "relativePath": "./modules/networkSecurityGroup.json",
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkSecurityGroup.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -368,7 +368,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "relativePath": "./modules/virtualNetwork.json",
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/virtualNetwork.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -398,7 +398,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "relativePath": "./modules/publicIP.json",
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/publicIP.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -435,7 +435,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "relativePath": "./modules/windowsServer.json",
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsServer.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -523,12 +523,6 @@
                     },
                     "resourceGroupCleanup": {
                         "value": "[parameters('resourceGroupCleanup')]"
-                    },
-                    "artifactsLocation": {
-                        "value": "[variables('_artifactsLocation')]"
-                    },
-                    "extensionRepo": {
-                        "value": "[variables('_extensionRepo')]"
                     }
                 }
             },
@@ -544,7 +538,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "relativePath": "./modules/linuxServer.json",
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/linuxServer.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
