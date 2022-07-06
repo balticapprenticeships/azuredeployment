@@ -259,7 +259,7 @@
         "vaultResourceGroup": "BalticTrainerOMS",
         "vaultName": "DeploymentVM",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
-        "_moduleRepo": "main/DeploymentTemp/modules"        
+        "_moduleRepo": "/main/DeploymentTemp/modules"        
     },
     "resources": [
         {
