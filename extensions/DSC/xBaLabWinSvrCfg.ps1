@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 2.0.0                                               #
+# Version: 2.1.0                                               #
 ################################################################
 
 Configuration xBaMobilityandDevicesLabCfg {
@@ -143,10 +143,19 @@ Configuration xBaSecurityPlusLabCfg {
             Username = Split-Path -Path $Credential.Username -Leaf
             Password = $Credential
             FullName = "Baltic Apprentice"
-            Description = "Baltic Apprentice"
+            Description = "Baltic Apprentice Lab Admin"
             PasswordNeverExpires = $true
             PasswordChangeRequired = $false
             PasswordChangeNotAllowed = $true
+        }
+
+        # This resource block adds user to a spacific group
+        xGroup "AddToAdministratorsGroup"
+        {
+            GroupName = "Administrators"
+            Ensure = "Present"
+            MembersToInclude = Split-Path -Path $Credential.Username -Leaf
+            DependsOn = "[xUser]CreateUserAccount"
         }
 
         # This resource block adds user to a spacific group
