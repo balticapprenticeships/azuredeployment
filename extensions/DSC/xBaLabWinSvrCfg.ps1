@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 2.1.0                                               #
+# Version: 2.2.0                                               #
 ################################################################
 
 Configuration xBaMobilityandDevicesLabCfg {
@@ -113,6 +113,33 @@ Configuration xBaMobilityandDevicesLabCfg {
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetDesktopWallpaper"
+        {
+            SetScript = { 
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name TileWallpaper -Value '0'
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value '10' -Force
+                rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetRdpTimeZone"
+        {
+            SetScript = {
+                New-ItemProperty -ErrorAction Stop -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
     }
 }
 
@@ -220,6 +247,33 @@ Configuration xBaSecurityPlusLabCfg {
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetDesktopWallpaper"
+        {
+            SetScript = { 
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name TileWallpaper -Value '0'
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value '10' -Force
+                rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetRdpTimeZone"
+        {
+            SetScript = {
+                New-ItemProperty -ErrorAction Stop -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
     }
 }
 
@@ -308,6 +362,33 @@ Configuration xBaServerFundamentalsLabCfg {
                 # Do Nothing
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetDesktopWallpaper"
+        {
+            SetScript = { 
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name TileWallpaper -Value '0'
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value '10' -Force
+                rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetRdpTimeZone"
+        {
+            SetScript = {
+                New-ItemProperty -ErrorAction Stop -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
         }
     }
     
@@ -399,6 +480,33 @@ Configuration xBaItEssentialsLabCfg {
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetDesktopWallpaper"
+        {
+            SetScript = { 
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name TileWallpaper -Value '0'
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value '10' -Force
+                rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetRdpTimeZone"
+        {
+            SetScript = {
+                New-ItemProperty -ErrorAction Stop -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
     }
     
 }
@@ -488,6 +596,33 @@ Configuration xBaNetworkAndArchitectureLabCfg {
                 # Do Nothing
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetDesktopWallpaper"
+        {
+            SetScript = { 
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name TileWallpaper -Value '0'
+                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value '10' -Force
+                rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetRdpTimeZone"
+        {
+            SetScript = {
+                New-ItemProperty -ErrorAction Stop -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
         }
     }
     
