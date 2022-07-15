@@ -8,8 +8,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [2.2.0] 15.07.22
+ 
+### Add
+- [xBaLabWinSvrCfg]
+  Add set wallpaper and RDP timezone redirect
+
 ## [2.1.0] 07.07.22
  
 ### Add
 - [xBaLabWinSvrCfg]
   Add Security+ administrators group.
+
+# Windows Client Lab Config
