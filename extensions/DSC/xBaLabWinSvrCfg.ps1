@@ -119,14 +119,12 @@ Configuration xBaMobilityandDevicesLabCfg {
         {
             SetScript = { 
                 if (Test-Path "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg") {
-                    Write-Log "Desktop background located. Setting wallpaper."
                     if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
                         New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force
                     }
-                    Write-Log "Setting default wallpaper"
                         
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" | Out-File -Encoding utf8 $logFile -Append
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 | Out-File -Encoding utf8 $logFile -Append
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4
                     rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
                     
                 }
@@ -275,14 +273,12 @@ Configuration xBaSecurityPlusLabCfg {
         {
             SetScript = { 
                 if (Test-Path "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg") {
-                    Write-Log "Desktop background located. Setting wallpaper."
                     if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
                         New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force
                     }
-                    Write-Log "Setting default wallpaper"
                         
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" | Out-File -Encoding utf8 $logFile -Append
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 | Out-File -Encoding utf8 $logFile -Append
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4
                     rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
                     
                 }
@@ -413,14 +409,12 @@ Configuration xBaServerFundamentalsLabCfg {
         {
             SetScript = { 
                 if (Test-Path "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg") {
-                    Write-Log "Desktop background located. Setting wallpaper."
                     if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
                         New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force
                     }
-                    Write-Log "Setting default wallpaper"
                         
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" | Out-File -Encoding utf8 $logFile -Append
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 | Out-File -Encoding utf8 $logFile -Append
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4
                     rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
                     
                 }
@@ -552,14 +546,12 @@ Configuration xBaItEssentialsLabCfg {
         {
             SetScript = { 
                 if (Test-Path "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg") {
-                    Write-Log "Desktop background located. Setting wallpaper."
                     if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
                         New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force
                     }
-                    Write-Log "Setting default wallpaper"
                         
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" | Out-File -Encoding utf8 $logFile -Append
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 | Out-File -Encoding utf8 $logFile -Append
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4
                     rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
                     
                 }
@@ -691,14 +683,12 @@ Configuration xBaNetworkAndArchitectureLabCfg {
         {
             SetScript = { 
                 if (Test-Path "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg") {
-                    Write-Log "Desktop background located. Setting wallpaper."
                     if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
                         New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force
                     }
-                    Write-Log "Setting default wallpaper"
                         
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" | Out-File -Encoding utf8 $logFile -Append
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 | Out-File -Encoding utf8 $logFile -Append
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4
                     rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
                     
                 }
