@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 2.2.0                                               #
+# Version: 2.3.0                                               #
 ################################################################
 
 Configuration xBaMobilityandDevicesLabCfg {
@@ -118,10 +118,18 @@ Configuration xBaMobilityandDevicesLabCfg {
         xScript "SetDesktopWallpaper"
         {
             SetScript = { 
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name TileWallpaper -Value '0'
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value '10' -Force
-                rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+                if (Test-Path "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg") {
+                    Write-Log "Desktop background located. Setting wallpaper."
+                    if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
+                        New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force
+                    }
+                    Write-Log "Setting default wallpaper"
+                        
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" | Out-File -Encoding utf8 $logFile -Append
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 | Out-File -Encoding utf8 $logFile -Append
+                    rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+                    
+                }
             }
             TestScript = { $false }
             GetScript = { 
@@ -133,7 +141,21 @@ Configuration xBaMobilityandDevicesLabCfg {
         xScript "SetRdpTimeZone"
         {
             SetScript = {
-                New-ItemProperty -ErrorAction Stop -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+                New-ItemProperty -ErrorAction SilentlyContinue -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
+                Remove-Item "C:\workflow-artifacts" -Force
+                Remove-Item "C:\workflow-artifacts.zip" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -252,10 +274,18 @@ Configuration xBaSecurityPlusLabCfg {
         xScript "SetDesktopWallpaper"
         {
             SetScript = { 
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name TileWallpaper -Value '0'
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value '10' -Force
-                rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+                if (Test-Path "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg") {
+                    Write-Log "Desktop background located. Setting wallpaper."
+                    if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
+                        New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force
+                    }
+                    Write-Log "Setting default wallpaper"
+                        
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" | Out-File -Encoding utf8 $logFile -Append
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 | Out-File -Encoding utf8 $logFile -Append
+                    rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+                    
+                }
             }
             TestScript = { $false }
             GetScript = { 
@@ -267,7 +297,21 @@ Configuration xBaSecurityPlusLabCfg {
         xScript "SetRdpTimeZone"
         {
             SetScript = {
-                New-ItemProperty -ErrorAction Stop -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+                New-ItemProperty -ErrorAction SilentlyContinue -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
+                Remove-Item "C:\workflow-artifacts" -Force
+                Remove-Item "C:\workflow-artifacts.zip" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -368,10 +412,18 @@ Configuration xBaServerFundamentalsLabCfg {
         xScript "SetDesktopWallpaper"
         {
             SetScript = { 
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name TileWallpaper -Value '0'
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value '10' -Force
-                rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+                if (Test-Path "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg") {
+                    Write-Log "Desktop background located. Setting wallpaper."
+                    if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
+                        New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force
+                    }
+                    Write-Log "Setting default wallpaper"
+                        
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" | Out-File -Encoding utf8 $logFile -Append
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 | Out-File -Encoding utf8 $logFile -Append
+                    rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+                    
+                }
             }
             TestScript = { $false }
             GetScript = { 
@@ -383,7 +435,21 @@ Configuration xBaServerFundamentalsLabCfg {
         xScript "SetRdpTimeZone"
         {
             SetScript = {
-                New-ItemProperty -ErrorAction Stop -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+                New-ItemProperty -ErrorAction SilentlyContinue -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
+                Remove-Item "C:\workflow-artifacts" -Force
+                Remove-Item "C:\workflow-artifacts.zip" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -485,10 +551,18 @@ Configuration xBaItEssentialsLabCfg {
         xScript "SetDesktopWallpaper"
         {
             SetScript = { 
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name TileWallpaper -Value '0'
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value '10' -Force
-                rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+                if (Test-Path "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg") {
+                    Write-Log "Desktop background located. Setting wallpaper."
+                    if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
+                        New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force
+                    }
+                    Write-Log "Setting default wallpaper"
+                        
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" | Out-File -Encoding utf8 $logFile -Append
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 | Out-File -Encoding utf8 $logFile -Append
+                    rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+                    
+                }
             }
             TestScript = { $false }
             GetScript = { 
@@ -500,7 +574,21 @@ Configuration xBaItEssentialsLabCfg {
         xScript "SetRdpTimeZone"
         {
             SetScript = {
-                New-ItemProperty -ErrorAction Stop -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+                New-ItemProperty -ErrorAction SilentlyContinue -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
+                Remove-Item "C:\workflow-artifacts" -Force
+                Remove-Item "C:\workflow-artifacts.zip" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -602,10 +690,18 @@ Configuration xBaNetworkAndArchitectureLabCfg {
         xScript "SetDesktopWallpaper"
         {
             SetScript = { 
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg"
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name TileWallpaper -Value '0'
-                Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value '10' -Force
-                rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+                if (Test-Path "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg") {
+                    Write-Log "Desktop background located. Setting wallpaper."
+                    if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
+                        New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force
+                    }
+                    Write-Log "Setting default wallpaper"
+                        
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" | Out-File -Encoding utf8 $logFile -Append
+                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 | Out-File -Encoding utf8 $logFile -Append
+                    rundll32.exe user32.dll, UpdatePerUserSystemParameters 1, True
+                    
+                }
             }
             TestScript = { $false }
             GetScript = { 
@@ -617,7 +713,21 @@ Configuration xBaNetworkAndArchitectureLabCfg {
         xScript "SetRdpTimeZone"
         {
             SetScript = {
-                New-ItemProperty -ErrorAction Stop -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+                New-ItemProperty -ErrorAction SilentlyContinue -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
+                Remove-Item "C:\workflow-artifacts" -Force
+                Remove-Item "C:\workflow-artifacts.zip" -Force
             }
             TestScript = { $false }
             GetScript = { 
