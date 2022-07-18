@@ -124,12 +124,10 @@ Configuration xBaMobilityandDevicesLabCfg {
                     
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 -Force
-                Write-Log "Desktop Wallpaper set using registry key HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System."
             
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "WallpaperStyle" -Value 10 -Force
                 RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
-                Write-Log "Desktop Wallpaper set using registry key HKCU:\Control Panel\Desktop"
             }
             TestScript = { $false }
             GetScript = { 
@@ -280,12 +278,10 @@ Configuration xBaSecurityPlusLabCfg {
                     
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 -Force
-                Write-Log "Desktop Wallpaper set using registry key HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System."
             
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "WallpaperStyle" -Value 10 -Force
                 RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
-                Write-Log "Desktop Wallpaper set using registry key HKCU:\Control Panel\Desktop"
             }
             TestScript = { $false }
             GetScript = { 
@@ -418,12 +414,10 @@ Configuration xBaServerFundamentalsLabCfg {
                     
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 -Force
-                Write-Log "Desktop Wallpaper set using registry key HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System."
             
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "WallpaperStyle" -Value 10 -Force
                 RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
-                Write-Log "Desktop Wallpaper set using registry key HKCU:\Control Panel\Desktop"
             }
             TestScript = { $false }
             GetScript = { 
@@ -557,12 +551,10 @@ Configuration xBaItEssentialsLabCfg {
                     
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 -Force
-                Write-Log "Desktop Wallpaper set using registry key HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System."
             
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
                 Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "WallpaperStyle" -Value 10 -Force
                 RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
-                Write-Log "Desktop Wallpaper set using registry key HKCU:\Control Panel\Desktop"
             }
             TestScript = { $false }
             GetScript = { 
@@ -697,12 +689,10 @@ Configuration xBaNetworkAndArchitectureLabCfg {
                         
                     Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
                     Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 -Force
-                    Write-Log "Desktop Wallpaper set using registry key HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System."
                 
                     Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
                     Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "WallpaperStyle" -Value 10 -Force
                     RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
-                    Write-Log "Desktop Wallpaper set using registry key HKCU:\Control Panel\Desktop"
                     
             }
             TestScript = { $false }
