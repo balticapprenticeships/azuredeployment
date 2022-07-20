@@ -176,7 +176,7 @@
                             "allowedValues": [
                                 {
                                     "label": "Windows 10 Pro",
-                                    "value": "WindowsClient"
+                                    "value": "WinClient"
                                 },
                                 {
                                     "label": "L2 Diploma",

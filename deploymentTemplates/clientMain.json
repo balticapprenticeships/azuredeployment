@@ -77,7 +77,8 @@
                 "RawDigital",
                 "DataBootCamp",
                 "ExamTesting",
-                "Diploma"
+                "Diploma",
+                "WinClient"
 
             ],
             "metadata": {
