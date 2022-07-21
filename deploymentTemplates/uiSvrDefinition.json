@@ -238,14 +238,6 @@
                                 {
                                     "label": "Latest",
                                     "value": "latest"
-                                },
-                                {
-                                    "label": "May",
-                                    "value": "1.05.22"
-                                },
-                                {
-                                    "label": "April",
-                                    "value": "1.04.22"
                                 }
                             ],
                             "required": true
