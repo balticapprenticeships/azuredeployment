@@ -240,12 +240,12 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "June",
-                                    "value": "1.06.22"
-                                },
-                                {
                                     "label": "May",
                                     "value": "1.05.22"
+                                },
+                                {
+                                    "label": "April",
+                                    "value": "1.04.22"
                                 }
                             ],
                             "required": true
