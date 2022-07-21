@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 2.3.0                                               #
+# Version: 2.4.0                                               #
 ################################################################
 
 Configuration xBaMobilityandDevicesLabCfg {
@@ -112,27 +112,6 @@ Configuration xBaMobilityandDevicesLabCfg {
                 # Do Nothing
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
-        }
-
-        # This resource block ensures that the file or command is executed
-        xScript "SetDesktopWallpaper"
-        {
-            SetScript = { 
-                if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
-                    New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force | Out-Null
-                }
-                    
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 -Force
-            
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "WallpaperStyle" -Value 10 -Force
-                RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
         }
 
         # This resource block ensures that the file or command is executed
@@ -247,7 +226,7 @@ Configuration xBaSecurityPlusLabCfg {
         xScript "RunCreateVmSecPlus-DC"
         {
             SetScript = { 
-                New-VM -Name "VSERVER" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SecurityPlus\VSERVER.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "VSERVER" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SecurityPlus\SECP-SERVER.vhdx" -SwitchName "Int-vSwitch"
             }
             TestScript = { $false }
             GetScript = {  
@@ -259,34 +238,13 @@ Configuration xBaSecurityPlusLabCfg {
         xScript "RunCreateVmSecPlus-Win10"
         {
             SetScript = { 
-                New-VM -Name "Client01" -MemoryStartupBytes 2GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SecurityPlus\Client01.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Client01" -MemoryStartupBytes 2GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SecurityPlus\SECP-CLIENT.vhdx" -SwitchName "Int-vSwitch"
             }
             TestScript = { $false }
             GetScript = { 
                 # Do Nothing
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
-        }
-
-        # This resource block ensures that the file or command is executed
-        xScript "SetDesktopWallpaper"
-        {
-            SetScript = { 
-                if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
-                    New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force | Out-Null
-                }
-                    
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 -Force
-            
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "WallpaperStyle" -Value 10 -Force
-                RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
         }
 
         # This resource block ensures that the file or command is executed
@@ -402,27 +360,6 @@ Configuration xBaServerFundamentalsLabCfg {
                 # Do Nothing
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
-        }
-
-        # This resource block ensures that the file or command is executed
-        xScript "SetDesktopWallpaper"
-        {
-            SetScript = { 
-                if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
-                    New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force | Out-Null
-                }
-                    
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 -Force
-            
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "WallpaperStyle" -Value 10 -Force
-                RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
         }
 
         # This resource block ensures that the file or command is executed
@@ -542,27 +479,6 @@ Configuration xBaItEssentialsLabCfg {
         }
 
         # This resource block ensures that the file or command is executed
-        xScript "SetDesktopWallpaper"
-        {
-            SetScript = { 
-                if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
-                    New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force | Out-Null
-                }
-                    
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 -Force
-            
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
-                Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "WallpaperStyle" -Value 10 -Force
-                RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
-        }
-
-        # This resource block ensures that the file or command is executed
         xScript "SetRdpTimeZone"
         {
             SetScript = {
@@ -676,29 +592,6 @@ Configuration xBaNetworkAndArchitectureLabCfg {
                 # Do Nothing
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
-        }
-
-        # This resource block ensures that the file or command is executed
-        xScript "SetDesktopWallpaper"
-        {
-            SetScript = {    
-        
-                    if(!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System")){
-                        New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Force | Out-Null
-                    }
-                        
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "Wallpaper" -Type String -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "WallpaperStyle" -Type String -Value 4 -Force
-                
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "Wallpaper" -Value "C:\Windows\Web\Wallpaper\BalticApprenticeships\Baltic_desktop_background.jpg" -Force
-                    Set-ItemProperty -ErrorAction SilentlyContinue -Path "HKCU:\Control Panel\Desktop" -Name "WallpaperStyle" -Value 10 -Force
-                    RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
-                    
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
         }
 
         # This resource block ensures that the file or command is executed
