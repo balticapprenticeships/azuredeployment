@@ -97,7 +97,7 @@
                 "galleryImageDefinitionName": "BA-Testing"
             },
             "WinClient": {
-                "galleryImageDefinitionName": "BA-Win10-Courses"
+                "galleryImageDefinitionName": "BA-Win10"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",
