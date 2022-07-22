@@ -175,7 +175,7 @@
                         "constraints": {
                             "allowedValues": [
                                 {
-                                    "label": "Windows 10 Pro",
+                                    "label": "Windows 10 Pro (Base Image)",
                                     "value": "WinClient"
                                 },
                                 {
