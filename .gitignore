@@ -10,6 +10,7 @@
 *.userosscache
 *.sln.docstates
 [Dd]ev
+[_Dd]ev
 [Aa]rchive
 
 # User-specific files (MonoDevelop/Xamarin Studio)
