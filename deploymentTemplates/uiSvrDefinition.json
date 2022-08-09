@@ -238,6 +238,10 @@
                                 {
                                     "label": "Latest",
                                     "value": "latest"
+                                },
+                                {
+                                    "label": "July",
+                                    "value": "1.07.22"
                                 }
                             ],
                             "required": true
