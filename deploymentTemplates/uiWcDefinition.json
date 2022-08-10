@@ -150,7 +150,7 @@
                                     ]
                                 },
                                 "toolTip": "Choose a type of security that matches your needs: Standard includes basic protections at no additional cost. Trusted launch virtual machines provide additional security features on Gen 2 virtual machines to protect against persistent and advanced attacks.",
-                                "visible": "[equal(steps('vmConfig).vmInstance.osPlatform, 'Linux')]"
+                                "visible": false
                             }
                         ]
                     }
