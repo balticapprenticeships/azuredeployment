@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "1.0.1.0",
+    "currentVersion": "1.0.2.0",
     "parameters": {
         "config": {
             "isWizard": true,
@@ -149,10 +149,10 @@
                                         }
                                     ]
                                 },
-                                "toolTip": "Choose a type of security that matches your needs: Standard includes basic protections at no additional cost. Trusted launch virtual machines provide additional security features on Gen 2 virtual machines to protect against persistent and advanced attacks.",
-                                "visible": false
+                                "toolTip": "Choose a type of security that matches your needs: Standard includes basic protections at no additional cost. Trusted launch virtual machines provide additional security features on Gen 2 virtual machines to protect against persistent and advanced attacks."
                             }
-                        ]
+                        ],
+                        "visible": "[equals(steps('vmConfig').vmInstance.osPlatform, 'Linux')]"
                     }
                 ]
             },
