@@ -189,6 +189,10 @@
                                 {
                                     "label": "Data Boot Camp",
                                     "value": "DataBootCamp"
+                                },
+                                {
+                                    "label": "Supporting IT Architecture",
+                                    "value": "ICTL3Support"
                                 }
                             ],
                             "required": true

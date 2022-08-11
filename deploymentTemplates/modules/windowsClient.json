@@ -98,6 +98,9 @@
             },
             "WinClient": {
                 "galleryImageDefinitionName": "BA-Win10"
+            },
+            "ICTL3Support": {
+                "galleryImageDefinitionName": "BA_W10_ICTArch"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",
