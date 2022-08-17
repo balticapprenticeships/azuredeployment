@@ -426,7 +426,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), if(equals(parameters('course'), 'EndUserDevcies'), '/windowsSrvEnd.json', '/windowsServer.json'))]",
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), if(equals(parameters('course'), 'EndUserDevcies'), '/windowsSvrEnd.json', '/windowsServer.json'))]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
