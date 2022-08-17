@@ -85,7 +85,7 @@
         "WindowsLicense": "Windows_Server",
         "operatingSystemValues": {
             "WindowsServer": {
-                "galleryImageDefinitionName": "BA-WinSvrEnd2019"
+                "galleryImageDefinitionName": "BA_WinSvrEnd2019"
             }
         },
         "labConfigDscFunction": "xBaItEssentialsLabCfg",
