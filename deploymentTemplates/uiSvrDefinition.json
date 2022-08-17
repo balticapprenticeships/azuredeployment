@@ -193,6 +193,10 @@
                                 {
                                     "label": "CompTIA Security+",
                                     "value": "SecurityPlus"
+                                },
+                                {
+                                    "label": "Working with End User Devices",
+                                    "value": "EndUserDevcies"
                                 }
                             ],
                             "required": true

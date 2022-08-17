@@ -78,7 +78,8 @@
                 "ServerFundamentals",
                 "ItEssentials",
                 "NetworkAndArchitecture",
-                "SecurityPlus"
+                "SecurityPlus",
+                "EndUserDevcies"
 
             ],
             "metadata": {
@@ -424,7 +425,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsServer.json')]",
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), equals(parameters('course'), 'EndUserDevcies'), '/windowsSrvEnd.json', '/windowsServer.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
