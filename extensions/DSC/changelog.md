@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [2.2.5] 23.08.22
+ 
+### Add
+- [xBaLabWinSvrCfg]
+  Added VM configuration for xBaEndUserDevicesLabCfg
+
 ## [2.2.0] 15.07.22
  
 ### Add
@@ -21,3 +27,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   Add Security+ administrators group.
 
 # Windows Client Lab Config
+
+## [4.2.0] 25.08.22
+ 
+### Add
+- [xBaLabWinSvrCfg]
+  Added SQLDataAnalysis.
