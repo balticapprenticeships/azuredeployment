@@ -93,12 +93,15 @@
             "RawDigital": {
                 "galleryImageDefinitionName": "BA-Win10-Courses"
             },
+            "SQLDataAnalysis": {
+                "galleryImageDefinitionName": "BA-Win10-Courses"
+            },
             "ExamTesting": {
                 "galleryImageDefinitionName": "BA-Testing"
             },
             "WinClient": {
                 "galleryImageDefinitionName": "BA-Win10"
-            },
+            },            
             "ICTL3Support": {
                 "galleryImageDefinitionName": "BA_W10_ICTArch"
             }

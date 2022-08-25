@@ -79,7 +79,8 @@
                 "ExamTesting",
                 "Diploma",
                 "WinClient",
-                "ICTL3Support"
+                "ICTL3Support",
+                "SQLDataAnalysis"
 
             ],
             "metadata": {
