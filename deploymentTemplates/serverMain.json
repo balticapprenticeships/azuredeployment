@@ -79,7 +79,7 @@
                 "ItEssentials",
                 "NetworkAndArchitecture",
                 "SecurityPlus",
-                "EndUserDevcies"
+                "EndUserDevices"
 
             ],
             "metadata": {
@@ -104,6 +104,7 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "1.08.22",
                 "1.07.22",
                 "1.05.22"
             ],
@@ -261,7 +262,6 @@
         "idleVM": "No",
         "vaultResourceGroup": "BalticTrainerOMS",
         "vaultName": "DeploymentVM",
-        "moduleSvrSelect": "[if(equals(parameters('course'), 'EndUserDevcies'), '/windowsSrvEnd.json', '/windowsServer.json')]",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
         "_moduleRepo": "/main/deploymentTemplates/modules"        
     },
@@ -426,7 +426,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), if(equals(parameters('course'), 'EndUserDevcies'), '/windowsSvrEnd.json', '/windowsServer.json'))]",
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsServer.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {

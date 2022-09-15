@@ -244,12 +244,12 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "June",
-                                    "value": "1.06.22"
+                                    "label": "August",
+                                    "value": "1.08.22"
                                 },
                                 {
-                                    "label": "May",
-                                    "value": "1.05.22"
+                                    "label": "July",
+                                    "value": "1.07.22"
                                 }
                             ],
                             "required": true
