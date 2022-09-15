@@ -26,6 +26,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [1.0.3.0] 25.08.22
+
+### Add
+- [uiWcDefinition,clientMain,windowsClient]
+  added new course SQL for Data Analysis
+
 ## [1.0.2.0] 11.08.22
  
 ### Change
