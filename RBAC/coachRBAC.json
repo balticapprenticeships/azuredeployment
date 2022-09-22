@@ -1,0 +1,61 @@
+{
+    "properties": {
+        "roleName": "Baltic Coach RBAC",
+        "IsCustom": true,
+        "description": "This role give the coaches the ability to create VMs and associated resources.",
+        "assignableScopes": [
+          "/subscriptions/<SUBSCRIPTION-ID>"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Authorization/*/read",
+                    "Microsoft.Compute/availabilitySets/*",
+                    "Microsoft.Compute/cloudServices/*",
+                    "Microsoft.Compute/disks/write",
+                    "Microsoft.Compute/disks/read",
+                    "Microsoft.Compute/disks/delete",
+                    "Microsoft.Compute/galleries/read",
+                    "Microsoft.Compute/galleries/images/read",
+                    "Microsoft.Compute/galleries/images/versions/read",
+                    "Microsoft.Compute/images/read",              
+                    "Microsoft.Compute/locations/*",
+                    "Microsoft.Compute/virtualMachines/*",
+                    "Microsoft.Compute/virtualMachineScaleSets/*",
+                    "Microsoft.DevTestLab/schedules/*",
+                    "Microsoft.Insights/alertRules/*",
+                    "Microsoft.Network/applicationGateways/backendAddressPools/join/action",
+                    "Microsoft.Network/loadBalancers/backendAddressPools/join/action",
+                    "Microsoft.Network/loadBalancers/inboundNatPools/join/action",
+                    "Microsoft.Network/loadBalancers/inboundNatRules/join/action",
+                    "Microsoft.Network/loadBalancers/probes/join/action",
+                    "Microsoft.Network/loadBalancers/read",
+                    "Microsoft.Network/locations/*",
+                    "Microsoft.Network/networkInterfaces/*",
+                    "Microsoft.Network/networkSecurityGroups/join/action",
+                    "Microsoft.Network/networkSecurityGroups/read",
+                    "Microsoft.Network/publicIPAddresses/join/action",
+                    "Microsoft.Network/publicIPAddresses/read",
+                    "Microsoft.Network/virtualNetworks/read",
+                    "Microsoft.Network/virtualNetworks/subnets/join/action",
+                    "Microsoft.ResourceHealth/availabilityStatuses/read",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                    "Microsoft.SerialConsole/serialPorts/connect/action",
+                    "Microsoft.SqlVirtualMachine/*",
+                    "Microsoft.Storage/storageAccounts/listKeys/action",
+                    "Microsoft.Storage/storageAccounts/read",
+                    "Microsoft.Support/*"
+                ],
+                "notActions": [],
+                "dataActions": [
+                    "Microsoft.Compute/virtualMachines/login/action",
+                    "Microsoft.Compute/virtualMachines/loginAsAdmin/action",
+                    "Microsoft.KeyVault/vaults/secrets/getSecret/action",
+                    "Microsoft.KeyVault/vaults/secrets/readMetadata/action"
+                ],
+                "notDataActions": []
+            }
+        ]
+    } 
+}
