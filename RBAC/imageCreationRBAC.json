@@ -2,23 +2,31 @@
     "properties": {
         "roleName": "Image Creation Role",
         "IsCustom": true,
-        "description": "Azure Image Builder access to create resources for the image build",
+        "description": "Azure Image Builder access to create resources for the image build, access image resources and create image definition versions",
         "assignableScopes": [
-          "/subscriptions/<SUBSCRIPTION-ID>/resourceGroups/AzureImageBuilderRg"
+          "/subscriptions/<SUBSCRIPTION-ID>/resourceGroups/BalticAzImageBuilderRg"
         ],
         "permissions": [
             {
                 "actions": [
                     "Microsoft.Compute/galleries/read",
                     "Microsoft.Compute/galleries/images/read",
+                    "Microsoft.Compute/galleries/images/write",
                     "Microsoft.Compute/galleries/images/versions/read",
                     "Microsoft.Compute/galleries/images/versions/write",
                     "Microsoft.Compute/images/write",
                     "Microsoft.Compute/images/read",
-                    "Microsoft.Compute/images/delete"
+                    "Microsoft.Compute/images/delete",                    
+                    "Microsoft.VirtualMachineImages/imageTemplates/write",
+                    "Microsoft.Storage/storageAccounts/blobServices/containers/read",
+                    "Microsoft.Storage/storageAccounts/blobServices/generateUserDelegationKey/action"
                 ],
                 "notActions": [],
-                "dataActions": [],
+                "dataActions": [
+                    "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read",
+                    "Microsoft.KeyVault/vaults/secrets/getSecret/action",
+                    "Microsoft.KeyVault/vaults/secrets/readMetadata/action"
+                ],
                 "notDataActions": []
             }
         ]
