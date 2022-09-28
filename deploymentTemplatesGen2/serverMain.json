@@ -260,7 +260,7 @@
         "securityType": "Standard",
         "licenseType": "AzureLicense",
         "idleVM": "No",
-        "vaultResourceGroup": "BalticTrainerOMSRg",
+        "vaultResourceGroup": "BalticTrainingOMSRg",
         "vaultName": "VMDeployment",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
         "_moduleRepo": "/main/deploymentTemplatesGen2/modules"        
