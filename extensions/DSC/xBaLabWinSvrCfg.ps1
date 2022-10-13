@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 2.5.0                                               #
+# Version: 2.5.5                                               #
 ################################################################
 
 Configuration xBaMobilityandDevicesLabCfg {
@@ -623,7 +623,7 @@ Configuration xBaNetworkAndArchitectureLabCfg {
     
 }
 
-Configuration xBaEndUserDevciesLabCfg {
+Configuration xBaEndUserDevicesLabCfg {
     [CmdletBinding()]
 
     Param (
@@ -680,6 +680,34 @@ Configuration xBaEndUserDevciesLabCfg {
             Name = $features
             Ensure = "Present"
             IncludeAllSubFeature = $true
+        }
+
+        # This resource block ensures that the file is executed
+        xScript "RunvSwitchForNestedVms"
+        {
+            SetScript = { 
+                New-VMSwitch -SwitchName "Int-vSwitch" -SwitchType Internal
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        xScript "RunCreateVmSecPlus-DC"
+        {
+            SetScript = { 
+                New-VM -Name "Server01" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\Course2EndUserDevices\Server01.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "AdamLaptop" -MemoryStartupBytes 512MB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\Course2EndUserDevices\AdamLaptop.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "ApprenticeLaptop" -MemoryStartupBytes 2GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\Course2EndUserDevices\ApprenticeLaptop.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "SoniaPC" -MemoryStartupBytes 2GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\Course2EndUserDevices\SoniaPC.vhdx" -SwitchName "Int-vSwitch"
+            }
+            TestScript = { $false }
+            GetScript = {  
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
 
         # This resource block ensures that the file or command is executed
