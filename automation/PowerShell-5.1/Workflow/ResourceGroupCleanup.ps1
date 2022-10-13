@@ -1,4 +1,4 @@
-workflow ResourceGroupCleanupAutomation {
+workflow ResourceGroupCleanup {
     param (
         [Parameter(mandatory = $true)]
         [ValidateNotNullOrEmpty("Yes","No")]
@@ -12,16 +12,19 @@ workflow ResourceGroupCleanupAutomation {
     $ErrorActionPreference = "Stop"
     $WarningPreference = @("SilentlyContinue", "Continue")[$showWarnings -eq "Yes"]
     $VerbosePreference = "Continue"
-    $connectionName = 'AzureRunAsConnection'
+
+    "Please enable appropriate RBAC permissions to the system identity of this automation account. Otherwise, the runbook may fail..."
 
     try {
-        # Get the connection "AzureRunAsConnection "
-        $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
-
         "Logging in to Azure..."
-        
         Connect-AzAccount -Identity
-        
+    }
+    catch {
+        Write-Error -Message $_.Exception
+        throw $_.Exception
+    }
+
+    try {        
         $start = Get-Date
         $checkTime = Get-Date -Format F
 
@@ -45,7 +48,7 @@ workflow ResourceGroupCleanupAutomation {
         }        
     }
     catch {
-        Write-Output "Failed to obtain service principal, login to Azure and Get VMs: " $_
+        Write-Output "Failed to obtain Get VMs: " $_
         exit
     }
 
