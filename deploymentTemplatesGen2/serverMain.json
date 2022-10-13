@@ -104,9 +104,7 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
-                "1.08.22",
-                "1.07.22",
-                "1.05.22"
+                "1.09.22"
             ],
             "metadata": {
                 "description": "Lab image version"
@@ -483,7 +481,7 @@
                             "keyVault": {
                                 "id": "[resourceId(subscription().subscriptionId, variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
                             },
-                            "secretName": "[if(equals(parameters('course'), ''), 'SpLabAdminUsername', 'LabAdmin')]"
+                            "secretName": "LabAdmin"
                         }
                     },
                     "adminPassword": {
@@ -491,7 +489,7 @@
                             "keyVault": {
                                 "id": "[resourceId(subscription().subscriptionId, variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
                             },
-                            "secretName": "[if(equals(parameters('course'), ''), 'SpLabAdminPassword', 'LabAdminPassword')]"
+                            "secretName": "LabAdminPassword"
                         }
                     },
                     "localUsername": {

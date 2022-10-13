@@ -81,7 +81,7 @@
     "functions": [],
     "variables": {
         "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringTrainerInitials')))]",
-        "galleryImageName": "SharedImageGallery",
+        "galleryImageName": "TrainingACG",
         "WindowsLicense": "Windows_Client",
         "operatingSystemValues": {
             "WindowsServer": {

@@ -244,12 +244,8 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "August",
-                                    "value": "1.08.22"
-                                },
-                                {
-                                    "label": "July",
-                                    "value": "1.07.22"
+                                    "label": "September",
+                                    "value": "1.09.22"
                                 }
                             ],
                             "required": true
