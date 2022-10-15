@@ -28,6 +28,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client Lab Config
 
+## [4.3.0] 15.10.22
+### Add
+- [xBaLabWinClientCfg]
+  added worload artifact removal script
+
 ## [4.2.0] 25.08.22
  
 ### Add
