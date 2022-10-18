@@ -84,8 +84,26 @@
         "galleryImageName": "TrainingACG",
         "WindowsLicense": "Windows_Server",
         "operatingSystemValues": {
-            "WindowsServer": {
+            "MobilityAndDevices": {
                 "galleryImageDefinitionName": "BA-WinSvr2019"
+            },
+            "ServerFundamentals": {
+                "galleryImageDefinitionName": "BA-WinSvr2019"
+            },
+            "ItEssentials": {
+                "galleryImageDefinitionName": "BA-WinSvr2019"
+            },
+            "NetworkAndArchitecture": {
+                "galleryImageDefinitionName": "BA-WinSvr2019"
+            },
+            "SecurityPlus": {
+                "galleryImageDefinitionName": "BA-WinSvr2019"
+            },
+            "EndUserDevices": {
+                "galleryImageDefinitionName": "BA-WinSvr2019"
+            },
+            "SuppItArchP2": {
+                "galleryImageDefinitionName": "BA-SuppItArch"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",
@@ -135,7 +153,7 @@
                         "deleteOption": "[parameters('osDiskDeleteOption')]"
                     },
                     "imageReference": {
-                        "id": "[resourceId('Microsoft.Compute/galleries/images/versions', variables('galleryImageName'), variables('operatingSystemValues')['WindowsServer'].galleryImageDefinitionName, parameters('imageVersion'))]"
+                        "id": "[resourceId('Microsoft.Compute/galleries/images/versions', variables('galleryImageName'), variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, parameters('imageVersion'))]"
                     }
                 },
                 "networkProfile": {

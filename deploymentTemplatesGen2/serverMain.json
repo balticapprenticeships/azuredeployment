@@ -79,7 +79,9 @@
                 "ItEssentials",
                 "NetworkAndArchitecture",
                 "SecurityPlus",
-                "EndUserDevices"
+                "EndUserDevices",
+                "SuppItArchP1",
+                "SuppItArchP2"
 
             ],
             "metadata": {
