@@ -104,6 +104,9 @@
             },
             "SuppItArchP2": {
                 "galleryImageDefinitionName": "BA-SuppItArch"
+            },
+            "TrblshootNetP2": {
+                "galleryImageDefinitionName": "BA-WinSvr2019"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",

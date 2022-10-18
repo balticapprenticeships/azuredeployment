@@ -81,7 +81,9 @@
                 "SecurityPlus",
                 "EndUserDevices",
                 "SuppItArchP1",
-                "SuppItArchP2"
+                "SuppItArchP2",
+                "TrblshootNetP1",
+                "TrblshootNetP2"
 
             ],
             "metadata": {

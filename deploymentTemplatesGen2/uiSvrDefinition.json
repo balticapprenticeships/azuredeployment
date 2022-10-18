@@ -201,6 +201,10 @@
                                 {
                                     "label": "Supporting IT Architecture - Part 2",
                                     "value": "SuppItArchP2"
+                                },
+                                {
+                                    "label": "Troubleshooting Networks - Part 2",
+                                    "value": "TrblshootNetP2"
                                 }
                             ],
                             "required": true
