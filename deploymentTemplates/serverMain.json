@@ -73,7 +73,7 @@
             "type": "string",
             "defaultValue": "NoValue",
             "allowedValues": [
-                "NoVlaue",
+                "NoValue",
                 "MobilityAndDevices",
                 "ServerFundamentals",
                 "ItEssentials",
