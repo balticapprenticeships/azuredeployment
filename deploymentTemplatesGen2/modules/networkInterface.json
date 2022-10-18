@@ -57,6 +57,7 @@
             "location": "[parameters('location')]",
             "tags": {
                 "DisplayName": "[concat(variables('vmNamePrefix'), copyIndex('nicloop', 1), '-nic')]",
+                "ResourceType": "NetworkInterface",
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",

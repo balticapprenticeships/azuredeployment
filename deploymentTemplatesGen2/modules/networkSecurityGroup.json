@@ -64,6 +64,7 @@
             "location": "[parameters('location')]",
             "tags": {
                 "DisplayName": "Network Security Group",
+                "ResourceType": "NetworkSecurityGroup",
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",

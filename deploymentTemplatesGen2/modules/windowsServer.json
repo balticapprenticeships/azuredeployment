@@ -130,6 +130,8 @@
             "location": "[parameters('location')]",
             "tags": {
                 "Displayname": "Virtual Machine",
+                "ResourceType": "VirtualMachine",
+                "Platform": "WindowsServer",
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
@@ -199,6 +201,7 @@
                     "location": "[parameters('location')]",
                     "tags": {
                         "DisplayName": "DSC",
+                        "ResourceType": "StateConfiguration",
                         "Dept": "[resourceGroup().tags['Dept']]",
                         "CreatedBy": "[parameters('createdBy')]",
                         "CourseDate": "[parameters('courseStartDate')]",

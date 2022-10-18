@@ -32,6 +32,7 @@
             "location": "[parameters('location')]",
             "tags": {
                 "DisplayName": "Virtual Network",
+                "ResourceType": "VirtualNetwork",
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",

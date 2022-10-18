@@ -130,6 +130,8 @@
             "location": "[parameters('location')]",
             "tags": {
                 "Displayname": "Virtual Machine",
+                "ResourceType": "VirtualMachine",
+                "Platform": "Linux",
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",

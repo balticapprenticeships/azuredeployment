@@ -127,6 +127,8 @@
             "location": "[parameters('location')]",
             "tags": {
                 "Displayname": "Virtual Machine",
+                "ResourceType": "VirtualMachine",
+                "Platform": "WindowsClient",
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",

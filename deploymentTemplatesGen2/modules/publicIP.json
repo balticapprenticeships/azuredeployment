@@ -36,6 +36,7 @@
             "location": "[parameters('location')]",
             "tags": {
                 "DisplayName": "Public IP Address",
+                "ResourceType": "PublicIPAddress",
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
