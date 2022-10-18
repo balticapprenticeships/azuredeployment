@@ -16,13 +16,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Add
 - [uiSvrDefinition]
-  Added new course Supporting IT Architecture part 1 & 2
+  Added new course Supporting IT Architecture part 1 & 2 and Troubleshooting Networks
 
 ## [2.0.0.0] 18.10.22
 
 ### Add
 - [serverMain,windowsServer]
-  Added new course and custom image for Supporting IT Architecture
+  Added new course and custom image for Supporting IT Architecture and Troubleshooting Networks
 
 ## [2.0.0.0] 28.09.22
 

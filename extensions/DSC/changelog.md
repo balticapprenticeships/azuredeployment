@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [2.7.0] 18.10.22
+
+### Add
+- [xBaLabWinSvrCfg]
+  Added VM Configuration xBaTrblshootNetP2LabCfg
+
 ## [2.6.0] 18.10.22
 
 ### Add
