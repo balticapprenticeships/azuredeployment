@@ -12,6 +12,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [1.0.4.0] 18.10.22
+
+### Add
+- [uiSvrDefinition]
+  Added new course Supporting IT Architecture part 1 & 2
+
+## [2.0.0.0] 18.10.22
+
+### Add
+- [serverMain,windowsServer]
+  Added new course and custom image for Supporting IT Architecture
+
 ## [2.0.0.0] 28.09.22
 
 ### Change
