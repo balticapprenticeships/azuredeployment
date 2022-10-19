@@ -30,6 +30,7 @@
             "location": "[parameters('location')]",
             "tags": {
                 "DisplayName": "Availability Set",
+                "ResourceType": "AvailabilitySet",
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]"
             },
