@@ -102,7 +102,7 @@
             "EndUserDevices": {
                 "galleryImageDefinitionName": "BA-WinSvr2019"
             },
-            "SuppItArchP2": {
+            "SuppItArch": {
                 "galleryImageDefinitionName": "BA-SuppItArch"
             },
             "TrblshootNetP2": {

@@ -195,12 +195,8 @@
                                     "value": "SecurityPlus"
                                 },
                                 {
-                                    "label": "Supporting IT Architecture - Part 1",
-                                    "value": "EndUserDevices"
-                                },
-                                {
-                                    "label": "Supporting IT Architecture - Part 2",
-                                    "value": "SuppItArchP2"
+                                    "label": "Supporting IT Architecture",
+                                    "value": "SuppItArch"
                                 },
                                 {
                                     "label": "Troubleshooting Networks - Part 2",
