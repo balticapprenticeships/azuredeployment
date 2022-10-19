@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [2.8.0] 19.10.22
+
+### Change
+- [xBaLabWinSvrCfg]
+  Removed EndUserDevices
+
 ## [2.7.0] 18.10.22
 
 ### Add
