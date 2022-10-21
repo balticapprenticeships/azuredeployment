@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [1.1.0.0] 21.10.22
+
+### Change
+- [uiSvrDefinition]
+  Switched the OS Config position with VM config, moved platform to be part of OS config. Configured patch mode to be select basedon platform choice.
+
 ## [1.0.4.0] 18.10.22
 
 ### Add
@@ -45,6 +51,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   Add Security+ LabAdmin user.
 
 # Windows Client User Interface
+
+## [1.1.0.0] 21.10.22
+
+### Change
+- [uiWcDefinition]
+  Switched the OS Config position with VM config, moved platform to be part of OS config. Configured patch mode to be select basedon platform choice.
 
 ## [2.0.0.0] 28.09.22
 

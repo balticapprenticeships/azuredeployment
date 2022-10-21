@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "1.0.4.0",
+    "currentVersion": "1.1.0.0",
     "parameters": {
         "config": {
             "isWizard": true,
@@ -20,6 +20,191 @@
         "basics": [],
         "steps": [
             {
+                "name": "osConfig",
+                "label": "OS Details",
+                "elements": [
+                    {
+                        "name": "osMessage",
+                        "type": "Microsoft.Common.TextBlock",
+                        "options": {
+                            "text": "Here you can configure the virtual machine environment such as course, OS image version etc."
+                        }
+                    },
+                    {
+                        "name": "osPlatform",
+                        "label": "Windows or Linux based VM",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select your platform",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Windows",
+                                    "value": "Windows"                                            
+                                },
+                                {
+                                    "label": "Linux",
+                                    "value": "Linux"                                            
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "operatingSystem",
+                        "label": "Select a course or Image",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course or image",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Mobility and Devices",
+                                    "value": "MobilityAndDevices"
+                                },
+                                {
+                                    "label": "Server Administration",
+                                    "value": "ServerFundamentals"
+                                },
+                                {
+                                    "label": "C&G Networking and Architecture",
+                                    "value": "NetworkAndArchitecture"
+                                },
+                                {
+                                    "label": "IT Essentials",
+                                    "value": "ItEssentials"
+                                },
+                                {
+                                    "label": "CompTIA Security+",
+                                    "value": "SecurityPlus"
+                                },
+                                {
+                                    "label": "Supporting IT Architecture",
+                                    "value": "SuppItArch"
+                                },
+                                {
+                                    "label": "Troubleshooting Networks - Part 2",
+                                    "value": "TrblshootNetP2"
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
+                    },                    
+                    {
+                        "name": "linuxOS",
+                        "label": "Linux Operating System",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a Linux distribution",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Ubuntu Server 18.04",
+                                    "value": "UbuntuServer"
+                                },
+                                {
+                                    "label": "Ubuntu Server 20.04",
+                                    "value": "UbuntuServer2004"
+                                },
+                                {
+                                    "label": "Debian",
+                                    "value": "Debian"
+                                },
+                                {
+                                    "label": "RedHat",
+                                    "value": "RedHat"
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the Linux Distribution you require.",
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
+                    },
+                    {
+                        "name": "imageVersion",
+                        "label": "OS Image Version",
+                        "type": "Microsoft.Common.DropDown",
+                        "defaultValue": "Latest",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Latest",
+                                    "value": "latest"
+                                },
+                                {
+                                    "label": "September",
+                                    "value": "1.09.22"
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can choose from different OS image version however, 'Latest' is recommended.",
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
+                    },
+                    {
+                        "name": "enableHotpatching",
+                        "label": "Enable Hotpatching",
+                        "type": "Microsoft.Common.OptionsGroup",
+                        "defaultValue": "No",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "No",
+                                    "value": false
+                                },
+                                {
+                                    "label": "Yes",
+                                    "value": true
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select whether to enable hot patching. Orchastration must be enabled on the subscription",
+                        "visible": false
+                    },
+                    {
+                        "name": "patchMode",
+                        "label": "OS Patch Mode",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "[if(equals('Windows', steps('osConfig').osPlatform), 'Windows OS Automatic Updates', 'Non Windows OS']",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Windows OS Automatic Updates",
+                                    "value": "AutomaticByOS"
+                                },
+                                {
+                                    "label": "Non Windows OS",
+                                    "value": "ImageDefault"
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Select the patch mode for the OS platform",
+                        "visible": "[or(equals(steps('osConfig').osPlatform, 'Windows'), equals(steps('osConfig').osPlatform, 'Linux'))]"
+                    },
+                    {
+                        "name": "licenseType",
+                        "label": "License Type",
+                        "type": "Microsoft.Common.DropDown",
+                        "defaultValue": "Azure OS License",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Azure OS License",
+                                    "value": "AzureLicense"
+                                },
+                                {
+                                    "label": "Azure Hybrid OS License",
+                                    "value": "AzureHybrid"
+                                }
+                            ],
+                            "required": false
+                        },
+                        "toolTip": "Select Azure Hybrid to use an existing Windows Server license as part of the Azure Hybrid benefit",
+                        "visible": false
+                    }
+                ]
+            },
+            {
                 "name": "vmConfig",
                 "label": "Virtual Machine Configuration",
                 "elements": [
@@ -35,24 +220,6 @@
                         "label": "Virtual Machine Instance",
                         "type": "Microsoft.Common.Section",
                         "elements": [
-                            {
-                                "name": "osPlatform",
-                                "label": "Windows or Linux based VM",
-                                "type": "Microsoft.Common.DropDown",
-                                "placeholder": "Select your platform",
-                                "constraints": {
-                                    "allowedValues": [
-                                        {
-                                            "label": "Windows",
-                                            "value": "Windows"                                            
-                                        },
-                                        {
-                                            "label": "Linux",
-                                            "value": "Linux"                                            
-                                        }
-                                    ]
-                                }
-                            },
                             {
                                 "name": "vmName",
                                 "label": "Virtual Machine Name",
@@ -152,175 +319,10 @@
                                 "toolTip": "Choose a type of security that matches your needs: Standard includes basic protections at no additional cost. Trusted launch virtual machines provide additional security features on Gen 2 virtual machines to protect against persistent and advanced attacks."
                             }
                         ],
-                        "visible": "[equals(steps('vmConfig').vmInstance.osPlatform, 'Linux')]"
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
                     }
                 ]
-            },
-            {
-                "name": "osConfig",
-                "label": "OS Details",
-                "elements": [
-                    {
-                        "name": "osMessage",
-                        "type": "Microsoft.Common.TextBlock",
-                        "options": {
-                            "text": "Here you can configure the virtual machine environment such as course, OS image version etc."
-                        }
-                    },
-                    {
-                        "name": "operatingSystem",
-                        "label": "Select a course or Image",
-                        "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a course or image",
-                        "constraints": {
-                            "allowedValues": [
-                                {
-                                    "label": "Mobility and Devices",
-                                    "value": "MobilityAndDevices"
-                                },
-                                {
-                                    "label": "Server Administration",
-                                    "value": "ServerFundamentals"
-                                },
-                                {
-                                    "label": "C&G Networking and Architecture",
-                                    "value": "NetworkAndArchitecture"
-                                },
-                                {
-                                    "label": "IT Essentials",
-                                    "value": "ItEssentials"
-                                },
-                                {
-                                    "label": "CompTIA Security+",
-                                    "value": "SecurityPlus"
-                                },
-                                {
-                                    "label": "Supporting IT Architecture",
-                                    "value": "SuppItArch"
-                                },
-                                {
-                                    "label": "Troubleshooting Networks - Part 2",
-                                    "value": "TrblshootNetP2"
-                                }
-                            ],
-                            "required": true
-                        },
-                        "toolTip": "Here you can select the operating system for your virtual machine(s)."
-                    },
-                    {
-                        "name": "linuxOS",
-                        "label": "Linux Operating System",
-                        "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a Linux distribution",
-                        "constraints": {
-                            "allowedValues": [
-                                {
-                                    "label": "Ubuntu Server 18.04",
-                                    "value": "UbuntuServer"
-                                },
-                                {
-                                    "label": "Ubuntu Server 20.04",
-                                    "value": "UbuntuServer2004"
-                                },
-                                {
-                                    "label": "Debian",
-                                    "value": "Debian"
-                                },
-                                {
-                                    "label": "RedHat",
-                                    "value": "RedHat"
-                                }
-                            ],
-                            "required": true
-                        },
-                        "toolTip": "Here you can select the Linux Distribution you require.",
-                        "visible": "[equals(steps('vmConfig').vmInstance.osPlatform, 'Linux')]"
-                    },
-                    {
-                        "name": "imageVersion",
-                        "label": "OS Image Version",
-                        "type": "Microsoft.Common.DropDown",
-                        "defaultValue": "Latest",
-                        "constraints": {
-                            "allowedValues": [
-                                {
-                                    "label": "Latest",
-                                    "value": "latest"
-                                },
-                                {
-                                    "label": "September",
-                                    "value": "1.09.22"
-                                }
-                            ],
-                            "required": true
-                        },
-                        "toolTip": "Here you can choose from different OS image version however, 'Latest' is recommended.",
-                        "visible": "[equals(steps('vmConfig').vmInstance.osPlatform, 'Windows')]"
-                    },
-                    {
-                        "name": "enableHotpatching",
-                        "label": "Enable Hotpatching",
-                        "type": "Microsoft.Common.OptionsGroup",
-                        "defaultValue": "No",
-                        "constraints": {
-                            "allowedValues": [
-                                {
-                                    "label": "No",
-                                    "value": false
-                                },
-                                {
-                                    "label": "Yes",
-                                    "value": true
-                                }
-                            ],
-                            "required": true
-                        },
-                        "toolTip": "Here you can select whether to enable hot patching. Orchastration must be enabled on the subscription",
-                        "visible": false
-                    },
-                    {
-                        "name": "patchMode",
-                        "label": "OS Patch Mode",
-                        "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select your patch mode",
-                        "constraints": {
-                            "allowedValues": [
-                                {
-                                    "label": "Windows OS Automatic Updates",
-                                    "value": "AutomaticByOS"
-                                },
-                                {
-                                    "label": "Non Windows OS",
-                                    "value": "ImageDefault"
-                                }
-                            ],
-                            "required": true
-                        },
-                        "toolTip": "Select the patch mode for the OS platform",
-                        "visible": true
-                    },
-                    {
-                        "name": "licenseType",
-                        "label": "License Type",
-                        "type": "Microsoft.Common.DropDown",
-                        "defaultValue": "Azure OS License",
-                        "constraints": {
-                            "allowedValues": [
-                                {
-                                    "label": "Azure OS License",
-                                    "value": "AzureLicense"
-                                },
-                                {
-                                    "label": "Azure Hybrid OS License",
-                                    "value": "AzureHybrid"
-                                }
-                            ],
-                            "required": true
-                        },
-                        "toolTip": "Select Azure Hybrid to use an existing Windows Server license as part of the Azure Hybrid benefit"
-                    }
-                ]
-            },
+            },            
             {
                 "name": "netConfig",
                 "label": "Network Configuration",
@@ -437,7 +439,7 @@
                                     "required": true
                                 },
                                 "toolTip": "Here you can select the authentication type for your virtual machine(s) to either Password or SSH. SSH is recommended for Linux.",
-                                "visible": "[equals(steps('vmConfig').vmInstance.osPlatform, 'Linux')]"
+                                "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
                             },
                             {
                                 "name": "adminPassword",
@@ -464,10 +466,10 @@
                                     "required": true
                                 },
                                 "toolTip": "Provide an RSA public key in the single-line format (starting with \"ssh-rsa\") or the multi-line PEM format. You can generate SSH keys using ssh-keygen on Linux and OS X, or PuTTYGen on Windows.",
-                                "visible": "[and(equals(steps('uaConfig').auacConfig.authenticationType, 'sshPublicKey'), equals(steps('vmConfig').vmInstance.osPlatform, 'Linux'))]"
+                                "visible": "[and(equals(steps('uaConfig').auacConfig.authenticationType, 'sshPublicKey'), equals(steps('osConfig').osPlatform, 'Linux'))]"
                             }
                         ],
-                        "visible": "[equals(steps('vmConfig').vmInstance.osPlatform, 'Linux')]"
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
                     },
                     {
                         "name": "suacConfig",
@@ -518,7 +520,7 @@
                                 "toolTip": "Here you can set the password for the standard user account for your virtual machine(s)."
                             }
                         ],
-                        "visible": "[equals(steps('vmConfig').vmInstance.osPlatform, 'Windows')]"
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
                     }
                 ]
             },
@@ -648,10 +650,10 @@
             "vmName": "[steps('vmConfig').vmInstance.vmName]",            
             "vmSize": "[steps('vmConfig').vmInstance.vmSize]",
             "vmCount": "[steps('vmConfig').vmInstance.vmCount]",
-            "osDiskType": "[steps('vmConfig').vmInstance.osDiskType]",
-            "osPlatform": "[steps('vmConfig').vmInstance.osPlatform]",
+            "osDiskType": "[steps('vmConfig').vmInstance.osDiskType]",            
             "course": "[steps('osConfig').operatingSystem]",
             "linuxOS": "[steps('osConfig').linuxOS]",
+            "osPlatform": "[steps('osConfig').osPlatform]",
             "imageVersion": "[steps('osConfig').imageVersion]",
             "enableHotpatching": "[steps('osConfig').enableHotpatching]",
             "patchMode": "[steps('osConfig').patchMode]",
