@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 4.3.0                                               #
+# Version: 4.4.0                                               #
 ################################################################
 
 Configuration xBaWinClientLabCfg {
@@ -324,20 +324,6 @@ Configuration xBaExamTestingLabCfg {
             Ensure = "Present"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = "[xUser]CreateUserAccount"
-        }
-
-        # This resource block ensures that the file or command is executed
-        xScript "RemoveArtifacts"
-        {
-            SetScript = {
-                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
-                Remove-Item "C:\workflow-artifacts" -Force
-                Remove-Item "C:\workflow-artifacts.zip" -Force
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
         }
     }
 }
