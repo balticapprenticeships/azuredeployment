@@ -107,6 +107,7 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "1.10.22",
                 "1.09.22"
             ],
             "metadata": {

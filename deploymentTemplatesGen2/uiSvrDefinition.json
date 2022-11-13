@@ -130,6 +130,10 @@
                                     "value": "latest"
                                 },
                                 {
+                                    "label": "October",
+                                    "value": "1.10.22"
+                                },
+                                {
                                     "label": "September",
                                     "value": "1.09.22"
                                 }
