@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [2.0.0.0] 13.12.22
+### Change
+- [uiSvrDefinition]
+  Updated image naming and added new course.
+- [serverMain]
+  removed Network and Architecture
+
 ## [2.0.0.0] 21.10.22
 
 ### Change
