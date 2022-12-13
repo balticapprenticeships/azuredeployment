@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [2.9.0] 13.12.22
+
+### Change
+- [xBaLabWinSvrCfg]
+  Removed NetworkAndArchitecture
+  Remove any unnessessay vSwitches
+  Fixed VHD path in SuppItArch
+
 ## [2.8.0] 19.10.22
 
 ### Change
