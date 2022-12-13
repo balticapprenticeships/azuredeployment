@@ -64,10 +64,6 @@
                                     "value": "ServerFundamentals"
                                 },
                                 {
-                                    "label": "C&G Networking and Architecture",
-                                    "value": "NetworkAndArchitecture"
-                                },
-                                {
                                     "label": "IT Essentials",
                                     "value": "ItEssentials"
                                 },
@@ -78,10 +74,18 @@
                                 {
                                     "label": "Supporting IT Architecture",
                                     "value": "SuppItArch"
+                                },                                
+                                {
+                                    "label": "Troubleshooting Networks - Part 1",
+                                    "value": "TrblshootNetP2"
                                 },
                                 {
                                     "label": "Troubleshooting Networks - Part 2",
                                     "value": "TrblshootNetP2"
+                                },
+                                {
+                                    "label": "IT Support Bootcamp",
+                                    "value": "ItBootcamp"
                                 }
                             ],
                             "required": true
@@ -130,12 +134,12 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "October",
-                                    "value": "1.10.22"
+                                    "label": "November",
+                                    "value": "1.11.22"
                                 },
                                 {
-                                    "label": "September",
-                                    "value": "1.09.22"
+                                    "label": "October",
+                                    "value": "1.10.22"
                                 }
                             ],
                             "required": true

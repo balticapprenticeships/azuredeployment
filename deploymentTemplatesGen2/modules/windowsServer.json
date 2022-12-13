@@ -85,28 +85,28 @@
         "WindowsLicense": "Windows_Server",
         "operatingSystemValues": {
             "MobilityAndDevices": {
-                "galleryImageDefinitionName": "BA-WinSvr2019"
+                "galleryImageDefinitionName": "BA-WinSvrGen"
             },
             "ServerFundamentals": {
-                "galleryImageDefinitionName": "BA-WinSvr2019"
+                "galleryImageDefinitionName": "BA-WinSvrGen"
             },
             "ItEssentials": {
-                "galleryImageDefinitionName": "BA-WinSvr2019"
-            },
-            "NetworkAndArchitecture": {
-                "galleryImageDefinitionName": "BA-WinSvr2019"
+                "galleryImageDefinitionName": "BA-WinSvrGen"
             },
             "SecurityPlus": {
-                "galleryImageDefinitionName": "BA-WinSvr2019"
+                "galleryImageDefinitionName": "BA-WinSvrGen"
             },
             "EndUserDevices": {
-                "galleryImageDefinitionName": "BA-WinSvr2019"
+                "galleryImageDefinitionName": "BA-SupItArc"
             },
             "SuppItArch": {
-                "galleryImageDefinitionName": "BA-SuppItArch"
+                "galleryImageDefinitionName": "BA-SupItArc"
             },
             "TrblshootNetP2": {
-                "galleryImageDefinitionName": "BA-WinSvr2019"
+                "galleryImageDefinitionName": "BA-TshootNet"
+            },
+            "ItBootcamp": {
+                "galleryImageDefinitionName": "BA-WinSvrGen"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",

@@ -77,7 +77,6 @@
                 "MobilityAndDevices",
                 "ServerFundamentals",
                 "ItEssentials",
-                "NetworkAndArchitecture",
                 "SecurityPlus",
                 "EndUserDevices",
                 "SuppItArch",
@@ -107,8 +106,8 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
-                "1.10.22",
-                "1.09.22"
+                "1.11.22",
+                "1.10.22"
             ],
             "metadata": {
                 "description": "Lab image version"
