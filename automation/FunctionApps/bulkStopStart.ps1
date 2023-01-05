@@ -83,7 +83,7 @@ Resources
 | extend tagValue = tostring(tags[tagKey])
 | where tagKey =~ 'Schedule'
 | extend schedule = tagValue
-| where tagValue =~ 'TestDaily'
+| where tagValue =~ 'StartDaily'
 | project name, type, schedule, resourceGroup, id
 "@
 
