@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [3.0.0] 6.01.23
+### Change
+- [xBaLabWinSvrCfg]
+  changed xBaTrblshootNetP2LabCfg to xBaTrblshootNetLabCfg
+## Add
+- [xBaLabWinSvrCfg]
+  added EndUserDevicesP1 and EndUserDevicesP2
+
 ## [2.9.0] 13.12.22
 
 ### Change
