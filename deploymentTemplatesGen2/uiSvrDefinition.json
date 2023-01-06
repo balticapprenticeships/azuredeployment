@@ -142,12 +142,12 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "November",
-                                    "value": "1.11.22"
+                                    "label": "December",
+                                    "value": "2.12.22"
                                 },
                                 {
-                                    "label": "October",
-                                    "value": "1.10.22"
+                                    "label": "November",
+                                    "value": "1.11.22"
                                 }
                             ],
                             "required": true
