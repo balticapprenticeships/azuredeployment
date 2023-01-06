@@ -12,6 +12,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [2.0.0.0] 06.01.23
+### Change
+- [uiSvrDefinition]
+  changed Troubleshooting Network Architecture part 1 and 2 to Troubleshooting Network Architecture
+- [serverMain,windowsServer]
+  changed TrblshootNetPt1 and TrblshootNetPt2 to TrblshootNet
+
+### Add
+- [uiSvrDefinition]
+  added Working with End User Devices Part1 and Part2
+- [serverMain,windowsServer]
+  added Working with End User Devices Part1 and Part2
+
 ## [2.0.0.0] 13.12.22
 ### Change
 - [uiSvrDefinition]
@@ -83,3 +96,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Change
 - [uiWcDefinition]
   Added visibility to vmSecurity. This section will only be visible during Linux deployment until gen 2 VMs are used.
+
+
+# Server Image and Courses (BA-WinSvrGen)
+---
+
+### Windwos Server General Image
+- Mobility and Devices
+- Server Fundamentals
+- IT Essentials
+- Security Plus
+- IT Bootcamp
+
+### Windows Server Supporting IT Architecture (BA-SupItArc)
+- Working with End User Devices
+- Supporting IT Architecture
+
+### Windows Server - Troubleshooting Networks (BA-TshootNet)
+- Troubleshooting Networks

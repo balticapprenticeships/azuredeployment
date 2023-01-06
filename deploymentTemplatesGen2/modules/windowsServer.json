@@ -96,13 +96,19 @@
             "SecurityPlus": {
                 "galleryImageDefinitionName": "BA-WinSvrGen"
             },
-            "EndUserDevices": {
+            "EndUserDevicesP1": {
                 "galleryImageDefinitionName": "BA-SupItArc"
             },
-            "SuppItArch": {
+            "EndUserDevicesP2": {
                 "galleryImageDefinitionName": "BA-SupItArc"
             },
-            "TrblshootNetP2": {
+            "SuppItArchP1": {
+                "galleryImageDefinitionName": "BA-SupItArc"
+            },
+            "SuppItArchP2": {
+                "galleryImageDefinitionName": "BA-SupItArc"
+            },
+            "TrblshootNet": {
                 "galleryImageDefinitionName": "BA-TshootNet"
             },
             "ItBootcamp": {

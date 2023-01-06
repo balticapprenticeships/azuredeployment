@@ -72,16 +72,24 @@
                                     "value": "SecurityPlus"
                                 },
                                 {
-                                    "label": "Supporting IT Architecture",
-                                    "value": "SuppItArch"
-                                },                                
-                                {
-                                    "label": "Troubleshooting Networks - Part 1",
-                                    "value": "TrblshootNetP2"
+                                    "label": "Working with End User Devices - Part 1",
+                                    "value": "EndUserDevicesP1"
                                 },
                                 {
-                                    "label": "Troubleshooting Networks - Part 2",
-                                    "value": "TrblshootNetP2"
+                                    "label": "Working with End User Devices - Part 2",
+                                    "value": "EndUserDevicesP2"
+                                },
+                                {
+                                    "label": "Supporting IT Architecture Course 1",
+                                    "value": "SuppItArchP1"
+                                },
+                                {
+                                    "label": "Supporting IT Architecture Course 2",
+                                    "value": "SuppItArchP2"
+                                },                                
+                                {
+                                    "label": "Troubleshooting Networks",
+                                    "value": "TrblshootNet"
                                 },
                                 {
                                     "label": "IT Support Bootcamp",

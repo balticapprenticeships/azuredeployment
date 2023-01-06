@@ -78,10 +78,11 @@
                 "ServerFundamentals",
                 "ItEssentials",
                 "SecurityPlus",
-                "EndUserDevices",
-                "SuppItArch",
-                "TrblshootNetP1",
-                "TrblshootNetP2"
+                "EndUserDevicesP1",
+                "EndUserDevicesP2",
+                "SuppItArchP1",
+                "SuppItArchP2",
+                "TrblshootNet"
 
             ],
             "metadata": {
