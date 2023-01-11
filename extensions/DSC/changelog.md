@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [3.1.0] 11.01.23
+### Change
+- [xBaLabWinSvrCfg]
+  added server and apprentice laptop to Supporting IT Architecture Pt2
+  removed v3.0.0
+
 ## [3.0.0] 6.01.23
 ### Change
 - [xBaLabWinSvrCfg]

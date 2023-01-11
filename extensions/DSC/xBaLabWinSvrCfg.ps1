@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 3.0.0                                               #
+# Version: 3.1.0                                               #
 ################################################################
 
 Configuration xBaMobilityandDevicesLabCfg {
@@ -672,6 +672,8 @@ Configuration xBaSuppItArchP2LabCfg {
             SetScript = {               
                 New-VM -Name "SoniaPC" -MemoryStartupBytes 2GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SupportITArchitecture-P2\SoniaPC.vhdx" -SwitchName "vSwitch"
                 New-VM -Name "AdamLaptop" -MemoryStartupBytes 512MB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SupportITArchitecture-P2\AdamLaptop.vhdx" -SwitchName "vSwitch"
+                New-VM -Name "Server01" -MemoryStartupBytes 1GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SupportITArchitecture-P1\Server01.vhdx" -SwitchName "vSwitch"
+                New-VM -Name "ApprenticeLaptop" -MemoryStartupBytes 2GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SupportITArchitecture-P1\ApprenticeLaptop.vhdx" -SwitchName "vSwitch"
             }
             TestScript = { $false }
             GetScript = {  
