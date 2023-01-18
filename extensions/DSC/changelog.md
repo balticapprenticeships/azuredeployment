@@ -68,6 +68,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client Lab Config
 
+##[4.5.0] 18.01.23
+### Change
+- [xBaLabWinClientCfg]
+  added xBaDataLevel4LabCfg
+
 ## [4.4.0] 11.11.22
 ### Change
 - [xBaLabWinClientCfg]
