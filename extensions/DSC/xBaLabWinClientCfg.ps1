@@ -522,6 +522,26 @@ Configuration xBaDataLevel4LabCfg {
             DependsOn = "[xUser]CreateUserAccount"
         }
 
+        # This resource block ensures that the file or command is executed
+        xScript "InstallNetFramework35"
+        {
+            SetScript = {
+                DISM /Online /Enable-Feature /FeatureName:NetFX3 /Source:C:\buildArtifacts\windows-client /All /LimitAccess
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that .Net 3.5 is installed
+        WindowsFeature "NetFramework35"
+        {
+            Name = "Net-Framework-Core"
+            Ensure = "Present"
+            DependsOn = "[xScript]InstallNetFramework35"
+        }
+
         # This resource block ensures that .Net 4.5 is installed
         WindowsFeature "NetFramework45"
         {
@@ -532,11 +552,33 @@ Configuration xBaDataLevel4LabCfg {
         # This resource block will install SQL Server
         SqlSetup "InstallDefaultSQL"
         {
-            InstanceName = "MSSQLSERVER"
-            Features = "SQLENGINE"
-            SourcePath = "C:\sqlBuildArtifacts\SQLServer2019-Dev"
+            InstanceName = 'MSSQLSERVER'
+            Features = 'SQLENGINE'
+            SourcePath = 'C:\sqlBuildArtifacts\SQLServer2019-Dev'
+            SQLCollation = 'Latin1_General_CI_AS'
+            SQLSvcACCOUNT = 'NT Service\MSSQLSERVER'
+            AgtSvcAccount = 'NT Service\MSSQLSERVER'
             SQLSysAdminAccounts = @('Administrators')
-            DependsOn = "[WindowsFeature]NetFramework45"
+            InstallSharedDir = 'C:\Program Files\Microsoft SQL Server'
+            InstallSharedWOWDir = 'C:\Program Files (x86)\Microsoft SQL Server'
+            InstanceDir = 'C:\Program Files\Microsoft SQL Server'
+            NpEnabled = $false
+            TcpEnabled = $false
+            UpdateEnabled = 'False'
+            UseEnglish = $true
+            ForceReboot = $false
+
+            SqlTempdbFileCount = 8
+            SqlTempdbFileSize = 8
+            SqlTempdbFileGrowth = 64
+            SqlTempdbLogFileSize = 8
+            SqlTempdbLogFileGrowth = 64
+
+            SqlSvcStartupType     = 'Automatic'
+            AgtSvcStartupType     = 'Manual'
+            BrowserSvcStartupType = 'Manual'
+
+            DependsOn = "[WindowsFeature]NetFramework35", "[WindowsFeature]NetFramework45"
         }
 
         # This resource block ensures that the file or command is executed
