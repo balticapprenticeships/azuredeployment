@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [templates]
   Add Trusted Launch support for Gen2 managed Windows images.
 
+## [2.0.0.0] 18.01.23
+### Change
+- [uiWcDefinition,clientMain,windowsClient]
+  added new DataLevel4 course
+
 # Windows Server User Interface
 
 ## [2.0.0.0] 06.01.23

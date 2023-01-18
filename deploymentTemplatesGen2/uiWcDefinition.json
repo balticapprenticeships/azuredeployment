@@ -72,12 +72,12 @@
                                     "value": "DataBootCamp"
                                 },
                                 {
-                                    "label": "Supporting IT Architecture",
-                                    "value": "ICTL3Support"
-                                },
-                                {
                                     "label": "SQL for Data Analysis",
                                     "value": "SQLDataAnalysis"
+                                },
+                                {
+                                    "label": "Level 4 Data",
+                                    "value": "DataLevel4"
                                 }
                             ],
                             "required": true
