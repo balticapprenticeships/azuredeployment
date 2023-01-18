@@ -64,14 +64,14 @@ workflow ResourceGroupVMCleanup {
                 $vmName = $virtualMachine["Name"]
                 $vmRg = $virtualMachine["resourceGroup"]
                 Write-Output "started removal of VM ($vmName) in resource group ($vmRg)..."
-                $vmDisks = inlineScript {
-                    $vmDisks = @()
-                    $vmDiskList = Get-AzDisk | where-object {$_.ManagedBy -eq $Using:virtualMachine["id"]}
-                    foreach ($disk in $vmDiskList) {
-                        $vmDisks += @{"resourceGroup" = $disk.ResourceGroupName; "Name" = $disk.Name; "SourceUri" = $disk.CreationData.SourceUri}
-                    }
-                    $vmDisks
-                }
+                # $vmDisks = inlineScript {
+                #     $vmDisks = @()
+                #     $vmDiskList = Get-AzDisk | where-object {$_.ManagedBy -eq $Using:virtualMachine["id"]}
+                #     foreach ($disk in $vmDiskList) {
+                #         $vmDisks += @{"resourceGroup" = $disk.ResourceGroupName; "Name" = $disk.Name; "SourceUri" = $disk.CreationData.SourceUri}
+                #     }
+                #     $vmDisks
+                # }
 
                 if ($virtualMachine["BootDiag"]) {
                     $diagSa = [regex]::match($virtualMachine["BootDiag"], 'https[s]?://(.+?)\.').Groups[1].Value
@@ -90,24 +90,24 @@ workflow ResourceGroupVMCleanup {
                     Write-Output "Step 1: No boot diagnostics features configured."
                 }
 
-                Write-Output "($vmName) completely removed successfully. Now removing the Virtual network and Network Security Group."
+                # Remove VM
+                Write-Output "Step 2: ($vmName) Removing the VM."
+                Remove-AzVM -Name $vmName -ResourceGroupName $vmRg -Force
+
+                Write-Output "($vmName) successfully removed. Now removing the Virtual network and Network Security Group."
 
                 # Remove vNet and NSG
-                Write-Output "Step 2: Removing Virtual Network and Network Security Group from ($vmRg) Resource group."
+                Write-Output "Step 3: Obtaining Virtual Network and Network Security Group from ($vmRg) Resource group."
                 $vNetName = (Get-AzVirtualNetwork -ResourceGroupName $vmRg).Name
                 $vNet = Get-AzVirtualNetwork -ResourceGroupName $vmRg -Name $vNetName
-                Write-Output "Removing Virtual Network from ($vmRg) Resource group."
+                Write-Output "Step4: Removing Virtual Network ($vNetName) from ($vmRg) Resource group."
                 $vNet | Remove-AzVirtualNetwork -Force
 
                 # Remove NSG
                 $nsgName = (Get-AzNetworkSecurityGroup -ResourceGroupName $vmRg).Name
                 $nsg = Get-AzNetworkSecurityGroup -ResourceGroupName $vmRg -Name $nsgName
-                Write-Output "emoving Network Security Group from ($vmRg) resource group."
+                Write-Output "Step 5: Removing Network Security Group ($nsgName) from ($vmRg) resource group."
                 $nsg | Remove-AzNetworkSecurityGroup -Force
-
-                # Remove VM
-                Write-Output "($vmName) Step 3: Removing the VM."
-                Remove-AzVM -Name $vmName -ResourceGroupName $vmRg -Force
 
                 # Process Complete
                 Write-Output "All resources have been removed from ($vmRg) Resource group."
