@@ -106,7 +106,7 @@
                 "galleryImageDefinitionName": "BA_W10_ICTArch"
             },            
             "DataLevel4": {
-                "galleryImageDefinitionName": "BA-Win10L4-Courses"
+                "galleryImageDefinitionName": "BA-Win10-Courses"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",
