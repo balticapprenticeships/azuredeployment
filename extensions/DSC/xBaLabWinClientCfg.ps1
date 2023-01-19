@@ -549,6 +549,29 @@ Configuration xBaDataLevel4LabCfg {
             AgtSvcStartupType     = 'Manual'
             BrowserSvcStartupType = 'Manual'            
         }
+
+        # This resource block ensures that the file or command is executed
+        xScript "AddSSMSDesktopShortcut"
+        {
+            SetScript = {
+                $ssms = "SQL Server Management Studio"
+                $ssmsInstalled = ((Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*) | Where-Object { $_.DisplayName -like "*$ssms*" })
+                if($ssmsInstalled){
+                    Write-Log "creating SQL Server Management Studio shortcut"
+                    Write-Output "creating SQL Server Management Studio shortcut"
+                    $ssmsTargetFile = "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Ssms.exe"
+                    $ssmsShortcutFile = "C:\Users\Public\Desktop\SQL Server Management Studio.lnk"
+                    $ssmsWScriptShell = New-Object -ComObject WScript.Shell
+                    $ssmsShortcut = $ssmsWScriptShell.CreateShortcut($ssmsShortcutFile)
+                    $ssmsShortcut.TargetPath = $ssmsTargetFile
+                    $ssmsShortcut.Save()
+                }
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
         
         # This resource block ensures that the file or command is executed
         xScript "RemoveArtifacts"
