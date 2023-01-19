@@ -638,7 +638,7 @@
                                 "name": "resourceGroupCleanup",
                                 "label": "Resource Group Cleanup",
                                 "type": "Microsoft.Common.DropDown",                                
-                                "placeholder": "Select Yes or No",
+                                "defaultValue": "Yes",
                                 "multiLine": true,
                                 "constraints": {
                                     "allowedValues": [

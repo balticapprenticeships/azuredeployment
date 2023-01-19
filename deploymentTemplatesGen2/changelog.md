@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [templates]
   Add Trusted Launch support for Gen2 managed Windows images.
 
+## [2.0.0.0] 19.01.23
+### Change
+- [uiWcDefinition,uiSvrDefinition]
+  added default tag value and set it to 'Yes' for resourceGroupCleanup
+
 ## [2.0.0.0] 18.01.23
 ### Change
 - [uiWcDefinition,clientMain,windowsClient]
