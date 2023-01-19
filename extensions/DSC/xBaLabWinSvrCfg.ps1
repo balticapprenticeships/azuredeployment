@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 3.1.0                                               #
+# Version: 3.2.0                                               #
 ################################################################
 
 Configuration xBaMobilityandDevicesLabCfg {
@@ -786,18 +786,18 @@ Configuration xBaTrblshootNetLabCfg {
         xScript "RunCreateVms"
         {
             SetScript = { 
-                New-VM -Name "Problem 1 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Server01-p1.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 1 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Client01-p1.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 2 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Server01-p2.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 2 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Client01-p2.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 3 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Server01-p3.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 3 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Client01-p3.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 4 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Server01-p4.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 4 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Client01-p4.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 5 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Server01-p5.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 5 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Client01-p5.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 6 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Server01-p6.vhdx" -SwitchName "Int-vSwitch"
-                New-VM -Name "Problem 6 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootNetworks\Client01-p6.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 1 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Server01-p1.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 1 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Client01-p1.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 2 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Server01-p2.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 2 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Client01-p2.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 3 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Server01-p3.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 3 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Client01-p3.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 4 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Server01-p4.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 4 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Client01-p4.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 5 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Server01-p5.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 5 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Client01-p5.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 6 Server" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Server01-p6.vhdx" -SwitchName "Int-vSwitch"
+                New-VM -Name "Problem 6 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\TroubleshootingNetworks\Client01-p6.vhdx" -SwitchName "Int-vSwitch"
                 
             }
             TestScript = { $false }
