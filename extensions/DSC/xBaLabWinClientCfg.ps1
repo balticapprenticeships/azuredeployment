@@ -522,33 +522,6 @@ Configuration xBaDataLevel4LabCfg {
             DependsOn = "[xUser]CreateUserAccount"
         }
 
-        # This resource block ensures that the file or command is executed
-        xScript "InstallNetFramework35"
-        {
-            SetScript = {
-                DISM /Online /Enable-Feature /FeatureName:NetFX3 /Source:C:\buildArtifacts\windows-client /All /LimitAccess
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
-        }
-
-        # This resource block ensures that .Net 3.5 is installed
-        WindowsFeature "NetFramework35"
-        {
-            Name = "Net-Framework-Core"
-            Ensure = "Present"
-            DependsOn = "[xScript]InstallNetFramework35"
-        }
-
-        # This resource block ensures that .Net 4.5 is installed
-        WindowsFeature "NetFramework45"
-        {
-            Name = "Net-Framework-45-Core"
-            Ensure = "Present"
-        }
-
         # This resource block will install SQL Server
         SqlSetup "InstallDefaultSQL"
         {
@@ -556,8 +529,6 @@ Configuration xBaDataLevel4LabCfg {
             Features = 'SQLENGINE'
             SourcePath = 'C:\sqlBuildArtifacts\SQLServer2019-Dev'
             SQLCollation = 'Latin1_General_CI_AS'
-            SQLSvcACCOUNT = 'NT Service\MSSQLSERVER'
-            AgtSvcAccount = 'NT Service\MSSQLSERVER'
             SQLSysAdminAccounts = @('Administrators')
             InstallSharedDir = 'C:\Program Files\Microsoft SQL Server'
             InstallSharedWOWDir = 'C:\Program Files (x86)\Microsoft SQL Server'
@@ -576,11 +547,9 @@ Configuration xBaDataLevel4LabCfg {
 
             SqlSvcStartupType     = 'Automatic'
             AgtSvcStartupType     = 'Manual'
-            BrowserSvcStartupType = 'Manual'
-
-            DependsOn = "[WindowsFeature]NetFramework35", "[WindowsFeature]NetFramework45"
+            BrowserSvcStartupType = 'Manual'            
         }
-
+        
         # This resource block ensures that the file or command is executed
         xScript "RemoveArtifacts"
         {
