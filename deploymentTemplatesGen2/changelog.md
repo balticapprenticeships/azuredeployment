@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [uiWcDefinition,uiSvrDefinition]
   added default tag value and set it to 'Yes' for resourceGroupCleanup
 
+### Add
+- [serverMain]
+  added IT Bootcamp course
+
 ## [2.0.0.0] 18.01.23
 ### Change
 - [uiWcDefinition,clientMain,windowsClient]
