@@ -1,0 +1,51 @@
+{
+    "properties": {
+        "roleName": "Custom Virtual Machine Contributor",
+        "IsCustom": true,
+        "description": "Lets you manage virtual machines, and delete them and their resources, but you cannot access to them, nor the virtual network or storage account they're connected to.",
+        "assignableScopes": [
+            "/subscriptions/<SUBSCRIPTION-ID>"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Authorization/*/read",
+                    "Microsoft.Compute/availabilitySets/*",
+                    "Microsoft.Compute/locations/*",
+                    "Microsoft.Compute/virtualMachines/*",
+                    "Microsoft.Compute/virtualMachineScaleSets/*",
+                    "Microsoft.Compute/cloudServices/*",
+                    "Microsoft.Compute/disks/write",
+                    "Microsoft.Compute/disks/read",
+                    "Microsoft.Compute/disks/delete",
+                    "Microsoft.DevTestLab/schedules/*",
+                    "Microsoft.Insights/alertRules/*",
+                    "Microsoft.Network/applicationGateways/backendAddressPools/join/action",
+                    "Microsoft.Network/locations/*",
+                    "Microsoft.Network/networkInterfaces/*",
+                    "Microsoft.Network/networkSecurityGroups/join/action",
+                    "Microsoft.Network/networkSecurityGroups/read",
+                    "Microsoft.Network/networkSecurityGroups/delete",
+                    "Microsoft.Network/publicIPAddresses/join/action",
+                    "Microsoft.Network/publicIPAddresses/read",
+                    "Microsoft.Network/publicIPAddresses/delete",
+                    "Microsoft.Network/virtualNetworks/read",
+                    "Microsoft.Network/virtualNetworks/delete",
+                    "Microsoft.Network/virtualNetworks/subnets/join/action",
+                    "Microsoft.RecoveryServices/locations/*",
+                    "Microsoft.ResourceHealth/availabilityStatuses/read",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                    "Microsoft.SerialConsole/serialPorts/connect/action",
+                    "Microsoft.SqlVirtualMachine/*",
+                    "Microsoft.Storage/storageAccounts/listKeys/action",
+                    "Microsoft.Storage/storageAccounts/read",
+                    "Microsoft.Support/*"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
