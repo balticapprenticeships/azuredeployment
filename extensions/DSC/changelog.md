@@ -72,6 +72,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   Add Security+ administrators group.
 
 # Windows Client Lab Config
+## [4.6.0]
+### Change
+- [xBaLabWinClientCfg]
+  removed SSMS check from shortcut and set shortcut to run as admin.
 
 ##[4.5.0] 18.01.23
 ### Change

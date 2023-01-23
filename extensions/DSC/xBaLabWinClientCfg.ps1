@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 4.5.0                                               #
+# Version: 4.6.0                                               #
 ################################################################
 
 Configuration xBaWinClientLabCfg {
@@ -554,18 +554,17 @@ Configuration xBaDataLevel4LabCfg {
         xScript "AddSSMSDesktopShortcut"
         {
             SetScript = {
-                $ssms = "SQL Server Management Studio"
-                $ssmsInstalled = ((Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*) | Where-Object { $_.DisplayName -like "*$ssms*" })
-                if($ssmsInstalled){
-                    Write-Log "creating SQL Server Management Studio shortcut"
-                    Write-Output "creating SQL Server Management Studio shortcut"
-                    $ssmsTargetFile = "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Ssms.exe"
-                    $ssmsShortcutFile = "C:\Users\Public\Desktop\SQL Server Management Studio.lnk"
-                    $ssmsWScriptShell = New-Object -ComObject WScript.Shell
-                    $ssmsShortcut = $ssmsWScriptShell.CreateShortcut($ssmsShortcutFile)
-                    $ssmsShortcut.TargetPath = $ssmsTargetFile
-                    $ssmsShortcut.Save()
-                }
+                $ssmsTargetFile = "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Ssms.exe"
+                $ssmsShortcutFile = "C:\Users\Public\Desktop\SQL Server Management Studio.lnk"
+                $ssmsWScriptShell = New-Object -ComObject WScript.Shell
+                $ssmsShortcut = $ssmsWScriptShell.CreateShortcut($ssmsShortcutFile)
+                $ssmsShortcut.TargetPath = $ssmsTargetFile
+                $ssmsShortcut.Save()
+
+                $bytes = [System.IO.File]::ReadAllBytes("C:\Users\Public\Desktop\SQL Server Management Studio.lnk")
+                $bytes[0x15] = $bytes[0x15] -bor 0x20 #set byte 21 (0x15) bit 6 (0x20) ON
+                [System.IO.File]::WriteAllBytes("C:\Users\Public\Desktop\SQL Server Management Studio.lnk", $bytes)
+                
             }
             TestScript = { $false }
             GetScript = { 
