@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 3.2.0                                               #
+# Version: 3.3.0                                               #
 ################################################################
 
 Configuration xBaMobilityandDevicesLabCfg {
@@ -68,6 +68,19 @@ Configuration xBaMobilityandDevicesLabCfg {
                 New-VMSwitch -SwitchName "Int-vSwitch" -SwitchType Internal                
                 New-NetIPAddress -InterfaceAlias "vEthernet (Int-vSwitch)" -IPAddress 172.16.20.254 -PrefixLength 24
                 New-NetNat -Name "NAT-VM" -InternalIPInterfaceAddressPrefix 172.16.20.0/24
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
             }
             TestScript = { $false }
             GetScript = { 
@@ -211,6 +224,19 @@ Configuration xBaSecurityPlusLabCfg {
         }
 
         # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file is executed
         xScript "RunvSwitchForNestedVms"
         {
             SetScript = { 
@@ -335,6 +361,19 @@ Configuration xBaServerFundamentalsLabCfg {
         }
 
         # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file is executed
         xScript "RunvSwitchForNestedVms"
         {
             SetScript = { 
@@ -436,6 +475,19 @@ Configuration xBaItEssentialsLabCfg {
         }
 
         # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file is executed
         xScript "RunvSwitchForNestedVms"
         {
             SetScript = { 
@@ -534,6 +586,19 @@ Configuration xBaSuppItArchP1LabCfg {
             Name = $features
             Ensure = "Present"
             IncludeAllSubFeature = $true
+        }
+
+        # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
 
         # This resource block ensures that the file is executed
@@ -655,6 +720,19 @@ Configuration xBaSuppItArchP2LabCfg {
         }
 
         # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file is executed
         xScript "RunvSwitchForNestedVms"
         {
             SetScript = { 
@@ -768,6 +846,19 @@ Configuration xBaTrblshootNetLabCfg {
             Name = $features
             Ensure = "Present"
             IncludeAllSubFeature = $true
+        }
+
+        # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
 
         # This resource block ensures that the file is executed
@@ -893,7 +984,20 @@ Configuration xBaEndUserDevicesP1LabCfg {
             Name = $features
             Ensure = "Present"
             IncludeAllSubFeature = $true
-        }        
+        }
+        
+        # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
 
         # This resource block ensures that the file or command is executed
         xScript "SetRdpTimeZone"
@@ -981,6 +1085,19 @@ Configuration xBaEndUserDevicesP2LabCfg {
             Name = $features
             Ensure = "Present"
             IncludeAllSubFeature = $true
+        }
+
+        # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
 
         # This resource block ensures that the file is executed

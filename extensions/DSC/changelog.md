@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [3.3.0] 23.01.23
+## Add
+- [xBaLabWinSvrCfg]
+  added default virtual hard disk location
+
 ## [3.1.0] 11.01.23
 ### Change
 - [xBaLabWinSvrCfg]
