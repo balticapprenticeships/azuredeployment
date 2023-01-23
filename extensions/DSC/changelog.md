@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## Add
 - [xBaLabWinSvrCfg]
   added default virtual hard disk location
+  added ITBootcamp config
 
 ## [3.1.0] 11.01.23
 ### Change
