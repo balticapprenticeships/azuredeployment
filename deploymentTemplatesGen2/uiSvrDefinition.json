@@ -72,21 +72,21 @@
                                     "value": "SecurityPlus"
                                 },
                                 {
-                                    "label": "Working with End User Devices - Part 1",
-                                    "value": "EndUserDevicesP1"
-                                },
-                                {
-                                    "label": "Working with End User Devices - Part 2",
-                                    "value": "EndUserDevicesP2"
-                                },
-                                {
-                                    "label": "Supporting IT Architecture Course 1",
+                                    "label": "Course 1 - Supporting IT Architecture Part 1",
                                     "value": "SuppItArchP1"
                                 },
                                 {
-                                    "label": "Supporting IT Architecture Course 2",
+                                    "label": "Course 2 - Supporting IT Architecture Part 2",
                                     "value": "SuppItArchP2"
-                                },                                
+                                },
+                                {
+                                    "label": "Course 3 - Working with End User Devices Part 1",
+                                    "value": "EndUserDevicesP1"
+                                },
+                                {
+                                    "label": "Course 4 - Working with End User Devices Part 2",
+                                    "value": "EndUserDevicesP2"
+                                },                                                                
                                 {
                                     "label": "Troubleshooting Networks",
                                     "value": "TrblshootNet"
