@@ -108,7 +108,9 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "2.1.23",
                 "2.12.22",
+                "1.12.22",
                 "1.11.22",
                 "1.10.22"
             ],

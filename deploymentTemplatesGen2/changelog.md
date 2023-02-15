@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 15.2.23
+### Change
+- [uiSvrDefinition,serverMain]
+  updated OS version
+
 ## [2.0.0.0] 31.01.23
 ### Change
 - [uiSvrDefinition]
