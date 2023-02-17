@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 17.2.23
+### Change
+- [uiSvrDefinition,serverMain,windowsServer]
+  added new course WWNAPT2
+
 ## [2.0.0.0] 15.2.23
 ### Change
 - [uiSvrDefinition,serverMain]
@@ -138,3 +143,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Windows Server - Troubleshooting Networks (BA-TshootNet)
 - Troubleshooting Networks
+- Working with Network Architecture Part 2

@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [3.5.0] 17.02.23
+## Add
+- [xBaLabWinSvrCfg]
+  added WWNAPT2 config
+
 ## [3.3.0] 23.01.23
 ## Add
 - [xBaLabWinSvrCfg]
