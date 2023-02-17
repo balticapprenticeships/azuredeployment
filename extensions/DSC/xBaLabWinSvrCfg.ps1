@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 3.4.0                                               #
+# Version: 3.5.0                                               #
 ################################################################
 
 Configuration xBaMobilityandDevicesLabCfg {
@@ -1245,6 +1245,136 @@ Configuration xBaItBootcampLabCfg {
         {
             SetScript = { 
                 New-VM -Name "DC" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ITBootcamp\ITBootcamp-DC.vhdx" -SwitchName "vSwitch"                
+            }
+            TestScript = { $false }
+            GetScript = {  
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetRdpTimeZone"
+        {
+            SetScript = {
+                New-ItemProperty -ErrorAction SilentlyContinue -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
+                Remove-Item "C:\workflow-artifacts" -Force
+                Remove-Item "C:\workflow-artifacts.zip" -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+    }
+    
+}
+
+Configuration xBaWWNAPT2LabCfg {
+    [CmdletBinding()]
+
+    Param (
+        
+        [Parameter(Mandatory = $true)]
+        [System.Management.Automation.PSCredential]
+        [System.Management.Automation.Credential()]
+        $Credential
+    )
+
+    Import-DscResource -ModuleName xPSDesiredStateConfiguration
+
+    $features = @("Hyper-V", "RSAT-Hyper-V-Tools", "Hyper-V-Tools", "Hyper-V-PowerShell")
+
+    Node localhost {
+
+        LocalConfigurationManager {
+            RebootNodeIfNeeded = $true
+        }
+
+        # This resource block create a local user
+        xUser "CreateUserAccount" {
+            Ensure = "Present"
+            Username = Split-Path -Path $Credential.Username -Leaf
+            Password = $Credential
+            FullName = "Baltic Apprentice"
+            Description = "Baltic Apprentice"
+            PasswordNeverExpires = $true
+            PasswordChangeRequired = $false
+            PasswordChangeNotAllowed = $true
+        }
+
+        # This resource block adds user to a spacific group
+        xGroup "AddToRemoteDesktopUserGroup"
+        {
+            GroupName = "Remote Desktop Users"
+            Ensure = "Present"
+            MembersToInclude = Split-Path -Path $Credential.Username -Leaf
+            DependsOn = "[xUser]CreateUserAccount"
+        }
+
+        # This resource block adds user to a spacific group
+        xGroup "AddToHyperVAdministratorGroup"
+        {
+            GroupName = "Hyper-V Administrators"
+            Ensure = "Present"
+            MembersToInclude = Split-Path -Path $Credential.Username -Leaf
+            DependsOn = "[xUser]CreateUserAccount"
+        }
+
+        # This resource block ensures that a Windows Features (Roles) is present
+        xWindowsFeatureSet "AddHyperVFeatures"
+        {
+            Name = $features
+            Ensure = "Present"
+            IncludeAllSubFeature = $true
+        }
+
+        # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file is executed
+        xScript "RunvSwitchForNestedVms"
+        {
+            SetScript = { 
+                New-VMSwitch -SwitchName "vSwitch" -SwitchType Private
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        xScript "RunCreateVms"
+        {
+            SetScript = { 
+                New-VM -Name "Server01" -MemoryStartupBytes 21GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ICTSupCourse6\Server01.vhdx" -SwitchName "vSwitch"
+                New-VM -Name "WindowsClient1" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ICTSupCourse6\WindowsClient1.vhdx" -SwitchName "vSwitch"
+                New-VM -Name "WindowsClient2" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ICTSupCourse6\WindowsClient2.vhdx" -SwitchName "vSwitch"
+                New-VM -Name "WindowsClient3" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ICTSupCourse6\WindowsClient3.vhdx" -SwitchName "vSwitch"
+                
             }
             TestScript = { $false }
             GetScript = {  
