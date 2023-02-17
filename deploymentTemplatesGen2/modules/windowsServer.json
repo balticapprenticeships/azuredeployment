@@ -113,6 +113,9 @@
             },
             "ItBootcamp": {
                 "galleryImageDefinitionName": "BA-WinSvrGen"
+            },
+            "WWNAPT2": {
+                "galleryImageDefinitionName": "BA-TshootNet"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",

@@ -86,6 +86,10 @@
                                 {
                                     "label": "Course 4 - Working with End User Devices Part 2",
                                     "value": "EndUserDevicesP2"
+                                },
+                                {
+                                    "label": "Course 6 - Working with Network Architecture Part 2",
+                                    "value": "WWNAPT2"
                                 },                                                                
                                 {
                                     "label": "Troubleshooting Networks",
