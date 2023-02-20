@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 20.02.23
+### Change
+- [uiSvrDefinition,serverMain,windowsServer]
+  reconfigured Security Type to allow Trusted launch for Windows Server 2022
+### Add
+- [uiSvrDefinition,serverMain]
+  added Standard_Dsv5 and Dv5 VM sizes to allow Windows Server 2022 to support vTPM and nested virtualisation
+
 ## [2.0.0.0] 17.2.23
 ### Change
 - [uiSvrDefinition,serverMain,windowsServer]
