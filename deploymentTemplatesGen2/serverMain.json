@@ -24,7 +24,10 @@
             "allowedValues": [
                 "Standard_B1ms",
                 "Standard_B2s",
-                "Standard_D2s_v3"
+                "Standard_D2s_v3",
+                "Standard_D4s_v3",
+                "Standard_D2s_v5",
+                "Standard_D4s_v5"
             ],
             "metadata": {
                 "description": "Virtual Machine size e.g., 2vCPU's 4GB RAM"
@@ -126,9 +129,21 @@
                 "description": "description"
             }
         },
+        "securityType": {
+            "type": "string",
+            "defaultValue": "Standard",
+            "allowedValues": [
+                "Standard",
+                "TrustedLaunch"
+            ]
+        },
         "secureBoot": {
             "type": "bool",
-            "defaultValue": true,
+            "defaultValue": false,
+            "allowedValues": [
+                true,
+                false
+            ],
             "metadata": {
                 "description": "Enable to help protect the VM from malware e.g., root kits"
             }
@@ -136,6 +151,21 @@
         "vTPM": {
             "type": "bool",
             "defaultValue": true,
+            "allowedValues": [
+                true,
+                false
+            ],
+            "metadata": {
+                "description": "Enable to configure a virtual Trusted Platform Module 2.0"
+            }
+        },
+        "guestAttestation": {
+            "type": "bool",
+            "defaultValue": false,
+            "allowedValues": [
+                true,
+                false
+            ],
             "metadata": {
                 "description": "Enable to configure a virtual Trusted Platform Module 2.0"
             }
@@ -471,13 +501,16 @@
                         "value": "[variables('patchMode')]"
                     },
                     "securityType": {
-                        "value": "[variables('securityType')]"
+                        "value": "[parameters('securityType')]"
                     },
                     "secureBoot": {
                         "value": "[parameters('secureBoot')]"
                     },
                     "vTPM": {
                         "value": "[parameters('vTPM')]"
+                    },
+                    "guestAttestation": {
+                        "value": "[parameters('guestAttestation')]"
                     },
                     "idleVM": {
                         "value": "[variables('idleVM')]"
@@ -562,13 +595,16 @@
                         "value": "[parameters('linuxOS')]"
                     },
                     "securityType": {
-                        "value": "[variables('securityType')]"
+                        "value": "[parameters('securityType')]"
                     },
                     "secureBoot": {
                         "value": "[parameters('secureBoot')]"
                     },
                     "vTPM": {
                         "value": "[parameters('vTPM')]"
+                    },
+                    "guestAttestation": {
+                        "value": "[parameters('guestAttestation')]"
                     },
                     "idleVM": {
                         "value": "[variables('idleVM')]"

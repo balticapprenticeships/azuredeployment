@@ -276,18 +276,23 @@
                                     "allowedValues": [
                                         {
                                             "label": "Standard Small Client",
-                                            "description": "1 vcpu, 2GB memory",
+                                            "description": "1 vCPU, 2GiB memory, 4GiB temp Storage",
                                             "value": "Standard_B1ms"
                                         },
                                         {
                                             "label": "Standard Medium Testing/Windows Client",
-                                            "description": "2 vcpus, 4GB memory",
+                                            "description": "2 vCPUs, 4GiB memory, 8GiB temp Storage",
                                             "value": "Standard_B2s"
                                         },
                                         {
                                             "label": "Standard Small Server",
-                                            "description": "2 vcpus, 8GB memory",
+                                            "description": "2 vCPUs, 8GiB memory, 16GiB temp storage",
                                             "value": "Standard_D2s_v3"
+                                        },
+                                        {
+                                            "label": "Development Server ONLY",
+                                            "description": "4 vCPUs, 16GiB memory, No temp Storage",
+                                            "value": "Standard_D4s_v5"
                                         }
                                     ],
                                     "required": true
@@ -318,7 +323,7 @@
                         "type": "Microsoft.Common.Section",
                         "elements": [
                             {
-                                "name": "trustedLaunch",
+                                "name": "securityType",
                                 "label": "Security",
                                 "type": "Microsoft.Common.DropDown",
                                 "defaultValue": "Standard",
@@ -337,9 +342,29 @@
                                     ]
                                 },
                                 "toolTip": "Choose a type of security that matches your needs: Standard includes basic protections at no additional cost. Trusted launch virtual machines provide additional security features on Gen 2 virtual machines to protect against persistent and advanced attacks."
-                            }
-                        ],
-                        "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
+                            },
+                            {
+								"name": "secureBoot",
+								"label": "Secure Boot",
+								"type": "Microsoft.Common.CheckBox",
+								"toolTip": "Secure boot helps protect your VMs against boot kits, rootkits, and kernel-level malware.",
+								"visible": "[equals(steps('vmConfig').vmSecurity.securityType, 'TrustedLaunch')]"
+							},
+                            {
+								"name": "vTPM",
+								"label": "vTPM",
+								"type": "Microsoft.Common.CheckBox",
+								"toolTip": "Virtual Trusted Platform Module (vTPM) is TPM2.0 compliant and validates your VM boot integrity apart from securely storing keys and secrets.",
+								"visible": "[equals(steps('vmConfig').vmSecurity.securityType, 'TrustedLaunch')]"
+							},
+							{
+								"name": "guestAttestation",
+								"label": "Guest Attestation",
+								"type": "Microsoft.Common.CheckBox",
+								"toolTip": "Integrity monitoring enables cryptographic attestation and verification of VM boot integrity along with monitoring alerts if the VM didn't boot because attestation failed with the defined baseline.",
+								"visible": "[equals(steps('vmConfig').vmSecurity.secureBoot, true)]"
+							}
+                        ]
                     }
                 ]
             },            
@@ -678,7 +703,10 @@
             "enableHotpatching": "[steps('osConfig').enableHotpatching]",
             "patchMode": "[steps('osConfig').patchMode]",
             "licenseType": "[steps('osConfig').licenseType]",
-            "trustedLaunch": "[steps('vmConfig').vmSecurity.trustedLaunch]",
+            "securityType": "[steps('vmConfig').vmSecurity.securityType]",
+            "secureBoot": "[steps('vmConfig').vmSecurity.secureBoot]",
+            "vTPM": "[steps('vmConfig').vmSecurity.vTPM]",
+            "guestAttestation": "[steps('vmConfig').vmSecurity.guestAttestation]",
             "vnetNewOrExisting": "[steps('netConfig').nicConfig.vnetNewOrExisting]",
             "existingVnet": "[steps('netConfig').nicConfig.vnetSelector.name]",
             "subnetName": "[steps('netConfig').nicConfig.subnetName]",

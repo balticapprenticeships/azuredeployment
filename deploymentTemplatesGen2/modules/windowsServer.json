@@ -44,6 +44,9 @@
         "vTPM": {
             "type": "bool"
         },
+        "guestAttestation": {
+            "type": "bool"
+        },
         "idleVM": {
             "type": "string"
         },
@@ -241,25 +244,55 @@
                             }
                         }
                     }
-                },
-                {
-                    "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '/AzurePolicyforWindows')]",
-                    "type": "Microsoft.Compute/virtualMachines/extensions",
-                    "apiVersion": "2020-12-01",
-                    "location": "[parameters('location')]",
-                    "dependson": [
-                        "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
-                    ],
-                    "properties": {
-                        "publisher": "Microsoft.GuestConfiguration",
-                        "type": "ConfigurationforWindows",
-                        "typeHandlerVersion": "1.0",
-                        "autoUpgradeMinorVersion": true,
-                        "enableAutomaticUpgrade": true,
-                        "settings": {},
-                        "protectedSettings": {}
+                }
+            ]
+        },
+        {
+            "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '/AzurePolicyforWindows')]",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2020-12-01",
+            "location": "[parameters('location')]",
+            "dependson": [
+                "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
+            ],
+            "properties": {
+                "publisher": "Microsoft.GuestConfiguration",
+                "type": "ConfigurationforWindows",
+                "typeHandlerVersion": "1.0",
+                "autoUpgradeMinorVersion": true,
+                "enableAutomaticUpgrade": true,
+                "settings": {},
+                "protectedSettings": {}
+            }
+        },
+        {
+            "condition": "[equals(parameters('guestAttestation'), 'true')]",
+            "name": "[concat(variables('vmNamePrefix'),'/GuestAttestation')]",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2018-10-01",
+            "location": "[parameters('location')]",
+            "properties": {
+                "publisher": "Microsoft.Azure.Security.WindowsAttestation",
+                "type": "GuestAttestation",
+                "typeHandlerVersion": "1.0",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "AttestationConfig": {
+                        "MaaSettings": {
+                            "maaEndpoint": "",
+                            "maaTenantName": "GuestAttestation"
+                        },
+                        "AscSettings": {
+                            "ascReportingEndpoint": "",
+                            "ascReportingFrequency": ""
+                        },
+                        "useCustomToken": "false",
+                        "disableAlerts": "false"
                     }
                 }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
             ]
         }
     ],
