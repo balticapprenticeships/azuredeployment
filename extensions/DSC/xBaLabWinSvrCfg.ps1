@@ -1370,7 +1370,7 @@ Configuration xBaWWNAPT2LabCfg {
         xScript "RunCreateVms"
         {
             SetScript = { 
-                New-VM -Name "Server01" -MemoryStartupBytes 21GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ICTSupCourse6\Server01.vhdx" -SwitchName "vSwitch"
+                New-VM -Name "Server01" -MemoryStartupBytes 1GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ICTSupCourse6\Server01.vhdx" -SwitchName "vSwitch"
                 New-VM -Name "WindowsClient1" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ICTSupCourse6\WindowsClient1.vhdx" -SwitchName "vSwitch"
                 New-VM -Name "WindowsClient2" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ICTSupCourse6\WindowsClient2.vhdx" -SwitchName "vSwitch"
                 New-VM -Name "WindowsClient3" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ICTSupCourse6\WindowsClient3.vhdx" -SwitchName "vSwitch"
