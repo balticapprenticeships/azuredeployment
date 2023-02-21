@@ -290,8 +290,8 @@
                                         },
                                         {
                                             "label": "Standard Small Server",
-                                            "description": "2 vCPUs, 8GiB memory, 16GiB temp storage",
-                                            "value": "Standard_D2s_v3"
+                                            "description": "2 vCPUs, 8GiB memory, No temp storage",
+                                            "value": "Standard_D2s_v5"
                                         },
                                         {
                                             "label": "Development Server ONLY",

@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   added Lab server dev image
 - [uiSvrDefinition]
   set TrustedLaunch visability to Linux as TPM is not support on market place images via GitHub Actions
+  Updated small server to use D2s_v5
 
 ## [2.0.0.0] 20.02.23
 ### Change
