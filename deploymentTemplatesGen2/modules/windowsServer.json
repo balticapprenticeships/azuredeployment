@@ -119,6 +119,9 @@
             },
             "WWNAPT2": {
                 "galleryImageDefinitionName": "BA-TshootNet"
+            },
+            "WSvrDev": {
+                "galleryImageDefinitionName": "BA-SvrDev"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",

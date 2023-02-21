@@ -98,6 +98,10 @@
                                 {
                                     "label": "IT Support Bootcamp",
                                     "value": "ItBootcamp"
+                                },
+                                {
+                                    "label": "Lab Image Development",
+                                    "value": "WSvrDev"
                                 }
                             ],
                             "required": true
