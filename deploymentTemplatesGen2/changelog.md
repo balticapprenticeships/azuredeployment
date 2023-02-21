@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 21.02.23
+### Change
+- [uiSvrDefinition,serverMain,windowsServer]
+  added Lab server dev image
+
 ## [2.0.0.0] 20.02.23
 ### Change
 - [uiSvrDefinition,serverMain,windowsServer]
