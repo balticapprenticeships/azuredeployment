@@ -368,7 +368,8 @@
 								"toolTip": "Integrity monitoring enables cryptographic attestation and verification of VM boot integrity along with monitoring alerts if the VM didn't boot because attestation failed with the defined baseline.",
 								"visible": "[equals(steps('vmConfig').vmSecurity.secureBoot, true)]"
 							}
-                        ]
+                        ],
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
                     }
                 ]
             },            
