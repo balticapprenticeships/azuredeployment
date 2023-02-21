@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Change
 - [uiSvrDefinition,serverMain,windowsServer]
   added Lab server dev image
+- [uiSvrDefinition]
+  set TrustedLaunch visability to Linux as TPM is not support on market place images via GitHub Actions
 
 ## [2.0.0.0] 20.02.23
 ### Change
