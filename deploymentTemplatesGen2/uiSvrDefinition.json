@@ -88,6 +88,10 @@
                                     "value": "EndUserDevicesP2"
                                 },
                                 {
+                                    "label": "Course 5 - Cloud and On-Premises Network Installation Part 1",
+                                    "value": "COPNIC5PT1"
+                                },
+                                {
                                     "label": "Course 6 - Working with Network Architecture Part 2",
                                     "value": "WWNAPT2"
                                 },                                                                

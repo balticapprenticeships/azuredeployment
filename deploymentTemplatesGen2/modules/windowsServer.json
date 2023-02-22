@@ -117,6 +117,9 @@
             "ItBootcamp": {
                 "galleryImageDefinitionName": "BA-WinSvrGen"
             },
+            "COPNIC5PT1": {
+                "galleryImageDefinitionName": "BA-ICTNetCourse5"
+            },
             "WWNAPT2": {
                 "galleryImageDefinitionName": "BA-TshootNet"
             },
