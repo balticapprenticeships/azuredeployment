@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [3.7.0] 22.02.23
+## Add
+- [xBaLabWinSvrCfg]
+  added COPNIC5PT1 config
+
 ## [3.6.0] 21.02.23
 ## Add
 - [xBaLabWinSvrCfg]
