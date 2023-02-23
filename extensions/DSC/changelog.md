@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [3.8.0] 23.02.23
+## Add
+- [xBaLabWinSvrCfg]
+  change config names for ICTSupCourse 1,2,3,4,6 and ICTNetCourse5
+  added command to remove buildlog.log file
+
 ## [3.7.0] 22.02.23
 ## Add
 - [xBaLabWinSvrCfg]

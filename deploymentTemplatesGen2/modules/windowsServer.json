@@ -86,7 +86,25 @@
         "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringTrainerInitials')))]",
         "galleryImageName": "TrainingACG",
         "WindowsLicense": "Windows_Server",
-        "operatingSystemValues": {
+        "operatingSystemValues": {            
+            "ICTSupC1": {
+                "galleryImageDefinitionName": "BA-ICTSupCourse1-2"
+            },
+            "ICTSupC2": {
+                "galleryImageDefinitionName": "BA-ICTSupCourse1-2"
+            },
+            "ICTSupC3": {
+                "galleryImageDefinitionName": "BA-ICTSupCourse3-4"
+            },
+            "ICTSupC4": {
+                "galleryImageDefinitionName": "BA-ICTSupCourse3-4"
+            },
+            "ICTSupC6": {
+                "galleryImageDefinitionName": "BA-ICTSupCourse6"
+            },
+            "ICTNetC5": {
+                "galleryImageDefinitionName": "BA-ICTNetCourse5"
+            },
             "MobilityAndDevices": {
                 "galleryImageDefinitionName": "BA-WinSvrGen"
             },
@@ -99,30 +117,12 @@
             "SecurityPlus": {
                 "galleryImageDefinitionName": "BA-WinSvrGen"
             },
-            "EndUserDevicesP1": {
-                "galleryImageDefinitionName": "BA-SupItArc"
-            },
-            "EndUserDevicesP2": {
-                "galleryImageDefinitionName": "BA-SupItArc"
-            },
-            "SuppItArchP1": {
-                "galleryImageDefinitionName": "BA-SupItArc"
-            },
-            "SuppItArchP2": {
-                "galleryImageDefinitionName": "BA-SupItArc"
-            },
             "TrblshootNet": {
                 "galleryImageDefinitionName": "BA-TshootNet"
             },
             "ItBootcamp": {
                 "galleryImageDefinitionName": "BA-WinSvrGen"
-            },
-            "COPNIC5PT1": {
-                "galleryImageDefinitionName": "BA-ICTNetCourse5"
-            },
-            "WWNAPT2": {
-                "galleryImageDefinitionName": "BA-TshootNet"
-            },
+            },            
             "WSvrDev": {
                 "galleryImageDefinitionName": "BA-SvrDev"
             }

@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 3.7.0                                               #
+# Version: 3.8.0                                               #
 ################################################################
 
 Configuration xBaMobilityandDevicesLabCfg {
@@ -146,6 +146,7 @@ Configuration xBaMobilityandDevicesLabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -292,6 +293,7 @@ Configuration xBaSecurityPlusLabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -405,6 +407,7 @@ Configuration xBaServerFundamentalsLabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -519,6 +522,7 @@ Configuration xBaItEssentialsLabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -529,7 +533,7 @@ Configuration xBaItEssentialsLabCfg {
     
 }
 
-Configuration xBaSuppItArchP1LabCfg {
+Configuration xBaICTSupC1LabCfg {
     [CmdletBinding()]
 
     Param (
@@ -650,6 +654,7 @@ Configuration xBaSuppItArchP1LabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -660,7 +665,7 @@ Configuration xBaSuppItArchP1LabCfg {
     
 }
 
-Configuration xBaSuppItArchP2LabCfg {
+Configuration xBaICTSupC2LabCfg {
     [CmdletBinding()]
 
     Param (
@@ -779,6 +784,7 @@ Configuration xBaSuppItArchP2LabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -917,6 +923,7 @@ Configuration xBaTrblshootNetLabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -927,7 +934,7 @@ Configuration xBaTrblshootNetLabCfg {
     
 }
 
-Configuration xBaEndUserDevicesP1LabCfg {
+Configuration xBaICTSupC3LabCfg {
     [CmdletBinding()]
 
     Param (
@@ -1018,6 +1025,7 @@ Configuration xBaEndUserDevicesP1LabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -1028,7 +1036,7 @@ Configuration xBaEndUserDevicesP1LabCfg {
     
 }
 
-Configuration xBaEndUserDevicesP2LabCfg {
+Configuration xBaICTSupC4LabCfg {
     [CmdletBinding()]
 
     Param (
@@ -1146,6 +1154,7 @@ Configuration xBaEndUserDevicesP2LabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -1272,6 +1281,7 @@ Configuration xBaItBootcampLabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -1282,7 +1292,7 @@ Configuration xBaItBootcampLabCfg {
     
 }
 
-Configuration xBaWWNAPT2LabCfg {
+Configuration xBaICTSupC6LabCfg {
     [CmdletBinding()]
 
     Param (
@@ -1402,6 +1412,7 @@ Configuration xBaWWNAPT2LabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -1503,6 +1514,7 @@ Configuration xBaWSvrDevLabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 
@@ -1513,7 +1525,7 @@ Configuration xBaWSvrDevLabCfg {
     
 }
 
-Configuration xBaCOPNIC5PT1LabCfg {
+Configuration xBaICTNetC5LabCfg {
     [CmdletBinding()]
 
     Param (
@@ -1581,6 +1593,7 @@ Configuration xBaCOPNIC5PT1LabCfg {
                 Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
                 Remove-Item "C:\workflow-artifacts" -Force
                 Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
             }
             TestScript = { $false }
             GetScript = { 

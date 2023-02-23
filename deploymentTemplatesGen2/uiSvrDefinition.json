@@ -56,6 +56,30 @@
                         "constraints": {
                             "allowedValues": [
                                 {
+                                    "label": "Course 1 - Supporting IT Architecture Part 1",
+                                    "value": "ICTSupC1"
+                                },
+                                {
+                                    "label": "Course 2 - Supporting IT Architecture Part 2",
+                                    "value": "ICTSupC2"
+                                },
+                                {
+                                    "label": "Course 3 - Working with End User Devices Part 1",
+                                    "value": "ICTSupC3"
+                                },
+                                {
+                                    "label": "Course 4 - Working with End User Devices Part 2",
+                                    "value": "ICTSupC4"
+                                },                                
+                                {
+                                    "label": "Course 6 - Working with Network Architecture Part 2",
+                                    "value": "ICTSupC6"
+                                },
+                                {
+                                    "label": "Course 5 - Cloud and On-Premises Network Installation Part 1",
+                                    "value": "ICTNetC5"
+                                },
+                                {
                                     "label": "Mobility and Devices",
                                     "value": "MobilityAndDevices"
                                 },
@@ -70,31 +94,7 @@
                                 {
                                     "label": "CompTIA Security+",
                                     "value": "SecurityPlus"
-                                },
-                                {
-                                    "label": "Course 1 - Supporting IT Architecture Part 1",
-                                    "value": "SuppItArchP1"
-                                },
-                                {
-                                    "label": "Course 2 - Supporting IT Architecture Part 2",
-                                    "value": "SuppItArchP2"
-                                },
-                                {
-                                    "label": "Course 3 - Working with End User Devices Part 1",
-                                    "value": "EndUserDevicesP1"
-                                },
-                                {
-                                    "label": "Course 4 - Working with End User Devices Part 2",
-                                    "value": "EndUserDevicesP2"
-                                },
-                                {
-                                    "label": "Course 5 - Cloud and On-Premises Network Installation Part 1",
-                                    "value": "COPNIC5PT1"
-                                },
-                                {
-                                    "label": "Course 6 - Working with Network Architecture Part 2",
-                                    "value": "WWNAPT2"
-                                },                                                                
+                                },                                                                                                
                                 {
                                     "label": "Troubleshooting Networks",
                                     "value": "TrblshootNet"

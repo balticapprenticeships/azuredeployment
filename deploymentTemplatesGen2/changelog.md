@@ -6,10 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 23.02.23
+### Change
+- [windowsServer]
+  changed image target
+- [uiSvrDefinition,serverMain]
+
 ## [2.0.0.0] 22.02.23
 ### Change
 - [uiSvrDefinition,serverMain,windowsServer]
-  added new course ICTNetCourse6 (Cloud and On-Premises Network Infrastructure)
+  added new course ICTNetCourse5 (Cloud and On-Premises Network Infrastructure)
 
 ## [2.0.0.0] 21.02.23
 ### Change
@@ -148,7 +154,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   Added visibility to vmSecurity. This section will only be visible during Linux deployment until gen 2 VMs are used.
 
 
-# Server Image and Courses
+# Server Images and Courses
 ---
 
 ### Windwos Server General Image (BA-WinSvrGen)
@@ -158,12 +164,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Security Plus
 - IT Bootcamp
 
-### Windows Server Supporting IT Architecture (BA-SupItArc)
-- Working with End User Devices
-- Supporting IT Architecture
+### Windows Server Supporting IT Architecture
+- Course 1 (BA-ICTSupCourse1-2)
+- Course 2 (BA-ICTSupCourse1-2)
+
+##Windows Server - Working with End User Devices
+- Course 3 (BA-ICTSupCourse3-4)
+- Course 4 (BA-ICTSupCourse3-4)
+
+###Windows Server - Working with Network Architecture
+- Course 6 (BA-ICTSupCourse6)
+
+### Windows Server - Cloud and On-Premises Network Infrastructure 
+- Course 5 (BA-ICTNetCourse5)
 
 ### Windows Server - Troubleshooting Networks (BA-TshootNet)
 - Troubleshooting Networks
-- Working with Network Architecture Part 2
-
-### Windows Server - Cloud and On-Premises Network Infrastructure (BA-ICTNetCourse5)
