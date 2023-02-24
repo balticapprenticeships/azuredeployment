@@ -105,6 +105,9 @@
             "ICTNetC5": {
                 "galleryImageDefinitionName": "BA-ICTNetCourse5"
             },
+            "L4NetEngC4": {
+                "galleryImageDefinitionName": "BA-L4NetEngCourse4"
+            },
             "MobilityAndDevices": {
                 "galleryImageDefinitionName": "BA-WinSvrGen"
             },

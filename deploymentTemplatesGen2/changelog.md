@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 24.02.23
+### Change
+- [uiSvrDefinition,serverMain,windowsServer]
+  added new course L4NetEngCourse4
+
 ## [2.0.0.0] 23.02.23
 ### Change
 - [windowsServer]
@@ -180,3 +185,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Windows Server - Troubleshooting Networks (BA-TshootNet)
 - Troubleshooting Networks
+
+### Windows Server - Level 4 Network Security (BA-L4NetEngCourse4)
