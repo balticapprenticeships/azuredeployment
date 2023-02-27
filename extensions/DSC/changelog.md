@@ -99,6 +99,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   Add Security+ administrators group.
 
 # Windows Client Lab Config
+## [4.7.0]
+### Change
+- [xBaLabWinClientCfg]
+  added SSMS and SQL for xBaSQLDataAnalysisLabCfg
+
 ## [4.6.0]
 ### Change
 - [xBaLabWinClientCfg]
