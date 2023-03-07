@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [4.0.0] 07.03.23
+## Add
+- [xBaLabWinSvrCfg]
+  removed legacy course configs
+
 ## [3.9.0] 24.02.23
 ## Add
 - [xBaLabWinSvrCfg]

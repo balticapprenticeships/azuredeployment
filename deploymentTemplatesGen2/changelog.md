@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 07.03.23
+### Change
+- [uiSvrDefinition,serverMain,windowsServer]
+  removed legacy course images
+
 ## [2.0.0.0] 24.02.23
 ### Change
 - [uiSvrDefinition,serverMain,windowsServer]
