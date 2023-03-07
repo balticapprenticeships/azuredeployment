@@ -495,7 +495,7 @@ Configuration xBaSQLDataAnalysisLabCfg {
         xScript "AddSSMSDesktopShortcut"
         {
             SetScript = {
-                $ssmsTargetFile = "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Ssms.exe"
+                $ssmsTargetFile = "C:\Program Files (x86)\Microsoft SQL Server Management Studio 19\Common7\IDE\Ssms.exe"
                 $ssmsShortcutFile = "C:\Users\Public\Desktop\SQL Server Management Studio.lnk"
                 $ssmsWScriptShell = New-Object -ComObject WScript.Shell
                 $ssmsShortcut = $ssmsWScriptShell.CreateShortcut($ssmsShortcutFile)
@@ -619,7 +619,7 @@ Configuration xBaDataLevel4LabCfg {
         xScript "AddSSMSDesktopShortcut"
         {
             SetScript = {
-                $ssmsTargetFile = "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Ssms.exe"
+                $ssmsTargetFile = "C:\Program Files (x86)\Microsoft SQL Server Management Studio 19\Common7\IDE\Ssms.exe"
                 $ssmsShortcutFile = "C:\Users\Public\Desktop\SQL Server Management Studio.lnk"
                 $ssmsWScriptShell = New-Object -ComObject WScript.Shell
                 $ssmsShortcut = $ssmsWScriptShell.CreateShortcut($ssmsShortcutFile)

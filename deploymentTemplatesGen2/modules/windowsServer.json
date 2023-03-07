@@ -108,18 +108,6 @@
             "L4NetEngC4": {
                 "galleryImageDefinitionName": "BA-L4NetEngCourse4"
             },
-            "MobilityAndDevices": {
-                "galleryImageDefinitionName": "BA-WinSvrGen"
-            },
-            "ServerFundamentals": {
-                "galleryImageDefinitionName": "BA-WinSvrGen"
-            },
-            "ItEssentials": {
-                "galleryImageDefinitionName": "BA-WinSvrGen"
-            },
-            "SecurityPlus": {
-                "galleryImageDefinitionName": "BA-WinSvrGen"
-            },
             "TrblshootNet": {
                 "galleryImageDefinitionName": "BA-TshootNet"
             },

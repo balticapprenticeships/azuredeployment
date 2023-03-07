@@ -82,22 +82,6 @@
                                 {
                                     "label": "Course 4 - Level 4 Network Security",
                                     "value": "L4NetEngC4"
-                                },
-                                {
-                                    "label": "Mobility and Devices",
-                                    "value": "MobilityAndDevices"
-                                },
-                                {
-                                    "label": "Server Administration",
-                                    "value": "ServerFundamentals"
-                                },
-                                {
-                                    "label": "IT Essentials",
-                                    "value": "ItEssentials"
-                                },
-                                {
-                                    "label": "CompTIA Security+",
-                                    "value": "SecurityPlus"
                                 },                                                                                                
                                 {
                                     "label": "Troubleshooting Networks",
