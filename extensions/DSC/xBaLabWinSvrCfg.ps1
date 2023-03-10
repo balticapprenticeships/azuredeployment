@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 4.0.0                                               #
+# Version: 4.1.0                                               #
 ################################################################
 
 Configuration xBaICTSupC1LabCfg {
@@ -595,7 +595,7 @@ Configuration xBaICTSupC4LabCfg {
         xScript "RunCreateVms"
         {
             SetScript = { 
-                New-VM -Name "Server01" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\WWEndUserDevices\WWEUD-Server01.vhdx" -SwitchName "vSwitch"
+                New-VM -Name "Server01" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ICTSupCourse4\WWEUD-Server01.vhdx" -SwitchName "vSwitch"
                 New-VM -Name "WindowsClient" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\WWEndUserDevices\WWEUD-Win10.vhdx" -SwitchName "vSwitch"
                 
             }
