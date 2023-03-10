@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [4.1.0] 10.03.23
+## Add
+- [xBaLabWinSvrCfg]
+  changed WWEUD-erver01 mapping
+
 ## [4.0.0] 07.03.23
 ## Add
 - [xBaLabWinSvrCfg]
