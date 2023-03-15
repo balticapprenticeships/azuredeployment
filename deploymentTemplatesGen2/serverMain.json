@@ -87,7 +87,8 @@
                 "L4NetEngC4",
                 "TrblshootNet",
                 "ItBootcamp",                
-                "WSvrDev"
+                "WSvrDev",
+                "ServerFundamentals"
 
             ],
             "metadata": {
@@ -112,11 +113,9 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "2.2.23",
                 "2.1.23",
-                "2.12.22",
-                "1.12.22",
-                "1.11.22",
-                "1.10.22"
+                "2.12.22"
             ],
             "metadata": {
                 "description": "Lab image version"

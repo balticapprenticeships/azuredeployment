@@ -116,6 +116,9 @@
             },            
             "WSvrDev": {
                 "galleryImageDefinitionName": "BA-SvrDev"
+            },
+            "ServerFundamentals": {
+                "galleryImageDefinitionName": "BA-WinSvrGen"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",

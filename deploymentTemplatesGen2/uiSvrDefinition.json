@@ -94,6 +94,10 @@
                                 {
                                     "label": "Lab Image Development",
                                     "value": "WSvrDev"
+                                },
+                                {
+                                    "label": "Server Administration",
+                                    "value": "ServerFundamentals"
                                 }
                             ],
                             "required": true
@@ -142,12 +146,12 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "January",
-                                    "value": "2.1.23"
+                                    "label": "February",
+                                    "value": "2.2.23"
                                 },
                                 {
-                                    "label": "December",
-                                    "value": "1.12.22"
+                                    "label": "January",
+                                    "value": "2.1.23"
                                 }
                             ],
                             "required": true
