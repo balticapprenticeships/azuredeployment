@@ -255,19 +255,14 @@
                                 "constraints": {
                                     "allowedValues": [
                                         {
-                                            "label": "Standard Small Client",
-                                            "description": "1 vcpu, 2GB memory",
-                                            "value": "Standard_B1ms"
-                                        },
-                                        {
-                                            "label": "Standard Medium Testing/Windows Client",
-                                            "description": "2 vcpus, 4GB memory",
+                                            "label": "Standard Medium for Windows Client",
+                                            "description": "2 vCPUs, 4GiB memory, 8GiB temp Storage",
                                             "value": "Standard_B2s"
                                         },
                                         {
                                             "label": "Standard Small Server",
-                                            "description": "2 vcpus, 8GB memory",
-                                            "value": "Standard_D2s_v3"
+                                            "description": "2 vCPUs, 8GiB memory, No temp storage",
+                                            "value": "Standard_D2s_v5"
                                         }
                                     ],
                                     "required": true
