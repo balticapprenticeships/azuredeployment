@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [uiSvrDefinition,serverMain,windowsServer]
   added Server Fundamentals 
   updated allowed versions
+  removed Standard_B1ms
 
 ## [2.0.0.0] 07.03.23
 ### Change
