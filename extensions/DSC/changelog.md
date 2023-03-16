@@ -144,3 +144,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Add
 - [xBaLabWinSvrCfg]
   Added SQLDataAnalysis.
+
+# Azure Virtual Desktop Session Host Config
+
+## [1.0.0] 16.03.2023
+- [xBaAVDSessionHostCfg]
+  Added config
