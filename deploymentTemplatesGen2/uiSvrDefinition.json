@@ -76,16 +76,16 @@
                                     "value": "ICTSupC6"
                                 },
                                 {
+                                    "label": "Course 2 - Understanding & Troubleshooting Networks Part 2",
+                                    "value": "ICTNetC2"
+                                },
+                                {
                                     "label": "Course 5 - Cloud and On-Premises Network Installation Part 1",
                                     "value": "ICTNetC5"
                                 },
                                 {
                                     "label": "Course 4 - Level 4 Network Security",
                                     "value": "L4NetEngC4"
-                                },                                                                                                
-                                {
-                                    "label": "Troubleshooting Networks",
-                                    "value": "TrblshootNet"
                                 },
                                 {
                                     "label": "IT Support Bootcamp",

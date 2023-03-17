@@ -101,6 +101,9 @@
             },
             "ICTSupC6": {
                 "galleryImageDefinitionName": "BA-ICTSupCourse6"
+            },            
+            "ICTNetC2": {
+                "galleryImageDefinitionName": "BA-ICTNetCourse2"
             },
             "ICTNetC5": {
                 "galleryImageDefinitionName": "BA-ICTNetCourse5"
