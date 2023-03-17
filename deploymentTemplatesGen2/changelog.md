@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 17.03.23
+### Change
+- [uiSvrDefinition,serverMain,windowsServer]
+  added ICTNetCourse2
+  removed Troubleshooting Networks
+
 ## [2.0.0.0] 15.03.23
 ### Change
 - [uiSvrDefinition,serverMain,windowsServer]
@@ -192,10 +198,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ###Windows Server - Working with Network Architecture
 - Course 6 (BA-ICTSupCourse6)
 
+### Windows Server - Understanding & Troubleshooting Networks Part 2
+- Course 2 (BA-ICTNetCourse2)
+
 ### Windows Server - Cloud and On-Premises Network Infrastructure 
 - Course 5 (BA-ICTNetCourse5)
-
-### Windows Server - Troubleshooting Networks (BA-TshootNet)
-- Troubleshooting Networks
 
 ### Windows Server - Level 4 Network Security (BA-L4NetEngCourse4)
