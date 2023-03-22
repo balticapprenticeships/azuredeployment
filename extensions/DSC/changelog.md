@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [4.4.0] 22.03.23
+## Add
+- [xBaLabWinSvrCfg]
+  added ICTNetC6 config
+
 ## [4.3.0] 17.03.23
 ## Add
 - [xBaLabWinSvrCfg]
