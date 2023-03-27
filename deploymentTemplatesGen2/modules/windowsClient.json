@@ -60,7 +60,7 @@
             "type": "string"
         },
         "localUserPassword": {
-            "type": "securestring"
+            "type": "string"
         },
         "createdBy": {
             "type": "string"

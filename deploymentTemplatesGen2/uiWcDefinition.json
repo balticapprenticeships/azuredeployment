@@ -511,9 +511,10 @@
                                 "toolTip": "Here you can set the password for the standard user account for your virtual machine(s)."
                             }
                         ],
-                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
+                        "visible": false
                     }
-                ]
+                ],
+                "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
             },
             {
                 "name": "tags",
