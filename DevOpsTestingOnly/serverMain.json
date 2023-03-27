@@ -234,20 +234,6 @@
                 "description": "SSH key for the admin account."
             }
         },
-        "localUsername": {
-            "type": "string",
-            "defaultValue": "",
-            "metadata": {
-                "description": "Username for the non admin user."
-            }
-        },
-        "localUserPassword": {
-            "type": "securestring",
-            "defaultValue": "",
-            "metadata": {
-                "description": "Non admin user password."
-            }
-        },
         "createdBy": {
             "type": "string",
             "metadata": {
@@ -534,10 +520,20 @@
                         }
                     },
                     "localUsername": {
-                        "value": "[parameters('localUsername')]"
+                        "reference": {
+                            "keyVault": {
+                                "id": "[resourceId(subscription().subscriptionId, variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                            },
+                            "secretName": "LabUser"
+                        }
                     },
                     "localUserPassword": {
-                        "value": "[parameters('localUserPassword')]"
+                        "reference": {
+                            "keyVault": {
+                                "id": "[resourceId(subscription().subscriptionId, variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                            },
+                            "secretName": "LabUserPassword"
+                        }
                     },
                     "createdBy": {
                         "value": "[parameters('createdBy')]"
@@ -745,14 +741,6 @@
         "virtualMachineFQDN": {
             "type": "array",
             "value": "[reference('DeployPublicIPAddress').outputs.fqdn.value]"
-        },
-        "localUsername": {
-            "type": "string",
-            "value": "[parameters('localUsername')]"
-        },
-        "localUserPassword": {
-            "type": "securestring",
-            "value": "[parameters('localUserPassword')]"
         }
     }
 }
