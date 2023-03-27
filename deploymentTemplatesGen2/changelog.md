@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 27.03.23
+### Change
+- [uiSvrDefinition,serverMain,windowsServer,uiWcDefinition,windowsClient,clientMain]
+  removed localUsername & localUserPassword (serverMain,clientMain)
+  set suacConfig to only display for Linux deployments (uiSvrDefinition,uiWcDefinition)
+  set localUserPassword from securestring to string (windowsServer,windowsClient)
+
 ## [2.0.0.0] 17.03.23
 ### Change
 - [uiSvrDefinition,serverMain,windowsServer]
