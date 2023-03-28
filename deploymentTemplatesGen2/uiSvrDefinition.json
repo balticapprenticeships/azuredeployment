@@ -80,6 +80,10 @@
                                     "value": "ICTNetC2"
                                 },
                                 {
+                                    "label": "Course 3 - Supporting Network Architecture",
+                                    "value": "ICTNetC3"
+                                },
+                                {
                                     "label": "Course 5 - Cloud and On-Premises Network Installation Part 1",
                                     "value": "ICTNetC5"
                                 },
