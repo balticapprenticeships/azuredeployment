@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 4.7.0                                               #
+# Version: 4.8.0                                               #
 ################################################################
 
 Configuration xBaWinClientLabCfg {
