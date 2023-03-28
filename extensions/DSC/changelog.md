@@ -130,6 +130,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   Add Security+ administrators group.
 
 # Windows Client Lab Config
+
+## [4.8.0]
+### Change
+- [xBaLabWinClientCfg]
+  updated Ssms shortcut
+
 ## [4.7.0]
 ### Change
 - [xBaLabWinClientCfg]
