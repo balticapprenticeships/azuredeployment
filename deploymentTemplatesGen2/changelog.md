@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 28.03.23
+### Change
+- [uiSvrDefinition,serverMain,windowsServer]
+  added ICTNetC3
+
 ## [2.0.0.0] 27.03.23
 ### Change
 - [uiSvrDefinition,serverMain,windowsServer,uiWcDefinition,windowsClient,clientMain]
