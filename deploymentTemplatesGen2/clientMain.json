@@ -578,14 +578,6 @@
         "virtualMachineFQDN": {
             "type": "array",
             "value": "[reference('DeployPublicIPAddress').outputs.fqdn.value]"
-        },
-        "localUsername": {
-            "type": "string",
-            "value": "[parameters('localUsername')]"
-        },
-        "localUserPassword": {
-            "type": "securestring",
-            "value": "[parameters('localUserPassword')]"
         }
     }
 }
