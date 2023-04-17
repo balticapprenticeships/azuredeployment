@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.0.0.0] 17.04.23
+### Change
+- [uiSvrDefinition]
+  set ICTNetC2 to use the TrblshootNet image
+
 ## [2.0.0.0] 12.04.23
 ### Change
 - [uiSvrDefinition,serverMain,windowsServer]
