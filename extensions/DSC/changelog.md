@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [4.7.0] 17.04.23
+## Add
+- [xBaLabWinSvrCfg]
+  added TrblshootNet course config
+
 ## [4.6.0] 12.04.23
 ## Add
 - [xBaLabWinSvrCfg]
