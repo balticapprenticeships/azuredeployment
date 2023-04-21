@@ -93,8 +93,8 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
-                "1.10.22",
-                "1.09.22"
+                "2.3.23",
+                "2.2.23"
             ],
             "metadata": {
                 "description": "Lab image version"
