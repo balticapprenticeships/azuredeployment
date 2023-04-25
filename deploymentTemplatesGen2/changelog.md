@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [2.1.1.0] 25.04.23
+### Change
+- [uiSvrDefinition]
+  added L3 EPA image
+
+## [2.0.0.0] 25.04.23
+### Change
+- [serverMain,windowsServer]
+  added L3 EPA image
+
 ## [2.1.0.0] 17.04.23
 ### Change
 - [uiSvrDefinition]
