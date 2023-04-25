@@ -120,7 +120,7 @@
         "_dscArtifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
         "_dscExtensionRepo": "main/extensions",
         "dscArchiveFolder": "DSC",
-        "dscArchiveFileName": "xBaLabWinClientCfg.zip"
+        "dscArchiveFileName": "BaLabWinClientCfg.zip"
     },
     "resources": [
         {
@@ -218,7 +218,7 @@
                             "wmfVersion": "latest",
                             "configuration": {
                                 "url": "[concat(variables('_dscArtifactsLocation'), '/', variables('_dscExtensionRepo'), '/', variables('dscArchiveFolder'), '/', variables('dscArchiveFileName'))]",
-                                "script": "xBaLabWinClientCfg.ps1",
+                                "script": "BaLabWinClientCfg.ps1",
                                 "function": "[variables('labConfigDscFunction')]"
                             }
                         },
