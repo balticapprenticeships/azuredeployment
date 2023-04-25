@@ -92,6 +92,10 @@
                                     "value": "ICTNetC6"
                                 },
                                 {
+                                    "label": "EPA - Level 3 ICT Network Technician EPA Project",
+                                    "value": "ICTNetEPA"
+                                },
+                                {
                                     "label": "Course 4 - Level 4 Network Security",
                                     "value": "L4NetEngC4"
                                 },

@@ -114,6 +114,9 @@
             "ICTNetC6": {
                 "galleryImageDefinitionName": "BA-ICTNetCourse6"
             },
+            "ICTNetEPA": {
+                "galleryImageDefinitionName": "BA-ICTNetEPA"
+            },
             "L4NetEngC4": {
                 "galleryImageDefinitionName": "BA-L4NetEngCourse4"
             },
