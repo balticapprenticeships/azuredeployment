@@ -12,9 +12,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   added L3 EPA image
 
 ## [2.0.0.0] 25.04.23
-### Change
+### Add
 - [serverMain,windowsServer]
   added L3 EPA image
+### Change
+- [windowsClient,windowsServer]
+  changed DSC config to use non experimental version
 
 ## [2.1.0.0] 17.04.23
 ### Change
