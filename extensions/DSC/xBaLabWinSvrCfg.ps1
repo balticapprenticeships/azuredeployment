@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 4.7.0                                               #
+# Version: 4.8.0                                               #
 ################################################################
 
 Configuration xBaICTSupC1LabCfg {
@@ -1205,6 +1205,85 @@ Configuration xBaICTNetC5LabCfg {
 }
 
 Configuration xBaICTNetC6LabCfg {
+    [CmdletBinding()]
+
+    Param (
+        
+        [Parameter(Mandatory = $true)]
+        [System.Management.Automation.PSCredential]
+        [System.Management.Automation.Credential()]
+        $Credential
+    )
+
+    Import-DscResource -ModuleName xPSDesiredStateConfiguration
+
+    Node localhost {
+
+        LocalConfigurationManager {
+            RebootNodeIfNeeded = $true
+        }
+
+        # This resource block create a local user
+        xUser "CreateUserAccount" {
+            Ensure = "Present"
+            Username = Split-Path -Path $Credential.Username -Leaf
+            Password = $Credential
+            FullName = "Baltic Apprentice"
+            Description = "Baltic Apprentice"
+            PasswordNeverExpires = $true
+            PasswordChangeRequired = $false
+            PasswordChangeNotAllowed = $true
+        }
+
+        # This resource block adds user to a spacific group
+        xGroup "AddToRemoteDesktopUserGroup"
+        {
+            GroupName = "Remote Desktop Users"
+            Ensure = "Present"
+            MembersToInclude = Split-Path -Path $Credential.Username -Leaf
+            DependsOn = "[xUser]CreateUserAccount"
+        }
+
+        # This resource block adds user to a spacific group
+        xGroup "AddToHyperVAdministratorGroup"
+        {
+            GroupName = "Hyper-V Administrators"
+            Ensure = "Present"
+            MembersToInclude = Split-Path -Path $Credential.Username -Leaf
+            DependsOn = "[xUser]CreateUserAccount"
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "SetRdpTimeZone"
+        {
+            SetScript = {
+                New-ItemProperty -ErrorAction SilentlyContinue -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" -Name "fEnableTimeZoneRedirection" -Value "1" -PropertyType DWORD -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+
+        # This resource block ensures that the file or command is executed
+        xScript "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
+                Remove-Item "C:\workflow-artifacts" -Force
+                Remove-Item "C:\workflow-artifacts.zip" -Force
+                Remove-Item "C:\*_buildlog.log" -Force
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+        }
+    }
+    
+}
+
+Configuration xBaICTNetEPALabCfg {
     [CmdletBinding()]
 
     Param (
