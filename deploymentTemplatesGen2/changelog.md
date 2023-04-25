@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [serverMain,windowsServer]
   added L3 EPA image
 ### Change
-- [windowsClient,windowsServer]
+- [windowsClient]
   changed DSC config to use non experimental version
 
 ## [2.1.0.0] 17.04.23

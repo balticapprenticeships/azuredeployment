@@ -8,11 +8,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
-## [5.0.0] 25.04.23
-### Changed
-- [BaLabWinSvrCfg]
-  xPSDesiredStateConfiguration (Experimental) to PSDesiredStateConfiguration (Production)
-
 ## [4.8.0] 25.04.23
 ## Add
 - [xBaLabWinSvrCfg]
