@@ -4,7 +4,7 @@
 # Version: 1.0.0                                                         #
 ##########################################################################
 
-Configuration xBaDataLevel4LabCfg {
+Configuration BaDataLevel4LabCfg {
     [CmdletBinding()]
 
     param (
@@ -14,7 +14,7 @@ Configuration xBaDataLevel4LabCfg {
         $Credential
     )
 
-    Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration, SqlServerDsc
+    Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration, SqlServerDsc
 
     Node localhost {
         LocalConfigurationManager {
@@ -50,7 +50,7 @@ Configuration xBaDataLevel4LabCfg {
         }
 
         # This resource block ensures that the file or command is executed
-        xScript "AddSSMSDesktopShortcut"
+        Script "AddSSMSDesktopShortcut"
         {
             SetScript = {
                 $ssmsTargetFile = "C:\Program Files (x86)\Microsoft SQL Server Management Studio 19\Common7\IDE\Ssms.exe"
@@ -71,19 +71,5 @@ Configuration xBaDataLevel4LabCfg {
             }
         }
         
-        # This resource block ensures that the file or command is executed
-        xScript "RemoveArtifacts"
-        {
-            SetScript = {
-                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
-                Remove-Item "C:\workflow-artifacts" -Force
-                Remove-Item "C:\workflow-artifacts.zip" -Force
-                Remove-Item "C:\*_buildlog.log" -Force
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
-        }
     }
 }
