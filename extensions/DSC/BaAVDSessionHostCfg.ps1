@@ -4,15 +4,8 @@
 # Version: 1.0.0                                                         #
 ##########################################################################
 
-Configuration BaDataLevel4LabCfg {
+Configuration InstallSqlServer {
     [CmdletBinding()]
-
-    param (
-        [Parameter(Mandatory = $true)]
-        [System.Management.Automation.PSCredential]
-        [System.Management.Automation.Credential()]
-        $Credential
-    )
 
     Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration, SqlServerDsc
 
@@ -73,3 +66,9 @@ Configuration BaDataLevel4LabCfg {
         
     }
 }
+
+#Create MOF
+InstallSqlServer -Output .\ 
+
+#Start DSC
+Start-DscConfiguration -Path .\ -ComputerName $env:COMPUTERNAME -Wait -Force
