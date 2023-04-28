@@ -13,7 +13,7 @@ Configuration InstallSqlServer {
         $NodeName
     )
 
-    Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration, SqlServerDsc
+    Import-DscResource -ModuleName PSDesiredStateConfiguration, SqlServerDsc
 
     Node $NodeName {
         LocalConfigurationManager {
