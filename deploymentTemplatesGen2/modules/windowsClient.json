@@ -98,15 +98,18 @@
             },
             "ExamTesting": {
                 "galleryImageDefinitionName": "BA-Testing"
-            },
-            "WinClient": {
-                "galleryImageDefinitionName": "BA-Win10"
             },            
             "ICTL3Support": {
                 "galleryImageDefinitionName": "BA_W10_ICTArch"
             },            
             "DataLevel4": {
                 "galleryImageDefinitionName": "BA-Win10-Courses"
+            },
+            "DMCC3": {
+                "galleryImageDefinitionName": "BA-DMContentCreator"
+            },
+            "DMCC4": {
+                "galleryImageDefinitionName": "BA-DMContentCreator"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",

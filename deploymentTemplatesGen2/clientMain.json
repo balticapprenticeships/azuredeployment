@@ -24,6 +24,7 @@
             "allowedValues": [
                 "Standard_B1ms",
                 "Standard_B2s",
+                "Standard_B2ms",
                 "Standard_D2s_v3"
             ],
             "metadata": {
@@ -81,7 +82,9 @@
                 "WinClient",
                 "ICTL3Support",
                 "SQLDataAnalysis",
-                "DataLevel4"
+                "DataLevel4",
+                "DMCC3",
+                "DMCC4"
 
             ],
             "metadata": {
