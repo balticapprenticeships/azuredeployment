@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+
+# Windows Server User Interface
+
+
 ## [2.1.1.0] 25.04.23
 ### Change
 - [uiSvrDefinition]
@@ -134,8 +138,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [uiWcDefinition,clientMain,windowsClient]
   added new DataLevel4 course
 
-# Windows Server User Interface
-
 ## [2.0.0.0] 06.01.23
 ### Change
 - [uiSvrDefinition]
@@ -194,7 +196,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [uiSvrDefinition]
   Add Security+ LabAdmin user.
 
+
 # Windows Client User Interface
+
+## [2.1.1.0] 09.05.23
+
+### Add
+- [uiWcDefinition,windowsClient,clientMain]
+  added Digital Marketing courses (DMCC3, DMCC4)
+  added new VM size. Standard medium for Windows Client (B2ms)
 
 ## [2.1.0.0] 21.04.23
 

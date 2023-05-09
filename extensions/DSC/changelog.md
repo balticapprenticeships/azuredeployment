@@ -146,7 +146,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client Lab Config
 
-## [5.0.0] 25.04.23
+## [4.9.0] 09.05.23
+### add
+- [BaLabWinClientCfg]
+  added DMCC3 & DMCC4 configuration
+
+## [5.0.0a] 25.04.23
 ### Changed
 - [BaLabWinClientCfg]
   xPSDesiredStateConfiguration (Experimental) to PSDesiredStateConfiguration (Production)
