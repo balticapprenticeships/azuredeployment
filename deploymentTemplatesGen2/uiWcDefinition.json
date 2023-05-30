@@ -270,6 +270,11 @@
                                             "value": "Standard_B2ms"
                                         },
                                         {
+                                            "label": "Small GPU optimised VM for Development ONLY",
+                                            "description": "4 vCPUs, 14GiB memory, 2GiB GPU memory 88GiB temp storage",
+                                            "value": "Standard_NV4as_v4"
+                                        },
+                                        {
                                             "label": "Standard GPU optimised VM for Development ONLY",
                                             "description": "6 vCPUs, 56GiB memory, 340GiB temp storage",
                                             "value": "Standard_NC6"
