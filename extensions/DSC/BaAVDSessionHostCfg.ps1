@@ -1,5 +1,6 @@
 ##########################################################################
 # Script to configure Azure Virtual Desktop environment using DSC        #
+# Install SQL Server                                                     #
 # Author: Chris Langford                                                 #
 # Version: 1.0.0                                                         #
 ##########################################################################
@@ -7,9 +8,14 @@
 Configuration InstallSqlServer {
     [CmdletBinding()]
 
+    param (
+        [string]
+        $NodeName
+    )
+
     Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration, SqlServerDsc
 
-    Node localhost {
+    Node $NodeName {
         LocalConfigurationManager {
             RebootNodeIfNeeded = $true
         }
@@ -68,7 +74,8 @@ Configuration InstallSqlServer {
 }
 
 #Create MOF
-InstallSqlServer -Output .\ 
+$nodeName = $env:COMPUTERNAME
+InstallSqlServer -Output C:\sqlBuildArtifacts\ -NodeName $nodeName
 
 #Start DSC
-Start-DscConfiguration -Path .\ -ComputerName $env:COMPUTERNAME -Wait -Force
+Start-DscConfiguration -Path C:\sqlBuildArtifacts\ -ComputerName $env:COMPUTERNAME -Wait -Force

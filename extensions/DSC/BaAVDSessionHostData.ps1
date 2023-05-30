@@ -13,14 +13,14 @@ Invoke-WebRequest -Uri $URL -OutFile $ZIP -ErrorAction 'Stop'
 # Extract DSC files from ZIP archive
 Expand-Archive -Path $ZIP -DestinationPath C:\sqlBuildArtifacts\ -Force -ErrorAction 'Stop'
 
-#Set DSC resources
-#Install-Module -Name ComputerManagementDsc
-Install-Module -Name SqlServerDsc -Force -Confirm:$false
+# #Set DSC resources
+# #Install-Module -Name ComputerManagementDsc
+# Install-Module -Name SqlServerDsc -Force -Confirm:$false
 Import-Module -Name SqlServerDsc -ErrorAction:Continue
 Import-Module -Name PSDesiredStateConfiguration -ErrorAction:Continue
 
-#Enable PowerShell Remoting
-Enable-PSRemoting -Force -Confirm:$false
+# #Enable PowerShell Remoting
+# Enable-PSRemoting -Force -Confirm:$false
     
 # Run VDOT
 & C:\sqlBuildArtifacts\InstallSqlServer.ps1 -Force

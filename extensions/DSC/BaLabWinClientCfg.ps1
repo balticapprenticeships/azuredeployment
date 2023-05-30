@@ -701,21 +701,6 @@ Configuration xBaDMCC3LabCfg {
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = "[xUser]CreateUserAccount"
         }
-
-        # This resource block ensures that the file or command is executed
-        xScript "RemoveArtifacts"
-        {
-            SetScript = {
-                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
-                Remove-Item "C:\workflow-artifacts" -Force
-                Remove-Item "C:\workflow-artifacts.zip" -Force
-                Remove-Item "C:\*_buildlog.log" -Force
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
-        }
     }
 }
 
@@ -765,21 +750,6 @@ Configuration xBaDMCC4LabCfg {
             Ensure = "Present"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = "[xUser]CreateUserAccount"
-        }
-
-        # This resource block ensures that the file or command is executed
-        xScript "RemoveArtifacts"
-        {
-            SetScript = {
-                Remove-Item "C:\workflow-artifacts\*" -Recurse -Force
-                Remove-Item "C:\workflow-artifacts" -Force
-                Remove-Item "C:\workflow-artifacts.zip" -Force
-                Remove-Item "C:\*_buildlog.log" -Force
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
         }
     }
 }
