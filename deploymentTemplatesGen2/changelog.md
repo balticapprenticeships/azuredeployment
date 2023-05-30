@@ -199,6 +199,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [2.1.2.0] 30.05.23
+### Add
+- [uiWcDefinition]
+  added NC6 virtual machine size
+
+## [1.0.0.0] 30.05.23
+### Add
+- [clientMain]
+  added NC6 virtual machine size
+
+
 ## [2.1.1.0] 09.05.23
 
 ### Add
