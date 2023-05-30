@@ -25,7 +25,8 @@
                 "Standard_B1ms",
                 "Standard_B2s",
                 "Standard_B2ms",
-                "Standard_D2s_v3"
+                "Standard_D2s_v3",
+                "Standard_NC6"
             ],
             "metadata": {
                 "description": "Virtual Machine size e.g., 2vCPU's 4GB RAM"
