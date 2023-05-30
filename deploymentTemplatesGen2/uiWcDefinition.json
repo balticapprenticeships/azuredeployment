@@ -11,7 +11,8 @@
                     "label": "Deployment Regions",
                     "allowedValues": [
                         "ukwest",
-                        "uksouth"
+                        "uksouth",
+                        "eastus"
                     ],
                     "toolTip": "Choose the Azure region in which to deploy your Virtual Machines. Not every resource is available in every region."
                 }
