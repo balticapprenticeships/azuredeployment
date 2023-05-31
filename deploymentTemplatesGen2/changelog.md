@@ -202,7 +202,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.0.0] 31.05.23
 ### change
 - [clientMain]
-  removed location's default value
+  removed location's default value ukwest
+  set default location to reference resourceGroup
 
 ## [2.1.2.0] 30.05.23
 ### Add
