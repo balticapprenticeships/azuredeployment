@@ -199,6 +199,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [1.0.0.0] 31.05.23
+### change
+- [clientMain]
+  removed location's default value
+
 ## [2.1.2.0] 30.05.23
 ### Add
 - [uiWcDefinition]
