@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [2.0.0.0] 01.06.23
+### change
+- [serverMain]
+  removed location's default value ukwest
+  set default location to reference resourceGroup
+
+## [2.2.0.0]01.06.23
+### change
+- [uiSvrDefinition]
+  removed config code block for location
 
 ## [2.1.1.0] 25.04.23
 ### Change
@@ -198,6 +208,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Windows Client User Interface
+
+## [1.0.0.0] 01.06.23
+### Add
+- [windowsClient]
+  added conditional VM extension to intall Azure Nvidia GRID & AMD drivers
 
 ## [2.2.0.0] 31.05.23
 ### change
