@@ -4,11 +4,7 @@
     "parameters": {
         "location": {
             "type": "string",
-            "defaultValue": "ukwest",
-            "allowedValues": [
-                "ukwest",
-                "uksouth"
-            ],
+            "defaultValue": "[resourceGroup().location]",
             "metadata": {
                 "description": "Location to store all VM resources."
             }
