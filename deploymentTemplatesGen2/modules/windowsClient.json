@@ -240,7 +240,7 @@
                     "type": "Microsoft.Compute/virtualMachines/extensions",
                     "apiVersion": "2020-12-01",
                     "location": "[parameters('location')]",
-                    "dependson": [
+                    "dependsOn": [
                         "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
                     ],
                     "properties": {
@@ -251,6 +251,40 @@
                         "enableAutomaticUpgrade": true,
                         "settings": {},
                         "protectedSettings": {}
+                    }
+                },
+                {
+                    "condition": "[equals(parameters('vmSize'), 'Standard_NC6')]",
+                    "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '/NvidiaGRIDDriver')]",
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "apiVersion": "2020-12-01",
+                    "location": "[parameters('location')]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
+                    ],
+                    "properties": {
+                        "publisher": "Microsoft.HpcCompute",
+                        "type": "NvidiaGpuDriverWindows",
+                        "typeHandlerVersion": "1.4",
+                        "autoUpgradeMinorVersion": true,
+                        "settings": {}
+                    }
+                },
+                {
+                    "condition": "[equals(parameters('vmSize'), 'Standard_NV4as_v4')]",
+                    "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '/AMDGpuDriver')]",
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "apiVersion": "2020-12-01",
+                    "location": "[parameters('location')]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
+                    ],
+                    "properties": {
+                        "publisher": "Microsoft.HpcCompute",
+                        "type": "AmdGpuDriverWindows",
+                        "typeHandlerVersion": "1.1",
+                        "autoUpgradeMinorVersion": true,
+                        "settings": {}
                     }
                 }
             ]
