@@ -2,21 +2,8 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "2.1.0.0",
+    "currentVersion": "2.2.0.0",
     "parameters": {
-        "config": {
-            "isWizard": true,
-            "basics": {
-                "location": {
-                    "label": "Deployment Regions",
-                    "allowedValues": [
-                        "ukwest",
-                        "uksouth"
-                    ],
-                    "toolTip": "Choose the Azure region in which to deploy your Virtual Machines. Not every resource is available in every region."
-                }
-            }
-        },
         "basics": [],
         "steps": [
             {
