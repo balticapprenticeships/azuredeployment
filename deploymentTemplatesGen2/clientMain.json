@@ -214,6 +214,7 @@
     "variables": {
         "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringTrainerInitials')))]",
         "patchMode": "[if(equals(parameters('osPlatform'), 'Windows'), 'AutomaticByOS', 'ImageDefault')]",
+        "osDiskSku": "[if(contains(parameters('vmSize'), 'Standard_NC'), 'StandardSSD_LRS', 'Standard_LRS')]",
         "securityType": "Standard",
         "licenseType": "AzureLicense",
         "idleVM": "No",
@@ -400,7 +401,7 @@
                         "value": "[parameters('vmCount')]"
                     },
                     "osDiskType": {
-                        "value": "[parameters('osDiskType')]"
+                        "value": "[variables('osDiskSku')]"
                     },
                     "osDiskDeleteOption": {
                         "value": "[parameters('osDiskDeleteOption')]"
