@@ -254,7 +254,7 @@
                     }
                 },
                 {
-                    "condition": "[equals(parameters('vmSize'), 'Standard_NC6')]",
+                    "condition": "[equals(parameters('vmSize'), 'Standard_NC4as_T4_v3')]",
                     "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '/NvidiaGRIDDriver')]",
                     "type": "Microsoft.Compute/virtualMachines/extensions",
                     "apiVersion": "2020-12-01",
