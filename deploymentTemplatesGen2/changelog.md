@@ -209,6 +209,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [2.3.0.0] 02.06.23
+### Change
+- [uiWcDefinition]
+  removed NC6 virtual machine size
+  removed small server VM size - not required for Windows Client VMs
+### Add
+- [uiWcDefinition]
+  added NC4as_T4_v3
+  added Standard SSD
+
+## [1.0.0.0] 02.06.23
+### Add
+- [clientMain]
+  added Standard SSD
+### Change
+- [clientMain]
+  removed NC6 VM size
+  added NC4as_T4_v3
+  removed small server VM size - not required for Windows Client VMs
+
 ## [1.0.0.0] 01.06.23
 ### Add
 - [windowsClient]
