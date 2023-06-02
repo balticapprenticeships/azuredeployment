@@ -286,9 +286,10 @@
                                             "value": "StandardSSD_LRS"
                                         }
                                     ],
-                                    "required": true
+                                    "required": false
                                 },
-                                "toolTip": "Here you can select the type of hard disc for your OS e.g., HDD, SSD or Premium SSD."
+                                "toolTip": "Here you can select the type of hard disc for your OS e.g., HDD, SSD or Premium SSD.",
+                                "visible": false
                             }
                         ]
                     },
