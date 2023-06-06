@@ -23,6 +23,9 @@
         "course": {
             "type": "string"
         },
+        "subscription": {
+            "type": "string"
+        },
         "imageVersion": {
             "type": "string"
         },
@@ -185,7 +188,7 @@
                         "deleteOption": "[parameters('osDiskDeleteOption')]"
                     },
                     "imageReference": {
-                        "id": "[resourceId('Microsoft.Compute/galleries/images/versions', variables('galleryImageName'), variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, parameters('imageVersion'))]"
+                        "id": "[resourceId('subscriptions', '/', parameters('subscription'), 'Microsoft.Compute/galleries/images/versions', variables('galleryImageName'), variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, parameters('imageVersion'))]"
                     }
                 },
                 "networkProfile": {
