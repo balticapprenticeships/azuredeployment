@@ -189,7 +189,7 @@
                         "deleteOption": "[parameters('osDiskDeleteOption')]"
                     },
                     "imageReference": {
-                        "id": "[concat('subscriptions/', parameters('subscription'), '/resourceGroups/', variables('acgRG'), '/providers/Microsoft.Compute/galleries/', variables('galleryImageName'), '/images/', variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, '/version/', parameters('imageVersion'))]"
+                        "id": "[reference(concat('subscriptions/', parameters('subscription'), '/resourceGroups/', variables('acgRG'), '/providers/Microsoft.Compute/galleries/', variables('galleryImageName'), '/images/', variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, '/version/', parameters('imageVersion')))]"
                     }
                 },
                 "networkProfile": {
