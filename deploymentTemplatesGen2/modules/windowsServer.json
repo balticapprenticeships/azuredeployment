@@ -87,6 +87,7 @@
     "functions": [],
     "variables": {
         "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringTrainerInitials')))]",
+        "acgRG": "BalticImageGalleryRg",
         "galleryImageName": "TrainingACG",
         "WindowsLicense": "Windows_Server",
         "operatingSystemValues": {            
@@ -188,7 +189,7 @@
                         "deleteOption": "[parameters('osDiskDeleteOption')]"
                     },
                     "imageReference": {
-                        "id": "[resourceId('subscriptions', '/', parameters('subscription'), 'Microsoft.Compute/galleries/images/versions', variables('galleryImageName'), variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, parameters('imageVersion'))]"
+                        "id": "[resourceId('subscriptions/', parameters('subscription'), '/resourceGroups', variables('acgRG'), '/providers/Microsoft.Compute/galleries/', variables('galleryImageName'), '/images/', variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, parameters('imageVersion'))]"
                     }
                 },
                 "networkProfile": {
