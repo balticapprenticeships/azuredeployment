@@ -53,7 +53,15 @@
                     "Microsoft.Storage/storageAccounts/read",
                     "Microsoft.Support/*"
                 ],
-                "notActions": [],
+                "notActions": [
+                    "Microsoft.Authorization/policyassignments/*",
+                    "Microsoft.Authorization/policydefinitions/*",
+                    "Microsoft.Authorization/policyexemptions/*",
+                    "Microsoft.Authorization/policysetdefinitions/*",
+                    "Microsoft.PolicyInsights/*",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Support/*"
+                ],
                 "dataActions": [
                     "Microsoft.Compute/virtualMachines/login/action",
                     "Microsoft.Compute/virtualMachines/loginAsAdmin/action",
