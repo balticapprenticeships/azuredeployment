@@ -282,7 +282,6 @@
         "securityType": "Standard",
         "licenseType": "AzureLicense",
         "idleVM": "No",
-        "subscription": "42ae00f5-c447-4ade-bb2a-55b2a5d7480d",
         "vaultResourceGroup": "BalticTrainingOMSRg",
         "vaultName": "VMDeployment",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
@@ -474,9 +473,6 @@
                     "course": {
                         "value": "[parameters('course')]"
                     },
-                    "subscription": {
-                        "value": "[variables('subscription')]"
-                    },
                     "imageVersion": {
                         "value": "[parameters('imageVersion')]"
                     },
@@ -510,7 +506,7 @@
                     "adminUsername": {
                         "reference": {
                             "keyVault": {
-                                "id": "[resourceId(variables('subscription'), variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                                "id": "[resourceId(subscription().subscriptionId, variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
                             },
                             "secretName": "LabAdmin"
                         }
@@ -518,7 +514,7 @@
                     "adminPassword": {
                         "reference": {
                             "keyVault": {
-                                "id": "[resourceId(variables('subscription'), variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                                "id": "[resourceId(subscription().subscriptionId, variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
                             },
                             "secretName": "LabAdminPassword"
                         }
@@ -526,7 +522,7 @@
                     "localUsername": {
                         "reference": {
                             "keyVault": {
-                                "id": "[resourceId(variables('subscription'), variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                                "id": "[resourceId(subscription().subscriptionId, variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
                             },
                             "secretName": "LabUser"
                         }
@@ -534,7 +530,7 @@
                     "localUserPassword": {
                         "reference": {
                             "keyVault": {
-                                "id": "[resourceId(variables('subscription'), variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                                "id": "[resourceId(subscription().subscriptionId, variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
                             },
                             "secretName": "LabUserPassword"
                         }

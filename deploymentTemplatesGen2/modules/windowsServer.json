@@ -23,9 +23,6 @@
         "course": {
             "type": "string"
         },
-        "subscription": {
-            "type": "string"
-        },
         "imageVersion": {
             "type": "string"
         },
@@ -87,7 +84,6 @@
     "functions": [],
     "variables": {
         "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringTrainerInitials')))]",
-        "acgRG": "BalticImageGalleryRg",
         "galleryImageName": "TrainingACG",
         "WindowsLicense": "Windows_Server",
         "operatingSystemValues": {            
@@ -148,7 +144,6 @@
                 "vTpmEnabled": "[parameters('vTPM')]"
             }
         },
-        "vmImage": "[concat('/subscriptions/', parameters('subscription'), '/resourceGroups/', variables('acgRG'), '/providers/Microsoft.Compute/galleries/', variables('galleryImageName'), '/images/', variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, '/version/', parameters('imageVersion'))]",
         "_dscArtifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
         "_dscExtensionRepo": "main/extensions",
         "dscArchiveFolder": "DSC",
@@ -190,7 +185,7 @@
                         "deleteOption": "[parameters('osDiskDeleteOption')]"
                     },
                     "imageReference": {
-                        "id": "[variables('vmImage')]"
+                        "id": "[resourceId('Microsoft.Compute/galleries/images/versions', variables('galleryImageName'), variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, parameters('imageVersion'))]"
                     }
                 },
                 "networkProfile": {
