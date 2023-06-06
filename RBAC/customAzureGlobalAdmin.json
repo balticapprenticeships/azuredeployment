@@ -1,0 +1,30 @@
+{
+    "properties": {
+        "roleName": "Azure Global Admin",
+        "description": "Grants administrative access to manage all resources, including the ability to view budgets.",
+        "assignableScopes": [
+            "/providers/Microsoft.Management/managementGroups/0c79f314-54e0-4815-81ef-13785f702b51"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "*"
+                ],
+                "notActions": [
+                    "Microsoft.AzureStack/*",
+                    "Microsoft.AzureStack/registrations/read",
+                    "Microsoft.Blueprint/blueprintAssignments/write",
+                    "Microsoft.Blueprint/blueprintAssignments/delete",
+                    "Microsoft.CognitiveServices/*/action",
+                    "Microsoft.CognitiveServices/*/write",
+                    "Microsoft.CognitiveServices/*/delete",
+                    "Microsoft.DigitalTwins/*",
+                    "Microsoft.HpcWorkbench/*/write",
+                    "Microsoft.HpcWorkbench/*/delete"
+                ],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
