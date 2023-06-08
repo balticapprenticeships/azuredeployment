@@ -22,6 +22,7 @@
                 "Standard_B2s",
                 "Standard_B2ms",
                 "Standard_NV4as_v4",
+                "Standard_NV12s_v3",
                 "Standard_NC4as_T4_v3"
             ],
             "metadata": {
