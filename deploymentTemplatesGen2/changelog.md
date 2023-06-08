@@ -209,6 +209,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+### Add [2.4.0.0] 08.06.23
+- [uiWcDefinition]
+  added NC12s_v3
+
 ## [2.3.0.0] 02.06.23
 ### Change
 - [uiWcDefinition]
