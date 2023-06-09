@@ -252,6 +252,12 @@
                 "description": "Please provide the start date of the course on the following format 01/01/2022."
             }
         },
+        "courseEndDay": {
+            "type": "string",
+            "metadata": {
+                "description": "Please enter the day of the week that the course will end e.g., Tuesday."
+            }
+        },
         "startupSchedule": {
             "type": "string",
             "defaultValue": "No",
@@ -544,6 +550,9 @@
                     "courseStartDate": {
                         "value": "[parameters('courseStartDate')]"
                     },
+                    "courseEndDay": {
+                        "value": "[parameters('courseEndDay')]"
+                    },
                     "startupSchedule": {
                         "value": "[parameters('startupSchedule')]"
                     },
@@ -610,7 +619,7 @@
                     "adminUsername": {
                         "reference": {
                             "keyVault": {
-                                "id": "[resourceId(variables('subscription'), variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                                "id": "[resourceId(subscription().subscriptionId, variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
                             },
                             "secretName": "LabAdmin"
                         }
@@ -618,7 +627,7 @@
                     "adminPassword": {
                         "reference": {
                             "keyVault": {
-                                "id": "[resourceId(variables('subscription'), variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                                "id": "[resourceId(subscription().subscriptionId, variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
                             },
                             "secretName": "LabAdminPassword"
                         }
@@ -637,6 +646,9 @@
                     },
                     "courseStartDate": {
                         "value": "[parameters('courseStartDate')]"
+                    },
+                    "courseEndDay": {
+                        "value": "[parameters('courseEndDay')]"
                     },
                     "startupSchedule": {
                         "value": "[parameters('startupSchedule')]"

@@ -487,6 +487,18 @@
                                 "toolTip": "Please enter the the training week that the virtual machines are required for e.g., 01/11/2021."
                             },
                             {
+                                "name": "courseEndDay",
+                                "label": "Training End Day",
+                                "type": "Microsoft.Common.TextBox",
+                                "placeholder": "e.g., Tuesday",
+                                "constraints": {
+                                    "regex": "^[A-Z][a-z]$",
+                                    "required": true,
+                                    "validationMessage": "This must be a course delivery day."
+                                },
+                                "toolTip": "Please enter the day of hte week that the course will finish e.g., Tuesday, or Thursday."
+                            },
+                            {
                                 "name": "schedule",
                                 "label": "Schedule Virtual Machine Start",
                                 "type": "Microsoft.Common.DropDown",                                
@@ -578,6 +590,7 @@
             "createdBy": "[steps('tags').mngTagsConfig.createdBy]",
             "deliveringTrainerInitials": "[steps('tags').mngTagsConfig.trainerInitials]",
             "courseStartDate": "[steps('tags').mngTagsConfig.courseDate]",
+            "courseEndDay": "[steps('tags').mngTagsConfig.courseEndDay]",
             "startupSchedule": "[steps('tags').mngTagsConfig.schedule]",
             "idleVm": "[steps('tags').mngTagsConfig.idleVm]",
             "resourceGroupCleanup": "[steps('tags').mngTagsConfig.resourceGroupCleanup]"
