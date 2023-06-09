@@ -492,7 +492,6 @@
                                 "type": "Microsoft.Common.TextBox",
                                 "placeholder": "e.g., Tuesday",
                                 "constraints": {
-                                    "regex": "^[A-Z][a-z]$",
                                     "required": true,
                                     "validationMessage": "This must be a course delivery day."
                                 },
