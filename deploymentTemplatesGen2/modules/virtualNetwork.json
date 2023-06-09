@@ -14,6 +14,9 @@
         "courseStartDate": {
             "type": "string"
         },
+        "courseEndDay": {
+            "type": "string"
+        },
         "resourceGroupCleanup": {
             "type": "string"
         }
@@ -36,6 +39,7 @@
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
+                "CourseEndDay": "[parameters('courseEndDay')]"
                 "Cleanup": "[parameters('resourceGroupCleanup')]"
             },
             "properties": {
