@@ -139,6 +139,7 @@
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
                 "CourseEndDate": "[parameters('courseEndDay')]",
+                "CourseEndDay": "[parameters('courseEndDay')]",
                 "Schedule": "[if(equals(parameters('startupSchedule'), 'Yes'), 'StartDaily', 'NoSchedule')]",
                 "IdleShutdown": "[parameters('idleVm')]",
                 "Cleanup": "[parameters('resourceGroupCleanup')]"

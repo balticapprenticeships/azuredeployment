@@ -141,7 +141,7 @@
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
-                "CourseEndDate": "[parameters('courseEndDay')]",
+                "CourseEndDay": "[parameters('courseEndDay')]",
                 "Schedule": "[if(equals(parameters('startupSchedule'), 'Yes'), 'StartDaily', 'NoSchedule')]",
                 "IdleShutdown": "[parameters('idleVm')]",
                 "Cleanup": "[parameters('resourceGroupCleanup')]"
@@ -211,6 +211,7 @@
                         "Dept": "[resourceGroup().tags['Dept']]",
                         "CreatedBy": "[parameters('createdBy')]",
                         "CourseDate": "[parameters('courseStartDate')]",
+                        "CourseEndDay": "[parameters('courseEndDay')]",
                         "Cleanup": "[parameters('resourceGroupCleanup')]"
                     },
                     "dependsOn": [
