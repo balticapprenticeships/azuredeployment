@@ -478,7 +478,7 @@
                                     ],
                                     "required": true
                                 },
-                                "toolTip": "Please enter the day of hte week that the course will finish e.g., Tuesday, or Thursday."
+                                "toolTip": "Please enter the day of the week that the course will finish e.g., Tuesday, or Thursday."
                             },
                             {
                                 "name": "schedule",
