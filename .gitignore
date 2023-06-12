@@ -13,6 +13,9 @@
 _[Dd]ev
 _[Aa]rchive
 
+# VS Code settings
+*.vscode
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
