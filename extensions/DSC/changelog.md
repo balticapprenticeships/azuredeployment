@@ -146,6 +146,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client Lab Config
 
+## [5.0.0] 19.06.23
+### add
+- [BaLabWinClientCfg]
+  added SWAPC5 configuration
+
 ## [4.9.0] 09.05.23
 ### add
 - [BaLabWinClientCfg]
