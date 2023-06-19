@@ -372,9 +372,6 @@
                     "courseStartDate": {
                         "value": "[parameters('courseStartDate')]"
                     },
-                    "courseEndDay": {
-                        "value": "[parameters('courseEndDay')]"
-                    },
                     "resourceGroupCleanup": {
                         "value": "[parameters('resourceGroupCleanup')]"
                     }
@@ -405,9 +402,6 @@
                     },
                     "courseStartDate": {
                         "value": "[parameters('courseStartDate')]"
-                    },
-                    "courseEndDay": {
-                        "value": "[parameters('courseEndDay')]"
                     },
                     "resourceGroupCleanup": {
                         "value": "[parameters('resourceGroupCleanup')]"
