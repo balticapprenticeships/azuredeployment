@@ -113,6 +113,9 @@
             },
             "DMCC4": {
                 "galleryImageDefinitionName": "BA-DMContentCreator"
+            },
+            "SWAPC5": {
+                "galleryImageDefinitionName": "BA-SWDCourse5"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",

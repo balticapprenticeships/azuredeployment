@@ -69,6 +69,10 @@
                                 {
                                     "label": "Course 4 - Creating Professional Graphics: Photoshop & Canva",
                                     "value": "DMCC4"
+                                },
+                                {
+                                    "label": "SW Course 5 - Advanced Programming Part 2 (Pac-Man)",
+                                    "value": "SWAPC5"
                                 }
                             ],
                             "required": true
