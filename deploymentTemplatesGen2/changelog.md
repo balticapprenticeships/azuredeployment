@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [2.2.1.0] 23.6.23
+### Change
+- [uiSvrDefinition]
+- [serverMain] 2.0.0.0 
+- [windowsServer] 1.0.0.0
+  added L4 course 7
+
 ## [2.0.0.0] 01.06.23
 ### change
 - [serverMain]
@@ -208,6 +215,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Windows Client User Interface
+
+### Add [2.4.0.0] 20.06.23
+- [uiWcDefinition]
+  added new course SWAPC5
 
 ### Add [2.4.0.0] 08.06.23
 - [uiWcDefinition]
