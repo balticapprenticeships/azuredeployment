@@ -487,6 +487,38 @@
                                 "toolTip": "Here you can enter your first name and surname"
                             },
                             {
+                                "name": "routeway",
+                                "label": "Routeway",
+                                "type": "Microsoft.Common.DropDown",                                
+                                "placeholder": "IT Routeway",
+                                "constraints": {
+                                    "allowedValues": [
+                                        {
+                                            "label": "IT Routeway",
+                                            "value": "IT"
+                                        },
+                                        {
+                                            "label": "Software Development Routeway",
+                                            "value": "SoftwareDevelopment"
+                                        },
+                                        {
+                                            "label": "Digital Marketing Routeway",
+                                            "value": "DigitalMarketing"
+                                        },
+                                        {
+                                            "label": "Data Routeway",
+                                            "value": "Data"
+                                        },
+                                        {
+                                            "label": "Internal Training / Development",
+                                            "value": "InternalDev"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                "toolTip": "Here you can select the routeway delivering the training."
+                            },
+                            {
                                 "name": "courseDate",
                                 "label": "Training Week",
                                 "type": "Microsoft.Common.TextBox",
@@ -621,6 +653,7 @@
             "subnetName": "[steps('netConfig').nicConfig.subnetName]",
             "createdBy": "[steps('tags').mngTagsConfig.createdBy]",
             "deliveringTrainerInitials": "[steps('tags').mngTagsConfig.trainerInitials]",
+            "routeway": "[steps('tags').mngTagsConfig.routeway]",
             "courseStartDate": "[steps('tags').mngTagsConfig.courseDate]",
             "courseEndDay": "[steps('tags').mngTagsConfig.courseEndDay]",
             "startupSchedule": "[steps('tags').mngTagsConfig.schedule]",

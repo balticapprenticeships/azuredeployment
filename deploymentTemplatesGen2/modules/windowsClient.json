@@ -5,6 +5,9 @@
         "location": {
             "type": "string"
         },
+        "subscriptionId": {
+            "type": "string"
+        },
         "vmName": {
             "type": "string"
         },
@@ -84,6 +87,7 @@
     "functions": [],
     "variables": {
         "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringTrainerInitials')))]",
+        "acgRG": "BalticImageGalleryRg",
         "galleryImageName": "TrainingACG",
         "WindowsLicense": "Windows_Client",
         "operatingSystemValues": {
@@ -168,7 +172,7 @@
                         "deleteOption": "[parameters('osDiskDeleteOption')]"
                     },
                     "imageReference": {
-                        "id": "[resourceId('Microsoft.Compute/galleries/images/versions', variables('galleryImageName'), variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, parameters('imageVersion'))]"
+                        "id": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', variables('acgRG'), '/providers/Microsoft.Compute/galleries/', variables('galleryImageName'), '/images/', variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, '/versions/', parameters('imageVersion'))]"
                     }
                 },
                 "networkProfile": {
@@ -263,7 +267,7 @@
                 },
                 {
                     "condition": "[equals(parameters('vmSize'), 'Standard_NC4as_T4_v3')]",
-                    "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '/NvidiaGRIDDriver')]",
+                    "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '/NvidiaGPUDriver')]",
                     "type": "Microsoft.Compute/virtualMachines/extensions",
                     "apiVersion": "2020-12-01",
                     "location": "[parameters('location')]",
@@ -271,11 +275,18 @@
                         "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
                     ],
                     "properties": {
-                        "publisher": "Microsoft.HpcCompute",
-                        "type": "NvidiaGpuDriverWindows",
-                        "typeHandlerVersion": "1.4",
+                        "publisher": "Microsoft.Compute",
+                        "type": "CustomScriptExtension",
+                        "typeHandlerVersion": "1.9",
                         "autoUpgradeMinorVersion": true,
-                        "settings": {}
+                        "settings": {
+                            "fileUris": [
+                                "https://raw.githubusercontent.com/balticapprenticeships/azure-development/main/Extensions/install-nvidia-drivers.ps1"
+                            ]
+                        },
+                        "protectedSettings": {
+                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File install-nvidia-drivers.ps1')]"
+                        }
                     }
                 },
                 {

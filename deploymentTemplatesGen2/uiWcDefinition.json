@@ -121,6 +121,10 @@
                                     "value": "latest"
                                 },
                                 {
+                                    "label": "May",
+                                    "value": "2.5.23"
+                                },
+                                {
                                     "label": "April",
                                     "value": "2.4.23"
                                 },
@@ -250,7 +254,7 @@
                                 "constraints": {
                                     "allowedValues": [
                                         {
-                                            "label": "Standard for Windows Client",
+                                            "label": "Standard small for Windows Client",
                                             "description": "2 vCPUs, 4GiB memory, 8GiB temp storage",
                                             "value": "Standard_B2s"
                                         },
@@ -265,12 +269,12 @@
                                             "value": "Standard_NV4as_v4"
                                         },
                                         {
-                                            "label": "Medium GPU optimised VM for Development & North Europe ONLY",
+                                            "label": "Medium GPU optimised VM (SWD and MD ONLY).",
                                             "description": "4 vCPUs, 28GiB memory, 16GiB GPU memory, 180GiB temp storage",
                                             "value": "Standard_NC4as_T4_v3"
                                         },
                                         {
-                                            "label": "Large GPU optimised VM for Development & North Europe ONLY",
+                                            "label": "Large GPU optimised VM (Development ONLY).",
                                             "description": "12 vCPUs, 112GiB memory, 320GiB SSD temp storage",
                                             "value": "Standard_NV12s_v3"
                                         }
@@ -441,6 +445,38 @@
                                 "toolTip": "Here you can enter your first name and surname"
                             },
                             {
+                                "name": "routeway",
+                                "label": "Routeway",
+                                "type": "Microsoft.Common.DropDown",                                
+                                "placeholder": "IT Routeway",
+                                "constraints": {
+                                    "allowedValues": [
+                                        {
+                                            "label": "IT Routeway",
+                                            "value": "IT"
+                                        },
+                                        {
+                                            "label": "Software Development Routeway",
+                                            "value": "SoftwareDevelopment"
+                                        },
+                                        {
+                                            "label": "Digital Marketing Routeway",
+                                            "value": "DigitalMarketing"
+                                        },
+                                        {
+                                            "label": "Data Routeway",
+                                            "value": "Data"
+                                        },
+                                        {
+                                            "label": "Internal Training / Development",
+                                            "value": "InternalDev"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                "toolTip": "Here you can select the routeway delivering the training."
+                            },
+                            {
                                 "name": "courseDate",
                                 "label": "Training Week",
                                 "type": "Microsoft.Common.TextBox",
@@ -572,6 +608,7 @@
             "subnetName": "[steps('netConfig').nicConfig.subnetName]",
             "createdBy": "[steps('tags').mngTagsConfig.createdBy]",
             "deliveringTrainerInitials": "[steps('tags').mngTagsConfig.trainerInitials]",
+            "routeway": "[steps('tags').mngTagsConfig.routeway]",
             "courseStartDate": "[steps('tags').mngTagsConfig.courseDate]",
             "courseEndDay": "[steps('tags').mngTagsConfig.courseEndDay]",
             "startupSchedule": "[steps('tags').mngTagsConfig.schedule]",
