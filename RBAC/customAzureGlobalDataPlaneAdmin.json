@@ -1,0 +1,19 @@
+{
+    "properties": {
+        "roleName": "Azure Global Data Plane Admin",
+        "description": "Grants administrative access to manage all data plane resources.",
+        "assignableScopes": [
+            "/subscriptions/[subscriptionId]"
+        ],
+        "permissions": [
+            {
+                "actions": [],
+                "notActions": [],
+                "dataActions": [
+                    "*"
+                ],
+                "notDataActions": []
+            }
+        ]
+    }
+}
