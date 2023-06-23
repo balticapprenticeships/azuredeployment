@@ -85,6 +85,7 @@
                 "ICTNetEPA",
                 "L4NetEngC4",
                 "L4NetEngC5",
+                "L4NetEngC7",
                 "ItBootcamp",                
                 "WSvrDev",
                 "TrblshootNet",
@@ -113,6 +114,8 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "2.5.23",
+                "2.4.23",
                 "2.3.23",
                 "2.2.23",
                 "2.1.23"
