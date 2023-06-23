@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [] 23.06.23
+### Change
+- [uiSvrDefinition,serverMain,windowsServer]
+  added the capability to deploy VMs across subscription
+
 ## [2.2.1.0] 23.6.23
 ### Change
 - [uiSvrDefinition]
@@ -215,6 +220,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Windows Client User Interface
+
+### Add [] 20.06.23
+- [uiWcDefinition,clientMain,windowsServer]
+  added the capability to deploy VMs across subscription
 
 ### Add [2.4.0.0] 20.06.23
 - [uiWcDefinition]
