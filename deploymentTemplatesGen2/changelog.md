@@ -221,6 +221,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+### Change [2.4.1.0] 28.06.23
+- [uiWcDefinition]
+  removed NC4as_T4_v3 VM size
+
 ### Add [] 20.06.23
 - [uiWcDefinition,clientMain,windowsServer]
   added the capability to deploy VMs across subscription

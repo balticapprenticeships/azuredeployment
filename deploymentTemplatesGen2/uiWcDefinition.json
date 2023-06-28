@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "2.4.0.0",
+    "currentVersion": "2.4.1.0",
     "parameters": {
         "basics": [],
         "steps": [
@@ -264,19 +264,9 @@
                                             "value": "Standard_B2ms"
                                         },
                                         {
-                                            "label": "Small GPU optimised VM for Development and UK South ONLY",
+                                            "label": "Small GPU optimised VM available in UK South ONLY",
                                             "description": "4 vCPUs, 14GiB memory, 2GiB GPU memory 88GiB temp storage",
                                             "value": "Standard_NV4as_v4"
-                                        },
-                                        {
-                                            "label": "Medium GPU optimised VM (SWD and MD ONLY).",
-                                            "description": "4 vCPUs, 28GiB memory, 16GiB GPU memory, 180GiB temp storage",
-                                            "value": "Standard_NC4as_T4_v3"
-                                        },
-                                        {
-                                            "label": "Large GPU optimised VM (Development ONLY).",
-                                            "description": "12 vCPUs, 112GiB memory, 320GiB SSD temp storage",
-                                            "value": "Standard_NV12s_v3"
                                         }
                                     ],
                                     "required": true
