@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [2.2.1.1] 08.07.23
+### Change
+- [uiSvrDefinition]
+  Updated routeway placeholder
+
 ## [] 23.06.23
 ### Change
 - [uiSvrDefinition,serverMain,windowsServer]
@@ -220,6 +225,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Windows Client User Interface
+
+### Change [2.4.2.0] 08.07.23
+- [uiWcDefinition]
+  Changed L4 data course titles
 
 ### Change [2.4.1.0] 28.06.23
 - [uiWcDefinition]
