@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "2.2.1.0",
+    "currentVersion": "2.2.1.1",
     "parameters": {
         "basics": [],
         "steps": [
@@ -490,7 +490,7 @@
                                 "name": "routeway",
                                 "label": "Routeway",
                                 "type": "Microsoft.Common.DropDown",                                
-                                "placeholder": "IT Routeway",
+                                "placeholder": "e.g., IT Routeway",
                                 "constraints": {
                                     "allowedValues": [
                                         {
