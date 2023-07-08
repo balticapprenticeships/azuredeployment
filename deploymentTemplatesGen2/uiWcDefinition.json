@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "2.4.1.0",
+    "currentVersion": "2.4.2.0",
     "parameters": {
         "basics": [],
         "steps": [
@@ -59,7 +59,19 @@
                                     "value": "SQLDataAnalysis"
                                 },
                                 {
-                                    "label": "Level 4 Data",
+                                    "label": "L3 Course 6 - Data stories through PowerBi",
+                                    "value": "DataLevel4"
+                                },
+                                {
+                                    "label": "L4 Data Analysis Concepts Part 2",
+                                    "value": "DataLevel4"
+                                },
+                                {
+                                    "label": "L4 Data Analysis Using SQL Part 1 and Part 2",
+                                    "value": "DataLevel4"
+                                },
+                                {
+                                    "label": "L4 Data Analysis Using Python Part 2",
                                     "value": "DataLevel4"
                                 },
                                 {
