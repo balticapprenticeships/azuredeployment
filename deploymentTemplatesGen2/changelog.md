@@ -226,6 +226,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [1.0.0.0] 03.08.23
+### Change
+- [windowsClient]
+  Changed DM Course image definition to BA-DMCC
+
 ### Change [2.4.2.0] 08.07.23
 - [uiWcDefinition]
   Changed L4 data course titles
