@@ -21,6 +21,7 @@
                 "Standard_B1ms",
                 "Standard_B2s",
                 "Standard_B2ms",
+                "Standard_D2s_v5",
                 "Standard_NV4as_v4",
                 "Standard_NV12s_v3",
                 "Standard_NC4as_T4_v3"
@@ -74,6 +75,7 @@
             "defaultValue": "NoValue",
             "allowedValues": [
                 "NoValue",
+                "ICTSupC2",
                 "RawDigital",
                 "DataBootCamp",
                 "ExamTesting",
