@@ -65,7 +65,7 @@ Configuration xBaICTSupC2LabCfg {
         xScript "RunCreateVms"
         {
             SetScript = {
-                New-VM -Name "Windows 10 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SupportITArchitecture-P2\Windows 10 Client.vhdx"
+                New-VM -Name "Windows 10 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SupportingITArchitecture-P2\Windows 10 Client.vhdx"
                 
             }
             TestScript = { $false }
