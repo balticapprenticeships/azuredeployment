@@ -16,8 +16,6 @@ Configuration xBaICTSupC2LabCfg {
 
     Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration
 
-    $features = @("Hyper-V", "RSAT-Hyper-V-Tools", "Hyper-V-Tools", "Hyper-V-PowerShell")
-
     Node localhost {
         LocalConfigurationManager {
             RebootNodeIfNeeded = $true
@@ -63,27 +61,6 @@ Configuration xBaICTSupC2LabCfg {
             DependsOn = "[xUser]CreateUserAccount"
         }
 
-        # This resource block ensures that a Windows Features (Roles) is present
-        xWindowsFeatureSet "AddHyperVFeatures"
-        {
-            Name = $features
-            Ensure = "Present"
-            IncludeAllSubFeature = $true
-        }
-
-        # This resource block ensures that the file is executed
-        xScript "SetDefaultVirtualHardDiskLocation"
-        {
-            SetScript = { 
-                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
-            }
-            TestScript = { $false }
-            GetScript = { 
-                # Do Nothing
-            }
-            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
-        }
-
         # This resource block ensures that the VM is built
         xScript "RunCreateVms"
         {
@@ -95,7 +72,6 @@ Configuration xBaICTSupC2LabCfg {
             GetScript = {  
                 # Do Nothing
             }
-            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
 
         # This resource block ensures that the file or command is executed
