@@ -151,6 +151,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client Lab Config
 
+## [5.1.1] 12.10.23
+### change
+- [BaLabWinClientCfg]
+  fixed ICTSupC2 configuration name error
+
+## [5.1.0] 11.10.23
+### add
+- [BaLabWinClientCfg]
+  added ICTSupC2 configuration
+
 ## [5.0.0] 19.06.23
 ### add
 - [BaLabWinClientCfg]
