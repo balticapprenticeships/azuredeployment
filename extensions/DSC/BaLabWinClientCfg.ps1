@@ -1,10 +1,10 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 5.1.0                                               #
+# Version: 5.1.1                                               #
 ################################################################
 
-Configuration xBaICTSupC2Cfg {
+Configuration xBaICTSupC2LabCfg {
     [CmdletBinding()]
 
     param (
