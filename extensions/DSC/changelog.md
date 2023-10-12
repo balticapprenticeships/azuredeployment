@@ -154,6 +154,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [5.1.1] 12.10.23
 ### change
 - [BaLabWinClientCfg]
+  removed Hyper-V check block from ICTSupC2 configuration not supported in Windows 10
+
+## [5.1.1] 12.10.23
+### change
+- [BaLabWinClientCfg]
   fixed ICTSupC2 configuration name error
 
 ## [5.1.0] 11.10.23
