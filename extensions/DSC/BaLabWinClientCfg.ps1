@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 5.1.1                                               #
+# Version: 5.1.2                                               #
 ################################################################
 
 Configuration xBaICTSupC2LabCfg {
@@ -65,7 +65,7 @@ Configuration xBaICTSupC2LabCfg {
         xScript "RunCreateVms"
         {
             SetScript = {
-                New-VM -Name "Windows 10 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\SupportingITArchitecture-P2\Windows 10 Client.vhdx"
+                New-VM -Name "Windows 10 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ITTshootToolTechniques\Windows 10 Client.vhdx"
                 
             }
             TestScript = { $false }
