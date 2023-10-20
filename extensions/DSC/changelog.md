@@ -151,6 +151,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client Lab Config
 
+## [5.1.3] 20.10.23
+### add
+- [BaLabWinClientCfg]
+  added ICTSupC2 configuration - attach 2nd vhd to Windows 10 Client VM
+
 ## [5.1.1] 12.10.23
 ### change
 - [BaLabWinClientCfg]
