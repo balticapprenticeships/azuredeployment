@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 5.1.2                                               #
+# Version: 5.1.3                                               #
 ################################################################
 
 Configuration xBaICTSupC2LabCfg {
@@ -62,7 +62,7 @@ Configuration xBaICTSupC2LabCfg {
         }
 
         # This resource block ensures that the VM is built
-        xScript "RunCreateVms"
+        xScript "RunCreateVMs"
         {
             SetScript = {
                 New-VM -Name "Windows 10 Client" -MemoryStartupBytes 1GB -Generation 1 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ITTshootToolTechniques\Windows 10 Client.vhdx"
@@ -72,6 +72,20 @@ Configuration xBaICTSupC2LabCfg {
             GetScript = {  
                 # Do Nothing
             }
+        }
+
+        # This resource block ensures that the VM is built
+        xScript "AddDataVHD"
+        {
+            SetScript = {
+                Add-VMHardDiskDrive -VMName "Windows 10 Client" -ControllerType IDE -ControllerNumber 0 -Path "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ITTshootToolTechniques\Windows 10 Client Data.vhdx"
+                
+            }
+            TestScript = { $false }
+            GetScript = {  
+                # Do Nothing
+            }
+            DependsOn = "[xScript]RunCreateVMs"
         }
 
         # This resource block ensures that the file or command is executed
