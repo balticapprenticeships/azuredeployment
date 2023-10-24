@@ -78,6 +78,7 @@
                 "ICTSupC3",
                 "ICTSupC4",
                 "ICTSupC6",
+                "ICTSupMstr",
                 "ICTNetC2",
                 "ICTNetC3",
                 "ICTNetC5",
@@ -114,6 +115,7 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "2.6.23",
                 "2.5.23",
                 "2.4.23",
                 "2.3.23",
