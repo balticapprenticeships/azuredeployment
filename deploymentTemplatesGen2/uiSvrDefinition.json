@@ -157,6 +157,10 @@
                                     "value": "latest"
                                 },
                                 {
+                                    "label": "July",
+                                    "value": "2.7.23"
+                                },
+                                {
                                     "label": "May",
                                     "value": "2.5.23"
                                 },
