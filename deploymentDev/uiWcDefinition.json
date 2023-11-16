@@ -1,0 +1,638 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+    "handler": "Microsoft.Azure.CreateUIDef",
+    "version": "0.1.2-preview",
+    "currentVersion": "2.4.2.0",
+    "parameters": {
+        "config": {
+            "isWizard": true
+        },
+        "basics": [],
+        "steps": [
+            {
+                "name": "osConfig",
+                "label": "OS Details",
+                "elements": [
+                    {
+                        "name": "osMessage",
+                        "type": "Microsoft.Common.TextBlock",
+                        "options": {
+                            "text": "Here you can configure the virtual machine environment such as course, OS image version etc."
+                        }
+                    },
+                    {
+                        "name": "osPlatform",
+                        "label": "Windows or Linux based VM",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select your platform",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Windows",
+                                    "value": "Windows"                                            
+                                },
+                                {
+                                    "label": "Linux",
+                                    "value": "Linux"                                            
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "operatingSystem",
+                        "label": "Select a course or Image",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course or image",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Course 2 - IT Troubleshooting",
+                                    "value": "ICTSupC2"
+                                },
+                                {
+                                    "label": "L2 Diploma",
+                                    "value": "Diploma"
+                                },
+                                {
+                                    "label": "MTA/C&G Exams",
+                                    "value": "ExamTesting"
+                                },
+                                {
+                                    "label": "Data Boot Camp",
+                                    "value": "DataBootCamp"
+                                },
+                                {
+                                    "label": "SQL for Data Analysis",
+                                    "value": "SQLDataAnalysis"
+                                },
+                                {
+                                    "label": "L3 Course 6 - Data stories through PowerBi",
+                                    "value": "DataLevel4"
+                                },
+                                {
+                                    "label": "L4 Data Analysis Concepts Part 2",
+                                    "value": "DataLevel4"
+                                },
+                                {
+                                    "label": "L4 Data Analysis Using SQL Part 1 and Part 2",
+                                    "value": "DataLevel4"
+                                },
+                                {
+                                    "label": "L4 Data Analysis Using Python Part 2",
+                                    "value": "DataLevel4"
+                                },
+                                {
+                                    "label": "DM Course 3 - Video Production & Podcasting: Adobe Premier Pro",
+                                    "value": "DMCC3"
+                                },
+                                {
+                                    "label": "DM Course 4 - Creating Professional Graphics: Photoshop & Canva",
+                                    "value": "DMCC4"
+                                },
+                                {
+                                    "label": "SW Course 5 - Advanced Programming Part 2 (Pac-Man)",
+                                    "value": "SWAPC5"
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
+                    },
+                    {
+                        "name": "linuxOS",
+                        "label": "Linux Operating System",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a Linux distribution",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Ubuntu Server 18.04",
+                                    "value": "UbuntuServer"
+                                },
+                                {
+                                    "label": "Ubuntu Server 20.04",
+                                    "value": "UbuntuServer2004"
+                                },
+                                {
+                                    "label": "Debian",
+                                    "value": "Debian"
+                                },
+                                {
+                                    "label": "RedHat",
+                                    "value": "RedHat"
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the Linux Distribution you require.",
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
+                    },
+                    {
+                        "name": "imageVersion",
+                        "label": "OS Image Version",
+                        "type": "Microsoft.Common.DropDown",
+                        "defaultValue": "Latest",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Latest",
+                                    "value": "latest"
+                                },
+                                {
+                                    "label": "May",
+                                    "value": "2.5.23"
+                                },
+                                {
+                                    "label": "April",
+                                    "value": "2.4.23"
+                                },
+                                {
+                                    "label": "March",
+                                    "value": "2.3.23"
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can choose from different OS image version however, 'Latest' is recommended.",
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
+                    },
+                    {
+                        "name": "enableHotpatching",
+                        "label": "Enable Hotpatching",
+                        "type": "Microsoft.Common.OptionsGroup",
+                        "defaultValue": "No",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "No",
+                                    "value": false
+                                },
+                                {
+                                    "label": "Yes",
+                                    "value": true
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select whether to enable hot patching. Orchastration must be enabled on the subscription",
+                        "visible": false
+                    },
+                    {
+                        "name": "patchMode",
+                        "label": "OS Patch Mode",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select patch mode",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Windows OS Automatic Updates",
+                                    "value": "AutomaticByOS"
+                                },
+                                {
+                                    "label": "Non Windows OS",
+                                    "value": "ImageDefault"
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Select the patch mode for the OS platform",
+                        "visible": "[or(equals(steps('osConfig').osPlatform, 'Windows'), equals(steps('osConfig').osPlatform, 'Linux'))]"
+                    },
+                    {
+                        "name": "licenseType",
+                        "label": "License Type",
+                        "type": "Microsoft.Common.DropDown",
+                        "defaultValue": "Azure OS License",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Azure OS License",
+                                    "value": "AzureLicense"
+                                },
+                                {
+                                    "label": "Azure Hybrid OS License",
+                                    "value": "AzureHybrid"
+                                }
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Select Azure Hybrid to use an existing Windows Server license as part of the Azure Hybrid benefit",
+                        "visible": false
+                    }
+                ]
+            },
+            {
+                "name": "vmConfig",
+                "label": "Virtual Machine Configuration",
+                "elements": [
+                    {
+                        "name": "vmcMessage",
+                        "type": "Microsoft.Common.TextBlock",
+                        "options": {
+                            "text": ""
+                        }
+                    },
+                    {
+                        "name": "vmInstance",
+                        "label": "Virtual Machine Instance",
+                        "type": "Microsoft.Common.Section",
+                        "elements": [                            
+                            {
+                                "name": "vmName",
+                                "label": "Virtual Machine Name",
+                                "type": "Microsoft.Common.TextBox",
+                                "placeholder": "e.g., 306Client",
+                                "constraints": {
+                                    "regex": "^[a-z0-9A-Z]{3,10}$",
+                                    "validationMessage": "The VM name bust be between 3 and 10 characters long and containonly letters, numbers and hyphens",
+                                    "required": true
+                                },
+                                "toolTip": "This is the name of your virtual machine e.g., 306Client"
+                            },
+                            {
+                                "name": "vmCount",
+                                "label": "Number of Virtual machines",
+                                "type": "Microsoft.Common.TextBox",
+                                "defaultValue": 1,
+                                "maxValue": 20,
+                                "placeholder": "e.g., 2",
+                                "constraints": {
+                                    "regex": "^[0-9]{1,2}$",
+                                    "validationMessage": "Please select the number of virtual machines to create between 1 and 20.",
+                                    "required": true
+                                },
+                                "toolTip": "Here you can select the number of Virtual Machines you require upto a maximum of 20."
+                            },
+                            {
+                                "name": "vmSize",
+                                "label": "Virtual Machine Size",
+                                "type": "Microsoft.Common.DropDown",
+                                "placeholder": "Select your virtual machine size",
+                                "multiLine": true,
+                                "constraints": {
+                                    "allowedValues": [
+                                        {
+                                            "label": "Standard small for Windows Client",
+                                            "description": "2 vCPUs, 4GiB memory, 8GiB temp storage",
+                                            "value": "Standard_B2s"
+                                        },
+                                        {
+                                            "label": "Standard Small VM for Hyper-V",
+                                            "description": "2 vCPUs, 8GiB memory, No temp storage",
+                                            "value": "Standard_D2s_v5"
+                                        },
+                                        {
+                                            "label": "Standard medium for Windows Client",
+                                            "description": "2 vCPUs, 8GiB memory, 16GiB temp storage",
+                                            "value": "Standard_B2ms"
+                                        },
+                                        {
+                                            "label": "Small GPU optimised VM available in UK South ONLY",
+                                            "description": "4 vCPUs, 14GiB memory, 2GiB GPU memory 88GiB temp storage",
+                                            "value": "Standard_NV4as_v4"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                "toolTip": "Here you can select the size of your virtual machine(s), which will include the no. of vCPUs and the amount of ram."
+                            },
+                            {
+                                "name": "osDiskType",
+                                "label": "OS Disk Type",
+                                "type": "Microsoft.Common.DropDown",
+                                "defaultValue": "Standard HDD",
+                                "constraints": {
+                                    "allowedValues": [
+                                        {
+                                            "label": "Standard HDD",
+                                            "value": "Standard_LRS"
+                                        },
+                                        {
+                                            "label": "Standard SSD (Medium GPU based VMs ONLY)",
+                                            "value": "StandardSSD_LRS"
+                                        }
+                                    ],
+                                    "required": false
+                                },
+                                "toolTip": "Here you can select the type of hard disc for your OS e.g., HDD, SSD or Premium SSD.",
+                                "visible": false
+                            }
+                        ]
+                    },
+                    {
+                        "name": "vmSecurity",
+                        "label": "Virtual Machine Security",
+                        "type": "Microsoft.Common.Section",
+                        "elements": [
+                            {
+                                "name": "trustedLaunch",
+                                "label": "Security",
+                                "type": "Microsoft.Common.DropDown",
+                                "defaultValue": "Standard",
+                                "constraints": {
+                                    "allowedValues": [
+                                        {
+                                            "label": "Standard",
+                                            "description": "No advanced security",
+                                            "value": "Standard"
+                                        },
+                                        {
+                                            "label": "Trusted Launch",
+                                            "description": "Protects against persistent and advanced attacks on Gen 2 virtual machines.",
+                                            "value": "TrustedLaunch"
+                                        }
+                                    ]
+                                },
+                                "toolTip": "Choose a type of security that matches your needs: Standard includes basic protections at no additional cost. Trusted launch virtual machines provide additional security features on Gen 2 virtual machines to protect against persistent and advanced attacks."
+                            }
+                        ],
+                        "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
+                    }
+                ]
+            },            
+            {
+                "name": "netConfig",
+                "label": "Network Configuration",
+                "elements": [
+                    {
+                        "name": "netConfMessage",
+                        "type": "Microsoft.Common.TextBlock",
+                        "options": {
+                            "text": ""
+                        }
+                    },
+                    {
+                        "name": "nicConfig",
+                        "label": "Network Interface",
+                        "type": "Microsoft.Common.Section",
+                        "elements": [
+                            {
+                                "name": "vnetNewOrExisting",
+                                "label": "New or Exisitng Virtual Network",
+                                "type": "Microsoft.Common.DropDown",
+                                "defaultValue": "New Virtual Network",
+                                "constraints": {
+                                    "allowedValues": [
+                                        {
+                                            "label": "New Virtual Network",
+                                            "value": "new"
+                                        },
+                                        {
+                                            "label": "Existing Virtual Network",
+                                            "value": "existing"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                "toolTip": "Here you can choose to selct an existing Virtual Network or create a new one. New is the default."
+                            },
+                            {
+                                "name": "vnetSelector",
+                                "label": "Select a Virtual Network",
+                                "type": "Microsoft.Solutions.ResourceSelector",
+                                "resourceType": "Microsoft.Network/virtualNetworks",
+                                "options": {
+                                    "filter": {
+                                        "subscription": "onBasics",
+                                        "location": "onBasics",
+                                        "resourceGroup": "onBasics"
+                                    }
+                                },
+                                "toolTip": "",
+                                "visible": "[equals(steps('netConfig').nicConfig.vnetNewOrExisting, 'existing')]"
+                            },
+                            {
+                                "name": "subnetName",
+                                "label": "Subnet Name",
+                                "type": "Microsoft.Common.TextBox",
+                                "defaultValue": "default",
+                                "constraints": {
+                                    "regex": "^[a-z0-9A-Z]{3,10}$",
+                                    "validationMessage": "The Subnet name must be between 3 and 10 characters long and contain only letters, numbers and hyphens.",
+                                    "required": true
+                                },
+                                "toolTip": "Here you can choose the subnet name that your VMs will be assigned to"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "tags",
+                "label": "Tags",
+                "elements": [
+                    {
+                        "name": "tagsMessage",
+                        "type": "Microsoft.Common.TextBlock",
+                        "options": {
+                            "text": "These Tags are name/value pairs which are used to enable various administrative and maintenance functions within the Microsoft Azure cloud service."
+                        }
+                    },
+                    {
+                        "name": "mngTagsConfig",
+                        "label": "VM Management Tags",
+                        "type": "Microsoft.Common.Section",
+                        "elements": [
+                            {
+                                "name": "createdBy",
+                                "label": "Created By",
+                                "type": "Microsoft.Common.TextBox",
+                                "placeholder": "Your name goes here e.g., Joe Bloggs",
+                                "constraints": {
+                                    "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*[\\s]){40}[a-zA-Z]+\\s[a-zA-Z]+$",
+                                    "validationMessage": "Must contain only letter and one space between your first name and surname.",
+                                    "required": true
+                                },
+                                "toolTip": "Here you can enter your first name and surname"
+                            },
+                            {
+                                "name": "trainerInitials",
+                                "label": "Delivering Trainer Initials",
+                                "type": "Microsoft.Common.TextBox",                                
+                                "placeholder": "Delivering Trainer Initials e.g., JB",
+                                "constraints": {
+                                    "regex": "^[A-Z]{2}$",
+                                    "required": true,
+                                    "validationMessage": "This must contain a maximum of 2 uppercase letters, the firstname initial and the surname initial."
+                                },
+                                "toolTip": "Here you can enter your first name and surname"
+                            },
+                            {
+                                "name": "routeway",
+                                "label": "Routeway",
+                                "type": "Microsoft.Common.DropDown",                                
+                                "placeholder": "IT Routeway",
+                                "constraints": {
+                                    "allowedValues": [
+                                        {
+                                            "label": "IT Routeway",
+                                            "value": "IT"
+                                        },
+                                        {
+                                            "label": "Software Development Routeway",
+                                            "value": "SoftwareDevelopment"
+                                        },
+                                        {
+                                            "label": "Digital Marketing Routeway",
+                                            "value": "DigitalMarketing"
+                                        },
+                                        {
+                                            "label": "Data Routeway",
+                                            "value": "Data"
+                                        },
+                                        {
+                                            "label": "Internal Training / Development",
+                                            "value": "InternalDev"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                "toolTip": "Here you can select the routeway delivering the training."
+                            },
+                            {
+                                "name": "courseDate",
+                                "label": "Training Week",
+                                "type": "Microsoft.Common.TextBox",
+                                "placeholder": "e.g., 01/11/2021",
+                                "constraints": {
+                                    "regex": "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$",
+                                    "required": true,
+                                    "validationMessage": "This must contain numbers only in the following format dd/mm/yyyy."
+                                },
+                                "toolTip": "Please enter the the training week that the virtual machines are required for e.g., 01/11/2021."
+                            },
+                            {
+                                "name": "courseEndDay",
+                                "label": "Training End Day",
+                                "type": "Microsoft.Common.DropDown",
+                                "placeholder": "e.g., Tuesday",
+                                "constraints": {
+                                    "allowedValues": [
+                                        {
+                                            "label": "Monday",
+                                            "value": "Monday"
+                                        },
+                                        {
+                                            "label": "Tuesday",
+                                            "value": "Tuesday"
+                                        },
+                                        {
+                                            "label": "Wednesday",
+                                            "value": "Wednesday"
+                                        },
+                                        {
+                                            "label": "Thursday",
+                                            "value": "Thursday"
+                                        },
+                                        {
+                                            "label": "Friday",
+                                            "value": "Friday"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                "toolTip": "Please enter the day of the week that the course will finish e.g., Tuesday, or Thursday."
+                            },
+                            {
+                                "name": "schedule",
+                                "label": "Schedule Virtual Machine Start",
+                                "type": "Microsoft.Common.DropDown",                                
+                                "placeholder": "Select Yes or No",
+                                "multiLine": true,
+                                "constraints": {
+                                    "allowedValues": [
+                                        {
+                                            "label": "Yes",
+                                            "description": "Auto start each VM at 08:00 each day.",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "description": "Manually start each VM.",
+                                            "value": "No"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                "toolTip": "Here you can set whether you wish to have the virtual machines auto start at 08:00."
+                            },
+                            {
+                                "name": "hibernateVm",
+                                "label": "Shutdown Idle Virtual Machines",
+                                "type": "Microsoft.Common.DropDown",                                
+                                "defaultValue": "No",
+                                "multiLine": true,
+                                "constraints": {
+                                    "allowedValues": [
+										{
+                                            "label": "Yes",
+                                            "description": "Enable Virtual Machine Hibernation",
+                                            "value": true
+                                        },
+                                        {
+                                            "label": "No",
+                                            "description": "Disable Virtual Machine Hibernation",
+                                            "value": false
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                "toolTip": "Here you can set whether you wish to have the idle virtual machines auto stop after 15mins of inactivity.",
+                                "visible": true
+                            },
+                            {
+                                "name": "resourceGroupCleanup",
+                                "label": "Resource Group Cleanup",
+                                "type": "Microsoft.Common.DropDown",
+                                "defaultValue": "Yes",
+                                "multiLine": true,
+                                "constraints": {
+                                    "allowedValues": [
+                                        {
+                                            "label": "Yes",
+                                            "description": "Remove all VM resources on Friday at 17:00.",
+                                            "value": "Enabled"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "description": "Do not automatically remove VM resource",
+                                            "value": "Disabled"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                "toolTip": "Here you can set whether you wish to have the resources e.g. virtual machines, virtual network etc. removed from the resource group on the next Friday @ 17:00."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "outputs": {
+            "vmName": "[steps('vmConfig').vmInstance.vmName]",            
+            "vmSize": "[steps('vmConfig').vmInstance.vmSize]",
+            "vmCount": "[steps('vmConfig').vmInstance.vmCount]",
+            "osDiskType": "[steps('vmConfig').vmInstance.osDiskType]",            
+            "course": "[steps('osConfig').operatingSystem]",
+            "linuxOS": "[steps('osConfig').linuxOS]",
+            "osPlatform": "[steps('osConfig').osPlatform]",
+            "imageVersion": "[steps('osConfig').imageVersion]",
+            "enableHotpatching": "[steps('osConfig').enableHotpatching]",
+            "patchMode": "[steps('osConfig').patchMode]",
+            "licenseType": "[steps('osConfig').licenseType]",
+            "trustedLaunch": "[steps('vmConfig').vmSecurity.trustedLaunch]",
+            "vnetNewOrExisting": "[steps('netConfig').nicConfig.vnetNewOrExisting]",
+            "existingVnet": "[steps('netConfig').nicConfig.vnetSelector.name]",
+            "subnetName": "[steps('netConfig').nicConfig.subnetName]",
+            "createdBy": "[steps('tags').mngTagsConfig.createdBy]",
+            "deliveringTrainerInitials": "[steps('tags').mngTagsConfig.trainerInitials]",
+            "routeway": "[steps('tags').mngTagsConfig.routeway]",
+            "courseStartDate": "[steps('tags').mngTagsConfig.courseDate]",
+            "courseEndDay": "[steps('tags').mngTagsConfig.courseEndDay]",
+            "startupSchedule": "[steps('tags').mngTagsConfig.schedule]",
+            "hibernationEnabled": "[steps('tags').mngTagsConfig.hibernateVm]",
+            "resourceGroupCleanup": "[steps('tags').mngTagsConfig.resourceGroupCleanup]"
+        }
+    }
+}

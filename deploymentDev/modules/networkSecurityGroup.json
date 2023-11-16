@@ -1,0 +1,86 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "createdBy": {
+            "type": "string"
+        },
+        "osPlatform": {
+            "type": "string"
+        },
+        "courseStartDate": {
+            "type": "string"
+        },
+        "resourceGroupCleanup": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "nsgName": "[concat(resourceGroup().name, '-nsg')]",
+        "allowRDP": {
+            "securityRules": [
+                {
+                    "name": "Allow-RDP",
+                    "properties": {
+                        "priority": 300,
+                        "protocol": "Tcp",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "3389"
+                    }
+                }
+            ]
+        },
+        "allowSSH": {
+            "securityRules": [
+                {
+                    "name": "Allow-SSH",
+                    "properties": {
+                        "priority": 310,
+                        "protocol": "Tcp",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                }
+            ]
+        }
+    },
+    "resources": [
+        {
+            "name": "[variables('nsgName')]",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "apiVersion": "2020-11-01",
+            "location": "[parameters('location')]",
+            "tags": {
+                "DisplayName": "Network Security Group",
+                "ResourceType": "NetworkSecurityGroup",
+                "Dept": "[resourceGroup().tags['Dept']]",
+                "CreatedBy": "[parameters('createdBy')]",
+                "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
+                "Cleanup": "[parameters('resourceGroupCleanup')]"
+            },
+            "properties": "[if(equals(parameters('osPlatform'), 'Windows'), variables('allowRDP'), variables('allowSSH'))]"
+        }
+    ],
+    "outputs": {
+        "nsgId": {
+            "type": "object",
+            "value": "[reference(resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName')))]"
+        },
+        "nsgRules": {
+            "type": "array",
+            "value": "[reference(resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))).securityRules]"
+        }
+    }
+}
