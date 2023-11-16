@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [2.2.2.0] 16.11.23
+### Add
+- [uiSvrDefinition]
+  added isWizard to config
+
 ## [2.2.1.1] 08.07.23
 ### Change
 - [uiSvrDefinition]
@@ -225,6 +230,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Windows Client User Interface
+
+### Add [2.4.3.0] 16.11.23
+- [uiWcDefinition]
+  added isWizard to config
 
 ## [1.0.0.0] 03.08.23
 ### Change
