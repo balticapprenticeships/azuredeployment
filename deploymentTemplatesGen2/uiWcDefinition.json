@@ -2,8 +2,11 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "2.4.2.0",
+    "currentVersion": "2.4.3.0",
     "parameters": {
+        "config": {
+            "isWizard": true
+        },
         "basics": [],
         "steps": [
             {
