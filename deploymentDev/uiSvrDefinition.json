@@ -673,7 +673,7 @@
             "courseStartDate": "[steps('tags').mngTagsConfig.courseDate]",
             "courseEndDay": "[steps('tags').mngTagsConfig.courseEndDay]",
             "startupSchedule": "[steps('tags').mngTagsConfig.schedule]",
-            "idleVm": "[steps('tags').mngTagsConfig.idleVm]",
+            "hibernationEnabled": "[steps('tags').mngTagsConfig.hibernateVm]",
             "resourceGroupCleanup": "[steps('tags').mngTagsConfig.resourceGroupCleanup]"
         }
     }

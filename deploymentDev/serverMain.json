@@ -328,7 +328,6 @@
         "patchMode": "[if(equals(parameters('osPlatform'), 'Windows'), 'AutomaticByOS', 'ImageDefault')]",
         "securityType": "Standard",
         "licenseType": "AzureLicense",
-        "idleVM": "No",
         "vaultResourceGroup": "[concat(variables('rwkeyVault')[parameters('routeway')].keyVaultRg, 'OMSRg')]",
         "vaultName": "[concat('VMDeployment', variables('rwkeyVault')[parameters('routeway')].rwSuffix)]",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
@@ -552,9 +551,6 @@
                     "guestAttestation": {
                         "value": "[parameters('guestAttestation')]"
                     },
-                    "idleVM": {
-                        "value": "[variables('idleVM')]"
-                    },
                     "nicDeleteOption": {
                         "value": "[parameters('nicDeleteOption')]"
                     },
@@ -670,9 +666,6 @@
                     "guestAttestation": {
                         "value": "[parameters('guestAttestation')]"
                     },
-                    "idleVM": {
-                        "value": "[variables('idleVM')]"
-                    },
                     "nicDeleteOption": {
                         "value": "[parameters('nicDeleteOption')]"
                     },
@@ -783,9 +776,9 @@
             "type": "string",
             "value": "[parameters('startupSchedule')]"
         },
-        "idleVm": {
+        "hibernationEnabled": {
             "type": "string",
-            "value": "[variables('idleVM')]"
+            "value": "[parameters('hibernationEnabled')]"
         },
         "resourceGroupCleanup": {
             "type": "string",
