@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [2.2.2.1] 17.11.23
+### Add
+- [uiSvrDefinition]
+  added courseEnd Date tag value None
+
 ## [2.2.2.0] 16.11.23
 ### Add
 - [uiSvrDefinition]
@@ -230,6 +235,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Windows Client User Interface
+
+### Add [2.4.3.1] 17.11.23
+- [uiWcDefinition]
+  added courseEndDate tag value None
 
 ### Add [2.4.3.0] 16.11.23
 - [uiWcDefinition]
