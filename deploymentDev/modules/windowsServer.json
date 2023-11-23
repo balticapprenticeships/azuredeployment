@@ -107,7 +107,7 @@
                 "galleryImageDefinitionName": "BA-ICTSupCourse3-4"
             },
             "ICTSupC6": {
-                "galleryImageDefinitionName": "BA-ICTSupCourse6"
+                "galleryImageDefinitionName": "BA-ICTSup6-Dev"
             },
             "ICTSupMstr": {
                 "galleryImageDefinitionName": "BA-ICTSupMstr"
@@ -159,7 +159,7 @@
         },
         "_dscArtifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
         "_dscExtensionRepo": "main/extensions",
-        "dscArchiveFolder": "DSC",
+        "dscArchiveFolder": "DSC-Dev",
         "dscArchiveFileName": "xBaLabWinSvrCfg.zip"
     },
     "resources": [
