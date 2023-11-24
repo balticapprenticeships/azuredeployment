@@ -24,7 +24,7 @@
                         "name": "osPlatform",
                         "label": "Windows or Linux based VM",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select your platform",
+                        "defaultValue": "Windows",
                         "constraints": {
                             "allowedValues": [
                                 {
@@ -210,7 +210,7 @@
                         "name": "patchMode",
                         "label": "OS Patch Mode",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select patch mode",
+                        "defaultValue": "AutomaticByOS",
                         "constraints": {
                             "allowedValues": [
                                 {
@@ -386,7 +386,7 @@
 								"visible": "[equals(steps('vmConfig').vmSecurity.secureBoot, true)]"
 							}
                         ],
-                        "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
+                        "visible": true
                     }
                 ]
             },            
