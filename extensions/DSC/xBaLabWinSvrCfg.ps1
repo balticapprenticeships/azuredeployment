@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 5.0.0                                               #
+# Version: 5.1.0                                               #
 ################################################################
 
 Configuration xBaICTSupC1LabCfg {
@@ -958,6 +958,34 @@ Configuration xBaICTSupMstrLabCfg {
         {
             SetScript = { 
                 Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file is executed
+        xScript "RunvSwitchForNestedVms"
+        {
+            SetScript = { 
+                New-VMSwitch -SwitchName "Int-vSwitch" -SwitchType Private
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensures that the file is executed
+        xScript "RunvSwitchForNat"
+        {
+            SetScript = { 
+                New-VMSwitch -SwitchName "Int-vSwitch" -SwitchType Internal
+                New-NetIPAddress -InterfaceAlias "vEthernet (Int-vSwitch)" -IPAddress 172.16.20.254 -PrefixLength 24
+                New-NetNat -Name "Nat-VM" -InternalIPInterfaceAddressPrefix 172.16.20.0/24
             }
             TestScript = { $false }
             GetScript = { 
