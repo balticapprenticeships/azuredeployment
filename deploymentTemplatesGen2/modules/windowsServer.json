@@ -109,7 +109,10 @@
             "ICTSupC6": {
                 "galleryImageDefinitionName": "BA-ICTSupCourse6"
             },
-            "ICTSupMstr": {
+            "ICTSupC6N": {
+                "galleryImageDefinitionName": "BA-ICTSupMstr"
+            },
+            "ICTSupC3N": {
                 "galleryImageDefinitionName": "BA-ICTSupMstr"
             },             
             "ICTNetC2": {

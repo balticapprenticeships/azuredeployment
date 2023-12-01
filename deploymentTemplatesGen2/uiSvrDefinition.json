@@ -55,7 +55,7 @@
                                 },
                                 {
                                     "label": "Course 3 (NEW) - Working with Client Architecture",
-                                    "value": "ICTSupMstr"
+                                    "value": "ICTSupC3N"
                                 },
                                 {
                                     "label": "Course 3 - Working with End User Devices (Part 1)",
@@ -64,6 +64,10 @@
                                 {
                                     "label": "Course 4 - Working with End User Devices (Part 2)",
                                     "value": "ICTSupC4"
+                                },
+                                {
+                                    "label": "Course 6 (NEW) - Cloud and Virtualisation",
+                                    "value": "ICTSupC6N"
                                 },                                
                                 {
                                     "label": "Course 6 - Working with Network Architecture (Part 2)",
