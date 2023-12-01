@@ -970,7 +970,7 @@ Configuration xBaICTSuoC3NLabCfg {
         xScript "RunvSwitchForNestedVms"
         {
             SetScript = { 
-                New-VMSwitch -SwitchName "Int-vSwitch" -SwitchType Private
+                New-VMSwitch -SwitchName "vSwitch" -SwitchType Private
             }
             TestScript = { $false }
             GetScript = { 
@@ -1100,7 +1100,7 @@ Configuration xBaICTSupC6NLabCfg {
         xScript "RunvSwitchForNestedVms"
         {
             SetScript = { 
-                New-VMSwitch -SwitchName "Int-vSwitch" -SwitchType Private
+                New-VMSwitch -SwitchName "vSwitch" -SwitchType Private
             }
             TestScript = { $false }
             GetScript = { 
