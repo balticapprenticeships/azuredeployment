@@ -450,7 +450,7 @@
                                 "name": "routeway",
                                 "label": "Routeway",
                                 "type": "Microsoft.Common.DropDown",                                
-                                "placeholder": "IT Routeway",
+                                "placeholder": "e.g., IT Routeway",
                                 "constraints": {
                                     "allowedValues": [
                                         {
