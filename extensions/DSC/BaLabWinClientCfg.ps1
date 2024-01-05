@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 5.1.3                                               #
+# Version: 5.1.4                                               #
 ################################################################
 
 Configuration xBaICTSupC2LabCfg {
@@ -59,6 +59,18 @@ Configuration xBaICTSupC2LabCfg {
             Ensure = "Present"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = "[xUser]CreateUserAccount"
+        }
+
+        # This resource block ensures that the file is executed
+        xScript "SetDefaultVirtualHardDiskLocation"
+        {
+            SetScript = { 
+                Set-VMHost -VirtualHardDiskPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks"
+            }
+            TestScript = { $false }
+            GetScript = { 
+                # Do Nothing
+            }
         }
 
         # This resource block ensures that the VM is built
