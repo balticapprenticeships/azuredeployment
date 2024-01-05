@@ -24,7 +24,7 @@
                         "name": "osPlatform",
                         "label": "Windows or Linux based VM",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select your platform",
+                        "defaultValue": "Windows",
                         "constraints": {
                             "allowedValues": [
                                 {
@@ -32,7 +32,8 @@
                                     "value": "Windows"                                            
                                 }
                             ]
-                        }
+                        },
+                        "visible": false
                     },
                     {
                         "name": "operatingSystem",
