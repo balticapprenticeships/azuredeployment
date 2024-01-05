@@ -1,0 +1,326 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "subscriptionId": {
+            "type": "string"
+        },
+        "vmName": {
+            "type": "string"
+        },
+        "vmSize": {
+            "type": "string"
+        },
+        "vmCount": {
+            "type": "int"
+        },
+        "osDiskType": {
+            "type": "string"
+        },
+        "osDiskDeleteOption": {
+            "type": "string"
+        },
+        "course": {
+            "type": "string"
+        },
+        "imageVersion": {
+            "type": "string"
+        },
+        "licenseType": {
+            "type": "string"
+        },
+        "enableHotpatching": {
+            "type": "bool"
+        },
+        "patchMode": {
+            "type": "string"
+        },
+        "securityType": {
+            "type": "string"
+        },
+        "secureBoot": {
+            "type": "bool"
+        },
+        "vTPM": {
+            "type": "bool"
+        },
+        "idleVM": {
+            "type": "string"
+        },
+        "nicDeleteOption": {
+            "type": "string"
+        },
+        "adminUsername": {
+            "type": "string"
+        },
+        "adminPassword": {
+            "type": "string"
+        },
+        "localUsername": {
+            "type": "string"
+        },
+        "localUserPassword": {
+            "type": "string"
+        },
+        "createdBy": {
+            "type": "string"
+        },
+        "deliveringTrainerInitials": {
+            "type": "string"
+        },
+        "courseStartDate": {
+            "type": "string"
+        },
+        "courseEndDay": {
+            "type": "string"
+        },
+        "startupSchedule": {
+            "type": "string"
+        },
+        "resourceGroupCleanup": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringTrainerInitials')))]",
+        "acgRG": "BalticImageGalleryRg",
+        "galleryImageName": "TrainingACG",
+        "WindowsLicense": "Windows_Client",
+        "operatingSystemValues": {
+            "ICTSupC2": {
+                "galleryImageDefinitionName": "BA-ICTSupCourse2"
+            },
+            "DataBootCamp": {
+                "galleryImageDefinitionName": "BA-Win10-Courses"
+            },
+            "Diploma": {
+                "galleryImageDefinitionName": "BA-Win10-Courses"
+            },
+            "RawDigital": {
+                "galleryImageDefinitionName": "BA-Win10-Courses"
+            },
+            "SQLDataAnalysis": {
+                "galleryImageDefinitionName": "BA-Win10-Courses"
+            },
+            "ExamTesting": {
+                "galleryImageDefinitionName": "BA-Testing"
+            },            
+            "ICTL3Support": {
+                "galleryImageDefinitionName": "BA_W10_ICTArch"
+            },            
+            "DataLevel4": {
+                "galleryImageDefinitionName": "BA-Win10-Courses"
+            },
+            "DMCC3": {
+                "galleryImageDefinitionName": "BA-DMContentCreator"
+            },
+            "DMCC4": {
+                "galleryImageDefinitionName": "BA-DMContentCreator"
+            },
+            "SWAPC5": {
+                "galleryImageDefinitionName": "BA-SWDCourse5"
+            }
+        },
+        "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",
+        "trustedLaunch": {
+            "securityType": "[parameters('securityType')]",
+            "uefiSettings": {
+                "secureBootEnabled": "[parameters('secureBoot')]",
+                "vTpmEnabled": "[parameters('vTPM')]"
+            }
+        },
+        "_dscArtifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
+        "_dscExtensionRepo": "main/extensions",
+        "dscArchiveFolder": "DSC",
+        "dscArchiveFileName": "BaLabWinClientCfg.zip"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2021-11-01",
+            "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1))]",
+            "location": "[parameters('location')]",
+            "tags": {
+                "Displayname": "Virtual Machine",
+                "ResourceType": "VirtualMachine",
+                "Platform": "WindowsClient",
+                "Dept": "[resourceGroup().tags['Dept']]",
+                "CreatedBy": "[parameters('createdBy')]",
+                "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
+                "CourseEndDay": "[parameters('courseEndDay')]",
+                "Schedule": "[if(equals(parameters('startupSchedule'), 'Yes'), 'StartDaily', 'NoSchedule')]",
+                "IdleShutdown": "[parameters('idleVm')]",
+                "Cleanup": "[parameters('resourceGroupCleanup')]"
+            },
+            "copy": {
+                "name": "virtualMachineLoop",
+                "count": "[parameters('vmCount')]"
+            },
+            "dependsOn": [],
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "[parameters('vmSize')]"
+                },
+                "storageProfile": {
+                    "osDisk": {
+                        "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '-osdisk')]",
+                        "createOption": "FromImage",
+                        "managedDisk": {
+                            "storageAccountType": "[parameters('osDiskType')]"
+                        },
+                        "deleteOption": "[parameters('osDiskDeleteOption')]"
+                    },
+                    "imageReference": {
+                        "id": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', variables('acgRG'), '/providers/Microsoft.Compute/galleries/', variables('galleryImageName'), '/images/', variables('operatingSystemValues')[parameters('course')].galleryImageDefinitionName, '/versions/', parameters('imageVersion'))]"
+                    }
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop',1), '-nic'))]",
+                            "properties": {
+                                "deleteOption": "[parameters('nicDeleteOption')]"
+                            }
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1))]",
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword": "[parameters('adminPassword')]",
+                    "windowsConfiguration": {
+                        "enableAutomaticUpdates": true,
+                        "provisionVMAgent": true,
+                        "timeZone": "GMT Standard Time",
+                        "patchSettings": {
+                            "enableHotpatching": "[parameters('enableHotpatching')]",
+                            "patchMode": "[parameters('patchMode')]"
+                        }
+                    }
+                },
+                "securityProfile": "[if(equals(parameters('securityType'), 'TrustedLaunch'), variables('trustedLaunch'), json('null'))]",
+                "licenseType": "[if(equals(parameters('licenseType'), 'AzureHybrid'), variables('WindowsLicense'), json('null'))]",
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": false
+                    }
+                }
+            },
+            "resources": [
+                {
+                    "name": "Microsoft.PowerShell.DSC",
+                    "type": "extensions",
+                    "apiVersion": "2021-11-01",
+                    "location": "[parameters('location')]",
+                    "tags": {
+                        "DisplayName": "DSC",
+                        "Dept": "[resourceGroup().tags['Dept']]",
+                        "CreatedBy": "[parameters('createdBy')]",
+                        "CourseDate": "[parameters('courseStartDate')]",
+                        "CourseEndDay": "[parameters('courseEndDay')]",
+                        "Cleanup": "[parameters('resourceGroupCleanup')]"
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
+                    ],
+                    "properties": {
+                        "publisher": "Microsoft.PowerShell",
+                        "type": "DSC",
+                        "typeHandlerVersion": "2.80",
+                        "autoUpgradeMinorVersion": true,
+                        "settings": {
+                            "wmfVersion": "latest",
+                            "configuration": {
+                                "url": "[concat(variables('_dscArtifactsLocation'), '/', variables('_dscExtensionRepo'), '/', variables('dscArchiveFolder'), '/', variables('dscArchiveFileName'))]",
+                                "script": "BaLabWinClientCfg.ps1",
+                                "function": "[variables('labConfigDscFunction')]"
+                            }
+                        },
+                        "protectedSettings": {
+                            "configurationArguments": {
+                                "Credential": {
+                                    "Username": "[parameters('localUsername')]",
+                                    "Password": "[parameters('localUserPassword')]"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '/AzurePolicyforWindows')]",
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "apiVersion": "2020-12-01",
+                    "location": "[parameters('location')]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
+                    ],
+                    "properties": {
+                        "publisher": "Microsoft.GuestConfiguration",
+                        "type": "ConfigurationforWindows",
+                        "typeHandlerVersion": "1.0",
+                        "autoUpgradeMinorVersion": true,
+                        "enableAutomaticUpgrade": true,
+                        "settings": {},
+                        "protectedSettings": {}
+                    }
+                },
+                {
+                    "condition": "[equals(parameters('vmSize'), 'Standard_NC4as_T4_v3')]",
+                    "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '/NvidiaGPUDriver')]",
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "apiVersion": "2020-12-01",
+                    "location": "[parameters('location')]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
+                    ],
+                    "properties": {
+                        "publisher": "Microsoft.Compute",
+                        "type": "CustomScriptExtension",
+                        "typeHandlerVersion": "1.9",
+                        "autoUpgradeMinorVersion": true,
+                        "settings": {
+                            "fileUris": [
+                                "https://raw.githubusercontent.com/balticapprenticeships/azure-development/main/Extensions/install-nvidia-drivers.ps1"
+                            ]
+                        },
+                        "protectedSettings": {
+                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File install-nvidia-drivers.ps1')]"
+                        }
+                    }
+                },
+                {
+                    "condition": "[equals(parameters('vmSize'), 'Standard_NV4as_v4')]",
+                    "name": "[concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1), '/AMDGpuDriver')]",
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "apiVersion": "2020-12-01",
+                    "location": "[parameters('location')]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('virtualMachineLoop', 1)))]"
+                    ],
+                    "properties": {
+                        "publisher": "Microsoft.HpcCompute",
+                        "type": "AmdGpuDriverWindows",
+                        "typeHandlerVersion": "1.1",
+                        "autoUpgradeMinorVersion": true,
+                        "settings": {}
+                    }
+                }
+            ]
+        }
+    ],
+    "outputs": {
+        "vmId": {
+            "type": "array",
+            "copy": {
+                "count": "[parameters('vmCount')]",
+                "input": {
+                    "value": "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex(1)))]"
+                }
+            }            
+        }
+    }
+}
