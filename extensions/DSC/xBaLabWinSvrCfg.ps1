@@ -894,7 +894,7 @@ Configuration xBaICTSupC6LabCfg {
     
 }
 
-Configuration xBaICTSuoC3NLabCfg {
+Configuration xBaICTSupC3NLabCfg {
     [CmdletBinding()]
 
     Param (
