@@ -15,7 +15,6 @@ This template allows you to deploy multiple Windows or linux server based VMs in
 This template allows you to deploy multiple Windows client based VMs in the West UK and South UK regions using a custom image and various options from OS version, to VM size and DSC configurations.
 
 
-## DevOps use only
 
 ## Modular Server Based Virtual Machine Deployment
 
