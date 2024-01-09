@@ -305,7 +305,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkInterface.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "3.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -360,7 +360,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkSecurityGroup.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "3.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -391,7 +391,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/virtualNetwork.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "3.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -421,7 +421,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/publicIP.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "3.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -457,7 +457,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsServer.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "3.0.0.0"
                 },
                 "parameters": {
                     "location": {
