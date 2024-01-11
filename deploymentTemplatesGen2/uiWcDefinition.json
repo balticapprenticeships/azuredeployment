@@ -268,7 +268,7 @@
                                 "name": "osDiskType",
                                 "label": "OS Disk Type",
                                 "type": "Microsoft.Common.DropDown",
-                                "defaultValue": "Standard HDD",
+                                "defaultValue": "Standard SSD",
                                 "constraints": {
                                     "allowedValues": [
                                         {
@@ -276,7 +276,7 @@
                                             "value": "Standard_LRS"
                                         },
                                         {
-                                            "label": "Standard SSD (Medium GPU based VMs ONLY)",
+                                            "label": "Standard SSD",
                                             "value": "StandardSSD_LRS"
                                         }
                                     ],

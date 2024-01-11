@@ -290,17 +290,22 @@
                                 "name": "osDiskType",
                                 "label": "OS Disk Type",
                                 "type": "Microsoft.Common.DropDown",
-                                "defaultValue": "Standard HDD",
+                                "defaultValue": "Standard SSD",
                                 "constraints": {
                                     "allowedValues": [
                                         {
                                             "label": "Standard HDD",
                                             "value": "Standard_LRS"
+                                        },
+                                        {
+                                            "label": "Standard SSD",
+                                            "value": "StandardSSD_LRS"
                                         }
                                     ],
                                     "required": true
                                 },
-                                "toolTip": "Here you can select the type of hard disc for your OS e.g., HDD, SSD or Premium SSD."
+                                "toolTip": "Here you can select the type of hard disc for your OS e.g., HDD, SSD or Premium SSD.",
+                                "visible": false
                             }
                         ]
                     },

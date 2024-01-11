@@ -40,7 +40,7 @@
         },
         "osDiskType": {
             "type": "string",
-            "defaultValue": "Standard_LRS",
+            "defaultValue": "StandardSSD_LRS",
             "allowedValues": [
                 "Standard_LRS",
                 "StandardSSD_LRS"
@@ -467,7 +467,7 @@
                         "value": "[parameters('vmCount')]"
                     },
                     "osDiskType": {
-                        "value": "[variables('osDiskSku')]"
+                        "value": "[parameters('osDiskType')]"
                     },
                     "osDiskDeleteOption": {
                         "value": "[parameters('osDiskDeleteOption')]"
