@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "3.0.0.0",
+    "currentVersion": "3.0.1.0",
     "parameters": {
         "config": {
             "isWizard": true
@@ -277,7 +277,12 @@
                                             "value": "Standard_D2s_v5"
                                         },
                                         {
-                                            "label": "Development Server ONLY",
+                                            "label": "AMD Standard Small Server",
+                                            "description": "2 vCPUs, 8GiB memory, No temp storage",
+                                            "value": "Standard_D2as_v5"
+                                        },
+                                        {
+                                            "label": "Standard Medium Server",
                                             "description": "4 vCPUs, 16GiB memory, No temp Storage",
                                             "value": "Standard_D4s_v5"
                                         }
