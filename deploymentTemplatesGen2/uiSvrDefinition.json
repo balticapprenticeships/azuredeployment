@@ -645,7 +645,7 @@
             "apprenticeshipProgram": "[steps('osConfig').program]",          
             "l3SupTechCourse": "[steps('osConfig').courseImageL3Sup]",
 			"l4NetEngCourse": "[steps('osConfig').courseImageL4]",
-			"bootcampCourse": "[steps('osConfig').bootcamp]",            
+			"bootcampCourse": "[steps('osConfig').courseImageBootcamp]",            
             "imageVersion": "[steps('osConfig').imageVersion]",
             "enableHotpatching": "[steps('osConfig').enableHotpatching]",
             "patchMode": "[steps('osConfig').patchMode]",
