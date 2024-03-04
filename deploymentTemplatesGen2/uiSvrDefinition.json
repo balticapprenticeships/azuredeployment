@@ -2,10 +2,10 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "3.0.1.0",
+    "currentVersion": "3.1.0.0",
     "parameters": {
         "config": {
-            "isWizard": true
+            "isWizard": false
         },
         "basics": [],
         "steps": [
@@ -32,92 +32,129 @@
                                     "value": "Windows"                                            
                                 }
                             ]
-                        }
+                        },
+						"visible": false
                     },
+					{
+						"name": "program",
+						"label": "Select a program",
+						"type": "Microsoft.Common.DropDown",
+						"placeholder": "Select a program",
+						"constraints": {
+							"allowedValues": [
+								{
+									"label": "Level 3 ICT Support Technician",
+									"value": "l3IctSupTech"
+								},
+								{
+									"label": "Level 4 Network Engineer",
+									"value": "l4NetEng"
+								},
+								{
+									"label": "Bootcamp",
+									"value": "bootcamp"
+								}
+							]
+						}
+					},
                     {
-                        "name": "operatingSystem",
-                        "label": "Select a course or Image",
+                        "name": "courseImageL3Sup",
+                        "label": "Select a course",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a course or image",
+                        "placeholder": "Select a course",
                         "constraints": {
                             "allowedValues": [
                                 {
-                                    "label": "Course 1 - Supporting IT Architecture (Part 1)",
-                                    "value": "ICTSupC1"
-                                },
-                                {
-                                    "label": "Course 2 - Supporting IT Architecture (Part 2)",
+                                    "label": "IT Support Course 2 - IT Troubleshooting Tools & Techniques",
                                     "value": "ICTSupC2"
                                 },
                                 {
-                                    "label": "Course 3 (NEW) - Working with Client Architecture",
-                                    "value": "ICTSupC3N"
-                                },
-                                {
-                                    "label": "Course 3 - Working with End User Devices (Part 1)",
+                                    "label": "IT Support Course 3 - Working with Client Architecture",
                                     "value": "ICTSupC3"
-                                },
+                                },                                
                                 {
-                                    "label": "Course 4 - Working with End User Devices (Part 2)",
+                                    "label": "IT Support Course 4 - Upgrading & Maintaining Client Architecture",
                                     "value": "ICTSupC4"
                                 },
                                 {
-                                    "label": "Course 6 (NEW) - Cloud and Virtualisation",
-                                    "value": "ICTSupC6N"
-                                },                                
-                                {
-                                    "label": "Course 6 - Working with Network Architecture (Part 2)",
+                                    "label": "IT Support Course 6 - Cloud and Virtualisation",
                                     "value": "ICTSupC6"
-                                },
-                                {
-                                    "label": "Course 2 - Understanding & Troubleshooting Networks (Part 2)",
-                                    "value": "TrblshootNet"
-                                },
-                                {
-                                    "label": "Course 3 - Supporting Network Architecture",
-                                    "value": "ICTNetC3"
-                                },
-                                {
-                                    "label": "Course 5 - Cloud and On-Premises Network Installation (Part 1)",
-                                    "value": "ICTNetC5"
-                                },
-                                {
-                                    "label": "Course 6 - Cloud and On-Premises Network Installation (Part 2)",
-                                    "value": "ICTNetC6"
-                                },
-                                {
-                                    "label": "EPA - Level 3 ICT Network Technician EPA Project",
-                                    "value": "ICTNetEPA"
-                                },
-                                {
-                                    "label": "Course 4 - Level 4 Network Security",
-                                    "value": "L4NetEngC4"
-                                },
-                                {
-                                    "label": "Course 5 - Level 4 Network Installation",
-                                    "value": "L4NetEngC5"
-                                },
-                                {
-                                    "label": "Course 7 - Level 4 Cloud Computing & Virtual Networks (Part 2)",
-                                    "value": "L4NetEngC7"
-                                },
-                                {
-                                    "label": "IT Support Bootcamp",
-                                    "value": "ItBootcamp"
-                                },
-                                {
-                                    "label": "Lab Image Development",
-                                    "value": "WSvrDev"
-                                },
-                                {
-                                    "label": "Server Administration",
-                                    "value": "ServerFundamentals"
-                                }
+                                }								                                                              
                             ],
                             "required": true
                         },
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
-                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
+                        "visible": "[equals(steps('osConfig').program, 'l3IctSupTech')]"
+                    },
+					{
+                        "name": "courseImageL3Net",
+                        "label": "Select a course",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "ICT Network Course 3 - Supporting Network Architecture",
+                                    "value": "ICTNetC3"
+                                },
+                                {
+                                    "label": "ICT Network Course 5 - Cloud and On-Premises Network Installation (Part 1)",
+                                    "value": "ICTNetC5"
+                                },
+                                {
+                                    "label": "ICT Network Course 6 - Cloud and On-Premises Network Installation (Part 2)",
+                                    "value": "ICTNetC6"
+                                },
+                                {
+                                    "label": "Level 3 ICT Network Technician EPA Project",
+                                    "value": "ICTNetEPA"
+                                }                                                            
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": false,
+					{
+                        "name": "courseImageL4",
+                        "label": "Select a course",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Network Engineer Course 4 - Network Security",
+                                    "value": "L4NetEngC4"
+                                },
+                                {
+                                    "label": "Network Engineer Course 5 - Network Installation",
+                                    "value": "L4NetEngC5"
+                                },
+                                {
+                                    "label": "Network Engineer Course 7 - Cloud Computing & Virtual Networks (Part 2)",
+                                    "value": "L4NetEngC7"
+                                }                                                                
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').program, 'l4NetEng')]"
+                    },
+                    {
+                        "name": "courseImageBootcamp",
+                        "label": "Select a course",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "IT Support Bootcamp",
+                                    "value": "ItBootcamp"
+                                }                                                            
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').program, 'bootcamp')]"
                     },
                     {
                         "name": "imageVersion",
@@ -131,30 +168,14 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "July",
-                                    "value": "2.7.23"
-                                },
-                                {
-                                    "label": "May",
-                                    "value": "2.5.23"
-                                },
-                                {
-                                    "label": "April",
-                                    "value": "2.4.23"
-                                },
-                                {
-                                    "label": "March",
-                                    "value": "2.3.23"
-                                },
-                                {
-                                    "label": "February",
-                                    "value": "2.2.23"
+                                    "label": "January",
+                                    "value": "3.1.24"
                                 }
                             ],
                             "required": true
                         },
                         "toolTip": "Here you can choose from different OS image version however, 'Latest' is recommended.",
-                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
+                        "visible": "[or(equals(steps('osConfig').program, 'l3IctSupTech'), equals(steps('osConfig').program, 'l3IctNetTech'), equals(steps('osConfig').program, 'l4NetEng'))]"
                     },
                     {
                         "name": "enableHotpatching",
@@ -627,9 +648,13 @@
             "vmName": "[steps('vmConfig').vmInstance.vmName]",            
             "vmSize": "[steps('vmConfig').vmInstance.vmSize]",
             "vmCount": "[steps('vmConfig').vmInstance.vmCount]",
-            "osDiskType": "[steps('vmConfig').vmInstance.osDiskType]",            
-            "course": "[steps('osConfig').operatingSystem]",
-            "osPlatform": "[steps('osConfig').osPlatform]",
+            "osDiskType": "[steps('vmConfig').vmInstance.osDiskType]",
+			"osPlatform": "[steps('osConfig').osPlatform]",
+            "apprenticeshipProgram": "[steps('osConfig').program]",          
+            "l3SupTechCourse": "[steps('osConfig').courseImageL3Sup]",
+			"l3NetTechCourse": "[steps('osConfig').courseImageL3Net]",
+			"l4NetEngCourse": "[steps('osConfig').courseImageL4]",
+            "bootcampCourse": "[steps('osConfig').bootcamp]",            
             "imageVersion": "[steps('osConfig').imageVersion]",
             "enableHotpatching": "[steps('osConfig').enableHotpatching]",
             "patchMode": "[steps('osConfig').patchMode]",

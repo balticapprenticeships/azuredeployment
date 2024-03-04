@@ -93,42 +93,18 @@
         "acgRG": "BalticImageGalleryRg",
         "galleryImageName": "TrainingACG",
         "WindowsLicense": "Windows_Server",
-        "operatingSystemValues": {            
-            "ICTSupC1": {
-                "galleryImageDefinitionName": "BA-ICTSupCourse1-2"
-            },
+        "operatingSystemValues": {
             "ICTSupC2": {
-                "galleryImageDefinitionName": "BA-ICTSupCourse1-2"
-            },
-            "ICTSupC3": {
-                "galleryImageDefinitionName": "BA-ICTSupCourse3-4"
+                "galleryImageDefinitionName": "BA-ICTSupMstr"
+            },           
+            "ICTSupC3N": {
+                "galleryImageDefinitionName": "BA-ICTSupMstr"
             },
             "ICTSupC4": {
-                "galleryImageDefinitionName": "BA-ICTSupCourse3-4"
-            },
-            "ICTSupC6": {
-                "galleryImageDefinitionName": "BA-ICTSupCourse6"
+                "galleryImageDefinitionName": "BA-ICTSupMstr"
             },
             "ICTSupC6N": {
                 "galleryImageDefinitionName": "BA-ICTSupMstr"
-            },
-            "ICTSupC3N": {
-                "galleryImageDefinitionName": "BA-ICTSupMstr"
-            },             
-            "ICTNetC2": {
-                "galleryImageDefinitionName": "BA-ICTNetCourse2"
-            },
-            "ICTNetC3": {
-                "galleryImageDefinitionName": "BA-ICTSupCourse3-4"
-            },
-            "ICTNetC5": {
-                "galleryImageDefinitionName": "BA-ICTNetCourse5"
-            },
-            "ICTNetC6": {
-                "galleryImageDefinitionName": "BA-ICTNetCourse6"
-            },
-            "ICTNetEPA": {
-                "galleryImageDefinitionName": "BA-ICTNetEPA"
             },
             "L4NetEngC4": {
                 "galleryImageDefinitionName": "BA-L4NetEngCourse4"
@@ -139,16 +115,7 @@
             "L4NetEngC7": {
                 "galleryImageDefinitionName": "BA-L4NetEngCourse7"
             },
-            "TrblshootNet": {
-                "galleryImageDefinitionName": "BA-TshootNet"
-            },
             "ItBootcamp": {
-                "galleryImageDefinitionName": "BA-WinSvrGen"
-            },            
-            "WSvrDev": {
-                "galleryImageDefinitionName": "BA-SvrDev"
-            },
-            "ServerFundamentals": {
                 "galleryImageDefinitionName": "BA-WinSvrGen"
             }
         },

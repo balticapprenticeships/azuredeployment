@@ -70,32 +70,67 @@
                 "description": "Select the Operating System type to deploy."
             }
         },
-        "course": {
+        "apprenticeshipProgram": {
+            "type": "string",
+            "defaultValue": "noValue",
+            "allowedValues": [
+                "l3IctSupTech",
+                "l3IctNetTech",
+                "l4NetEng",
+                "bootcamp"
+            ]
+        },
+        "l3SupTechCourse": {
             "type": "string",
             "defaultValue": "NoValue",
             "allowedValues": [
                 "NoValue",
-                "ICTSupC1",
                 "ICTSupC2",
                 "ICTSupC3",
                 "ICTSupC3N",
                 "ICTSupC4",
                 "ICTSupC6",
                 "ICTSupC6N",
-                "ICTSupMstr",
+                "ICTSupMstr"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "l3NetTechCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
                 "ICTNetC2",
                 "ICTNetC3",
                 "ICTNetC5",
                 "ICTNetC6",
-                "ICTNetEPA",
+                "ICTNetEPA"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "l4NetEngCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
                 "L4NetEngC4",
                 "L4NetEngC5",
-                "L4NetEngC7",
-                "ItBootcamp",                
-                "WSvrDev",
-                "TrblshootNet",
-                "ServerFundamentals"
-
+                "L4NetEngC7"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "bootcampCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "ItBootcamp"
             ],
             "metadata": {
                 "description": "Choose the course to deliver"
@@ -106,6 +141,7 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "3.1.24",
                 "2.6.23",
                 "2.5.23",
                 "2.4.23",
@@ -293,6 +329,20 @@
         "patchMode": "[if(equals(parameters('osPlatform'), 'Windows'), 'AutomaticByOS', 'ImageDefault')]",
         "licenseType": "AzureLicense",
         "idleVM": "No",
+        "courseImageValue": {
+            "l3IctSupTech": {
+                "courseImageDefinitionName": "[parameters('l3SupTechCourse')]"
+            },
+            "l3IctNetTech": {
+                "courseImageDefinitionName": "[parameters('l3NetTechCourse')]"
+            },
+            "l4NetEng": {
+                "courseImageDefinitionName": "[parameters('l4NetEngCourse')]"
+            },
+            "bootcamp": {
+                "courseImageDefinitionName": "[parameters('bootcampCourse')]"
+            }
+        },
         "vaultResourceGroup": "[concat(variables('rwkeyVault')[parameters('routeway')].keyVaultRg, 'OMSRg')]",
         "vaultName": "[concat('VMDeployment', variables('rwkeyVault')[parameters('routeway')].rwSuffix)]",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
@@ -320,7 +370,7 @@
                         "value": "[parameters('vmCount')]"
                     },
                     "course": {
-                        "value": "[parameters('course')]"
+                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgram')].courseImageDefinitionName]"
                     },
                     "vnetNewOrExisting": {
                         "value": "[parameters('vnetNewOrExisting')]"
@@ -489,7 +539,7 @@
                         "value": "[parameters('osDiskDeleteOption')]"
                     },
                     "course": {
-                        "value": "[parameters('course')]"
+                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgram')].courseImageDefinitionName]"
                     },
                     "imageVersion": {
                         "value": "[parameters('imageVersion')]"
@@ -658,9 +708,13 @@
             "type": "string",
             "value": "[parameters('osPlatform')]"
         },
-        "operatingSystem": {
+        "apprenticeshipProgram": {
             "type": "string",
-            "value": "[parameters('course')]"
+            "value": "[parameters('apprenticeshipProgram')]"
+        },
+        "courseImage": {
+            "type": "string",
+            "value": "[variables('courseImageValue')[parameters('apprenticeshipProgram')].courseImageDefinitionName]"
         },
         "imageVersion": {
             "type": "string",
