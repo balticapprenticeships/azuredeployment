@@ -11,9 +11,6 @@
         "vmCount": {
             "type": "int"
         },
-        "course": {
-            "type": "string"
-        },
         "vnetNewOrExisting": {
             "type": "string"
         },
@@ -87,7 +84,7 @@
                         }
                     }
                 ],
-                "enableAcceleratedNetworking": "[if(equals(parameters('course'), 'WindowsServer'), variables('acceleratedNetworking'), json('null'))]",
+                "enableAcceleratedNetworking": true,
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
                 }
