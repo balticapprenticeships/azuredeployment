@@ -37,9 +37,9 @@
                     },
 					{
 						"name": "program",
-						"label": "Select an apprenticeship program",
+						"label": "Select a program",
 						"type": "Microsoft.Common.DropDown",
-						"placeholder": "Select an apprenticeship program",
+						"placeholder": "Select a program",
 						"constraints": {
 							"allowedValues": [
 								{
@@ -47,12 +47,12 @@
 									"value": "l3IctSupTech"
 								},
 								{
-									"label": "Level 3 ICT Network Technician",
-									"value": "l3IctNetTech"
-								},
-								{
 									"label": "Level 4 Network Engineer",
 									"value": "l4NetEng"
+								},
+								{
+									"label": "Bootcamp",
+									"value": "bootcamp"
 								}
 							]
 						}
@@ -61,7 +61,7 @@
                         "name": "courseImageL3Sup",
                         "label": "Select a course",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a course or image",
+                        "placeholder": "Select a course",
                         "constraints": {
                             "allowedValues": [
                                 {
@@ -73,17 +73,13 @@
                                     "value": "ICTSupC3N"
                                 },                                
                                 {
-                                    "label": "IT Support Course 4 - Working with End User Devices (Part 2)",
+                                    "label": "IT Support Course 4 - Upgrading & Maintaining Client Architecture",
                                     "value": "ICTSupC4"
                                 },
                                 {
-                                    "label": "IT Support Course 6 (NEW) - Cloud and Virtualisation",
+                                    "label": "IT Support Course 6 - Cloud and Virtualisation",
                                     "value": "ICTSupC6N"
-                                },
-								{
-                                    "label": "IT Support Bootcamp",
-                                    "value": "ItBootcamp"
-                                }                                                              
+                                }								                                                              
                             ],
                             "required": true
                         },
@@ -94,7 +90,7 @@
                         "name": "courseImageL3Net",
                         "label": "Select a course",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a course or image",
+                        "placeholder": "Select a course",
                         "constraints": {
                             "allowedValues": [
                                 {
@@ -117,13 +113,12 @@
                             "required": true
                         },
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
-                        "visible": "[equals(steps('osConfig').program, 'l3IctNetTech')]"
-                    },
+                        "visible": false,
 					{
                         "name": "courseImageL4",
                         "label": "Select a course",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a course or image",
+                        "placeholder": "Select a course",
                         "constraints": {
                             "allowedValues": [
                                 {
@@ -145,6 +140,23 @@
                         "visible": "[equals(steps('osConfig').program, 'l4NetEng')]"
                     },
                     {
+                        "name": "courseImageBootcamp",
+                        "label": "Select a course",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "IT Support Bootcamp",
+                                    "value": "ItBootcamp"
+                                }                                                            
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').program, 'bootcamp')]"
+                    },
+                    {
                         "name": "imageVersion",
                         "label": "OS Image Version",
                         "type": "Microsoft.Common.DropDown",
@@ -156,24 +168,8 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "July",
-                                    "value": "2.7.23"
-                                },
-                                {
-                                    "label": "May",
-                                    "value": "2.5.23"
-                                },
-                                {
-                                    "label": "April",
-                                    "value": "2.4.23"
-                                },
-                                {
-                                    "label": "March",
-                                    "value": "2.3.23"
-                                },
-                                {
-                                    "label": "February",
-                                    "value": "2.2.23"
+                                    "label": "January",
+                                    "value": "3.1.24"
                                 }
                             ],
                             "required": true
@@ -657,7 +653,8 @@
             "apprenticeshipProgram": "[steps('osConfig').program]",          
             "l3SupTechCourse": "[steps('osConfig').courseImageL3Sup]",
 			"l3NetTechCourse": "[steps('osConfig').courseImageL3Net]",
-			"l4NetEngCourse": "[steps('osConfig').courseImageL4]",            
+			"l4NetEngCourse": "[steps('osConfig').courseImageL4]",
+            "bootcampCourse": "[steps('osConfig').bootcamp]",            
             "imageVersion": "[steps('osConfig').imageVersion]",
             "enableHotpatching": "[steps('osConfig').enableHotpatching]",
             "patchMode": "[steps('osConfig').patchMode]",
