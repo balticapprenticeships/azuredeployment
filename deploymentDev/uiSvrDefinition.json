@@ -2,10 +2,10 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "2.2.1.1",
+    "currentVersion": "3.0.1.0",
     "parameters": {
         "config": {
-            "isWizard": true
+            "isWizard": false
         },
         "basics": [],
         "steps": [
@@ -22,7 +22,7 @@
                     },
                     {
                         "name": "osPlatform",
-                        "label": "Windows or Linux based VM",
+                        "label": "Windows based VM",
                         "type": "Microsoft.Common.DropDown",
                         "defaultValue": "Windows",
                         "constraints": {
@@ -30,123 +30,119 @@
                                 {
                                     "label": "Windows",
                                     "value": "Windows"                                            
-                                },
-                                {
-                                    "label": "Linux",
-                                    "value": "Linux"                                            
                                 }
                             ]
-                        }
+                        },
+						"visible": false
                     },
+					{
+						"name": "program",
+						"label": "Select an apprenticeship program",
+						"type": "Microsoft.Common.DropDown",
+						"placeholder": "Select an apprenticeship program",
+						"constraints": {
+							"allowedValues": [
+								{
+									"label": "Level 3 ICT Support Technician",
+									"value": "l3IctSupTech"
+								},
+								{
+									"label": "Level 3 ICT Network Technician",
+									"value": "l3IctNetTech"
+								},
+								{
+									"label": "Level 4 Network Engineer",
+									"value": "l4NetEng"
+								}
+							]
+						}
+					},
                     {
-                        "name": "operatingSystem",
-                        "label": "Select a course or Image",
+                        "name": "courseImageL3Sup",
+                        "label": "Select a course",
                         "type": "Microsoft.Common.DropDown",
                         "placeholder": "Select a course or image",
                         "constraints": {
                             "allowedValues": [
                                 {
-                                    "label": "Course 1 - Supporting IT Architecture (Part 1)",
-                                    "value": "ICTSupC1"
-                                },
-                                {
-                                    "label": "Course 2 - Supporting IT Architecture (Part 2)",
+                                    "label": "IT Support Course 2 - IT Troubleshooting Tools & Techniques",
                                     "value": "ICTSupC2"
                                 },
                                 {
-                                    "label": "Course 3 (NEW) - Working with Client Architecture",
-                                    "value": "ICTSupMstr"
-                                },
-                                {
-                                    "label": "Course 3 - Working with End User Devices (Part 1)",
-                                    "value": "ICTSupC3"
-                                },
-                                {
-                                    "label": "Course 4 - Working with End User Devices (Part 2)",
-                                    "value": "ICTSupC4"
+                                    "label": "IT Support Course 3 - Working with Client Architecture",
+                                    "value": "ICTSupC3N"
                                 },                                
                                 {
-                                    "label": "Course 6 - Working with Network Architecture (Part 2)",
-                                    "value": "ICTSupC6"
+                                    "label": "IT Support Course 4 - Working with End User Devices (Part 2)",
+                                    "value": "ICTSupC4"
                                 },
                                 {
-                                    "label": "Course 2 - Understanding & Troubleshooting Networks (Part 2)",
-                                    "value": "TrblshootNet"
+                                    "label": "IT Support Course 6 (NEW) - Cloud and Virtualisation",
+                                    "value": "ICTSupC6N"
                                 },
-                                {
-                                    "label": "Course 3 - Supporting Network Architecture",
-                                    "value": "ICTNetC3"
-                                },
-                                {
-                                    "label": "Course 5 - Cloud and On-Premises Network Installation (Part 1)",
-                                    "value": "ICTNetC5"
-                                },
-                                {
-                                    "label": "Course 6 - Cloud and On-Premises Network Installation (Part 2)",
-                                    "value": "ICTNetC6"
-                                },
-                                {
-                                    "label": "EPA - Level 3 ICT Network Technician EPA Project",
-                                    "value": "ICTNetEPA"
-                                },
-                                {
-                                    "label": "Course 4 - Level 4 Network Security",
-                                    "value": "L4NetEngC4"
-                                },
-                                {
-                                    "label": "Course 5 - Level 4 Network Installation",
-                                    "value": "L4NetEngC5"
-                                },
-                                {
-                                    "label": "Course 7 - Level 4 Cloud Computing & Virtual Networks (Part 2)",
-                                    "value": "L4NetEngC7"
-                                },
-                                {
+								{
                                     "label": "IT Support Bootcamp",
                                     "value": "ItBootcamp"
-                                },
-                                {
-                                    "label": "Lab Image Development",
-                                    "value": "WSvrDev"
-                                },
-                                {
-                                    "label": "Server Administration",
-                                    "value": "ServerFundamentals"
-                                }
+                                }                                                              
                             ],
                             "required": true
                         },
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
-                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
-                    },                    
-                    {
-                        "name": "linuxOS",
-                        "label": "Linux Operating System",
+                        "visible": "[equals(steps('osConfig').program, 'l3IctSupTech')]"
+                    },
+					{
+                        "name": "courseImageL3Net",
+                        "label": "Select a course",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a Linux distribution",
+                        "placeholder": "Select a course or image",
                         "constraints": {
                             "allowedValues": [
                                 {
-                                    "label": "Ubuntu Server 18.04",
-                                    "value": "UbuntuServer"
+                                    "label": "ICT Network Course 3 - Supporting Network Architecture",
+                                    "value": "ICTNetC3"
                                 },
                                 {
-                                    "label": "Ubuntu Server 20.04",
-                                    "value": "UbuntuServer2004"
+                                    "label": "ICT Network Course 5 - Cloud and On-Premises Network Installation (Part 1)",
+                                    "value": "ICTNetC5"
                                 },
                                 {
-                                    "label": "Debian",
-                                    "value": "Debian"
+                                    "label": "ICT Network Course 6 - Cloud and On-Premises Network Installation (Part 2)",
+                                    "value": "ICTNetC6"
                                 },
                                 {
-                                    "label": "RedHat",
-                                    "value": "RedHat"
-                                }
+                                    "label": "Level 3 ICT Network Technician EPA Project",
+                                    "value": "ICTNetEPA"
+                                }                                                            
                             ],
                             "required": true
                         },
-                        "toolTip": "Here you can select the Linux Distribution you require.",
-                        "visible": "[equals(steps('osConfig').osPlatform, 'Linux')]"
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').program, 'l3IctNetTech')]"
+                    },
+					{
+                        "name": "courseImageL4",
+                        "label": "Select a course",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course or image",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Network Engineer Course 4 - Network Security",
+                                    "value": "L4NetEngC4"
+                                },
+                                {
+                                    "label": "Network Engineer Course 5 - Network Installation",
+                                    "value": "L4NetEngC5"
+                                },
+                                {
+                                    "label": "Network Engineer Course 7 - Cloud Computing & Virtual Networks (Part 2)",
+                                    "value": "L4NetEngC7"
+                                }                                                                
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').program, 'l4NetEng')]"
                     },
                     {
                         "name": "imageVersion",
@@ -183,7 +179,7 @@
                             "required": true
                         },
                         "toolTip": "Here you can choose from different OS image version however, 'Latest' is recommended.",
-                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
+                        "visible": "[or(equals(steps('osConfig').program, 'l3IctSupTech'), equals(steps('osConfig').program, 'l3IctNetTech'), equals(steps('osConfig').program, 'l4NetEng'))]"
                     },
                     {
                         "name": "enableHotpatching",
@@ -210,7 +206,7 @@
                         "name": "patchMode",
                         "label": "OS Patch Mode",
                         "type": "Microsoft.Common.DropDown",
-                        "defaultValue": "AutomaticByOS",
+                        "defaultValue": "Windows OS Automatic Updates",
                         "constraints": {
                             "allowedValues": [
                                 {
@@ -225,7 +221,7 @@
                             "required": true
                         },
                         "toolTip": "Select the patch mode for the OS platform",
-                        "visible": "[or(equals(steps('osConfig').osPlatform, 'Windows'), equals(steps('osConfig').osPlatform, 'Linux'))]"
+                        "visible": false
                     },
                     {
                         "name": "licenseType",
@@ -301,17 +297,17 @@
                                 "constraints": {
                                     "allowedValues": [
                                         {
-                                            "label": "Standard Medium for Windows Client",
-                                            "description": "2 vCPUs, 4GiB memory, 8GiB temp Storage",
-                                            "value": "Standard_B2s"
-                                        },
-                                        {
                                             "label": "Standard Small Server",
                                             "description": "2 vCPUs, 8GiB memory, No temp storage",
                                             "value": "Standard_D2s_v5"
                                         },
                                         {
-                                            "label": "Development Server ONLY",
+                                            "label": "AMD Standard Small Server",
+                                            "description": "2 vCPUs, 8GiB memory, No temp storage",
+                                            "value": "Standard_D2as_v5"
+                                        },
+                                        {
+                                            "label": "Standard Medium Server",
                                             "description": "4 vCPUs, 16GiB memory, No temp Storage",
                                             "value": "Standard_D4s_v5"
                                         }
@@ -324,17 +320,22 @@
                                 "name": "osDiskType",
                                 "label": "OS Disk Type",
                                 "type": "Microsoft.Common.DropDown",
-                                "defaultValue": "Standard HDD",
+                                "defaultValue": "Standard SSD",
                                 "constraints": {
                                     "allowedValues": [
                                         {
                                             "label": "Standard HDD",
                                             "value": "Standard_LRS"
+                                        },
+                                        {
+                                            "label": "Standard SSD",
+                                            "value": "StandardSSD_LRS"
                                         }
                                     ],
                                     "required": true
                                 },
-                                "toolTip": "Here you can select the type of hard disc for your OS e.g., HDD, SSD or Premium SSD."
+                                "toolTip": "Here you can select the type of hard disc for your OS e.g., HDD, SSD or Premium SSD.",
+                                "visible": false
                             }
                         ]
                     },
@@ -386,7 +387,7 @@
 								"visible": "[equals(steps('vmConfig').vmSecurity.secureBoot, true)]"
 							}
                         ],
-                        "visible": true
+                        "visible": false
                     }
                 ]
             },            
@@ -533,7 +534,7 @@
                                 "name": "courseDate",
                                 "label": "Training Week",
                                 "type": "Microsoft.Common.TextBox",
-                                "placeholder": "e.g., 01/11/2021",
+                                "placeholder": "e.g., 01/01/2024",
                                 "constraints": {
                                     "regex": "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$",
                                     "required": true,
@@ -548,6 +549,10 @@
                                 "placeholder": "e.g., Tuesday",
                                 "constraints": {
                                     "allowedValues": [
+                                        {
+                                            "label": "None",
+                                            "value": "None"
+                                        },
                                         {
                                             "label": "Monday",
                                             "value": "Monday"
@@ -597,28 +602,23 @@
                                 "toolTip": "Here you can set whether you wish to have the virtual machines auto start at 08:00."
                             },
                             {
-                                "name": "hibernateVm",
+                                "name": "idleVm",
                                 "label": "Shutdown Idle Virtual Machines",
                                 "type": "Microsoft.Common.DropDown",                                
-                                "defaultValue": "No",
+                                "defaultValue": "Currently Not in Use",
                                 "multiLine": true,
                                 "constraints": {
                                     "allowedValues": [
-										{
-                                            "label": "Yes",
-                                            "description": "Enable Virtual Machine Hibernation",
-                                            "value": true
-                                        },
                                         {
-                                            "label": "No",
-                                            "description": "Disable Virtual Machine Hibernation",
-                                            "value": false
+                                            "label": "Currently Not in Use",
+                                            "description": "",
+                                            "value": "No"
                                         }
                                     ],
                                     "required": true
                                 },
                                 "toolTip": "Here you can set whether you wish to have the idle virtual machines auto stop after 15mins of inactivity.",
-                                "visible": true
+                                "visible": false
                             },
                             {
                                 "name": "resourceGroupCleanup",
@@ -652,10 +652,12 @@
             "vmName": "[steps('vmConfig').vmInstance.vmName]",            
             "vmSize": "[steps('vmConfig').vmInstance.vmSize]",
             "vmCount": "[steps('vmConfig').vmInstance.vmCount]",
-            "osDiskType": "[steps('vmConfig').vmInstance.osDiskType]",            
-            "course": "[steps('osConfig').operatingSystem]",
-            "linuxOS": "[steps('osConfig').linuxOS]",
-            "osPlatform": "[steps('osConfig').osPlatform]",
+            "osDiskType": "[steps('vmConfig').vmInstance.osDiskType]",
+			"osPlatform": "[steps('osConfig').osPlatform]",
+            "apprenticeshipProgram": "[steps('osConfig').program]",          
+            "l3SupTechCourse": "[steps('osConfig').courseImageL3Sup]",
+			"l3NetTechCourse": "[steps('osConfig').courseImageL3Net]",
+			"l4NetEngCourse": "[steps('osConfig').courseImageL4]",            
             "imageVersion": "[steps('osConfig').imageVersion]",
             "enableHotpatching": "[steps('osConfig').enableHotpatching]",
             "patchMode": "[steps('osConfig').patchMode]",
@@ -673,7 +675,7 @@
             "courseStartDate": "[steps('tags').mngTagsConfig.courseDate]",
             "courseEndDay": "[steps('tags').mngTagsConfig.courseEndDay]",
             "startupSchedule": "[steps('tags').mngTagsConfig.schedule]",
-            "hibernationEnabled": "[steps('tags').mngTagsConfig.hibernateVm]",
+            "idleVm": "[steps('tags').mngTagsConfig.idleVm]",
             "resourceGroupCleanup": "[steps('tags').mngTagsConfig.resourceGroupCleanup]"
         }
     }

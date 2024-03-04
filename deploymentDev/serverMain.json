@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "2.0.0.0",
+    "contentVersion": "3.0.1.0",
     "parameters": {
         "location": {
             "type": "string",
@@ -23,7 +23,8 @@
                 "Standard_D2s_v3",
                 "Standard_D4s_v3",
                 "Standard_D2s_v5",
-                "Standard_D4s_v5"
+                "Standard_D4s_v5",
+                "Standard_D2as_v5"
             ],
             "metadata": {
                 "description": "Virtual Machine size e.g., 2vCPU's 4GB RAM"
@@ -39,9 +40,10 @@
         },
         "osDiskType": {
             "type": "string",
-            "defaultValue": "Standard_LRS",
+            "defaultValue": "StandardSSD_LRS",
             "allowedValues": [
-                "Standard_LRS"
+                "Standard_LRS",
+                "StandardSSD_LRS"
             ],
             "metadata": {
                 "description": "Select the type of storage Standard HDD, SSD or Premium SSD"
@@ -68,26 +70,26 @@
                 "description": "Select the Operating System type to deploy."
             }
         },
-        "course": {
+        "apprenticeshipProgram": {
+            "type": "string",
+            "defaultValue": "noValue",
+            "allowedValues": [
+                "l3IctSupTech",
+                "l3IctNetTech",
+                "l4NetEng"
+            ]
+        },
+        "l3SupTechCourse": {
             "type": "string",
             "defaultValue": "NoValue",
             "allowedValues": [
                 "NoValue",
-                "ICTSupC1",
-                "ICTSupC2",
                 "ICTSupC3",
+                "ICTSupC3N",
                 "ICTSupC4",
                 "ICTSupC6",
-                "ICTSUP6-DEV",
+                "ICTSupC6N",
                 "ICTSupMstr",
-                "ICTNetC2",
-                "ICTNetC3",
-                "ICTNetC5",
-                "ICTNetC6",
-                "ICTNetEPA",
-                "L4NetEngC4",
-                "L4NetEngC5",
-                "L4NetEngC7",
                 "ItBootcamp",                
                 "WSvrDev",
                 "TrblshootNet",
@@ -98,17 +100,32 @@
                 "description": "Choose the course to deliver"
             }
         },
-        "linuxOS": {
+        "l3NetTechCourse": {
             "type": "string",
-            "defaultValue": "UbuntuServer",
+            "defaultValue": "NoValue",
             "allowedValues": [
-                "UbuntuServer",
-                "UbuntuServer2004",
-                "Debian",
-                "RedHat"
+                "NoValue",
+                "ICTNetC2",
+                "ICTNetC3",
+                "ICTNetC5",
+                "ICTNetC6",
+                "ICTNetEPA"
             ],
             "metadata": {
-                "description": "Choose your Linux operating system"
+                "description": "Choose the course to deliver"
+            }
+        },
+        "l4NetEngCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "L4NetEngC4",
+                "L4NetEngC5",
+                "L4NetEngC7"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
             }
         },
         "imageVersion": {
@@ -211,14 +228,6 @@
                 "description": ""
             }
         },
-        "hibernationEnabled": {
-            "type": "bool",
-            "defaultValue": false,
-            "allowedValues": [
-                true,
-                false
-            ]
-        },
         "pipDeleteOption": {
             "type": "string",
             "defaultValue": "Delete",
@@ -228,24 +237,6 @@
             ],
             "metadata": {
                 "description": ""
-            }
-        },
-        "authenticationType": {
-            "type": "string",
-            "defaultValue": "Password",
-            "allowedValues": [
-                "Password",
-                "sshPublicKey"
-            ],
-            "metadata": {
-                "description": "The type of authentication used for the virtual machine. SSH is recommended fo Linux VM's."
-            }
-        },
-        "sshPublicKeyString": {
-            "type": "securestring",
-            "defaultValue": "",
-            "metadata": {
-                "description": "SSH key for the admin account."
             }
         },
         "createdBy": {
@@ -327,12 +318,23 @@
             }
         },
         "patchMode": "[if(equals(parameters('osPlatform'), 'Windows'), 'AutomaticByOS', 'ImageDefault')]",
-        "securityType": "Standard",
         "licenseType": "AzureLicense",
+        "idleVM": "No",
+        "courseImageValue": {
+            "l3IctSupTech": {
+                "courseImageDefinitionName": "[parameters('l3SupTechCourse')]"
+            },
+            "l3IctNetTech": {
+                "courseImageDefinitionName": "[parameters('l3NetTechCourse')]"
+            },
+            "l4NetEng": {
+                "courseImageDefinitionName": "[parameters('l4NetEngCourse')]"
+            }
+        },
         "vaultResourceGroup": "[concat(variables('rwkeyVault')[parameters('routeway')].keyVaultRg, 'OMSRg')]",
         "vaultName": "[concat('VMDeployment', variables('rwkeyVault')[parameters('routeway')].rwSuffix)]",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
-        "_moduleRepo": "/main/deploymentDev/modules"        
+        "_moduleRepo": "/main/deploymentTemplatesGen2/modules"        
     },
     "resources": [
         {
@@ -343,7 +345,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkInterface.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "3.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -398,7 +400,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkSecurityGroup.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "3.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -429,7 +431,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/virtualNetwork.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "3.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -459,7 +461,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/publicIP.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "3.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -488,7 +490,6 @@
             "dependsOn": []
         },
         {
-            "condition": "[equals(parameters('osPlatform'), 'Windows')]",
             "name": "DeployWindowsVM",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2021-04-01",
@@ -496,7 +497,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsServer.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "3.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -526,7 +527,7 @@
                         "value": "[parameters('osDiskDeleteOption')]"
                     },
                     "course": {
-                        "value": "[parameters('course')]"
+                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgram')].courseImageDefinitionName]"
                     },
                     "imageVersion": {
                         "value": "[parameters('imageVersion')]"
@@ -552,11 +553,11 @@
                     "guestAttestation": {
                         "value": "[parameters('guestAttestation')]"
                     },
+                    "idleVM": {
+                        "value": "[variables('idleVM')]"
+                    },
                     "nicDeleteOption": {
                         "value": "[parameters('nicDeleteOption')]"
-                    },
-                    "hibernationEnabled": {
-                        "value": "[parameters('hibernationEnabled')]"
                     },
                     "adminUsername": {
                         "reference": {
@@ -615,108 +616,6 @@
             ]
         },
         {
-            "condition": "[equals(parameters('osPlatform'), 'Linux')]",
-            "name": "DeployLinuxVM",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2021-04-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/linuxServer.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "location": {
-                        "value": "[parameters('location')]"
-                    },
-                    "subscriptionId": {
-                        "reference": {
-                            "keyVault": {
-                                "id": "[resourceId(variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
-                            },
-                            "secretName": "SubscriptionId"
-                        }
-                    },
-                    "vmName": {
-                        "value": "[parameters('vmName')]"
-                    },
-                    "vmSize": {
-                        "value": "[parameters('vmSize')]"
-                    },
-                    "vmCount": {
-                        "value": "[parameters('vmCount')]"
-                    },
-                    "osDiskType": {
-                        "value": "[parameters('osDiskType')]"
-                    },
-                    "osDiskDeleteOption": {
-                        "value": "[parameters('osDiskDeleteOption')]"
-                    },
-                    "linuxOS": {
-                        "value": "[parameters('linuxOS')]"
-                    },
-                    "securityType": {
-                        "value": "[parameters('securityType')]"
-                    },
-                    "secureBoot": {
-                        "value": "[parameters('secureBoot')]"
-                    },
-                    "vTPM": {
-                        "value": "[parameters('vTPM')]"
-                    },
-                    "guestAttestation": {
-                        "value": "[parameters('guestAttestation')]"
-                    },
-                    "nicDeleteOption": {
-                        "value": "[parameters('nicDeleteOption')]"
-                    },
-                    "adminUsername": {
-                        "reference": {
-                            "keyVault": {
-                                "id": "[resourceId(variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
-                            },
-                            "secretName": "LabAdmin"
-                        }
-                    },
-                    "adminPassword": {
-                        "reference": {
-                            "keyVault": {
-                                "id": "[resourceId(variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
-                            },
-                            "secretName": "LabAdminPassword"
-                        }
-                    },
-                    "authenticationType": {
-                        "value": "[parameters('authenticationType')]"
-                    },
-                    "sshPublicKeyString": {
-                        "value": "[parameters('sshPublicKeyString')]"
-                    },
-                    "createdBy": {
-                        "value": "[parameters('createdBy')]"
-                    },
-                    "deliveringTrainerInitials": {
-                        "value": "[parameters('deliveringTrainerInitials')]"
-                    },
-                    "courseStartDate": {
-                        "value": "[parameters('courseStartDate')]"
-                    },
-                    "courseEndDay": {
-                        "value": "[parameters('courseEndDay')]"
-                    },
-                    "startupSchedule": {
-                        "value": "[parameters('startupSchedule')]"
-                    },
-                    "resourceGroupCleanup": {
-                        "value": "[parameters('resourceGroupCleanup')]"
-                    }
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', 'DeployNetworkInterface')]"
-            ]
-        },
-        {
             "name": "[concat('shutdown-computevm-', concat(variables('vmNamePrefix'), copyIndex('shutdownLoop', 1)))]",
             "type": "Microsoft.DevTestLab/schedules",
             "apiVersion": "2018-09-15",
@@ -734,7 +633,7 @@
                 "count": "[parameters('vmCount')]"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', if(equals(parameters('osPlatform'), 'Windows'), 'DeployWindowsVM', 'DeployLinuxVM'))]"
+                "[resourceId('Microsoft.Resources/deployments', 'DeployWindowsVM')]"
             ],
             "properties": {
                 "status": "Enabled",
@@ -777,9 +676,9 @@
             "type": "string",
             "value": "[parameters('startupSchedule')]"
         },
-        "hibernationEnabled": {
+        "idleVm": {
             "type": "string",
-            "value": "[parameters('hibernationEnabled')]"
+            "value": "[variables('idleVM')]"
         },
         "resourceGroupCleanup": {
             "type": "string",
@@ -799,11 +698,11 @@
         },
         "operatingSystem": {
             "type": "string",
-            "value": "[if(equals(parameters('osPlatform'), 'Windows'), parameters('course'), parameters('linuxOS'))]"
+            "value": "[parameters('course')]"
         },
         "imageVersion": {
             "type": "string",
-            "value": "[if(equals(parameters('osPlatform'), 'Windows'), parameters('imageVersion'), reference('DeployLinuxVM').outputs.linuxOS.value.version)]"
+            "value": "[parameters('imageVersion')]"
         },
         "virtualMachineFQDN": {
             "type": "array",
