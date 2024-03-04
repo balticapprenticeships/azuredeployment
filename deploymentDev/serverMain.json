@@ -62,6 +62,7 @@
         },
         "osPlatform": {
             "type": "string",
+            "defaultValue": "Windows",
             "allowedValues": [
                 "Windows",
                 "Linux"
@@ -696,9 +697,13 @@
             "type": "string",
             "value": "[parameters('osPlatform')]"
         },
-        "operatingSystem": {
+        "apprenticeshipProgram": {
             "type": "string",
-            "value": "[parameters('course')]"
+            "value": "[parameters('apprenticeshipProgram')]"
+        },
+        "courseImage": {
+            "type": "string",
+            "value": "[variables('courseImageValue')[parameters('apprenticeshipProgram')].courseImageDefinitionName]"
         },
         "imageVersion": {
             "type": "string",
