@@ -37,9 +37,9 @@
                     },
 					{
 						"name": "program",
-						"label": "Select a program",
+						"label": "Select an apprenticeship program",
 						"type": "Microsoft.Common.DropDown",
-						"placeholder": "Select a program",
+						"placeholder": "Select an apprenticeship program",
 						"constraints": {
 							"allowedValues": [
 								{
@@ -61,7 +61,7 @@
                         "name": "courseImageL3Sup",
                         "label": "Select a course",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a course",
+                        "placeholder": "Select a course or image",
                         "constraints": {
                             "allowedValues": [
                                 {
@@ -70,27 +70,31 @@
                                 },
                                 {
                                     "label": "IT Support Course 3 - Working with Client Architecture",
-                                    "value": "ICTSupC3"
+                                    "value": "ICTSupC3N"
                                 },                                
                                 {
-                                    "label": "IT Support Course 4 - Upgrading & Maintaining Client Architecture",
+                                    "label": "IT Support Course 4 - Working with End User Devices (Part 2)",
                                     "value": "ICTSupC4"
                                 },
                                 {
-                                    "label": "IT Support Course 6 - Cloud and Virtualisation",
-                                    "value": "ICTSupC6"
-                                }								                                                              
+                                    "label": "IT Support Course 6 (NEW) - Cloud and Virtualisation",
+                                    "value": "ICTSupC6N"
+                                },
+								{
+                                    "label": "IT Support Bootcamp",
+                                    "value": "ItBootcamp"
+                                }                                                              
                             ],
                             "required": true
                         },
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
                         "visible": "[equals(steps('osConfig').program, 'l3IctSupTech')]"
-                    }, 
+                    },
 					{
                         "name": "courseImageL4",
                         "label": "Select a course",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a course",
+                        "placeholder": "Select a course or image",
                         "constraints": {
                             "allowedValues": [
                                 {
@@ -111,7 +115,7 @@
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
                         "visible": "[equals(steps('osConfig').program, 'l4NetEng')]"
                     },
-                    {
+					{
                         "name": "courseImageBootcamp",
                         "label": "Select a course",
                         "type": "Microsoft.Common.DropDown",
@@ -142,6 +146,22 @@
                                 {
                                     "label": "January",
                                     "value": "3.1.24"
+                                },
+                                {
+                                    "label": "May",
+                                    "value": "2.5.23"
+                                },
+                                {
+                                    "label": "April",
+                                    "value": "2.4.23"
+                                },
+                                {
+                                    "label": "March",
+                                    "value": "2.3.23"
+                                },
+                                {
+                                    "label": "February",
+                                    "value": "2.2.23"
                                 }
                             ],
                             "required": true
@@ -624,9 +644,8 @@
 			"osPlatform": "[steps('osConfig').osPlatform]",
             "apprenticeshipProgram": "[steps('osConfig').program]",          
             "l3SupTechCourse": "[steps('osConfig').courseImageL3Sup]",
-			"l3NetTechCourse": "[steps('osConfig').courseImageL3Net]",
 			"l4NetEngCourse": "[steps('osConfig').courseImageL4]",
-            "bootcampCourse": "[steps('osConfig').bootcamp]",            
+			"bootcampCourse": "[steps('osConfig').bootcamp]",            
             "imageVersion": "[steps('osConfig').imageVersion]",
             "enableHotpatching": "[steps('osConfig').enableHotpatching]",
             "patchMode": "[steps('osConfig').patchMode]",
