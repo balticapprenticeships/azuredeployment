@@ -5,7 +5,7 @@
     "currentVersion": "3.1.0.0",
     "parameters": {
         "config": {
-            "isWizard": false
+            "isWizard": true
         },
         "basics": [],
         "steps": [
@@ -85,35 +85,7 @@
                         },
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
                         "visible": "[equals(steps('osConfig').program, 'l3IctSupTech')]"
-                    },
-					{
-                        "name": "courseImageL3Net",
-                        "label": "Select a course",
-                        "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a course",
-                        "constraints": {
-                            "allowedValues": [
-                                {
-                                    "label": "ICT Network Course 3 - Supporting Network Architecture",
-                                    "value": "ICTNetC3"
-                                },
-                                {
-                                    "label": "ICT Network Course 5 - Cloud and On-Premises Network Installation (Part 1)",
-                                    "value": "ICTNetC5"
-                                },
-                                {
-                                    "label": "ICT Network Course 6 - Cloud and On-Premises Network Installation (Part 2)",
-                                    "value": "ICTNetC6"
-                                },
-                                {
-                                    "label": "Level 3 ICT Network Technician EPA Project",
-                                    "value": "ICTNetEPA"
-                                }                                                            
-                            ],
-                            "required": true
-                        },
-                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
-                        "visible": false,
+                    }, 
 					{
                         "name": "courseImageL4",
                         "label": "Select a course",
