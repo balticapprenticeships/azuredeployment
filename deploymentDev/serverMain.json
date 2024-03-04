@@ -359,9 +359,6 @@
                     "vmCount": {
                         "value": "[parameters('vmCount')]"
                     },
-                    "course": {
-                        "value": "[parameters('course')]"
-                    },
                     "vnetNewOrExisting": {
                         "value": "[parameters('vnetNewOrExisting')]"
                     },
