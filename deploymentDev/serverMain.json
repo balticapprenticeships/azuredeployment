@@ -359,6 +359,9 @@
                     "vmCount": {
                         "value": "[parameters('vmCount')]"
                     },
+                    "course": {
+                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgram')].courseImageDefinitionName]"
+                    },
                     "vnetNewOrExisting": {
                         "value": "[parameters('vnetNewOrExisting')]"
                     },

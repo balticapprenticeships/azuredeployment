@@ -11,6 +11,9 @@
         "vmCount": {
             "type": "int"
         },
+        "course": {
+            "type": "string"
+        },
         "vnetNewOrExisting": {
             "type": "string"
         },
