@@ -85,6 +85,7 @@
             "defaultValue": "NoValue",
             "allowedValues": [
                 "NoValue",
+                "ICTSupC2",
                 "ICTSupC3",
                 "ICTSupC3N",
                 "ICTSupC4",
