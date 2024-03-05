@@ -78,7 +78,7 @@
                                 },
                                 {
                                     "label": "IT Support Course 6 (NEW) - Cloud and Virtualisation",
-                                    "value": "ICTSupC6N"
+                                    "value": "ICTSupC6"
                                 },
 								{
                                     "label": "IT Support Bootcamp",
@@ -286,11 +286,6 @@
                                     "allowedValues": [
                                         {
                                             "label": "Standard Small Server",
-                                            "description": "2 vCPUs, 8GiB memory, No temp storage",
-                                            "value": "Standard_D2s_v5"
-                                        },
-                                        {
-                                            "label": "AMD Standard Small Server",
                                             "description": "2 vCPUs, 8GiB memory, No temp storage",
                                             "value": "Standard_D2as_v5"
                                         },
