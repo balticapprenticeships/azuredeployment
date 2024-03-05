@@ -62,6 +62,7 @@
         },
         "osPlatform": {
             "type": "string",
+            "defaultValue": "Windows",
             "allowedValues": [
                 "Windows",
                 "Linux"
@@ -70,24 +71,82 @@
                 "description": "Select the Operating System type to deploy."
             }
         },
-        "course": {
+        "apprenticeshipProgramme": {
+            "type": "string",
+            "defaultValue": "noValue",
+            "allowedValues": [
+                "l3DmCc",
+                "l3DataAn",
+                "l4DataAn",
+                "l4SoftDev",
+                "mtaExams",
+                "bootcamp"
+            ]
+        },
+        "l3DmCcCourse": {
             "type": "string",
             "defaultValue": "NoValue",
             "allowedValues": [
                 "NoValue",
-                "ICTSupC2",
-                "RawDigital",
-                "DataBootCamp",
-                "ExamTesting",
-                "Diploma",
-                "WinClient",
-                "ICTL3Support",
-                "SQLDataAnalysis",
-                "DataLevel4",
                 "DMCC3",
-                "DMCC4",
+                "DMCC4"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "l4SoftDevCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
                 "SWAPC5"
-
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "l3DataCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "SQLDataAnalysis",
+                "DataLevel4"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "l4DataCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "DataLevel4"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "examCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "ExamTesting"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "bootcampCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "Diploma",
+                "DataBootCamp"
             ],
             "metadata": {
                 "description": "Choose the course to deliver"
@@ -277,6 +336,26 @@
         "securityType": "Standard",
         "licenseType": "AzureLicense",
         "idleVM": "No",
+        "courseImageValue": {
+            "l3DmCc": {
+                "courseImageDefinitionName": "[parameters('l3DmCcCourse')]"
+            },
+            "l3DataAn": {
+                "courseImageDefinitionName": "[parameters('l4SoftDevCourse')]"
+            },
+            "l4DataAn": {
+                "courseImageDefinitionName": "[parameters('l3DataCourse')]"
+            },
+            "l4SoftDev": {
+                "courseImageDefinitionName": "[parameters('l4DataCourse')]"
+            },
+            "mtaExams": {
+                "courseImageDefinitionName": "[parameters('examCourse')]"
+            },
+            "bootcamp": {
+                "courseImageDefinitionName": "[parameters('bootcampCourse')]"
+            }
+        },
         "vaultResourceGroup": "[concat(variables('rwkeyVault')[parameters('routeway')].keyVaultRg, 'OMSRg')]",
         "vaultName": "[concat('VMDeployment', variables('rwkeyVault')[parameters('routeway')].rwSuffix)]",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
@@ -304,7 +383,7 @@
                         "value": "[parameters('vmCount')]"
                     },
                     "course": {
-                        "value": "[parameters('course')]"
+                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
                     },
                     "vnetNewOrExisting": {
                         "value": "[parameters('vnetNewOrExisting')]"
@@ -473,7 +552,7 @@
                         "value": "[parameters('osDiskDeleteOption')]"
                     },
                     "course": {
-                        "value": "[parameters('course')]"
+                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
                     },
                     "imageVersion": {
                         "value": "[parameters('imageVersion')]"
@@ -642,9 +721,13 @@
             "type": "string",
             "value": "[parameters('osPlatform')]"
         },
-        "operatingSystem": {
+        "apprenticeshipProgram": {
             "type": "string",
-            "value": "[parameters('course')]"
+            "value": "[parameters('apprenticeshipProgramme')]"
+        },
+        "courseImage": {
+            "type": "string",
+            "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
         },
         "imageVersion": {
             "type": "string",

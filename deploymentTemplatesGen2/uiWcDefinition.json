@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "3.0.0.0",
+    "currentVersion": "3.1.0.0",
     "parameters": {
         "config": {
             "isWizard": true
@@ -32,40 +32,110 @@
                                     "value": "Windows"                                            
                                 }
                             ]
-                        }
+                        },
+						"visible": false
                     },
+					{
+						"name": "programme",
+						"label": "Select a programme",
+						"type": "Microsoft.Common.DropDown",
+						"placeholder": "Select a programme",
+						"constraints": {
+							"allowedValues": [
+								{
+									"label": "Level 3 Content Creator",
+									"value": "l3DmCc"
+								},
+								{
+									"label": "Level 3 Data",
+									"value": "l3DataAn"
+								},
+								{
+									"label": "Level 4 Data Analyst",
+									"value": "l4DataAn"
+								},
+								{
+									"label": "Level 4 Software Developer",
+									"value": "l4SoftDev"
+								},
+								{
+									"label": "Exams",
+									"value": "mtaExams"
+								},
+								{
+									"label": "Bootcamp",
+									"value": "bootcamp"
+								}
+							]
+						}
+					},					
                     {
-                        "name": "operatingSystem",
-                        "label": "Select a course or Image",
+                        "name": "courseImageL3DmCc",
+                        "label": "Select a course",
                         "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select a course or image",
+                        "placeholder": "Select a course",
+                        "constraints": {
+                            "allowedValues": [
+								{
+                                    "label": "Content Creator Course 3 - Video Production & Podcasting: Adobe Premier Pro",
+                                    "value": "DMCC3"
+                                },
+                                {
+                                    "label": "Content Creator Course 4 - Creating Professional Graphics: Photoshop & Canva",
+                                    "value": "DMCC4"
+                                }                                
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').programme, 'l3DmCc')]"
+                    },
+					{
+                        "name": "courseImageL4SoftDev",
+                        "label": "Select a course",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course",
                         "constraints": {
                             "allowedValues": [
                                 {
-                                    "label": "Course 2 - IT Troubleshooting",
-                                    "value": "ICTSupC2"
-                                },
-                                {
-                                    "label": "L2 Diploma",
-                                    "value": "Diploma"
-                                },
-                                {
-                                    "label": "MTA/C&G Exams",
-                                    "value": "ExamTesting"
-                                },
-                                {
-                                    "label": "Data Boot Camp",
-                                    "value": "DataBootCamp"
-                                },
-                                {
+                                    "label": "Software Developer Course 5 - Advanced Programming Part 2 (Pac-Man)",
+                                    "value": "SWAPC5"
+                                }                                                               
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').programme, 'l4SoftDev')]"
+                    },
+					{
+                        "name": "courseImageL3Data",
+                        "label": "Select a course",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course",
+                        "constraints": {
+                            "allowedValues": [
+								{
+                                    "label": "L3 Course 6 - Data stories through PowerBi",
+                                    "value": "DataLevel4"
+                                }                                                               
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').programme, 'l3DataAn')]"
+                    },
+					{
+                        "name": "courseImageL4Data",
+                        "label": "Select a course",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course",
+                        "constraints": {
+                            "allowedValues": [
+								{
                                     "label": "SQL for Data Analysis",
                                     "value": "SQLDataAnalysis"
                                 },
-                                {
-                                    "label": "L3 Course 6 - Data stories through PowerBi",
-                                    "value": "DataLevel4"
-                                },
-                                {
+								{
                                     "label": "L4 Data Analysis Concepts Part 2",
                                     "value": "DataLevel4"
                                 },
@@ -76,24 +146,50 @@
                                 {
                                     "label": "L4 Data Analysis Using Python Part 2",
                                     "value": "DataLevel4"
-                                },
-                                {
-                                    "label": "DM Course 3 - Video Production & Podcasting: Adobe Premier Pro",
-                                    "value": "DMCC3"
-                                },
-                                {
-                                    "label": "DM Course 4 - Creating Professional Graphics: Photoshop & Canva",
-                                    "value": "DMCC4"
-                                },
-                                {
-                                    "label": "SW Course 5 - Advanced Programming Part 2 (Pac-Man)",
-                                    "value": "SWAPC5"
-                                }
+                                }                                                               
                             ],
                             "required": true
                         },
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
-                        "visible": "[equals(steps('osConfig').osPlatform, 'Windows')]"
+                        "visible": "[equals(steps('osConfig').programme, 'l4DataAn')]"
+                    },
+					{
+                        "name": "examImage",
+                        "label": "Select a course",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "MTA/C&G Exams",
+                                    "value": "ExamTesting"
+                                }                                
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').programme, 'mtaExams')]"
+                    },
+					{
+                        "name": "courseImageBootcamp",
+                        "label": "Select a course",
+                        "type": "Microsoft.Common.DropDown",
+                        "placeholder": "Select a course",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Data Boot Camp",
+                                    "value": "DataBootCamp"
+                                },
+								{
+                                    "label": "L2 Diploma",
+                                    "value": "Diploma"
+                                },                                                            
+                            ],
+                            "required": true
+                        },
+                        "toolTip": "Here you can select the operating system for your virtual machine(s).",
+                        "visible": "[equals(steps('osConfig').programme, 'bootcamp')]"
                     },
                     {
                         "name": "imageVersion",
@@ -600,9 +696,15 @@
             "vmName": "[steps('vmConfig').vmInstance.vmName]",            
             "vmSize": "[steps('vmConfig').vmInstance.vmSize]",
             "vmCount": "[steps('vmConfig').vmInstance.vmCount]",
-            "osDiskType": "[steps('vmConfig').vmInstance.osDiskType]",            
-            "course": "[steps('osConfig').operatingSystem]",
+            "osDiskType": "[steps('vmConfig').vmInstance.osDiskType]",
             "osPlatform": "[steps('osConfig').osPlatform]",
+			"apprenticeshipProgramme": "[steps('osConfig').programme]",          
+            "l3DmCcCourse": "[steps('osConfig').courseImageL3DmCc]",
+			"l4SoftDevCourse": "[steps('osConfig').courseImageL4SoftDev]",
+			"l3DataCourse": "[steps('osConfig').courseImageL3Data]",
+			"l4DataCourse": "[steps('osConfig').courseImageL4Data]",
+			"examCourse": "[steps('osConfig').examImage]",
+			"bootcampCourse": "[steps('osConfig').courseImageBootcamp]",
             "imageVersion": "[steps('osConfig').imageVersion]",
             "enableHotpatching": "[steps('osConfig').enableHotpatching]",
             "patchMode": "[steps('osConfig').patchMode]",
