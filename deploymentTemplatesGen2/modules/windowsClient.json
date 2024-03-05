@@ -94,9 +94,6 @@
         "galleryImageName": "TrainingACG",
         "WindowsLicense": "Windows_Client",
         "operatingSystemValues": {
-            "ICTSupC2": {
-                "galleryImageDefinitionName": "BA-ICTSupCourse2"
-            },
             "DataBootCamp": {
                 "galleryImageDefinitionName": "BA-Win10-Courses"
             },
