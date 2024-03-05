@@ -71,7 +71,7 @@
                 "description": "Select the Operating System type to deploy."
             }
         },
-        "apprenticeshipProgram": {
+        "apprenticeshipProgramme": {
             "type": "string",
             "defaultValue": "noValue",
             "allowedValues": [
@@ -371,7 +371,7 @@
                         "value": "[parameters('vmCount')]"
                     },
                     "course": {
-                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgram')].courseImageDefinitionName]"
+                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
                     },
                     "vnetNewOrExisting": {
                         "value": "[parameters('vnetNewOrExisting')]"
@@ -540,7 +540,7 @@
                         "value": "[parameters('osDiskDeleteOption')]"
                     },
                     "course": {
-                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgram')].courseImageDefinitionName]"
+                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
                     },
                     "imageVersion": {
                         "value": "[parameters('imageVersion')]"
@@ -709,13 +709,13 @@
             "type": "string",
             "value": "[parameters('osPlatform')]"
         },
-        "apprenticeshipProgram": {
+        "apprenticeshipProgramme": {
             "type": "string",
-            "value": "[parameters('apprenticeshipProgram')]"
+            "value": "[parameters('apprenticeshipProgramme')]"
         },
         "courseImage": {
             "type": "string",
-            "value": "[variables('courseImageValue')[parameters('apprenticeshipProgram')].courseImageDefinitionName]"
+            "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
         },
         "imageVersion": {
             "type": "string",

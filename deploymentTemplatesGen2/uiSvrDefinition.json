@@ -36,10 +36,10 @@
 						"visible": false
                     },
 					{
-						"name": "program",
-						"label": "Select an apprenticeship program",
+						"name": "programme",
+						"label": "Select an apprenticeship programme",
 						"type": "Microsoft.Common.DropDown",
-						"placeholder": "Select an apprenticeship program",
+						"placeholder": "Select an apprenticeship programme",
 						"constraints": {
 							"allowedValues": [
 								{
@@ -88,7 +88,7 @@
                             "required": true
                         },
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
-                        "visible": "[equals(steps('osConfig').program, 'l3IctSupTech')]"
+                        "visible": "[equals(steps('osConfig').programme, 'l3IctSupTech')]"
                     },
 					{
                         "name": "courseImageL4",
@@ -113,7 +113,7 @@
                             "required": true
                         },
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
-                        "visible": "[equals(steps('osConfig').program, 'l4NetEng')]"
+                        "visible": "[equals(steps('osConfig').programme, 'l4NetEng')]"
                     },
 					{
                         "name": "courseImageBootcamp",
@@ -130,7 +130,7 @@
                             "required": true
                         },
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
-                        "visible": "[equals(steps('osConfig').program, 'bootcamp')]"
+                        "visible": "[equals(steps('osConfig').programme, 'bootcamp')]"
                     },
                     {
                         "name": "imageVersion",
@@ -167,7 +167,7 @@
                             "required": true
                         },
                         "toolTip": "Here you can choose from different OS image version however, 'Latest' is recommended.",
-                        "visible": "[or(equals(steps('osConfig').program, 'l3IctSupTech'), equals(steps('osConfig').program, 'l3IctNetTech'), equals(steps('osConfig').program, 'l4NetEng'))]"
+                        "visible": "[or(equals(steps('osConfig').programme, 'l3IctSupTech'), equals(steps('osConfig').programme, 'bootcamp'), equals(steps('osConfig').programme, 'l4NetEng'))]"
                     },
                     {
                         "name": "enableHotpatching",
@@ -642,7 +642,7 @@
             "vmCount": "[steps('vmConfig').vmInstance.vmCount]",
             "osDiskType": "[steps('vmConfig').vmInstance.osDiskType]",
 			"osPlatform": "[steps('osConfig').osPlatform]",
-            "apprenticeshipProgram": "[steps('osConfig').program]",          
+            "apprenticeshipProgramme": "[steps('osConfig').programme]",          
             "l3SupTechCourse": "[steps('osConfig').courseImageL3Sup]",
 			"l4NetEngCourse": "[steps('osConfig').courseImageL4]",
 			"bootcampCourse": "[steps('osConfig').courseImageBootcamp]",            
