@@ -485,7 +485,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/publicIP.json')]",
-                    "contentVersion": "3.0.0.0"
+                    "contentVersion": "3.1.0.0"
                 },
                 "parameters": {
                     "location": {
