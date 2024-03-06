@@ -258,10 +258,10 @@
                 "description": "Please enter your firstname and surname."
             }
         },
-        "deliveringTrainerInitials": {
+        "deliveringCoachInitials": {
             "type": "string",
             "metadata": {
-                "description": "Please provide the first and last inital of the delivering trainer."
+                "description": "Please provide the first and last inital of the delivering coach."
             }
         },
         "routeway": {
@@ -307,7 +307,7 @@
     },
     "functions": [],
     "variables": {
-        "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringTrainerInitials')))]",
+        "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringCoachInitials')))]",
         "rwkeyVault": {
             "IT": {
                 "keyVaultRg": "ITRouteway",
@@ -399,8 +399,8 @@
                     "createdBy": {
                         "value": "[parameters('createdBy')]"
                     },
-                    "deliveringTrainerinitials": {
-                        "value": "[parameters('deliveringTrainerInitials')]"
+                    "deliveringCoachinitials": {
+                        "value": "[parameters('deliveringCoachInitials')]"
                     },
                     "courseStartDate": {
                         "value": "[parameters('courseStartDate')]"
@@ -500,8 +500,8 @@
                     "createdBy": {
                         "value": "[parameters('createdBy')]"
                     },
-                    "deliveringTrainerinitials": {
-                        "value": "[parameters('deliveringTrainerInitials')]"
+                    "deliveringCoachinitials": {
+                        "value": "[parameters('deliveringCoachInitials')]"
                     },
                     "courseStartDate": {
                         "value": "[parameters('courseStartDate')]"
@@ -618,8 +618,8 @@
                     "createdBy": {
                         "value": "[parameters('createdBy')]"
                     },
-                    "deliveringTrainerInitials": {
-                        "value": "[parameters('deliveringTrainerInitials')]"
+                    "deliveringCoachInitials": {
+                        "value": "[parameters('deliveringCoachInitials')]"
                     },
                     "courseStartDate": {
                         "value": "[parameters('courseStartDate')]"
@@ -692,9 +692,9 @@
             "type": "string",
             "value": "[parameters('createdBy')]"
         },
-        "trainer": {
+        "coach": {
             "type": "string",
-            "value": "[parameters('deliveringTrainerInitials')]"
+            "value": "[parameters('deliveringCoachInitials')]"
         },
         "scheduleOn": {
             "type": "string",

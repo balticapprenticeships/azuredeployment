@@ -71,7 +71,7 @@
         "createdBy": {
             "type": "string"
         },
-        "deliveringTrainerInitials": {
+        "deliveringCoachInitials": {
             "type": "string"
         },
         "courseStartDate": {
@@ -89,7 +89,7 @@
     },
     "functions": [],
     "variables": {
-        "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringTrainerInitials')))]",
+        "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringCoachInitials')))]",
         "acgRG": "BalticImageGalleryRg",
         "galleryImageName": "TrainingACG",
         "WindowsLicense": "Windows_Server",

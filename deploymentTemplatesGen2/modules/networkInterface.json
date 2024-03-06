@@ -29,7 +29,7 @@
         "createdBy": {
             "type": "string"
         },
-        "deliveringTrainerInitials": {
+        "deliveringCoachInitials": {
             "type": "string"
         },
         "courseStartDate": {
@@ -42,7 +42,7 @@
     "functions": [],
     "variables": {
         "nsgName": "[concat(resourceGroup().name, '-nsg')]",
-        "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringTrainerInitials')))]",
+        "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringCoachInitials')))]",
         "vnetname": "[concat(resourceGroup().name, '-vnet')]",
         "newVnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetname'), parameters('subnetName'))]",
         "existingVnetId": "[resourceId('Microsoft.Network/virtualNetworks/', parameters('existingVnet'))]",

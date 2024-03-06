@@ -341,11 +341,6 @@
                                             "value": "Standard_B2s"
                                         },
                                         {
-                                            "label": "Standard Small VM for Hyper-V",
-                                            "description": "2 vCPUs, 8GiB memory, No temp storage",
-                                            "value": "Standard_D2s_v5"
-                                        },
-                                        {
                                             "label": "Standard medium for Windows Client",
                                             "description": "2 vCPUs, 8GiB memory, 16GiB temp storage",
                                             "value": "Standard_B2ms"
@@ -531,10 +526,10 @@
                                 "toolTip": "Here you can enter your first name and surname"
                             },
                             {
-                                "name": "trainerInitials",
-                                "label": "Delivering Trainer Initials",
+                                "name": "coachInitials",
+                                "label": "Delivering Coach Initials",
                                 "type": "Microsoft.Common.TextBox",                                
-                                "placeholder": "Delivering Trainer Initials e.g., JB",
+                                "placeholder": "Delivering Coach Initials e.g., JB",
                                 "constraints": {
                                     "regex": "^[A-Z]{2}$",
                                     "required": true,
@@ -591,10 +586,12 @@
                                 "label": "Training End Day",
                                 "type": "Microsoft.Common.DropDown",
                                 "placeholder": "e.g., Tuesday",
+                                "miltiLine": true,
                                 "constraints": {
                                     "allowedValues": [
                                         {
                                             "label": "None",
+                                            "description": "This option should only be set with your managers approval",
                                             "value": "None"
                                         },
                                         {
@@ -679,7 +676,7 @@
                                         },
                                         {
                                             "label": "No",
-                                            "description": "Do not automatically remove VM resource",
+                                            "description": "Do not automatically remove VM resource. Use if Training End Day set to 'None'.",
                                             "value": "Disabled"
                                         }
                                     ],
@@ -717,7 +714,7 @@
             "existingVnet": "[steps('netConfig').nicConfig.vnetSelector.name]",
             "subnetName": "[steps('netConfig').nicConfig.subnetName]",
             "createdBy": "[steps('tags').mngTagsConfig.createdBy]",
-            "deliveringTrainerInitials": "[steps('tags').mngTagsConfig.trainerInitials]",
+            "deliveringCoachInitials": "[steps('tags').mngTagsConfig.coachInitials]",
             "routeway": "[steps('tags').mngTagsConfig.routeway]",
             "courseStartDate": "[steps('tags').mngTagsConfig.courseDate]",
             "courseEndDay": "[steps('tags').mngTagsConfig.courseEndDay]",
