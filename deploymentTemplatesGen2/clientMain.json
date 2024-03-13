@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.0.2.0",
+    "contentVersion": "3.0.3.0",
     "parameters": {
         "location": {
             "type": "string",
@@ -74,7 +74,6 @@
         },
         "apprenticeshipProgramme": {
             "type": "string",
-            "defaultValue": "NoValue",
             "allowedValues": [
                 "l3DmCc",
                 "l3DataAn",
@@ -715,7 +714,7 @@
         },
         "osDiskType": {
             "type": "string",
-            "value": "[variables('osDiskSku')]"
+            "value": "[parameters('osDiskType')]"
         },
         "vmSize": {
             "type": "string",
