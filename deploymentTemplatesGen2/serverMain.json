@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.0.1.0",
+    "contentVersion": "3.0.2.0",
     "parameters": {
         "location": {
             "type": "string",
@@ -358,7 +358,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkInterface.json')]",
-                    "contentVersion": "3.0.0.0"
+                    "contentVersion": "3.0.1.0"
                 },
                 "parameters": {
                     "location": {
@@ -369,6 +369,9 @@
                     },
                     "vmCount": {
                         "value": "[parameters('vmCount')]"
+                    },
+                    "vmSize": {
+                        "value": "[parameters('vmSize')]"
                     },
                     "course": {
                         "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
