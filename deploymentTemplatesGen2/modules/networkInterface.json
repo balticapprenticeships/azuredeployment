@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.0.0.0",
+    "contentVersion": "3.0.1.0",
     "parameters": {
         "location": {
             "type": "string"
@@ -10,6 +10,9 @@
         },
         "vmCount": {
             "type": "int"
+        },
+        "vmSize": {
+            "type": "string"
         },
         "course": {
             "type": "string"
@@ -47,7 +50,7 @@
         "newVnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetname'), parameters('subnetName'))]",
         "existingVnetId": "[resourceId('Microsoft.Network/virtualNetworks/', parameters('existingVnet'))]",
         "existingSubnetId": "[concat(variables('existingVnetId'), '/subnets/', parameters('subnetName'))]",
-        "acceleratedNetworking": true
+        "acceleratedNetworking": "[if(contains(parameters('vmSize'), 'Standard_B'), 'false', 'true')]"
     },
     "resources": [
         {
@@ -87,7 +90,7 @@
                         }
                     }
                 ],
-                "enableAcceleratedNetworking": true,
+                "enableAcceleratedNetworking": "[variables('acceleratedNetworking')]",
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
                 }
