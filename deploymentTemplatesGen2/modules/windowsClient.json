@@ -314,7 +314,7 @@
                         "autoUpgradeMinorVersion": true,
                         "settings": {
                             "fileUris": [
-                                "https://raw.githubusercontent.com/balticapprenticeships/azure-development/main/Extensions/install-nvidia-drivers.ps1"
+                                "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment/main/extensions/install-nvidia-drivers.ps1"
                             ]
                         },
                         "protectedSettings": {
