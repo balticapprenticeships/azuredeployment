@@ -74,6 +74,7 @@
         },
         "apprenticeshipProgramme": {
             "type": "string",
+            "defaultValue": "NoValue",
             "allowedValues": [
                 "l3DmCc",
                 "l3DataAn",
@@ -94,24 +95,12 @@
             "metadata": {
                 "description": "Choose the course to deliver"
             }
-        },
-        "l4SoftDevCourse": {
-            "type": "string",
-            "defaultValue": "NoValue",
-            "allowedValues": [
-                "NoValue",
-                "SWAPC5"
-            ],
-            "metadata": {
-                "description": "Choose the course to deliver"
-            }
-        },
+        },        
         "l3DataCourse": {
             "type": "string",
             "defaultValue": "NoValue",
             "allowedValues": [
                 "NoValue",
-                "SQLDataAnalysis",
                 "DataLevel4"
             ],
             "metadata": {
@@ -123,7 +112,19 @@
             "defaultValue": "NoValue",
             "allowedValues": [
                 "NoValue",
+                "SQLDataAnalysis",
                 "DataLevel4"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "l4SoftDevCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "SWAPC5"
             ],
             "metadata": {
                 "description": "Choose the course to deliver"
