@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.0.0.0",
+    "contentVersion": "3.0.2.0",
     "parameters": {
         "location": {
             "type": "string",
@@ -22,6 +22,7 @@
                 "Standard_B2s",
                 "Standard_B2ms",
                 "Standard_D2s_v5",
+                "Standard_D2as_v5",
                 "Standard_NV4as_v4",
                 "Standard_NV12s_v3",
                 "Standard_NC4as_T4_v3"
@@ -369,7 +370,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkInterface.json')]",
-                    "contentVersion": "3.0.0.0"
+                    "contentVersion": "3.0.1.0"
                 },
                 "parameters": {
                     "location": {
@@ -380,6 +381,9 @@
                     },
                     "vmCount": {
                         "value": "[parameters('vmCount')]"
+                    },
+                    "vmSize": {
+                        "value": "[parameters('vmSize')]"
                     },
                     "course": {
                         "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
