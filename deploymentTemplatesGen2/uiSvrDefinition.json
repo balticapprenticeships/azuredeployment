@@ -79,10 +79,6 @@
                                 {
                                     "label": "IT Support Course 6 - Cloud and Virtualisation",
                                     "value": "ICTSupC6"
-                                },
-								{
-                                    "label": "IT Support Bootcamp",
-                                    "value": "ItBootcamp"
                                 }                                                              
                             ],
                             "required": true
