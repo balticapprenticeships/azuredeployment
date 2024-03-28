@@ -140,6 +140,10 @@
                                     "value": "latest"
                                 },
                                 {
+                                    "label": "February",
+                                    "value": "3.2.24"
+                                },
+                                {
                                     "label": "January",
                                     "value": "3.1.24"
                                 },
@@ -154,11 +158,7 @@
                                 {
                                     "label": "March",
                                     "value": "2.3.23"
-                                },
-                                {
-                                    "label": "February",
-                                    "value": "2.2.23"
-                                }
+                                }                                
                             ],
                             "required": true
                         },
