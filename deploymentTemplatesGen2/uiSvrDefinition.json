@@ -74,11 +74,19 @@
                                 },                                
                                 {
                                     "label": "IT Support Course 4 - Working with End User Devices (Part 2)",
+                                    "value": "ICTSupC4Old"
+                                },
+                                {
+                                    "label": "IT Support Course 4 - Upgrading and Maintaining Client Architecture",
                                     "value": "ICTSupC4"
                                 },
                                 {
                                     "label": "IT Support Course 6 - Cloud and Virtualisation",
                                     "value": "ICTSupC6"
+                                },
+                                {
+                                    "label": "IT Support Course 6 - Working With Network Architecture (Part 2)",
+                                    "value": "ICTSupC6Old"
                                 }                                                              
                             ],
                             "required": true

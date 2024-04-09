@@ -103,8 +103,14 @@
             "ICTSupC4": {
                 "galleryImageDefinitionName": "BA-ICTSupMstr"
             },
+            "ICTSupC4Old": {
+                "galleryImageDefinitionName": "BA-ICTSupCourse3-4"
+            },
             "ICTSupC6": {
                 "galleryImageDefinitionName": "BA-ICTSupMstr"
+            },
+            "ICTSupC6Old": {
+                "galleryImageDefinitionName": "BA-ICTSupCourse6"
             },
             "L4NetEngC4": {
                 "galleryImageDefinitionName": "BA-L4NetEngCourse4"
