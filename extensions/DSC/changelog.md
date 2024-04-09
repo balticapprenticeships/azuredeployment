@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [5.4.0] 23.06.23
+## Add
+- [xBaLabWinSvrCfg]
+  added ICTSupC4Old & ICTSupC6Old
+
 ## [4.9.0] 23.06.23
 ## Add
 - [xBaLabWinSvrCfg]
