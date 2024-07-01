@@ -21,6 +21,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [3.1.0.0] 26.06.24
+### Change
+- [servermain,windowsServer,uiSvrDefinition]
+  removed course 4 and 6 old
+
 ## [3.0.2.0] 13.03.24
 ### Change
 - [serverMain]
