@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Modules
+## [3.1.0.1] 16.08.24
+### Change
+- [serverMain]
+  updated image allowed versions
+
+## [3.1.1.1] 16.08.24
+### Change
+- [uiSvrDefinition]
+  updated allowed image versions
 
 ## [3.0.1.0] 13.03.24
 ### Change

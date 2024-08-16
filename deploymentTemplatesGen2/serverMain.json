@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.0.0",
+    "contentVersion": "3.1.0.1",
     "parameters": {
         "location": {
             "type": "string",
@@ -140,14 +140,8 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
-                "3.2.24",
-                "3.1.24",
-                "2.6.23",
-                "2.5.23",
-                "2.4.23",
-                "2.3.23",
-                "2.2.23",
-                "2.1.23"
+                "3.6.24",
+                "3.5.24"
             ],
             "metadata": {
                 "description": "Lab image version"
