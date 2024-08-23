@@ -98,8 +98,12 @@
                         "constraints": {
                             "allowedValues": [
                                 {
-                                    "label": "Software Developer Course 5 - Advanced Programming Part 2 (Pac-Man)",
+                                    "label": "Software Developer Course 5 - Advanced Programming Part 2 (Pac-Man) Unreal Engine 5.2.1",
                                     "value": "SWAPC5"
+                                },
+                                {
+                                    "label": "Software Developer Course 5 - Advanced Programming Part 2 (Pac-Man) Inreal Engine 5.4.3",
+                                    "value": "SWAPC5UE5"
                                 }                                                               
                             ],
                             "required": true
@@ -203,15 +207,19 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "May",
+                                    "label": "June 2023",
+                                    "value": "2.6.23"
+                                }
+                                {
+                                    "label": "May 2023",
                                     "value": "2.5.23"
                                 },
                                 {
-                                    "label": "April",
+                                    "label": "April 2023",
                                     "value": "2.4.23"
                                 },
                                 {
-                                    "label": "March",
+                                    "label": "March 2023",
                                     "value": "2.3.23"
                                 }
                             ],

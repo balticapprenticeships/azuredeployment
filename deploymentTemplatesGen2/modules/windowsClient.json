@@ -123,6 +123,9 @@
             },
             "SWAPC5": {
                 "galleryImageDefinitionName": "BA-SWDCourse5"
+            },
+            "SWAPC5UE5": {
+                "galleryImageDefinitionName": "BA-L4SWDCourse5"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",
