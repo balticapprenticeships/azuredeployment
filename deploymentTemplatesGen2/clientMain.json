@@ -85,42 +85,70 @@
         },
         "l3DmCcCourse": {
             "type": "string",
-            "defaultValue": "null",
+            "defaultValue": "",
+            "allowedValues": [
+                "NoValue",
+                "DMCC3",
+                "DMCC4"
+            ],
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },        
         "l3DataCourse": {
             "type": "string",
-            "defaultValue": "null",
+            "defaultValue": "",
+            "allowedValues": [
+                "NoValue",
+                "DataLevel4"
+            ],
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },
         "l4DataCourse": {
             "type": "string",
-            "defaultValue": "null",
+            "defaultValue": "",
+            "allowedValues": [
+                "NoValue",
+                "SQLDataAnalysis",
+                "DataLevel4"
+            ],
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },
         "l4SoftDevCourse": {
             "type": "string",
-            "defaultValue": "null",
+            "defaultValue": "",
+            "allowedValues": [
+                "NoValue",
+                "SWAPC5",
+                "SWAPC5UE5"
+            ],
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },
         "examCourse": {
             "type": "string",
-            "defaultValue": "null",
+            "defaultValue": "",
+            "allowedValues": [
+                "NoValue",
+                "ExamTesting"
+            ],
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },
         "bootcampCourse": {
             "type": "string",
-            "defaultValue": "null",
+            "defaultValue": "",
+            "allowedValues": [
+                "NoValue",
+                "Diploma",
+                "DataBootCamp"
+            ],
             "metadata": {
                 "description": "Choose the course to deliver"
             }
