@@ -74,7 +74,6 @@
         },
         "apprenticeshipProgramme": {
             "type": "string",
-            "defaultValue": "noValue",
             "allowedValues": [
                 "l3DmCc",
                 "l3DataAn",
@@ -86,7 +85,9 @@
         },
         "l3DmCcCourse": {
             "type": "string",
+            "defaultValue": null,
             "allowedValues": [
+                "NoValue",
                 "DMCC3",
                 "DMCC4"
             ],
@@ -96,7 +97,9 @@
         },        
         "l3DataCourse": {
             "type": "string",
+            "defaultValue": null,
             "allowedValues": [
+                "NoValue",
                 "DataLevel4"
             ],
             "metadata": {
@@ -105,7 +108,9 @@
         },
         "l4DataCourse": {
             "type": "string",
+            "defaultValue": null,
             "allowedValues": [
+                "NoValue",
                 "SQLDataAnalysis",
                 "DataLevel4"
             ],
@@ -115,7 +120,9 @@
         },
         "l4SoftDevCourse": {
             "type": "string",
+            "defaultValue": null,
             "allowedValues": [
+                "NoValue",
                 "SWAPC5",
                 "SWAPC5UE5"
             ],
@@ -125,7 +132,9 @@
         },
         "examCourse": {
             "type": "string",
+            "defaultValue": null,
             "allowedValues": [
+                "NoValue",
                 "ExamTesting"
             ],
             "metadata": {
@@ -134,7 +143,9 @@
         },
         "bootcampCourse": {
             "type": "string",
+            "defaultValue": null,
             "allowedValues": [
+                "NoValue",
                 "Diploma",
                 "DataBootCamp"
             ],
