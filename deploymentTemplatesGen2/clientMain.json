@@ -74,6 +74,7 @@
         },
         "apprenticeshipProgramme": {
             "type": "string",
+            "defaultValue": "noValue",
             "allowedValues": [
                 "l3DmCc",
                 "l3DataAn",
