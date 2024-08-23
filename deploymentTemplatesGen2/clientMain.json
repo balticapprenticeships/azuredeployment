@@ -87,7 +87,7 @@
             "type": "string",
             "defaultValue": "",
             "allowedValues": [
-                "NoValue",
+                "",
                 "DMCC3",
                 "DMCC4"
             ],
@@ -99,7 +99,7 @@
             "type": "string",
             "defaultValue": "",
             "allowedValues": [
-                "NoValue",
+                "",
                 "DataLevel4"
             ],
             "metadata": {
@@ -110,7 +110,7 @@
             "type": "string",
             "defaultValue": "",
             "allowedValues": [
-                "NoValue",
+                "",
                 "SQLDataAnalysis",
                 "DataLevel4"
             ],
@@ -122,7 +122,7 @@
             "type": "string",
             "defaultValue": "",
             "allowedValues": [
-                "NoValue",
+                "",
                 "SWAPC5",
                 "SWAPC5UE5"
             ],
@@ -134,7 +134,7 @@
             "type": "string",
             "defaultValue": "",
             "allowedValues": [
-                "NoValue",
+                "",
                 "ExamTesting"
             ],
             "metadata": {
@@ -145,7 +145,7 @@
             "type": "string",
             "defaultValue": "",
             "allowedValues": [
-                "NoValue",
+                "",
                 "Diploma",
                 "DataBootCamp"
             ],
