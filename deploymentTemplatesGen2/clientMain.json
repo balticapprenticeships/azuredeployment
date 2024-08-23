@@ -85,42 +85,42 @@
         },
         "l3DmCcCourse": {
             "type": "string",
-            "defaultValue": null,
+            "defaultValue": "null",
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },        
         "l3DataCourse": {
             "type": "string",
-            "defaultValue": null,
+            "defaultValue": "null",
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },
         "l4DataCourse": {
             "type": "string",
-            "defaultValue": null,
+            "defaultValue": "null",
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },
         "l4SoftDevCourse": {
             "type": "string",
-            "defaultValue": null,
+            "defaultValue": "null",
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },
         "examCourse": {
             "type": "string",
-            "defaultValue": null,
+            "defaultValue": "null",
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },
         "bootcampCourse": {
             "type": "string",
-            "defaultValue": null,
+            "defaultValue": "null",
             "metadata": {
                 "description": "Choose the course to deliver"
             }
