@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.0.3.0",
+    "contentVersion": "3.1.0.1",
     "parameters": {
         "location": {
             "type": "string",
@@ -20,8 +20,10 @@
             "allowedValues": [
                 "Standard_B1ms",
                 "Standard_B2s",
-                "Standard_B2ms",
+                "Standard_D2s_v3",
+                "Standard_D4s_v3",
                 "Standard_D2s_v5",
+                "Standard_D4s_v5",
                 "Standard_D2as_v5",
                 "Standard_NV4as_v4",
                 "Standard_NV12s_v3",
@@ -74,6 +76,7 @@
         },
         "apprenticeshipProgramme": {
             "type": "string",
+            "defaultValue": "noValue",
             "allowedValues": [
                 "l3DmCc",
                 "l3DataAn",
@@ -85,42 +88,70 @@
         },
         "l3DmCcCourse": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "DMCC3",
+                "DMCC4"
+            ],
             "metadata": {
                 "description": "Choose the course to deliver"
             }
-        },        
+        },
         "l3DataCourse": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "DataLevel4"
+            ],
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },
         "l4DataCourse": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "SQLDataAnalysis",
+                "DataLevel4"
+            ],
             "metadata": {
                 "description": "Choose the course to deliver"
             }
         },
         "l4SoftDevCourse": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "SWAPC5",
+                "SWAPC5UE5"
+            ],
             "metadata": {
-                "description": "Choose the course to deliver"
+                "description": "Choose the course to devliver"
             }
         },
         "examCourse": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "ExamTesting"
+            ],
             "metadata": {
-                "description": "Choose the course to deliver"
+                "description": "Choose the exam to proctor"
             }
         },
         "bootcampCourse": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "DataBootCamp",
+                "Diploma"
+            ],
             "metadata": {
                 "description": "Choose the course to deliver"
             }
@@ -157,7 +188,11 @@
         },
         "secureBoot": {
             "type": "bool",
-            "defaultValue": true,
+            "defaultValue": false,
+            "allowedValues": [
+                true,
+                false
+            ],
             "metadata": {
                 "description": "Enable to help protect the VM from malware e.g., root kits"
             }
@@ -165,6 +200,10 @@
         "vTPM": {
             "type": "bool",
             "defaultValue": true,
+            "allowedValues": [
+                true,
+                false
+            ],
             "metadata": {
                 "description": "Enable to configure a virtual Trusted Platform Module 2.0"
             }
@@ -306,8 +345,6 @@
             }
         },
         "patchMode": "[if(equals(parameters('osPlatform'), 'Windows'), 'AutomaticByOS', 'ImageDefault')]",
-        "osDiskSku": "[if(contains(parameters('vmSize'), 'Standard_NC'), 'StandardSSD_LRS', 'Standard_LRS')]",
-        "securityType": "Standard",
         "licenseType": "AzureLicense",
         "idleVM": "No",
         "courseImageValue": {
@@ -315,13 +352,13 @@
                 "courseImageDefinitionName": "[parameters('l3DmCcCourse')]"
             },
             "l3DataAn": {
-                "courseImageDefinitionName": "[parameters('l4SoftDevCourse')]"
-            },
-            "l4DataAn": {
                 "courseImageDefinitionName": "[parameters('l3DataCourse')]"
             },
-            "l4SoftDev": {
+            "l4DataAn": {
                 "courseImageDefinitionName": "[parameters('l4DataCourse')]"
+            },
+            "l4SoftDev": {
+                "courseImageDefinitionName": "[parameters('l4SoftDevCourse')]"
             },
             "mtaExams": {
                 "courseImageDefinitionName": "[parameters('examCourse')]"
@@ -333,7 +370,7 @@
         "vaultResourceGroup": "[concat(variables('rwkeyVault')[parameters('routeway')].keyVaultRg, 'OMSRg')]",
         "vaultName": "[concat('VMDeployment', variables('rwkeyVault')[parameters('routeway')].rwSuffix)]",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
-        "_moduleRepo": "/main/deploymentTemplatesGen2/modules"       
+        "_moduleRepo": "/main/deploymentTemplatesGen2/modules"        
     },
     "resources": [
         {
@@ -498,8 +535,8 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsClient.json')]",
-                    "contentVersion": "3.0.0.0"
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsDesktop.json')]",
+                    "contentVersion": "3.1.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -688,7 +725,7 @@
         },
         "osDiskType": {
             "type": "string",
-            "value": "[parameters('osDiskType')]"
+            "value": "[parameters('osDisktype')]"
         },
         "vmSize": {
             "type": "string",
@@ -698,7 +735,7 @@
             "type": "string",
             "value": "[parameters('osPlatform')]"
         },
-        "apprenticeshipProgram": {
+        "apprenticeshipProgramme": {
             "type": "string",
             "value": "[parameters('apprenticeshipProgramme')]"
         },
