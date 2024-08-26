@@ -434,7 +434,7 @@
 								"visible": "[equals(steps('vmConfig').vmSecurity.secureBoot, true)]"
 							}
                         ],
-                        "visible": false
+                        "visible": "[equals(steps('osConfig').courseImageL4SoftDev, SWAPC5UE5)]"
                     }
                 ]
             },            
