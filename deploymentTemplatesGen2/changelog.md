@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Modules
+## [3.1.0.1] 02.09.24
+### Change
+- [windowsDesktop]
+  added support for hibernation with trusteed launch
+
 ## [3.1.0.1] 16.08.24
 ### Change
 - [serverMain]
