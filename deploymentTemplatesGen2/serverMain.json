@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.0.1",
+    "contentVersion": "3.1.0.2",
     "parameters": {
         "location": {
             "type": "string",
@@ -140,6 +140,7 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "3.8.24",
                 "3.6.24",
                 "3.5.24"
             ],
@@ -175,7 +176,7 @@
         },
         "vTPM": {
             "type": "bool",
-            "defaultValue": true,
+            "defaultValue": false,
             "allowedValues": [
                 true,
                 false

@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Modules
+## [3.1.0.1] 26.09.24
+### Add
+- [windowsServer]
+  added support for hibernation with Trusted Launch
+
 ## [3.1.0.1] 02.09.24
 ### Change
 - [windowsDesktop]
@@ -34,6 +39,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   changed SKU to Standard ahead of mandatory change in 2025
 
 # Windows Server User Interface
+
+## [3.1.1.2] 27.09.24
+### Change
+- [uiSvrDefinition]
+  updated image version
+
+## [3.1.0.2] 26.09.24
+### Change
+- [serverMain]
+  chnaged vTPM default value to false
+  changed image version
 
 ## [3.1.0.0] 26.06.24
 ### Change

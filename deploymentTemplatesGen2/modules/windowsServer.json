@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.0.0",
+    "contentVersion": "3.1.0.1",
     "parameters": {
         "location": {
             "type": "string"
@@ -127,6 +127,9 @@
                 "vTpmEnabled": "[parameters('vTPM')]"
             }
         },
+        "hibernation": {
+            "hibernationEnabled": false
+        },
         "_dscArtifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
         "_dscExtensionRepo": "main/extensions",
         "dscArchiveFolder": "DSC",
@@ -148,7 +151,8 @@
                 "CourseEndDay": "[parameters('courseEndDay')]",
                 "Schedule": "[if(equals(parameters('startupSchedule'), 'Yes'), 'StartDaily', 'NoSchedule')]",
                 "IdleShutdown": "[parameters('idleVm')]",
-                "Cleanup": "[parameters('resourceGroupCleanup')]"
+                "Hiberbation": "False",
+                "Cleanup": "[parameters('resourceGroupCleanup')]"                
             },
             "copy": {
                 "name": "virtualMachineLoop",
@@ -197,6 +201,7 @@
                     }
                 },
                 "securityProfile": "[if(equals(parameters('securityType'), 'TrustedLaunch'), variables('trustedLaunch'), json('null'))]",
+                "additionalCapabilities": "[if(equals(parameters('securityType'), 'TrustedLaunch'), variables('hibernation'), json('null'))]",
                 "licenseType": "[if(equals(parameters('licenseType'), 'AzureHybrid'), variables('WindowsLicense'), json('null'))]",
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
