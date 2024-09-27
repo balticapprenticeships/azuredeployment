@@ -507,7 +507,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsServer.json')]",
-                    "contentVersion": "3.1.0.0"
+                    "contentVersion": "3.1.0.1"
                 },
                 "parameters": {
                     "location": {
