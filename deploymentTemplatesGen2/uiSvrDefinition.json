@@ -94,7 +94,7 @@
                         "constraints": {
                             "allowedValues": [
                                 {
-                                    "label": "Network Engineer Course 4 - Network Security",
+                                    "label": "Network Engineer Course 4",
                                     "value": "L4NetEngC4"
                                 },
                                 {
