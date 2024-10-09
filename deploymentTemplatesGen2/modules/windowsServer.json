@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.0.1",
+    "contentVersion": "3.1.1.0",
     "parameters": {
         "location": {
             "type": "string"
@@ -116,7 +116,7 @@
                 "galleryImageDefinitionName": "BA-L4NetEngCourse7"
             },
             "ItBootcamp": {
-                "galleryImageDefinitionName": "BA-WinSvrGen"
+                "galleryImageDefinitionName": "BA-ICTSupMstr"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",
