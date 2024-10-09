@@ -46,6 +46,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [3.1.2.0] 09.10.24
+### Add
+- [serverMain]
+  added Digital Skills routeway
+
+## [3.1.2.0] 09.10.24
+### add
+- [uiSvrDefinition]
+  added Digital Skills routeway
+
 ## [3.1.1.3] 27.09.24
 ### Change
 - [uiSvrDefinition]
