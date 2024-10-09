@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.1.0",
+    "contentVersion": "3.1.2.0",
     "parameters": {
         "location": {
             "type": "string",
@@ -320,6 +320,10 @@
             "InternalDev": {
                 "keyVaultRg": "IntDev",
                 "rwSuffix": "IntDev"
+            },
+            "DigitalSkills": {
+                "keyVaultRg": "DigitalSkills",
+                "rwSuffix": "Digital"
             }
         },
         "patchMode": "[if(equals(parameters('osPlatform'), 'Windows'), 'AutomaticByOS', 'ImageDefault')]",
