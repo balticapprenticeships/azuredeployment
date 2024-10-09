@@ -116,7 +116,7 @@
                 "galleryImageDefinitionName": "BA-L4NetEngCourse7"
             },
             "ItBootcamp": {
-                "galleryImageDefinitionName": "BA-ICTSupMstr"
+                "galleryImageDefinitionName": "BA-Bootcamp"
             }
         },
         "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",
