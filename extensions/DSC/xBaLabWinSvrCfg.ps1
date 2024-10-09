@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 5.6.0                                               #
+# Version: 5.7.0                                               #
 ################################################################
 
 Configuration xBaICTSupC1LabCfg {
@@ -1786,7 +1786,7 @@ Configuration xBaItBootcampLabCfg {
         xScript "RunCreateVms"
         {
             SetScript = { 
-                New-VM -Name "DC" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ITBootcamp\ITBootcamp-DC.vhdx" -SwitchName "vSwitch"                
+                New-VM -Name "DC" -MemoryStartupBytes 2GB -Generation 2 -BootDevice VHD -VHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\ITBootcamp\ITB-DC.vhdx" -SwitchName "vSwitch"                
             }
             TestScript = { $false }
             GetScript = {  
