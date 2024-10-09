@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Modules
+
+## [3.1.1.0] 07.10.24
+### Add
+- [windowsServer]
+  changed IT Bootcamp image to BA-ICTSupMstr
+
 ## [3.1.0.1] 26.09.24
 ### Add
 - [windowsServer]
@@ -39,6 +45,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   changed SKU to Standard ahead of mandatory change in 2025
 
 # Windows Server User Interface
+
+## [3.1.1.3] 27.09.24
+### Change
+- [uiSvrDefinition]
+  updated image version
+
+## [3.1.1.0] 07.10.24
+### Change
+- [serverMain]
+  added new image version number 3.9.24
 
 ## [3.1.1.2] 27.09.24
 ### Change
