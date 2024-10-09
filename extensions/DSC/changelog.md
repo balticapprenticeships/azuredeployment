@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [5.7.0] 07.10.2024
+## Change
+- [xBaLabWinSvrCfg]
+  Changed ITBootcamp VM 'DC' target to ITB-DC
+
 ## [5.6.0] 27.09.2024
 ## Change
 - [xBaLabWinSvrCfg]
