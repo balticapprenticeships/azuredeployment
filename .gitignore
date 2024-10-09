@@ -9,8 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
-[Dd]ev
-[Aa]rchive
+[Dd]ev/
+[Aa]rchive/
 _[Dd]ev
 _[Aa]rchive
 
