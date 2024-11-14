@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server Lab Config
 
+## [5.8.0] 14.11.2024
+## Add
+- [xBaLabWinSvrCfg]
+  Added  script to set the Hyper-V enhanced session mode to True
+
 ## [5.7.0] 07.10.2024
 ## Change
 - [xBaLabWinSvrCfg]
