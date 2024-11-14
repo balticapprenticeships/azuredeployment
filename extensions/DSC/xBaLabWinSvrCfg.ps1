@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 5.7.0                                               #
+# Version: 5.8.0                                               #
 ################################################################
 
 Configuration xBaICTSupC1LabCfg {
@@ -194,6 +194,19 @@ Configuration xBaICTSupC2LabCfg {
             Ensure = "Present"
             IncludeAllSubFeature = $true
         }
+        
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
 
         # This resource block ensures that the VM is built
         xScript "RunCreateVMs"
@@ -353,6 +366,19 @@ Configuration xBaICTSupC3LabCfg {
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
 
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
         # This resource block ensures that the file or command is executed
         xScript "SetRdpTimeZone"
         {
@@ -479,6 +505,19 @@ Configuration xBaICTSupC4LabCfg {
             TestScript = { $false }
             GetScript = { 
                 # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
@@ -613,6 +652,19 @@ Configuration xBaICTSupC6LabCfg {
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
 
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
         # This resource block ensures that the file or command is executed
         xScript "SetRdpTimeZone"
         {
@@ -724,6 +776,19 @@ Configuration xBaICTNetC2LabCfg {
             TestScript = { $false }
             GetScript = { 
                 # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
@@ -863,6 +928,19 @@ Configuration xBaICTNetC3LabCfg {
             TestScript = { $false }
             GetScript = { 
                 # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
@@ -1248,6 +1326,19 @@ Configuration xBaICTSupMstrLabCfg {
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
 
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
         # This resource block ensures that the file or command is executed
         xScript "SetRdpTimeZone"
         {
@@ -1496,6 +1587,19 @@ Configuration xBaL4NetEngC4LabCfg {
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
 
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
         xScript "RunCreateVms"
         {
             SetScript = { 
@@ -1603,6 +1707,19 @@ Configuration xBaL4NetEngC5LabCfg {
             IncludeAllSubFeature = $true
         }
 
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
         # This resource block ensures that the file or command is executed
         xScript "RemoveArtifacts"
         {
@@ -1678,6 +1795,19 @@ Configuration xBaL4NetEngC7LabCfg {
             Name = $features
             Ensure = "Present"
             IncludeAllSubFeature = $true
+        }
+
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
 
         # This resource block ensures that the file or command is executed
@@ -1779,6 +1909,19 @@ Configuration xBaItBootcampLabCfg {
             TestScript = { $false }
             GetScript = { 
                 # Do Nothing
+            }
+            DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
+        }
+
+        # This resource block ensure that Enhanced Session mode is set to true in Hyper-V
+        xscript "SetHyperVEnhancedSessionMode"
+        {
+            SetScript = {
+                Set-VMHost -EnableEnhancedSessionMode $true
+            }
+            TestScript = { $false }
+            GetScript = {
+                # Do nothing
             }
             DependsOn = "[xWindowsFeatureSet]AddHyperVFeatures"
         }
