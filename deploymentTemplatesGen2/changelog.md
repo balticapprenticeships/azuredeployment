@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Modules
 
+## [3.1.3.0] 15.11.24
+### Change
+- [serverMain,uiSvrDefinition]
+  updated image allowed versions
+
 ## [3.1.1.0] 07.10.24
 ### Add
 - [windowsServer]
