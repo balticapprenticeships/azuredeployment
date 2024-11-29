@@ -108,6 +108,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [3.1.2.0] 29.11.24
+### Add
+- [uiWcDefinition]
+  added Digital Skills to routeway
+
+## [3.1.1.0] 29.11.24
+### Add
+- [clientMain]
+  added Digital Skills to Keyvault variables
+
 ## [3.0.2.0] 13.03.24
 ### Change
 - [clientMain]
