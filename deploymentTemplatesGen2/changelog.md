@@ -51,6 +51,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [3.1.3.1] 17.2.25
+### Change
+- [serverMain,uiSvtDefinition]
+  Updated image allowed versiona
+
 ## [3.1.2.0] 09.10.24
 ### Add
 - [serverMain]
@@ -107,6 +112,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Windows Client User Interface
+
+## [3.1.21] 17.2.25
+### Change
+- [uiWcDefinition]
+  Updated image allowed versiona
+
+## [3.1.11] 17.2.25
+### Change
+- [desktopMain]
+  Updated image allowed versiona
+  Renamed clientMain to desktopMain
 
 ## [3.1.2.0] 29.11.24
 ### Add
