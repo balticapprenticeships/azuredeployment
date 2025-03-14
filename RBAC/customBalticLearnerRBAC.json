@@ -1,0 +1,19 @@
+{    
+    "properties": {
+        "roleName": "Custom Azure Access Role (Learner)",
+        "description": "This definition is used to prevent learners from viewing and accessing Azure subscription resources",
+        "assignableScopes": [
+            "/providers/Microsoft.Management/managementGroups/0c79f314-54e0-4815-81ef-13785f702b51"
+        ],
+        "permissions": [
+            {
+                "actions": [],
+                "notActions": [
+                    "*"
+                ],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
