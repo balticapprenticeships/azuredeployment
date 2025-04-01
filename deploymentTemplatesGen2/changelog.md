@@ -113,12 +113,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [3.1.1.2] 1.4.25
+### Change
+- [desktopMain]
+  fixed VM size typo Standard_B2s to Standard_B2ms
+
 ## [3.1.21] 17.2.25
 ### Change
 - [uiWcDefinition]
   Updated image allowed versiona
 
-## [3.1.11] 17.2.25
+## [3.1.1.1] 17.2.25
 ### Change
 - [desktopMain]
   Updated image allowed versiona
