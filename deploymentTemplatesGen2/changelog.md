@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Modules
 
+## [3.1.3.2] 4.4.25
+### Add
+- [uiSvrDefinition]
+  added new image version
+
+## [3.1.3.2] 4.4.25
+### Add
+- [serverMain]
+  added new image version
+
 ## [3.1.3.0] 15.11.24
 ### Change
 - [serverMain,uiSvrDefinition]
@@ -112,6 +122,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Windows Client User Interface
+
+## [3.1.2.2] 4.4.25
+### Add
+- [uiWCDefinition]
+  added new image version
+
+## [3.1.1.3] 4.4.25
+### Add
+- [desktopMain]
+  added new image version
 
 ## [3.1.1.2] 1.4.25
 ### Change
