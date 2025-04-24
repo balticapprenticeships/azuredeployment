@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.0.1",
+    "contentVersion": "3.1.0.2",
     "parameters": {
         "location": {
             "type": "string"
@@ -108,10 +108,7 @@
             },
             "ExamTesting": {
                 "galleryImageDefinitionName": "BA-Testing"
-            },            
-            "ICTL3Support": {
-                "galleryImageDefinitionName": "BA_W10_ICTArch"
-            },            
+            },           
             "DataLevel4": {
                 "galleryImageDefinitionName": "BA-Win10-Courses"
             },

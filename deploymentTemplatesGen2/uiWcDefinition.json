@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "3.1.2.2",
+    "currentVersion": "3.1.2.3",
     "parameters": {
         "config": {
             "isWizard": true
@@ -207,17 +207,17 @@
                                     "value": "latest"
                                 },
                                 {
+                                    "label": "March",
+                                    "value": "4.3.25"
+                                },
+                                {
                                     "label": "February",
                                     "value": "4.2.25"
                                 },
                                 {
                                     "label": "November",
                                     "value": "3.11.24"
-                                },
-                                {
-                                    "label": "October",
-                                    "value": "3.10.24"
-                                } 
+                                }
                             ],
                             "required": true
                         },
