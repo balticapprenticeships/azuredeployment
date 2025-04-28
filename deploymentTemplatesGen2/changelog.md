@@ -133,6 +133,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [3.1.1.4] 2484.25
+### Add
+- [desktopMain]
+  updated DeployWindowsVM content version
+
 ## [3.1.2.3] 24.4.25
 ### Add
 - [uiWCDefinition]
