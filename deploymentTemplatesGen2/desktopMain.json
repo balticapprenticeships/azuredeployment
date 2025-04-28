@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.1.4",
+    "contentVersion": "3.1.1.5",
     "parameters": {
         "location": {
             "type": "string",
@@ -538,7 +538,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsDesktop.json')]",
-                    "contentVersion": "3.1.0.1"
+                    "contentVersion": "3.1.0.2"
                 },
                 "parameters": {
                     "location": {
