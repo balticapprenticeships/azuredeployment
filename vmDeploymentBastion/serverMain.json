@@ -417,7 +417,7 @@
         "vaultName": "[concat('VMDeployment', variables('rwkeyVault')[parameters('routeway')].rwSuffix)]",
         "publicIPAddressName": "[concat(resourceGroup().name, '-BastionPIP')]",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
-        "_moduleRepo": "/main/deploymentTemplatesGen2/modules"        
+        "_moduleRepo": "/main/vmDeploymentBastion/modules"        
     },
     "resources": [
         {   
