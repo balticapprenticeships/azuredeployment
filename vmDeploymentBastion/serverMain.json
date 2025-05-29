@@ -1,0 +1,869 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location to store all VM resources."
+            }
+        },
+        "vmName": {
+            "type": "string",
+            "metadata": {
+                "description": "Virtual Machine name e.g., 306Client"
+            }
+        },
+        "vmSize": {
+            "type": "string",
+            "allowedValues": [
+                "Standard_B1ms",
+                "Standard_B2s",
+                "Standard_D2s_v3",
+                "Standard_D4s_v3",
+                "Standard_D2s_v5",
+                "Standard_D4s_v5",
+                "Standard_D2as_v5"
+            ],
+            "metadata": {
+                "description": "Virtual Machine size e.g., 2vCPU's 4GB RAM"
+            }
+        },
+        "vmCount": {
+            "type": "int",
+            "minValue": 1,
+            "maxValue": 20,
+            "metadata": {
+                "description": "The number of Virtual Machines required between 1 and 20"
+            }
+        },
+        "osDiskType": {
+            "type": "string",
+            "defaultValue": "StandardSSD_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "StandardSSD_LRS"
+            ],
+            "metadata": {
+                "description": "Select the type of storage Standard HDD, SSD or Premium SSD"
+            }
+        },
+        "osDiskDeleteOption": {
+            "type": "string",
+            "defaultValue": "Delete",
+            "allowedValues": [
+                "Delete",
+                "detatch"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        "osPlatform": {
+            "type": "string",
+            "defaultValue": "Windows",
+            "allowedValues": [
+                "Windows",
+                "Linux"
+            ],
+            "metadata": {
+                "description": "Select the Operating System type to deploy."
+            }
+        },
+        "apprenticeshipProgramme": {
+            "type": "string",
+            "defaultValue": "noValue",
+            "allowedValues": [
+                "l3IctSupTech",
+                "l3IctNetTech",
+                "l4NetEng",
+                "bootcamp"
+            ]
+        },
+        "l3SupTechCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "ICTSupC2",
+                "ICTSupC3",
+                "ICTSupC4",
+                "ICTSupC6",
+                "ICTSupMstr"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "l3NetTechCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "ICTNetC2",
+                "ICTNetC3",
+                "ICTNetC5",
+                "ICTNetC6",
+                "ICTNetEPA"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "l4NetEngCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "L4NetEngC4",
+                "L4NetEngC5",
+                "L4NetEngC7"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "bootcampCourse": {
+            "type": "string",
+            "defaultValue": "NoValue",
+            "allowedValues": [
+                "NoValue",
+                "ItBootcamp"
+            ],
+            "metadata": {
+                "description": "Choose the course to deliver"
+            }
+        },
+        "imageVersion": {
+            "type": "string",
+            "defaultValue": "latest",
+            "allowedValues": [
+                "latest",
+                "4.3.25",
+                "4.2.25",
+                "4.01.25"
+            ],
+            "metadata": {
+                "description": "Lab image version"
+            }
+        },
+        "enableHotpatching": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "description"
+            }
+        },
+        "securityType": {
+            "type": "string",
+            "defaultValue": "Standard",
+            "allowedValues": [
+                "Standard",
+                "TrustedLaunch"
+            ]
+        },
+        "secureBoot": {
+            "type": "bool",
+            "defaultValue": false,
+            "allowedValues": [
+                true,
+                false
+            ],
+            "metadata": {
+                "description": "Enable to help protect the VM from malware e.g., root kits"
+            }
+        },
+        "vTPM": {
+            "type": "bool",
+            "defaultValue": false,
+            "allowedValues": [
+                true,
+                false
+            ],
+            "metadata": {
+                "description": "Enable to configure a virtual Trusted Platform Module 2.0"
+            }
+        },
+        "guestAttestation": {
+            "type": "bool",
+            "defaultValue": false,
+            "allowedValues": [
+                true,
+                false
+            ],
+            "metadata": {
+                "description": "Enable to configure a virtual Trusted Platform Module 2.0"
+            }
+        },
+        "vnetNewOrExisting": {
+            "type": "string",
+            "defaultValue": "new",
+            "allowedValues": [
+                "new",
+                "existing"
+            ],
+            "metadata": {
+                "description": "Create a new or using an existing Virtual Network."
+            }
+        },
+        "existingVnet": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": ""
+            }
+        },
+        "subnetName": {
+            "type": "string",
+            "defaultValue": "default",
+            "metadata": {
+                "description": ""
+            }
+        },
+        "nicDeleteOption": {
+            "type": "string",
+            "defaultValue": "Delete",
+            "allowedValues": [
+                "Delete",
+                "detatch"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        "bastionHostName": {
+            "type": "string",
+            "defaultValue": "[concat(resourceGroup().name, '-Bastion')]",
+            "metadata": {
+                "description": "Please provide a name for the Bastion Host."
+            }
+        },
+        "bastionHostSku": {
+            "type": "string",
+            "defaultValue": "Standard",
+            "allowedValues": [
+                "Basic",
+                "Standard"
+            ],
+            "metadata": {
+                "description": "Choose the SKU for the Bastion Host."
+            }
+        },
+        "bastionHostScaleUnits": {
+            "type": "int",
+            "defaultValue": 2,
+            "minValue": 1,
+            "maxValue": 10,
+            "metadata": {
+                "description": "Number of scale units for the Bastion Host."
+            }
+        },
+        "enableIpConnect": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Enable or disable the Bastion Host IP Connect functionality."
+            }
+        },
+        "enableShareableLink": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Enable or disable the shareable link functionality in the Bastion Host."
+            }
+        },
+        "enableKerberos": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Enable or disable Kerberos authentication for the Bastion Host."
+            }
+        },
+        "disableCopyPaste": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Enable or disable copy and paste functionality in the Remote Desktop session."
+            }
+        },"enableSessionRecording": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Enable or disable session recording for the Bastion Host."
+            }
+        },
+        "enablePrivateOnlyBastion": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Enable or disable private-only Bastion Host deployment."
+            }
+        },
+        "zones": {
+            "type": "array",
+            "defaultValue": [],
+            "metadata": {
+                "description": "Availability zones for the Bastion Host."
+            }
+        },
+        "publicIpZones": {
+            "type": "array",
+            "defaultValue": [],
+            "metadata": {
+                "description": "Availability zones for the public IP address associated with the Bastion Host."
+            }
+        },
+        "createdBy": {
+            "type": "string",
+            "metadata": {
+                "description": "Please enter your firstname and surname."
+            }
+        },
+        "deliveringCoachInitials": {
+            "type": "string",
+            "metadata": {
+                "description": "Please provide the first and last inital of the delivering coach."
+            }
+        },
+        "routeway": {
+            "type": "string",
+            "metadata": {
+                "description": ""
+            }
+        },
+        "courseStartDate": {
+            "type": "string",
+            "metadata": {
+                "description": "Please provide the start date of the course on the following format 01/01/2022."
+            }
+        },
+        "courseEndDay": {
+            "type": "string",
+            "metadata": {
+                "description": "Please enter the day of the week that the course will end e.g., Tuesday."
+            }
+        },
+        "startupSchedule": {
+            "type": "string",
+            "defaultValue": "No",
+            "allowedValues": [
+                "Yes",
+                "No"
+            ],
+            "metadata": {
+                "description": "Should the virtual machines start automatically at the beginning of each day?"
+            }
+        },
+        "resourceGroupCleanup": {
+            "type": "string",
+            "defaultValue": "Enabled",
+            "allowedValues": [
+                "Enabled",
+                "Disabled"
+            ],
+            "metadata": {
+                "description": "Choose whether to have the virtual machine and associated resources deleted automatically at the end of the week."
+            }
+        }
+    },
+    "functions": [],
+    "variables": {
+        "vmNamePrefix": "[toUpper(concat(parameters('vmName'), parameters('deliveringCoachInitials')))]",
+        "rwkeyVault": {
+            "IT": {
+                "keyVaultRg": "ITRouteway",
+                "rwSuffix": "ITR"
+            },
+            "SoftwareDevelopment": {
+                "keyVaultRg": "SWDRouteway",
+                "rwSuffix": "SWD"
+            },
+            "DigitalMarketing": {
+                "keyVaultRg": "DMRouteway",
+                "rwSuffix": "DM"
+            },            
+            "Data": {
+                "keyVaultRg": "DataRouteway",
+                "rwSuffix": "Data"
+            },
+            "InternalDev": {
+                "keyVaultRg": "IntDev",
+                "rwSuffix": "IntDev"
+            },
+            "DigitalSkills": {
+                "keyVaultRg": "DigitalSkills",
+                "rwSuffix": "Digital"
+            }
+        },
+        "patchMode": "[if(equals(parameters('osPlatform'), 'Windows'), 'AutomaticByOS', 'ImageDefault')]",
+        "licenseType": "AzureLicense",
+        "idleVM": "No",
+        "courseImageValue": {
+            "l3IctSupTech": {
+                "courseImageDefinitionName": "[parameters('l3SupTechCourse')]"
+            },
+            "l3IctNetTech": {
+                "courseImageDefinitionName": "[parameters('l3NetTechCourse')]"
+            },
+            "l4NetEng": {
+                "courseImageDefinitionName": "[parameters('l4NetEngCourse')]"
+            },
+            "bootcamp": {
+                "courseImageDefinitionName": "[parameters('bootcampCourse')]"
+            }
+        },
+        "vaultResourceGroup": "[concat(variables('rwkeyVault')[parameters('routeway')].keyVaultRg, 'OMSRg')]",
+        "vaultName": "[concat('VMDeployment', variables('rwkeyVault')[parameters('routeway')].rwSuffix)]",
+        "publicIPAddressName": "[concat(resourceGroup().name, '-BastionPIP')]",
+        "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
+        "_moduleRepo": "/main/deploymentTemplatesGen2/modules"        
+    },
+    "resources": [
+        {   
+            "condition": "[equals(parameters('vnetNewOrExisting'), 'new')]",
+            "name": "DeployVirtualNetwork",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-11-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/virtualNetwork.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "subnetName": {
+                        "value": "[parameters('subnetName')]"
+                    },
+                    "createdBy": {
+                        "value": "[parameters('createdBy')]"
+                    },
+                    "courseStartDate": {
+                        "value": "[parameters('courseStartDate')]"
+                    },
+                    "resourceGroupCleanup": {
+                        "value": "[parameters('resourceGroupCleanup')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'DeployNetworkSecurityGroup')]"
+            ]
+        },
+        {
+            "name": "DeployPublicIPAddress",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-11-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/publicIP.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "publicIpAddressName": {
+                        "value": "[variables('publicIPAddressName')]"
+                    },
+                    "createdBy": {
+                        "value": "[parameters('createdBy')]"
+                    },
+                    "courseStartDate": {
+                        "value": "[parameters('courseStartDate')]"
+                    },
+                    "courseEndDate": {
+                        "value": "[parameters('courseEndDay')]"
+                    },
+                    "resourceGroupCleanup": {
+                        "value": "[parameters('resourceGroupCleanup')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "DeployBastionHost",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-11-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/bastionHost.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "bastionHostName": {
+                        "value": "[parameters('bastionHostName')]"
+                    },
+                    "bastionHostSku": {
+                        "value": "[parameters('bastionHostSku')]"
+                    },
+                    "bastionHostScaleUnits": {
+                        "value": "[parameters('bastionHostScaleUnits')]"
+                    },
+                    "bastionSubnetId": {
+                        "value": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('existingVnet')), '/subnets/AzureBastionSubnet')]"
+                    },
+                    "bastionPublicIpAddressId": {
+                        "value": "[variables('publicIPAddressName')]"
+                    },
+                    "enableIpConnect": {
+                        "value": "[parameters('enableIpConnect')]"
+                    },
+                    "enableShareableLink": {
+                        "value": "[parameters('enableShareableLink')]"
+                    },
+                    "enableKerberos": {
+                        "value": "[parameters('enableKerberos')]"
+                    },
+                    "disableCopyPaste": {
+                        "value": "[parameters('disableCopyPaste')]"
+                    },
+                    "enableSessionRecording": {
+                        "value": "[parameters('enableSessionRecording')]"
+                    },
+                    "enablePrivateOnlyBastion": {
+                        "value": "[parameters('enablePrivateOnlyBastion')]"
+                    },
+                    "zones": {
+                        "value": "[parameters('zones')]"
+                    },
+                    "publicIpZones": {
+                        "value": "[parameters('publicIpZones')]"
+                    },
+                    "bastionPublicIpAddressName": {
+                        "value": "[variables('publicIPAddressName')]"
+                    },
+                    "createdBy": {
+                        "value": "[parameters('createdBy')]"
+                    },"courseStartDate": {
+                        "value": "[parameters('courseStartDate')]"
+                    },
+                    "courseEndDate": {
+                        "value": "[parameters('courseEndDay')]"
+                    },
+                    "resourceGroupCleanup": {
+                        "value": "[parameters('resourceGroupCleanup')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'DeployPublicIPAddress')]",
+                "[resourceId('Microsoft.Resources/deployments', 'DeployVirtualNetwork')]"
+            ]
+        },
+        {
+            "name": "DeployNetworkInterface",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-11-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkInterface.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "vmName": {
+                        "value": "[parameters('vmName')]"
+                    },
+                    "vmCount": {
+                        "value": "[parameters('vmCount')]"
+                    },
+                    "vmSize": {
+                        "value": "[parameters('vmSize')]"
+                    },
+                    "vnetNewOrExisting": {
+                        "value": "[parameters('vnetNewOrExisting')]"
+                    },
+                    "existingVnet": {
+                        "value": "[parameters('existingVnet')]"
+                    },
+                    "subnetName": {
+                        "value": "[parameters('subnetName')]"
+                    },
+                    "createdBy": {
+                        "value": "[parameters('createdBy')]"
+                    },
+                    "deliveringCoachinitials": {
+                        "value": "[parameters('deliveringCoachInitials')]"
+                    },
+                    "courseStartDate": {
+                        "value": "[parameters('courseStartDate')]"
+                    },
+                    "resourceGroupCleanup": {
+                        "value": "[parameters('resourceGroupCleanup')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'DeployNetworkSecurityGroup')]",
+                "[resourceId('Microsoft.Resources/deployments', 'DeployVirtualNetwork')]"
+            ]
+        },
+        {
+            "name": "DeployNetworkSecurityGroup",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-11-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkSecurityGroup.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "osPlatform": {
+                        "value": "[parameters('osPlatform')]"
+                    },
+                    "createdBy": {
+                        "value": "[parameters('createdBy')]"
+                    },
+                    "courseStartDate": {
+                        "value": "[parameters('courseStartDate')]"
+                    },
+                    "resourceGroupCleanup": {
+                        "value": "[parameters('resourceGroupCleanup')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        },
+        
+        {
+            "name": "DeployWindowsVM",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-11-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsServer.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "subscriptionId": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[resourceId(variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                            },
+                            "secretName": "SubscriptionId"
+                        }
+                    },
+                    "vmName": {
+                        "value": "[parameters('vmName')]"
+                    },
+                    "vmSize": {
+                        "value": "[parameters('vmSize')]"
+                    },
+                    "vmCount": {
+                        "value": "[parameters('vmCount')]"
+                    },
+                    "osDiskType": {
+                        "value": "[parameters('osDiskType')]"
+                    },
+                    "osDiskDeleteOption": {
+                        "value": "[parameters('osDiskDeleteOption')]"
+                    },
+                    "course": {
+                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
+                    },
+                    "imageVersion": {
+                        "value": "[parameters('imageVersion')]"
+                    },
+                    "licenseType": {
+                        "value": "[variables('licenseType')]"
+                    },
+                    "enableHotpatching": {
+                        "value": "[parameters('enableHotpatching')]"
+                    },
+                    "patchMode": {
+                        "value": "[variables('patchMode')]"
+                    },
+                    "securityType": {
+                        "value": "[parameters('securityType')]"
+                    },
+                    "secureBoot": {
+                        "value": "[parameters('secureBoot')]"
+                    },
+                    "vTPM": {
+                        "value": "[parameters('vTPM')]"
+                    },
+                    "guestAttestation": {
+                        "value": "[parameters('guestAttestation')]"
+                    },
+                    "idleVM": {
+                        "value": "[variables('idleVM')]"
+                    },
+                    "nicDeleteOption": {
+                        "value": "[parameters('nicDeleteOption')]"
+                    },
+                    "adminUsername": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[resourceId(variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                            },
+                            "secretName": "LabAdmin"
+                        }
+                    },
+                    "adminPassword": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[resourceId(variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                            },
+                            "secretName": "LabAdminPassword"
+                        }
+                    },
+                    "localUsername": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[resourceId(variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                            },
+                            "secretName": "LabUser"
+                        }
+                    },
+                    "localUserPassword": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[resourceId(variables('vaultResourceGroup'), 'Microsoft.KeyVault/vaults', variables('vaultName'))]"
+                            },
+                            "secretName": "LabUserPassword"
+                        }
+                    },
+                    "createdBy": {
+                        "value": "[parameters('createdBy')]"
+                    },
+                    "deliveringCoachInitials": {
+                        "value": "[parameters('deliveringCoachInitials')]"
+                    },
+                    "courseStartDate": {
+                        "value": "[parameters('courseStartDate')]"
+                    },
+                    "courseEndDay": {
+                        "value": "[parameters('courseEndDay')]"
+                    },
+                    "startupSchedule": {
+                        "value": "[parameters('startupSchedule')]"
+                    },
+                    "resourceGroupCleanup": {
+                        "value": "[parameters('resourceGroupCleanup')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'DeployNetworkInterface')]"
+            ]
+        },
+        {
+            "name": "[concat('shutdown-computevm-', concat(variables('vmNamePrefix'), copyIndex('shutdownLoop', 1)))]",
+            "type": "Microsoft.DevTestLab/schedules",
+            "apiVersion": "2018-09-15",
+            "location": "[parameters('location')]",
+            "tags": {
+                "Displayname": "Shutdown Schedule",
+                "Dept": "[resourceGroup().tags['Dept']]",
+                "CreatedBy": "[parameters('createdBy')]",
+                "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
+                "CourseEndDay": "[parameters('courseEndDay')]",
+                "Cleanup": "[parameters('resourceGroupCleanup')]"
+            },
+            "copy": {
+                "name": "shutdownLoop",
+                "count": "[parameters('vmCount')]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'DeployWindowsVM')]"
+            ],
+            "properties": {
+                "status": "Enabled",
+                "taskType": "ComputeVmShutdownTask",
+                "dailyRecurrence": {
+                    "time": "17:00"
+                },
+                "timeZoneId": "GMT Standard Time",
+                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmNamePrefix'), copyIndex('shutdownLoop', 1)))]",
+                "notificationSettings": {
+                    "status": "Disabled",
+                    "notificationLocale": "en",
+                    "timeInMinutes": 30
+                }
+            }
+        }
+    ],
+    "outputs": {
+        "contentVersion": {
+            "type": "string",
+            "value": "[deployment().properties.template.contentVersion]"
+        },
+        "location": {
+            "type": "string",
+            "value": "[parameters('location')]"
+        },
+        "vmNamePrefix": {
+            "type": "string",
+            "value": "[parameters('vmName')]"
+        },
+        "createdBy": {
+            "type": "string",
+            "value": "[parameters('createdBy')]"
+        },
+        "coach": {
+            "type": "string",
+            "value": "[parameters('deliveringCoachInitials')]"
+        },
+        "scheduleOn": {
+            "type": "string",
+            "value": "[parameters('startupSchedule')]"
+        },
+        "idleVm": {
+            "type": "string",
+            "value": "[variables('idleVM')]"
+        },
+        "resourceGroupCleanup": {
+            "type": "string",
+            "value": "[parameters('resourceGroupCleanup')]"
+        },
+        "osDiskType": {
+            "type": "string",
+            "value": "[parameters('osDisktype')]"
+        },
+        "vmSize": {
+            "type": "string",
+            "value": "[parameters('vmSize')]"
+        },
+        "osPlatform": {
+            "type": "string",
+            "value": "[parameters('osPlatform')]"
+        },
+        "apprenticeshipProgramme": {
+            "type": "string",
+            "value": "[parameters('apprenticeshipProgramme')]"
+        },
+        "courseImage": {
+            "type": "string",
+            "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
+        },
+        "imageVersion": {
+            "type": "string",
+            "value": "[parameters('imageVersion')]"
+        },
+        "virtualMachineFQDN": {
+            "type": "array",
+            "value": "[reference('DeployPublicIPAddress').outputs.fqdn.value]"
+        }
+    }
+}

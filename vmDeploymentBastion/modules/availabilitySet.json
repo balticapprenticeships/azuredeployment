@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "3.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "platformFaultDomainCount": {
+            "type": "int"
+        },
+        "platformUpdateDomainCount": {
+            "type": "int"
+        },
+        "skuName": {
+            "type": "string"
+        },
+        "createdBy": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "availabilitySetName": "[concat(resourceGroup().name, '-as')]"
+    },
+    "resources": [
+        {
+            "name": "[variables('availabilitySetName')]",
+            "type": "Microsoft.Compute/availabilitySets",
+            "apiVersion": "2021-11-01",
+            "location": "[parameters('location')]",
+            "tags": {
+                "DisplayName": "Availability Set",
+                "ResourceType": "AvailabilitySet",
+                "Dept": "[resourceGroup().tags['Dept']]",
+                "CreatedBy": "[parameters('createdBy')]"
+            },
+            "properties": {
+                "platformFaultDomainCount": "[parameters('platformFaultDomainCount')]",
+                "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]"
+            },
+            "sku": {
+                "name": "[parameters('skuName')]"
+            }
+        }
+    ],
+    "outputs": {
+        "availabilitySetName": {
+            "type": "object",
+            "value": "[reference(resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySetName')))]"
+        }
+    }
+}

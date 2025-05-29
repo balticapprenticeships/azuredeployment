@@ -1,0 +1,101 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "bastionHostName": {
+            "type": "string"
+        },
+        "bastionHostSku": {
+            "type": "string"
+        },
+        "bastionHostScaleUnits": {
+            "type": "int"
+        },
+        "enabableIpConnect": {
+            "type": "bool"
+        },
+        "enableShareableLink": {
+            "type": "bool"
+        },
+        "enableKerberos": {
+            "type": "bool"
+        },
+        "disableCopyPaste": {
+            "type": "bool"
+        },
+        "enableSessionRecording": {
+            "type": "bool"
+        },
+        "enablePrivateOnlyBastion": {
+            "type": "bool"
+        },
+        "zones": {
+            "type": "array"
+        },
+        "publicIpZones": {
+            "type": "array"
+        },
+        "bastionPublicIpAddressName": {
+            "type": "string"
+        },
+        "createdBy": {
+            "type": "string"
+        },
+        "courseStartDate": {
+            "type": "string"
+        },
+        "courseEndDate": {
+            "type": "string"
+        },
+        "resourceGroupCleanup": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/bastionHosts",
+            "apiVersion": "2023-09-01",
+            "name": "[parameters('bastionHostName')]",
+            "location": "[parameters('location')]",
+            "tags": {
+                "DisplayName": "Bastion Host",
+                "ResourceType": "BastionHost",
+                "Dept": "[resourceGroup().tags['Dept']]",
+                "CreatedBy": "[parameters('createdBy')]",
+                "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
+                "CourseEndDate": "[parameters('courseEndDate')]",
+                "Cleanup": "[parameters('resourceGroupCleanup')]"
+            },
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "bastionHostIpConfig",
+                        "properties": {
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat(resourceGroup().name, '-vnet'), 'AzureBastionSubnet')]"
+                            },
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('bastionPublicIpAddressName'))]"
+                            }
+                        }
+                    }
+                ],
+                "sku": {
+                    "name": "[parameters('bastionHostSku')]",
+                    "tier": "[parameters('bastionHostSku')]",
+                    "capacity": "[parameters('bastionHostScaleUnits')]"
+                },
+                "enableIpConnect": "[parameters('enabableIpConnect')]",
+                "enableShareableLink": "[parameters('enableShareableLink')]",
+                "enableKerberosAuthentication": "[parameters('enableKerberos')]",
+                "disableCopyPaste": "[parameters('disableCopyPaste')]",
+                "enableSessionRecording": "[parameters('enableSessionRecording')]",
+                "enablePrivateOnlyBastionHost": "[parameters('enablePrivateOnlyBastion')]"
+            },
+            "zones": "[parameters('zones')]"
+        }
+    ]
+}
