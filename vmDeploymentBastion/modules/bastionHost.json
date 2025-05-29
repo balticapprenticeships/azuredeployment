@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "2.0.0.0",
+    "contentVersion": "2.0.0.1",
     "parameters": {
         "location": {
             "type": "string"
@@ -50,7 +50,7 @@
         "courseStartDate": {
             "type": "string"
         },
-        "courseEndDate": {
+        "courseEndDay": {
             "type": "string"
         },
         "resourceGroupCleanup": {
@@ -69,7 +69,7 @@
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
-                "CourseEndDate": "[parameters('courseEndDate')]",
+                "CourseEndDay": "[parameters('courseEndDay')]",
                 "Cleanup": "[parameters('resourceGroupCleanup')]"
             },
             "properties": {

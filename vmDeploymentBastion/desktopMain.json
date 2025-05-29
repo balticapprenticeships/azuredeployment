@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "2.0.0.1",
+    "contentVersion": "2.0.0.2",
     "parameters": {
         "location": {
             "type": "string",
@@ -531,7 +531,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/bastionHost.json')]",
-                    "contentVersion": "2.0.0.0"
+                    "contentVersion": "2.0.0.1"
                 },
                 "parameters": {
                     "location": {
@@ -578,10 +578,11 @@
                     },
                     "createdBy": {
                         "value": "[parameters('createdBy')]"
-                    },"courseStartDate": {
+                    },
+                    "courseStartDate": {
                         "value": "[parameters('courseStartDate')]"
                     },
-                    "courseEndDate": {
+                    "courseEndDay": {
                         "value": "[parameters('courseEndDay')]"
                     },
                     "resourceGroupCleanup": {
