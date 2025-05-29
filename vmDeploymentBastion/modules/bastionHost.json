@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.2",
+    "contentVersion": "1.0.0.3",
     "parameters": {
         "location": {
             "type": "string"
@@ -87,19 +87,18 @@
                         }
                     }
                 ],
-                "sku": {
-                    "name": "[parameters('bastionHostSku')]"
-                },
                 "scaleUnits": "[parameters('bastionHostScaleUnits')]",
                 "enableTunneling": "[parameters('enableTunneling')]",
                 "enableIpConnect": "[parameters('enableIpConnect')]",
                 "enableShareableLink": "[parameters('enableShareableLink')]",
-                "enableKerberosAuthentication": "[parameters('enableKerberos')]",
+                "enableKerberos": "[parameters('enableKerberos')]",
                 "disableCopyPaste": "[parameters('disableCopyPaste')]",
                 "enableSessionRecording": "[parameters('enableSessionRecording')]",
-                "enablePrivateOnlyBastionHost": "[parameters('enablePrivateOnlyBastion')]"
+                "enablePrivateOnlyBastion": "[parameters('enablePrivateOnlyBastion')]"
             },
-            "zones": "[parameters('zones')]"
+            "sku": {
+                "name": "[parameters('bastionHostSku')]"
+            }
         }
     ]
 }
