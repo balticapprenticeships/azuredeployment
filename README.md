@@ -7,7 +7,7 @@
 
 This template allows you to deploy multiple Windows or linux server based VMs in the West UK and South UK regions using a custom image and various options from OS version, to VM size and DSC configurations.
 
-[![Deploy Server VM and Bastion to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fbalticapprenticeships%2Fazuredeployment%2Fmain%2FvmDesplymentBastion%2FserverMain.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fbalticapprenticeships%2Fazuredeployment%2Fmain%2FvmDeploymentBastion%2FuiSvrDefinition.json)
+[![Deploy Server VM and Bastion to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fbalticapprenticeships%2Fazuredeployment%2Fmain%2FvmDeploymentBastion%2FserverMain.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fbalticapprenticeships%2Fazuredeployment%2Fmain%2FvmDeploymentBastion%2FuiSvrDefinition.json)
 
 This modular template allow you to deploy multiple Windows or Linux server based VMsbehind a Bastion Host.
 
