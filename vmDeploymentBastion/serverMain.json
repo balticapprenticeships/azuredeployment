@@ -864,10 +864,6 @@
         "imageVersion": {
             "type": "string",
             "value": "[parameters('imageVersion')]"
-        },
-        "virtualMachineFQDN": {
-            "type": "array",
-            "value": "[reference('DeployPublicIPAddress').outputs.fqdn.value]"
         }
     }
 }
