@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
+    "contentVersion": "1.0.0.1",
     "parameters": {
         "location": {
             "type": "string"
@@ -14,7 +14,7 @@
         "bastionHostScaleUnits": {
             "type": "int"
         },
-        "enabableIpConnect": {
+        "enableIpConnect": {
             "type": "bool"
         },
         "enableShareableLink": {
@@ -88,7 +88,7 @@
                     "tier": "[parameters('bastionHostSku')]",
                     "capacity": "[parameters('bastionHostScaleUnits')]"
                 },
-                "enableIpConnect": "[parameters('enabableIpConnect')]",
+                "enableIpConnect": "[parameters('enableIpConnect')]",
                 "enableShareableLink": "[parameters('enableShareableLink')]",
                 "enableKerberosAuthentication": "[parameters('enableKerberos')]",
                 "disableCopyPaste": "[parameters('disableCopyPaste')]",

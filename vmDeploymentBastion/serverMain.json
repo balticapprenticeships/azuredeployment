@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
+    "contentVersion": "1.0.0.1",
     "parameters": {
         "location": {
             "type": "string",
@@ -494,7 +494,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/bastionHost.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "1.0.0.1"
                 },
                 "parameters": {
                     "location": {
@@ -509,10 +509,7 @@
                     "bastionHostScaleUnits": {
                         "value": "[parameters('bastionHostScaleUnits')]"
                     },
-                    "bastionSubnetId": {
-                        "value": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('existingVnet')), '/subnets/AzureBastionSubnet')]"
-                    },
-                    "bastionPublicIpAddressId": {
+                    "bastionPublicIpAddressName": {
                         "value": "[variables('publicIPAddressName')]"
                     },
                     "enableIpConnect": {
