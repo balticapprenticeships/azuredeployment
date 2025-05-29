@@ -498,7 +498,22 @@
                                 "toolTip": "Here you can choose the subnet name that your VMs will be assigned to"
                             }
                         ]
-                    }
+                    },
+                    {
+						"name": "bastionConfig",
+						"label": "Bastion Host",
+						"type": "Microsoft.Common.Section",
+						"elements": [
+							{
+								"name": "disableCopyPaste",
+								"label": "Disable RDP Copy Past",
+								"type": "Microsoft.Common.CheckBox",
+								"defaultValue": true,
+								"tooltip": "Enable or disable copy and paste functionality in the Remote Desktop session. Recommended for Exam VMs"								
+							}
+						],
+                        "visible": "[equals(steps('osConfig').programme, 'mtaExams')]"
+					}
                 ]
             },
             {
@@ -721,6 +736,7 @@
             "vnetNewOrExisting": "[steps('netConfig').nicConfig.vnetNewOrExisting]",
             "existingVnet": "[steps('netConfig').nicConfig.vnetSelector.name]",
             "subnetName": "[steps('netConfig').nicConfig.subnetName]",
+            "disableCopyPaste": "[steps('netConfig').bastionConfig.disableCopyPaste]",
             "createdBy": "[steps('tags').mngTagsConfig.createdBy]",
             "deliveringCoachInitials": "[steps('tags').mngTagsConfig.coachInitials]",
             "routeway": "[steps('tags').mngTagsConfig.routeway]",

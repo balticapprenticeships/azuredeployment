@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.1.5",
+    "contentVersion": "2.0.0.0",
     "parameters": {
         "location": {
             "type": "string",
@@ -161,6 +161,7 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "4.4.25",
                 "4.3.25",
                 "4.2.25",
                 "3.11.24"
@@ -253,15 +254,98 @@
                 "description": ""
             }
         },
-        "pipDeleteOption": {
+        "bastionHostName": {
             "type": "string",
-            "defaultValue": "Delete",
+            "defaultValue": "[concat(resourceGroup().name, '-Bastion')]",
+            "metadata": {
+                "description": "Please provide a name for the Bastion Host."
+            }
+        },
+        "bastionHostSku": {
+            "type": "string",
+            "defaultValue": "Standard",
             "allowedValues": [
-                "Delete",
-                "detatch"
+                "Basic",
+                "Standard"
             ],
             "metadata": {
-                "description": ""
+                "description": "Choose the SKU for the Bastion Host."
+            }
+        },
+        "bastionHostScaleUnits": {
+            "type": "int",
+            "defaultValue": 2,
+            "minValue": 1,
+            "maxValue": 10,
+            "metadata": {
+                "description": "Number of scale units for the Bastion Host."
+            }
+        },
+        "enableTunneling": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Enable or disable the Bastion Host tunneling functionality."
+            }
+        },
+        "enableIpConnect": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Enable or disable the Bastion Host IP Connect functionality."
+            }
+        },
+        "enableShareableLink": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Enable or disable the shareable link functionality in the Bastion Host."
+            }
+        },
+        "enableKerberos": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Enable or disable Kerberos authentication for the Bastion Host."
+            }
+        },
+        "disableCopyPaste": {
+            "type": "bool",
+            "defaultValue": true,
+            "allowedValues": [
+                true,
+                false
+            ],
+            "metadata": {
+                "description": "Enable or disable copy and paste functionality in the Remote Desktop session."
+            }
+        },
+        "enableSessionRecording": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Enable or disable session recording for the Bastion Host."
+            }
+        },
+        "enablePrivateOnlyBastion": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Enable or disable private-only Bastion Host deployment."
+            }
+        },
+        "zones": {
+            "type": "array",
+            "defaultValue": [],
+            "metadata": {
+                "description": "Availability zones for the Bastion Host."
+            }
+        },
+        "publicIpZones": {
+            "type": "array",
+            "defaultValue": [],
+            "metadata": {
+                "description": "Availability zones for the public IP address associated with the Bastion Host."
             }
         },
         "createdBy": {
@@ -371,10 +455,148 @@
         },
         "vaultResourceGroup": "[concat(variables('rwkeyVault')[parameters('routeway')].keyVaultRg, 'OMSRg')]",
         "vaultName": "[concat('VMDeployment', variables('rwkeyVault')[parameters('routeway')].rwSuffix)]",
+        "publicIPAddressName": "[concat(resourceGroup().name, '-BastionPIP')]",
         "_artifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
         "_moduleRepo": "/main/vmDeploymentBastion/modules"        
     },
     "resources": [
+        {   
+            "condition": "[equals(parameters('vnetNewOrExisting'), 'new')]",
+            "name": "DeployVirtualNetwork",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/virtualNetwork.json')]",
+                    "contentVersion": "2.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "subnetName": {
+                        "value": "[parameters('subnetName')]"
+                    },
+                    "createdBy": {
+                        "value": "[parameters('createdBy')]"
+                    },
+                    "courseStartDate": {
+                        "value": "[parameters('courseStartDate')]"
+                    },
+                    "resourceGroupCleanup": {
+                        "value": "[parameters('resourceGroupCleanup')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'DeployNetworkSecurityGroup')]"
+            ]
+        },
+        {
+            "name": "DeployPublicIPAddress",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/publicIP.json')]",
+                    "contentVersion": "2.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "publicIpAddressName": {
+                        "value": "[variables('publicIPAddressName')]"
+                    },
+                    "createdBy": {
+                        "value": "[parameters('createdBy')]"
+                    },
+                    "deliveringCoachinitials": {
+                        "value": "[parameters('deliveringCoachInitials')]"
+                    },
+                    "courseStartDate": {
+                        "value": "[parameters('courseStartDate')]"
+                    },
+                    "resourceGroupCleanup": {
+                        "value": "[parameters('resourceGroupCleanup')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "DeployBastionHost",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-11-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/bastionHost.json')]",
+                    "contentVersion": "2.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "bastionHostName": {
+                        "value": "[parameters('bastionHostName')]"
+                    },
+                    "bastionHostSku": {
+                        "value": "[parameters('bastionHostSku')]"
+                    },
+                    "bastionHostScaleUnits": {
+                        "value": "[parameters('bastionHostScaleUnits')]"
+                    },
+                    "bastionPublicIpAddressName": {
+                        "value": "[variables('publicIPAddressName')]"
+                    },
+                    "enableTunneling": {
+                        "value": "[parameters('enableTunneling')]"
+                    },
+                    "enableIpConnect": {
+                        "value": "[parameters('enableIpConnect')]"
+                    },
+                    "enableShareableLink": {
+                        "value": "[parameters('enableShareableLink')]"
+                    },
+                    "enableKerberos": {
+                        "value": "[parameters('enableKerberos')]"
+                    },
+                    "disableCopyPaste": {
+                        "value": "[parameters('disableCopyPaste')]"
+                    },
+                    "enableSessionRecording": {
+                        "value": "[parameters('enableSessionRecording')]"
+                    },
+                    "enablePrivateOnlyBastion": {
+                        "value": "[parameters('enablePrivateOnlyBastion')]"
+                    },
+                    "zones": {
+                        "value": "[parameters('zones')]"
+                    },
+                    "publicIpZones": {
+                        "value": "[parameters('publicIpZones')]"
+                    },
+                    "createdBy": {
+                        "value": "[parameters('createdBy')]"
+                    },"courseStartDate": {
+                        "value": "[parameters('courseStartDate')]"
+                    },
+                    "courseEndDate": {
+                        "value": "[parameters('courseEndDay')]"
+                    },
+                    "resourceGroupCleanup": {
+                        "value": "[parameters('resourceGroupCleanup')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'DeployPublicIPAddress')]",
+                "[resourceId('Microsoft.Resources/deployments', 'DeployVirtualNetwork')]"
+            ]
+        },
         {
             "name": "DeployNetworkInterface",
             "type": "Microsoft.Resources/deployments",
@@ -383,7 +605,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkInterface.json')]",
-                    "contentVersion": "3.0.1.0"
+                    "contentVersion": "2.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -403,9 +625,6 @@
                     },
                     "vnetNewOrExisting": {
                         "value": "[parameters('vnetNewOrExisting')]"
-                    },
-                    "pipDeleteOption": {
-                        "value": "[parameters('pipDeleteOption')]"
                     },
                     "existingVnet": {
                         "value": "[parameters('existingVnet')]"
@@ -429,8 +648,7 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Resources/deployments', 'DeployNetworkSecurityGroup')]",
-                "[resourceId('Microsoft.Resources/deployments', 'DeployVirtualNetwork')]",
-                "[resourceId('Microsoft.Resources/deployments', 'DeployPublicIPAddress')]"
+                "[resourceId('Microsoft.Resources/deployments', 'DeployVirtualNetwork')]"
             ]
         },
         {
@@ -441,7 +659,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkSecurityGroup.json')]",
-                    "contentVersion": "3.0.0.0"
+                    "contentVersion": "2.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -462,74 +680,7 @@
                 }
             },
             "dependsOn": []
-        },
-        {   
-            "condition": "[equals(parameters('vnetNewOrExisting'), 'new')]",
-            "name": "DeployVirtualNetwork",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2021-04-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/virtualNetwork.json')]",
-                    "contentVersion": "3.0.0.0"
-                },
-                "parameters": {
-                    "location": {
-                        "value": "[parameters('location')]"
-                    },
-                    "subnetName": {
-                        "value": "[parameters('subnetName')]"
-                    },
-                    "createdBy": {
-                        "value": "[parameters('createdBy')]"
-                    },
-                    "courseStartDate": {
-                        "value": "[parameters('courseStartDate')]"
-                    },
-                    "resourceGroupCleanup": {
-                        "value": "[parameters('resourceGroupCleanup')]"
-                    }
-                }
-            },
-            "dependsOn": []
-        },
-        {
-            "name": "DeployPublicIPAddress",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2021-04-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/publicIP.json')]",
-                    "contentVersion": "3.1.0.0"
-                },
-                "parameters": {
-                    "location": {
-                        "value": "[parameters('location')]"
-                    },
-                    "vmName": {
-                        "value": "[parameters('vmName')]"
-                    },
-                    "vmCount": {
-                        "value": "[parameters('vmCount')]"
-                    },
-                    "createdBy": {
-                        "value": "[parameters('createdBy')]"
-                    },
-                    "deliveringCoachinitials": {
-                        "value": "[parameters('deliveringCoachInitials')]"
-                    },
-                    "courseStartDate": {
-                        "value": "[parameters('courseStartDate')]"
-                    },
-                    "resourceGroupCleanup": {
-                        "value": "[parameters('resourceGroupCleanup')]"
-                    }
-                }
-            },
-            "dependsOn": []
-        },
+        },        
         {
             "name": "DeployWindowsVM",
             "type": "Microsoft.Resources/deployments",
@@ -538,7 +689,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsDesktop.json')]",
-                    "contentVersion": "3.1.0.2"
+                    "contentVersion": "2.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -748,10 +899,6 @@
         "imageVersion": {
             "type": "string",
             "value": "[parameters('imageVersion')]"
-        },
-        "virtualMachineFQDN": {
-            "type": "array",
-            "value": "[reference('DeployPublicIPAddress').outputs.fqdn.value]"
         }
     }
 }

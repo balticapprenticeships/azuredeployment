@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
+    "contentVersion": "2.0.0.0",
     "parameters": {
         "location": {
             "type": "string"
@@ -23,7 +23,7 @@
         "vnetName": "[concat(resourceGroup().name, '-vnet')]",
         "addressPrefixes": "10.0.0.0/16",
         "subnetsAddressPrefix": "10.0.0.0/24",
-        "bastionSubnetAddressPrefix": "10.0.1.0/24"
+        "bastionSubnetAddressPrefix": "10.0.200.0/24"
     },
     "resources": [
         {

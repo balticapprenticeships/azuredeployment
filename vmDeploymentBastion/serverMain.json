@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.4",
+    "contentVersion": "2.0.0.0",
     "parameters": {
         "location": {
             "type": "string",
@@ -140,6 +140,7 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "4.4.25",
                 "4.3.25",
                 "4.2.25",
                 "4.01.25"
@@ -261,7 +262,7 @@
         },
         "enableTunneling": {
             "type": "bool",
-            "defaultValue": true,
+            "defaultValue": false,
             "metadata": {
                 "description": "Enable or disable the Bastion Host tunneling functionality."
             }
@@ -436,7 +437,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/virtualNetwork.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "2.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -468,7 +469,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/publicIP.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "2.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -501,7 +502,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/bastionHost.json')]",
-                    "contentVersion": "1.0.0.3"
+                    "contentVersion": "2.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -572,7 +573,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkInterface.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "2.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -623,7 +624,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/networkSecurityGroup.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "2.0.0.0"
                 },
                 "parameters": {
                     "location": {
@@ -654,7 +655,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsServer.json')]",
-                    "contentVersion": "1.0.0.0"
+                    "contentVersion": "2.0.0.0"
                 },
                 "parameters": {
                     "location": {
