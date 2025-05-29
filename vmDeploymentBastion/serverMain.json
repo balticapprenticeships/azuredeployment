@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.2",
+    "contentVersion": "1.0.0.3",
     "parameters": {
         "location": {
             "type": "string",
@@ -259,6 +259,13 @@
                 "description": "Number of scale units for the Bastion Host."
             }
         },
+        "enableTunneling": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Enable or disable the Bastion Host tunneling functionality."
+            }
+        },
         "enableIpConnect": {
             "type": "bool",
             "defaultValue": false,
@@ -494,7 +501,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/bastionHost.json')]",
-                    "contentVersion": "1.0.0.1"
+                    "contentVersion": "1.0.0.2"
                 },
                 "parameters": {
                     "location": {
@@ -511,6 +518,9 @@
                     },
                     "bastionPublicIpAddressName": {
                         "value": "[variables('publicIPAddressName')]"
+                    },
+                    "enableTunneling": {
+                        "value": "[parameters('enableTunneling')]"
                     },
                     "enableIpConnect": {
                         "value": "[parameters('enableIpConnect')]"

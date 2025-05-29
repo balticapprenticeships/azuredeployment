@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.1",
+    "contentVersion": "1.0.0.2",
     "parameters": {
         "location": {
             "type": "string"
@@ -13,6 +13,9 @@
         },
         "bastionHostScaleUnits": {
             "type": "int"
+        },
+        "enableTunneling": {
+            "type": "bool"
         },
         "enableIpConnect": {
             "type": "bool"
@@ -77,6 +80,7 @@
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat(resourceGroup().name, '-vnet'), 'AzureBastionSubnet')]"
                             },
+                            "privateIPAllocationMethod": "Dynamic",
                             "publicIPAddress": {
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('bastionPublicIpAddressName'))]"
                             }
@@ -84,10 +88,10 @@
                     }
                 ],
                 "sku": {
-                    "name": "[parameters('bastionHostSku')]",
-                    "tier": "[parameters('bastionHostSku')]",
-                    "capacity": "[parameters('bastionHostScaleUnits')]"
+                    "name": "[parameters('bastionHostSku')]"
                 },
+                "scaleUnits": "[parameters('bastionHostScaleUnits')]",
+                "enableTunneling": "[parameters('enableTunneling')]",
                 "enableIpConnect": "[parameters('enableIpConnect')]",
                 "enableShareableLink": "[parameters('enableShareableLink')]",
                 "enableKerberosAuthentication": "[parameters('enableKerberos')]",
