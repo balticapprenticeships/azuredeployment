@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "2.0.0.1",
+    "contentVersion": "2.0.5.0",
     "parameters": {
         "location": {
             "type": "string"
