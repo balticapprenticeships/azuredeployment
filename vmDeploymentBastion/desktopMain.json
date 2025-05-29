@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "2.0.0.0",
+    "contentVersion": "2.0.0.1",
     "parameters": {
         "location": {
             "type": "string",
@@ -513,9 +513,6 @@
                     "createdBy": {
                         "value": "[parameters('createdBy')]"
                     },
-                    "deliveringCoachinitials": {
-                        "value": "[parameters('deliveringCoachInitials')]"
-                    },
                     "courseStartDate": {
                         "value": "[parameters('courseStartDate')]"
                     },
@@ -619,9 +616,6 @@
                     },
                     "vmSize": {
                         "value": "[parameters('vmSize')]"
-                    },
-                    "course": {
-                        "value": "[variables('courseImageValue')[parameters('apprenticeshipProgramme')].courseImageDefinitionName]"
                     },
                     "vnetNewOrExisting": {
                         "value": "[parameters('vnetNewOrExisting')]"
