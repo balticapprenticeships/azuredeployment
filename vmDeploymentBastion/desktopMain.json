@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "2.0.5.0",
+    "contentVersion": "2.0.5.1",
     "parameters": {
         "location": {
             "type": "string",
@@ -515,6 +515,9 @@
                     },
                     "courseStartDate": {
                         "value": "[parameters('courseStartDate')]"
+                    },
+                    "courseEndDay": {
+                        "value": "[parameters('courseEndDay')]"
                     },
                     "resourceGroupCleanup": {
                         "value": "[parameters('resourceGroupCleanup')]"
