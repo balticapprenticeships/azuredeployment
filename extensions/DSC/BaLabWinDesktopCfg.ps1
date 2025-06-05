@@ -338,6 +338,35 @@ Configuration BaDataLevel4SqlLabCfg {
             AgtSvcStartupType = 'Manual'
             BrowserSvcStartupType = 'Manual'            
         }
+
+        # This resource block ensures that the file or command is executed after SQL Server installation
+        Script "AddSSMSDesktopShortcut"
+        {
+            SetScript = {
+                $ssmsTargetFile = "C:\Program Files (x86)\Microsoft SQL Server Management Studio 19\Common7\IDE\Ssms.exe"
+                $ssmsShortcutFile = "C:\Users\Public\Desktop\Sql Server Management Studio.lnk"
+                if (Test-Path -Path $ssmsTargetFile) {
+                    $ssmsWShell = New-Object -ComObject WScript.Shell
+                    $ssmsShortcut = $ssmsWShell.CreateShortcut($ssmsShortcutFile)
+                    $ssmsShortcut.TargetPath = $ssmsTargetFile
+                    $ssmsShortcut.Save()
+                } else {
+                    Write-Error "SQL Server Management Studio executable not found at $ssmsTargetFile"
+                }
+            }
+            TestScript = {
+                $ssmsShortcutFile = "C:\Users\Public\Desktop\Sql Server Management Studio.lnk"
+                return (Test-Path -Path $ssmsShortcutFile)
+            }
+            GetScript = {
+                $ssmsShortcutFile = "C:\Users\Public\Desktop\Sql Server Management Studio.lnk"
+                if (Test-Path -Path $ssmsShortcutFile) {
+                    return Get-Content -Path $ssmsShortcutFile
+                } else {
+                    return "Shortcut not found."
+                }
+            }
+        }
     }
 }
 
