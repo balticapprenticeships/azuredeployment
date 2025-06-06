@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 6.1.0                                               #
+# Version: 6.2.0                                               #
 ################################################################
 
 Configuration BaWinDesktopLabCfg {
@@ -14,7 +14,7 @@ Configuration BaWinDesktopLabCfg {
         $Credential
     )
 
-    Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration
+    Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration
 
     Node localhost {
         LocalConfigurationmanager {
@@ -22,7 +22,7 @@ Configuration BaWinDesktopLabCfg {
         }
 
         # This resource block creates a local User
-        User "CreateUserAccount"
+        xUser "CreateUserAccount"
         {
             Ensure = "Present"
             UserName = Split-Path -Path $Credential.Username -Leaf
@@ -35,25 +35,25 @@ Configuration BaWinDesktopLabCfg {
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToUserGroup"
+        xGroup "AddToUserGroup"
         {
             Ensure = "Present"
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToRemoteDesktopUserGroup"
+        xGroup "AddToRemoteDesktopUserGroup"
         {
             Ensure = "Present"
             GroupName = "Remote Desktop Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }        
         
         # This resource block ensures that the file or command is executed
-        Script "RemoveArtifacts"
+        xScript "RemoveArtifacts"
         {
             SetScript = {
                 Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
@@ -78,7 +78,7 @@ Configuration BaDataBootCampLabCfg {
         $Credential
     )
 
-    Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration
+    Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration
 
     Node localhost {
         LocalConfigurationmanager {
@@ -86,7 +86,7 @@ Configuration BaDataBootCampLabCfg {
         }
 
         # This resource block creates a local User
-        User "CreateUserAccount"
+        xUser "CreateUserAccount"
         {
             Ensure = "Present"
             UserName = Split-Path -Path $Credential.Username -Leaf
@@ -99,25 +99,25 @@ Configuration BaDataBootCampLabCfg {
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToUserGroup"
+        xGroup "AddToUserGroup"
         {
             Ensure = "Present"
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToRemoteDesktopUserGroup"
+        xGroup "AddToRemoteDesktopUserGroup"
         {
             Ensure = "Present"
             GroupName = "Remote Desktop Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }        
         
         # This resource block ensures that the file or command is executed
-        Script "RemoveArtifacts"
+        xScript "RemoveArtifacts"
         {
             SetScript = {
                 Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
@@ -142,7 +142,7 @@ Configuration BaExamTestingLabCfg {
         $Credential
     )
 
-    Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration
+    Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration
 
     Node localhost {
         LocalConfigurationmanager {
@@ -150,7 +150,7 @@ Configuration BaExamTestingLabCfg {
         }
 
         # This resource block creates a local User
-        User "CreateUserAccount"
+        xUser "CreateUserAccount"
         {
             Ensure = "Present"
             UserName = Split-Path -Path $Credential.Username -Leaf
@@ -163,25 +163,25 @@ Configuration BaExamTestingLabCfg {
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToUserGroup"
+        xGroup "AddToUserGroup"
         {
             Ensure = "Present"
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToRemoteDesktopUserGroup"
+        xGroup "AddToRemoteDesktopUserGroup"
         {
             Ensure = "Present"
             GroupName = "Remote Desktop Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }        
         
         # This resource block ensures that the file or command is executed
-        Script "RemoveArtifacts"
+        xScript "RemoveArtifacts"
         {
             SetScript = {
                 Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
@@ -206,7 +206,7 @@ Configuration BaDataLevel3LabCfg {
         $Credential
     )
 
-    Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration
+    Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration
 
     Node localhost {
         LocalConfigurationmanager {
@@ -214,7 +214,7 @@ Configuration BaDataLevel3LabCfg {
         }
 
         # This resource block creates a local User
-        User "CreateUserAccount"
+        xUser "CreateUserAccount"
         {
             Ensure = "Present"
             UserName = Split-Path -Path $Credential.Username -Leaf
@@ -227,25 +227,25 @@ Configuration BaDataLevel3LabCfg {
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToUserGroup"
+        xGroup "AddToUserGroup"
         {
             Ensure = "Present"
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToRemoteDesktopUserGroup"
+        xGroup "AddToRemoteDesktopUserGroup"
         {
             Ensure = "Present"
             GroupName = "Remote Desktop Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }        
         
         # This resource block ensures that the file or command is executed
-        Script "RemoveArtifacts"
+        xScript "RemoveArtifacts"
         {
             SetScript = {
                 Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
@@ -270,7 +270,7 @@ Configuration BaDataLevel4LabCfg {
         $Credential
     )
 
-    Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration
+    Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration
 
     Node localhost {
         LocalConfigurationmanager {
@@ -278,7 +278,7 @@ Configuration BaDataLevel4LabCfg {
         }
 
         # This resource block creates a local User
-        User "CreateUserAccount"
+        xUser "CreateUserAccount"
         {
             Ensure = "Present"
             UserName = Split-Path -Path $Credential.Username -Leaf
@@ -291,25 +291,25 @@ Configuration BaDataLevel4LabCfg {
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToUserGroup"
+        xGroup "AddToUserGroup"
         {
             Ensure = "Present"
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToRemoteDesktopUserGroup"
+        xGroup "AddToRemoteDesktopUserGroup"
         {
             Ensure = "Present"
             GroupName = "Remote Desktop Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }        
         
         # This resource block ensures that the file or command is executed
-        Script "RemoveArtifacts"
+        xScript "RemoveArtifacts"
         {
             SetScript = {
                 Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
@@ -334,7 +334,7 @@ Configuration BaDataLevel4SqlLabCfg {
         $Credential
     )
 
-    Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration, SqlServerDsc
+    Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration, SqlServerDsc
 
     Node localhost {
         LocalConfigurationmanager {
@@ -342,7 +342,7 @@ Configuration BaDataLevel4SqlLabCfg {
         }
 
         # This resource block creates a local User
-        User "CreateUserAccount"
+        xUser "CreateUserAccount"
         {
             Ensure = "Present"
             UserName = Split-Path -Path $Credential.Username -Leaf
@@ -355,30 +355,30 @@ Configuration BaDataLevel4SqlLabCfg {
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToUserGroup"
+        xGroup "AddToUserGroup"
         {
             Ensure = "Present"
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToAdministratorGroup"
+        xGroup "AddToAdministratorGroup"
         {
             Ensure = "Present"
             GroupName = "Administrators"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }        
 
         # This resource block adds a user to specific groups
-        Group "AddToRemoteDesktopUserGroup"
+        xGroup "AddToRemoteDesktopUserGroup"
         {
             Ensure = "Present"
             GroupName = "Remote Desktop Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }
         
         # This resource block will install SQL Server 2022 Devloper Edition
@@ -408,11 +408,11 @@ Configuration BaDataLevel4SqlLabCfg {
             AgtSvcStartupType = 'Manual'
             BrowserSvcStartupType = 'Manual'
             
-            DependsOn = "[User]CreateUserAccount", "[Group]AddToAdministratorGroup"
+            DependsOn = "[xUser]CreateUserAccount", "[xGroup]AddToAdministratorGroup"
         }
 
         # This resource block ensures that the file or command is executed after SQL Server installation
-        Script "AddSSMSDesktopShortcut"
+        xScript "AddSSMSDesktopShortcut"
         {
             SetScript = {
                 $ssmsTargetFile = "C:\Program Files (x86)\Microsoft SQL Server Management Studio 20\Common7\IDE\Ssms.exe"
@@ -435,7 +435,7 @@ Configuration BaDataLevel4SqlLabCfg {
         }
 
         # This resource block ensures that the file or command is executed
-        Script "RemoveArtifacts"
+        xScript "RemoveArtifacts"
         {
             SetScript = {
                 Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
@@ -460,7 +460,7 @@ Configuration BaSWAPC5LabCfg {
         $Credential
     )
 
-    Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration
+    Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration
 
     Node localhost {
         LocalConfigurationmanager {
@@ -468,7 +468,7 @@ Configuration BaSWAPC5LabCfg {
         }
 
         # This resource block creates a local User
-        User "CreateUserAccount"
+        xUser "CreateUserAccount"
         {
             Ensure = "Present"
             UserName = Split-Path -Path $Credential.Username -Leaf
@@ -481,25 +481,25 @@ Configuration BaSWAPC5LabCfg {
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToUserGroup"
+        xGroup "AddToUserGroup"
         {
             Ensure = "Present"
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToRemoteDesktopUserGroup"
+        xGroup "AddToRemoteDesktopUserGroup"
         {
             Ensure = "Present"
             GroupName = "Remote Desktop Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }        
         
         # This resource block ensures that the file or command is executed
-        Script "RemoveArtifacts"
+        xScript "RemoveArtifacts"
         {
             SetScript = {
                 Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
@@ -524,7 +524,7 @@ Configuration BaSWAPC5UE5LabCfg {
         $Credential
     )
 
-    Import-DscResource -ModuleName ComputerManagementDsc, PSDesiredStateConfiguration
+    Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration
 
     Node localhost {
         LocalConfigurationmanager {
@@ -532,7 +532,7 @@ Configuration BaSWAPC5UE5LabCfg {
         }
 
         # This resource block creates a local User
-        User "CreateUserAccount"
+        xUser "CreateUserAccount"
         {
             Ensure = "Present"
             UserName = Split-Path -Path $Credential.Username -Leaf
@@ -545,25 +545,25 @@ Configuration BaSWAPC5UE5LabCfg {
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToUserGroup"
+        xGroup "AddToUserGroup"
         {
             Ensure = "Present"
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }
 
         # This resource block adds a user to specific groups
-        Group "AddToRemoteDesktopUserGroup"
+        xGroup "AddToRemoteDesktopUserGroup"
         {
             Ensure = "Present"
             GroupName = "Remote Desktop Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
-            DependsOn = "[User]CreateUserAccount"
+            DependsOn = "[xUser]CreateUserAccount"
         }        
         
         # This resource block ensures that the file or command is executed
-        Script "RemoveArtifacts"
+        xScript "RemoveArtifacts"
         {
             SetScript = {
                 Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
