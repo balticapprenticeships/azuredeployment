@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.1.0",
+    "contentVersion": "3.1.1.1",
     "parameters": {
         "location": {
             "type": "string"
@@ -246,7 +246,7 @@
                             "wmfVersion": "latest",
                             "configuration": {
                                 "url": "[concat(variables('_dscArtifactsLocation'), '/', variables('_dscExtensionRepo'), '/', variables('dscArchiveFolder'), '/', variables('dscArchiveFileName'))]",
-                                "script": "BaLabWinClientCfg.ps1",
+                                "script": "BaLabWinDesktopCfg.ps1",
                                 "function": "[variables('labConfigDscFunction')]"
                             }
                         },
