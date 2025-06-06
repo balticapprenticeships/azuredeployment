@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.2.0",
+    "contentVersion": "3.1.2.1",
     "parameters": {
         "location": {
             "type": "string",
@@ -355,10 +355,10 @@
             "l3DmCc": {
                 "courseImageDefinitionName": "[parameters('l3DmCcCourse')]"
             },
-            "l3DataAn": {
+            "l3Data": {
                 "courseImageDefinitionName": "[parameters('l3DataCourse')]"
             },
-            "l4DataAn": {
+            "l4Data": {
                 "courseImageDefinitionName": "[parameters('l4DataCourse')]"
             },
             "l4SoftDev": {
