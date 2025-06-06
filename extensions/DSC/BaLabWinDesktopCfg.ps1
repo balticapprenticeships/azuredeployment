@@ -50,7 +50,27 @@ Configuration BaWinDesktopLabCfg {
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = @("[User]CreateUserAccount")
-        }        
+        }
+        
+        # This resource block ensures that the file or command is executed
+        Script "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
+                Remove-Item -Path "C:\workflow-artifacts" -Force -ErrorAction SilentlyContinue   
+                Remove-Item -Path "C:\workflow-artifacts.zip" -Force -ErrorAction SilentlyContinue 
+            }
+            TestScript = {
+                return !(Test-Path -Path "C:\workflow-artifacts\" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts.zip" -ErrorAction SilentlyContinue)
+            }
+            GetScript = {
+                return @{
+                    Result = "Artifacts removed successfully."
+                }
+            }
+        }
     }
 }
 
@@ -100,7 +120,27 @@ Configuration BaDataBootCampLabCfg {
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = @("[User]CreateUserAccount")
-        }        
+        }
+        
+        # This resource block ensures that the file or command is executed
+        Script "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
+                Remove-Item -Path "C:\workflow-artifacts" -Force -ErrorAction SilentlyContinue   
+                Remove-Item -Path "C:\workflow-artifacts.zip" -Force -ErrorAction SilentlyContinue 
+            }
+            TestScript = {
+                return !(Test-Path -Path "C:\workflow-artifacts\" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts.zip" -ErrorAction SilentlyContinue)
+            }
+            GetScript = {
+                return @{
+                    Result = "Artifacts removed successfully."
+                }
+            }
+        }
     }
 }
 
@@ -150,7 +190,27 @@ Configuration BaExamTestingLabCfg {
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = @("[User]CreateUserAccount")
-        }        
+        }
+        
+        # This resource block ensures that the file or command is executed
+        Script "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
+                Remove-Item -Path "C:\workflow-artifacts" -Force -ErrorAction SilentlyContinue   
+                Remove-Item -Path "C:\workflow-artifacts.zip" -Force -ErrorAction SilentlyContinue 
+            }
+            TestScript = {
+                return !(Test-Path -Path "C:\workflow-artifacts\" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts.zip" -ErrorAction SilentlyContinue)
+            }
+            GetScript = {
+                return @{
+                    Result = "Artifacts removed successfully."
+                }
+            }
+        }
     }
 }
 
@@ -200,7 +260,27 @@ Configuration BaDataLevel3LabCfg {
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = @("[User]CreateUserAccount")
-        }        
+        }
+        
+        # This resource block ensures that the file or command is executed
+        Script "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
+                Remove-Item -Path "C:\workflow-artifacts" -Force -ErrorAction SilentlyContinue   
+                Remove-Item -Path "C:\workflow-artifacts.zip" -Force -ErrorAction SilentlyContinue 
+            }
+            TestScript = {
+                return !(Test-Path -Path "C:\workflow-artifacts\" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts.zip" -ErrorAction SilentlyContinue)
+            }
+            GetScript = {
+                return @{
+                    Result = "Artifacts removed successfully."
+                }
+            }
+        }
     }
 }
 
@@ -250,7 +330,27 @@ Configuration BaDataLevel4LabCfg {
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = @("[User]CreateUserAccount")
-        }        
+        }
+        
+        # This resource block ensures that the file or command is executed
+        Script "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
+                Remove-Item -Path "C:\workflow-artifacts" -Force -ErrorAction SilentlyContinue   
+                Remove-Item -Path "C:\workflow-artifacts.zip" -Force -ErrorAction SilentlyContinue 
+            }
+            TestScript = {
+                return !(Test-Path -Path "C:\workflow-artifacts\" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts.zip" -ErrorAction SilentlyContinue)
+            }
+            GetScript = {
+                return @{
+                    Result = "Artifacts removed successfully."
+                }
+            }
+        }
     }
 }
 
@@ -367,6 +467,26 @@ Configuration BaDataLevel4SqlLabCfg {
                 }
             }
         }
+
+        # This resource block ensures that the file or command is executed
+        Script "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
+                Remove-Item -Path "C:\workflow-artifacts" -Force -ErrorAction SilentlyContinue   
+                Remove-Item -Path "C:\workflow-artifacts.zip" -Force -ErrorAction SilentlyContinue 
+            }
+            TestScript = {
+                return !(Test-Path -Path "C:\workflow-artifacts\" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts.zip" -ErrorAction SilentlyContinue)
+            }
+            GetScript = {
+                return @{
+                    Result = "Artifacts removed successfully."
+                }
+            }
+        }
     }
 }
 
@@ -416,7 +536,27 @@ Configuration BaSWAPC5LabCfg {
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = @("[User]CreateUserAccount")
-        }        
+        }
+        
+        # This resource block ensures that the file or command is executed
+        Script "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
+                Remove-Item -Path "C:\workflow-artifacts" -Force -ErrorAction SilentlyContinue   
+                Remove-Item -Path "C:\workflow-artifacts.zip" -Force -ErrorAction SilentlyContinue 
+            }
+            TestScript = {
+                return !(Test-Path -Path "C:\workflow-artifacts\" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts.zip" -ErrorAction SilentlyContinue)
+            }
+            GetScript = {
+                return @{
+                    Result = "Artifacts removed successfully."
+                }
+            }
+        }
     }
 }
 
@@ -466,6 +606,26 @@ Configuration BaSWAPC5UE5LabCfg {
             GroupName = "Users"
             MembersToInclude = Split-Path -Path $Credential.Username -Leaf
             DependsOn = @("[User]CreateUserAccount")
-        }        
+        }
+        
+        # This resource block ensures that the file or command is executed
+        Script "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
+                Remove-Item -Path "C:\workflow-artifacts" -Force -ErrorAction SilentlyContinue   
+                Remove-Item -Path "C:\workflow-artifacts.zip" -Force -ErrorAction SilentlyContinue 
+            }
+            TestScript = {
+                return !(Test-Path -Path "C:\workflow-artifacts\" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts" -ErrorAction SilentlyContinue) -and
+                       !(Test-Path -Path "C:\workflow-artifacts.zip" -ErrorAction SilentlyContinue)
+            }
+            GetScript = {
+                return @{
+                    Result = "Artifacts removed successfully."
+                }
+            }
+        }
     }
 }
