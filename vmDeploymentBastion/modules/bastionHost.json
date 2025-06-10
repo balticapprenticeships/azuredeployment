@@ -65,7 +65,7 @@
             "location": "[parameters('location')]",
             "tags": {
                 "DisplayName": "Bastion Host",
-                "ResourceType": "BastionHost",
+                "ResourceType": "Bastion",
                 "Dept": "[resourceGroup().tags['Dept']]",
                 "CreatedBy": "[parameters('createdBy')]",
                 "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
