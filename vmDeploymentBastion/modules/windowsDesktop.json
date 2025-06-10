@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "2.0.5.0",
+    "contentVersion": "2.0.5.1",
     "parameters": {
         "location": {
             "type": "string"
@@ -109,8 +109,14 @@
             "ExamTesting": {
                 "galleryImageDefinitionName": "BA-Testing"
             },           
+            "DataLevel3": {
+                "galleryImageDefinitionName": "BA-DataCourses"
+            },           
             "DataLevel4": {
-                "galleryImageDefinitionName": "BA-Win10-Courses"
+                "galleryImageDefinitionName": "BA-DataCourses"
+            },
+            "DataLevel4Sql": {
+                "galleryImageDefinitionName": "BA-DataCourses"
             },
             "DMCC3": {
                 "galleryImageDefinitionName": "BA-DMContentCreator"
@@ -125,7 +131,7 @@
                 "galleryImageDefinitionName": "BA-L4SWDCourse5"
             }
         },
-        "labConfigDscFunction": "[concat('xBa', concat(parameters('course'), 'LabCfg'))]",
+        "labConfigDscFunction": "[concat('Ba', concat(parameters('course'), 'LabCfg'))]",
         "trustedLaunch": {
             "securityType": "[parameters('securityType')]",
             "uefiSettings": {
@@ -139,7 +145,7 @@
         "_dscArtifactsLocation": "https://raw.githubusercontent.com/balticapprenticeships/azuredeployment",
         "_dscExtensionRepo": "main/extensions",
         "dscArchiveFolder": "DSC",
-        "dscArchiveFileName": "BaLabWinClientCfg.zip"
+        "dscArchiveFileName": "BaLabWinDesktopCfg.zip"
     },
     "resources": [
         {
@@ -240,7 +246,7 @@
                             "wmfVersion": "latest",
                             "configuration": {
                                 "url": "[concat(variables('_dscArtifactsLocation'), '/', variables('_dscExtensionRepo'), '/', variables('dscArchiveFolder'), '/', variables('dscArchiveFileName'))]",
-                                "script": "BaLabWinClientCfg.ps1",
+                                "script": "BaLabWinDesktopCfg.ps1",
                                 "function": "[variables('labConfigDscFunction')]"
                             }
                         },
