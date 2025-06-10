@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "2.0.5.1",
+    "contentVersion": "2.0.5.2",
     "parameters": {
         "location": {
             "type": "string",
@@ -103,7 +103,7 @@
             "defaultValue": "NoValue",
             "allowedValues": [
                 "NoValue",
-                "DataLevel4"
+                "DataLevel3"
             ],
             "metadata": {
                 "description": "Choose the course to deliver"
@@ -114,7 +114,7 @@
             "defaultValue": "NoValue",
             "allowedValues": [
                 "NoValue",
-                "SQLDataAnalysis",
+                "DataLevel4Sql",
                 "DataLevel4"
             ],
             "metadata": {
@@ -437,10 +437,10 @@
             "l3DmCc": {
                 "courseImageDefinitionName": "[parameters('l3DmCcCourse')]"
             },
-            "l3DataAn": {
+            "l3Data": {
                 "courseImageDefinitionName": "[parameters('l3DataCourse')]"
             },
-            "l4DataAn": {
+            "l4Data": {
                 "courseImageDefinitionName": "[parameters('l4DataCourse')]"
             },
             "l4SoftDev": {
@@ -687,7 +687,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsDesktop.json')]",
-                    "contentVersion": "2.0.5.0"
+                    "contentVersion": "2.0.5.1"
                 },
                 "parameters": {
                     "location": {
