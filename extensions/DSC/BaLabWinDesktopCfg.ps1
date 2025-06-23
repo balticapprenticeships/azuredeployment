@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 6.2.0                                               #
+# Version: 6.3.0                                               #
 ################################################################
 
 Configuration BaWinDesktopLabCfg {
@@ -388,7 +388,7 @@ Configuration BaDataLevel4SqlLabCfg {
             Features = 'SQLENGINE'
             SourcePath = 'C:\sqlBuildArtifacts\SQLServer2022-Dev'
             SQLCollation = 'Latin1_General_CI_AS'
-            SQLSysAdminAccounts = @('Administrators')
+            SQLSysAdminAccounts = @('Administrators','BalticApprentice')
             InstallSharedDir = 'C:\Program Files\Microsoft SQL Server'
             InstallSharedWOWDir = 'C:\Program Files (x86)\Microsoft SQL Server'
             InstanceDir = 'C:\Program Files\Microsoft SQL Server'
