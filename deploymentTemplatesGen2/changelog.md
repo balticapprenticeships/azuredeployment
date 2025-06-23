@@ -133,6 +133,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [3.1.4.0] 23.06.25
+### Change
+- [uiWCDefinition]
+  Changed L4 Data course 8 to pull the Data SQL DSC config
+
 ## [3.1.1.4] 2484.25
 ### Add
 - [desktopMain]
