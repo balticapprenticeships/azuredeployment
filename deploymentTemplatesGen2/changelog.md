@@ -71,6 +71,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Server User Interface
 
+## [3.1.3.4] 22.07.25
+### Change
+- [uiSvrDefinition]
+  Changed image versions
+
+## [3.1.3.4] 22.07.25
+### Change
+- [serverMain]
+  Changed image versions
+  
 ## [3.1.3.1] 17.2.25
 ### Change
 - [serverMain,uiSvtDefinition]
@@ -132,6 +142,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Windows Client User Interface
+
+## [3.1.5.1] 22.07.25
+### Change
+- [uiWcDefinition]
+  Changed image versions
+
+## [3.1.2.2] 22.07.25
+### Change
+- [desktopmain]
+  Changed image versions
+
+## [3.1.5.0] 25.06.25
+### Change
+- [uiWCDefinition]
+  Changed L4 Data courses to pull the Data SQL DSC config
 
 ## [3.1.4.0] 23.06.25
 ### Change
