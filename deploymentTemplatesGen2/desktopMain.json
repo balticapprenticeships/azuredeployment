@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.2.1",
+    "contentVersion": "3.1.2.2",
     "parameters": {
         "location": {
             "type": "string",
@@ -161,6 +161,7 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "4.6.25",
                 "4.5.25",
                 "4.4.25",
                 "4.3.25",

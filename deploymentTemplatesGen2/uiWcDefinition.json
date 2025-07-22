@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "3.1.4.0",
+    "currentVersion": "3.1.5.1",
     "parameters": {
         "config": {
             "isWizard": true
@@ -161,15 +161,15 @@
                                 },
                                 {
                                     "label": "L4 Course 5 - Data Analysis Using Python, Part 1",
-                                    "value": "DataLevel4"
+                                    "value": "DataLevel4Sql"
                                 },
                                 {
                                     "label": "L4 Course 6 - Data Analysis Using Python, Part 2",
-                                    "value": "DataLevel4"
+                                    "value": "DataLevel4Sql"
                                 },
                                 {
                                     "label": "L4 Course 7 - Data Visualisation Using Power BI & Python, Part 1",
-                                    "value": "DataLevel4"
+                                    "value": "DataLevel4Sql"
                                 },
                                 {
                                     "label": "L4 Course 8 - Data Visualisation Using Power BI & Python, Part 2",
@@ -231,24 +231,12 @@
                                     "value": "latest"
                                 },
                                 {
+                                    "label": "June",
+                                    "value": "4.6.25"
+                                },
+                                {
                                     "label": "May",
                                     "value": "4.5.25"
-                                },
-                                {
-                                    "label": "April",
-                                    "value": "4.4.25"
-                                },
-                                {
-                                    "label": "March",
-                                    "value": "4.3.25"
-                                },
-                                {
-                                    "label": "February",
-                                    "value": "4.2.25"
-                                },
-                                {
-                                    "label": "November",
-                                    "value": "3.11.24"
                                 }
                             ],
                             "required": true
