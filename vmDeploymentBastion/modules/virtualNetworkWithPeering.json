@@ -1,0 +1,102 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "2.0.5.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "subnetName": {
+            "type": "string"
+        },
+        "createdBy": {
+            "type": "string"
+        },
+        "courseStartDate": {
+            "type": "string"
+        },
+        "resourceGroupCleanup": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "vnetName": "[concat(resourceGroup().name, '-vnet')]",
+        "addressPrefixes": "10.0.0.0/16",
+        "subnetsAddressPrefix": "10.0.0.0/24",
+        "bastionSubnetAddressPrefix": "10.0.200.0/24",
+        "remoteVnetname": "BalticFirewall-vnet"
+    },
+    "resources": [
+        {
+            "name": "[variables('vnetName')]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2020-11-01",
+            "location": "[parameters('location')]",
+            "tags": {
+                "DisplayName": "Virtual Network",
+                "ResourceType": "VirtualNetwork",
+                "Dept": "[resourceGroup().tags['Dept']]",
+                "CreatedBy": "[parameters('createdBy')]",
+                "CourseDate": "[concat('WC-', parameters('courseStartDate'))]",
+                "Cleanup": "[parameters('resourceGroupCleanup')]"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('addressPrefixes')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[parameters('subnetName')]",
+                        "properties": {
+                            "addressPrefix": "[variables('subnetsAddressPrefix')]",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(resourceGroup().name, '-nsg'))]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "AzureBastionSubnet",
+                        "properties": {
+                            "addressPrefix": "[variables('bastionSubnetAddressPrefix')]"                            
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "[concat(variables('vnetName'), '-ToFirewallPeerings')]",
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2021-02-01",
+            "location": "[parameters('location')]",
+            "properties": {
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', variables('remoteVnetname'))]"
+                },
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": true,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('remoteVnetname'))]"
+            ]
+        }
+    ],
+    "outputs": {
+        "vnetName": {
+            "type": "object",
+            "value": "[reference(resourceId('Microsoft.Network/virtualNetworks', variables('vnetName')))]"
+        },
+        "subnetName": {
+            "type": "array",
+            "value": "[reference(resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))).subnets]"
+        },
+        "vnetId": {
+            "type": "object",
+            "value": "[reference(resourceId('Microsoft.Network/virtualNetworks', variables('vnetName')))]"
+        }
+    }
+}
