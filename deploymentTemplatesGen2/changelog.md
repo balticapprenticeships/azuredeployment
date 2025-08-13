@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Modules
 
+## [3.1.4.0] 13.8.25
+### Change
+- [serverMain]
+  Changed idleVN to parameter
+
 ## [3.1.3.3] 24.4.25
 ### Add
 - [uiSvrDefinition]
@@ -70,6 +75,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   changed SKU to Standard ahead of mandatory change in 2025
 
 # Windows Server User Interface
+
+## [3.1.4.0] 13.8.25
+### Change
+- [uiSvrDefinition]
+  Changed idleVN options to Yes and No
 
 ## [3.1.3.4] 22.07.25
 ### Change
@@ -142,6 +152,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 # Windows Client User Interface
+
+## [3.1.6.0] 13.8.25
+### Change
+- [uiWCDefinition]
+  Changed idleVN options to Yes and No
+
+## [3.1.3.0] 13.8.25
+### Change
+- [desktopMain]
+  Changed idleVN to parameter
 
 ## [3.1.5.1] 22.07.25
 ### Change
