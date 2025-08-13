@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.3.4",
+    "contentVersion": "3.1.4.0",
     "parameters": {
         "location": {
             "type": "string",
@@ -284,6 +284,17 @@
                 "description": "Should the virtual machines start automatically at the beginning of each day?"
             }
         },
+        "idleVM": {
+            "type": "string",
+            "defaultValue": "No",
+            "allowedValues": [
+                "Yes",
+                "No"
+            ],
+            "metadata": {
+                "description": "Should the virtual machines be shutdown if idle for 15 minutes?"
+            }
+        },
         "resourceGroupCleanup": {
             "type": "string",
             "defaultValue": "Enabled",
@@ -327,7 +338,6 @@
         },
         "patchMode": "[if(equals(parameters('osPlatform'), 'Windows'), 'AutomaticByOS', 'ImageDefault')]",
         "licenseType": "AzureLicense",
-        "idleVM": "No",
         "courseImageValue": {
             "l3IctSupTech": {
                 "courseImageDefinitionName": "[parameters('l3SupTechCourse')]"
@@ -568,7 +578,7 @@
                         "value": "[parameters('guestAttestation')]"
                     },
                     "idleVM": {
-                        "value": "[variables('idleVM')]"
+                        "value": "[parameters('idleVM')]"
                     },
                     "nicDeleteOption": {
                         "value": "[parameters('nicDeleteOption')]"
@@ -692,7 +702,7 @@
         },
         "idleVm": {
             "type": "string",
-            "value": "[variables('idleVM')]"
+            "value": "[parameters('idleVM')]"
         },
         "resourceGroupCleanup": {
             "type": "string",
