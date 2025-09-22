@@ -153,6 +153,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [3.1.6.1] 22.9.25
+### Change
+- [uiWCDefinition]
+  ChangedSWAP5UE% version to 5.4.4
+
 ## [3.1.6.0] 13.8.25
 ### Change
 - [uiWCDefinition]
