@@ -1,5 +1,5 @@
 <#
-.VERSION    4.2.4
+.VERSION    4.3.2
 .AUTHOR     Chris Langford
 .COPYRIGHT  (c) 2025 Chris Langford. All rights reserved.
 .TAGS       Azure Automation, PowerShell Runbook, DevOps
@@ -36,6 +36,21 @@ $WarningPreference     = 'Continue'
 $VerbosePreference     = 'SilentlyContinue'
 $InformationPreference = 'Continue'
 
+# Convert datetime to London time and format
+function Format-LondonTime {
+    param([datetime]$dt)
+    $tzLondon = [System.TimeZoneInfo]::FindSystemTimeZoneById("GMT Standard Time")
+    $dtLondon = [System.TimeZoneInfo]::ConvertTime($dt, $tzLondon)
+    return $dtLondon.ToString("dd/MM/yyyy HH:mm:ss")
+}
+
+# Function to convert datetime to London time
+function Get-LondonTime {
+    param([datetime]$dt)
+    $tzLondon = [System.TimeZoneInfo]::FindSystemTimeZoneById("GMT Standard Time")
+    [System.TimeZoneInfo]::ConvertTime($dt, $tzLondon)
+}
+
 # Set teamsWebhookUrl from automation variable if not provided
 if (-not $teamsWebhookUrl) {
     try {
@@ -47,7 +62,8 @@ if (-not $teamsWebhookUrl) {
 }
 
 #–– Start Transcript ––
-$transcript = Join-Path $env:TEMP "CleanupRun_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
+$transcriptTime = (Get-LondonTime (Get-Date)).ToString("ddMMyyyy_HHmmss")
+$transcript = Join-Path $env:TEMP "CleanupRun_$transcriptTime.txt"
 Start-Transcript -Path $transcript -Force
 
 # Log execution mode
@@ -60,7 +76,9 @@ else {
 
 $global:cleanupResults = @{
     StartTime      = Get-Date
+    StartTimeStr   = Format-LondonTime (Get-Date)
     EndTime        = $null
+    EndTimeStr     = $null
     Duration       = $null
     VMsTargeted    = 0
     VMsRemoved     = 0
@@ -70,12 +88,16 @@ $global:cleanupResults = @{
     SkippedVNets   = @()
     FailedNSGs     = @()
     Errors         = 0
+
+    VMsRemovedRGs  = @()
+    NSGsRemovedRGs  = @()
+    VNetsRemovedRGs = @()
 }
 
-Write-Information "Cleanup run started at $($global:cleanupResults.StartTime)" -Tags CleanupRun
+Write-Information "Cleanup run started at $($global:cleanupResults.StartTimeStr)" -Tags CleanupRun
 
 try {
-    Write-Verbose "Authenticating to Azure with managed identity..."
+    Write-Verbose "Authenticating to Azure with managed identity at $(Format-LondonTime (Get-Date))..."
     Connect-AzAccount -Identity
     Write-Information "Azure authentication succeeded." -Tags Authentication
 }
@@ -84,6 +106,9 @@ catch {
     Stop-Transcript
     throw
 }
+
+# Get current Azure subscription name
+$subscriptionName = (Get-AzContext).Subscription.Name
 
 if (-not $cleanupEnabled) {
     Write-Information "cleanupEnabled flag is False. No resources will be removed." -Tags CleanupRun
@@ -127,8 +152,7 @@ function Remove-VMAndDependencies {
         Remove-BootDiagnostics -VM $VM
 
         # 2. Network interfaces
-        $nics = Get-AzNetworkInterface -ResourceGroupName $VM.ResourceGroupName |
-                Where-Object { $_.VirtualMachine.Id -eq $VM.Id }
+        $nics = Get-AzNetworkInterface -ResourceGroupName $VM.ResourceGroupName | Where-Object { $_.VirtualMachine.Id -eq $VM.Id }
         foreach ($nic in $nics) {
             Write-Verbose "Removing NIC '$($nic.Name)'."
             Remove-AzNetworkInterface -Name $nic.Name -ResourceGroupName $VM.ResourceGroupName -Force -ErrorAction SilentlyContinue
@@ -148,6 +172,8 @@ function Remove-VMAndDependencies {
 
         Write-Information "VM '$($VM.Name)' and dependencies removed." -Tags VM
         $global:cleanupResults.VMsRemoved++
+        $global:cleanupResults.VMsRemovedRGs += $VM.ResourceGroupName
+
     }
     catch {
         Write-Warning "Error cleaning VM '$($VM.Name)': $_"
@@ -158,49 +184,102 @@ function Remove-VMAndDependencies {
 
 function Remove-NSGs {
     try {
-        $nsgs = Get-AzNetworkSecurityGroup | Where-Object { $_.Tags -and $_.Tags['Cleanup'] -ieq 'Enabled' }
+        $nsgs = Get-AzNetworkSecurityGroup |
+                Where-Object { $_.Tags.Keys -contains 'Cleanup' -and $_.Tags['Cleanup'].ToString().ToLower() -eq 'enabled' }
+
         foreach ($nsg in $nsgs) {
-            Write-Information "Removing NSG '$($nsg.Name)' in RG '$($nsg.ResourceGroupName)'." -Tags NSG
-            Remove-AzNetworkSecurityGroup -Name $nsg.Name -ResourceGroupName $nsg.ResourceGroupName -Force -ErrorAction SilentlyContinue
+            Write-Information "Attempting to remove NSG '$($nsg.Name)' in RG '$($nsg.ResourceGroupName)'." -Tags NSG
+            try {
+                Remove-AzNetworkSecurityGroup -Name $nsg.Name -ResourceGroupName $nsg.ResourceGroupName -Force -ErrorAction Stop
+                Write-Information "NSG '$($nsg.Name)' removed successfully." -Tags NSG
+            }
+            catch {
+                Write-Warning "Could not remove NSG '$($nsg.Name)': $($_.Exception.Message)"
+                $global:cleanupResults.FailedNSGs += "$($nsg.Name) — $($_.Exception.Message)"
+                $global:cleanupResults.Errors++
+            }
         }
     }
     catch {
-        Write-Warning "NSG cleanup encountered an error: $_"
-        $global:cleanupResults.FailedNSGs += $_.Exception.Message
+        Write-Warning "NSG cleanup encountered an unexpected error: $_"
         $global:cleanupResults.Errors++
     }
 }
 
 function Remove-VirtualNetworks {
     try {
-        $vnets = Get-AzVirtualNetwork | Where-Object { $_.Tags -and $_.Tags['Cleanup'] -ieq 'Enabled' }
-        foreach ($vnet in $vnets) {
-            Write-Information "Checking subnets for VNet '$($vnet.Name)'." -Tags VNet
-            $busy = $false
+        $vnets = Get-AzVirtualNetwork | Where-Object { $_.Tags.Keys -contains 'Cleanup' -and $_.Tags['Cleanup'].ToString().ToLower() -eq 'enabled' }
 
+        foreach ($vnet in $vnets) {
+            Write-Information "Checking dependencies for VNet '$($vnet.Name)'." -Tags VNet
+            $busy = $false
+            $reasons = @()
+
+            # 1. NICs
             foreach ($sub in $vnet.Subnets) {
-                $attached = (Get-AzNetworkInterface -SubnetId $sub.Id -ErrorAction SilentlyContinue).Count
-                if ($attached -gt 0) {
-                    Write-Warning "Subnet '$($sub.Name)' still has $attached NIC(s); skipping VNet deletion."
+                $attachedNics = (Get-AzNetworkInterface -SubnetId $sub.Id -ErrorAction SilentlyContinue).Count
+                if ($attachedNics -gt 0) {
                     $busy = $true
-                    break
+                    $reasons += "Subnet '$($sub.Name)' has $attachedNics NIC(s)"
                 }
             }
 
+            # 2. Virtual Network Gateways
+            $gateways = Get-AzVirtualNetworkGateway -ResourceGroupName $vnet.ResourceGroupName -ErrorAction SilentlyContinue |
+                        Where-Object { $_.IpConfigurations.Subnet.Id -like "$($vnet.Id)/*" }
+            if ($gateways) {
+                $busy = $true
+                $reasons += "Virtual Network Gateway present"
+            }
+
+            # 3. Private Endpoints
+            $peps = Get-AzPrivateEndpoint -ResourceGroupName $vnet.ResourceGroupName -ErrorAction SilentlyContinue |
+                    Where-Object { $_.Subnet.Id -like "$($vnet.Id)/*" }
+            if ($peps) {
+                $busy = $true
+                $reasons += "$($peps.Count) Private Endpoint(s)"
+            }
+
+            # 4. Bastion Hosts
+            $bastions = Get-AzBastion -ResourceGroupName $vnet.ResourceGroupName -ErrorAction SilentlyContinue |
+                        Where-Object { $_.IpConfigurations.Subnet.Id -like "$($vnet.Id)/*" }
+            if ($bastions) {
+                $busy = $true
+                $reasons += "Bastion host present"
+            }
+
+            # 5. Firewalls
+            $firewalls = Get-AzFirewall -ResourceGroupName $vnet.ResourceGroupName -ErrorAction SilentlyContinue |
+                         Where-Object { $_.IpConfigurations.Subnet.Id -like "$($vnet.Id)/*" }
+            if ($firewalls) {
+                $busy = $true
+                $reasons += "Azure Firewall present"
+            }
+
             if (-not $busy) {
-                Write-Information "Removing VNet '$($vnet.Name)' in RG '$($vnet.ResourceGroupName)'." -Tags VNet
-                Remove-AzVirtualNetwork -Name $vnet.Name -ResourceGroupName $vnet.ResourceGroupName -Force -ErrorAction SilentlyContinue
+                try {
+                    Write-Information "Removing VNet '$($vnet.Name)' in RG '$($vnet.ResourceGroupName)'." -Tags VNet
+                    Remove-AzVirtualNetwork -Name $vnet.Name -ResourceGroupName $vnet.ResourceGroupName -Force -ErrorAction Stop
+                    Write-Information "VNet '$($vnet.Name)' removed successfully." -Tags VNet
+                }
+                catch {
+                    Write-Warning "Could not remove VNet '$($vnet.Name)': $($_.Exception.Message)"
+                    $global:cleanupResults.SkippedVNets += "$($vnet.Name) — $($reasons -join '; ')"
+                    $global:cleanupResults.Errors++
+                }
             }
             else {
+                Write-Warning "Skipping VNet '$($vnet.Name)' due to dependencies: $($reasons -join '; ')"
                 $global:cleanupResults.SkippedVNets += $vnet.Name
             }
         }
     }
     catch {
-        Write-Warning "VNet cleanup encountered an error: $_"
+        Write-Warning "VNet cleanup encountered an unexpected error: $_"
         $global:cleanupResults.Errors++
     }
 }
+
 
 #–– VM Cleanup ––
 $vmList = Get-AzVM | Where-Object { $_.Tags -and $_.Tags['Cleanup'] -ieq 'Enabled' }
@@ -242,14 +321,19 @@ Remove-VirtualNetworks
 
 #–– Wrap Up ––
 $global:cleanupResults.EndTime  = Get-Date
+$global:cleanupResults.EndTimeStr = Format-LondonTime $global:cleanupResults.EndTime
 $global:cleanupResults.Duration = [math]::Round((New-TimeSpan -Start $global:cleanupResults.StartTime -End $global:cleanupResults.EndTime).TotalMinutes, 2)
 
-Write-Information "Cleanup completed at $($global:cleanupResults.EndTime) (Duration: $($global:cleanupResults.Duration) min)" -Tags CleanupRun
+Write-Information "Cleanup completed at $($global:cleanupResults.EndTimeStr) (Duration: $($global:cleanupResults.Duration) min)" -Tags CleanupRun
 
 Stop-Transcript
 
 #–– Teams Notification with collapsible sections ––
-if ($teamsWebhookUrl) {
+if ($teamsWebhookUrl) {    
+
+    # Convert Start and End times
+    $startLondon = Get-LondonTime $global:cleanupResults.StartTime
+    $endLondon   = Get-LondonTime $global:cleanupResults.EndTime
 
     # Build summary line
     $summaryLine = "$($global:cleanupResults.VMsRemoved) removed"
@@ -279,7 +363,7 @@ if ($teamsWebhookUrl) {
     $cardBody = @(
         @{
             type  = "TextBlock"
-            text  = "Azure Cleanup Run Report"
+            text  = "Azure Cleanup Run Report for subscription $subscriptionName"
             weight= "Bolder"
             size  = "Large"
         },
@@ -303,8 +387,8 @@ if ($teamsWebhookUrl) {
         @{
             type = "FactSet"
             facts = @(
-                @{ title = "Start:";        value = "$($global:cleanupResults.StartTime)" },
-                @{ title = "End:";          value = "$($global:cleanupResults.EndTime)" },
+                @{ title = "Start:";        value = $startLondon.ToString("dd/MM/yyyy HH:mm:ss") },
+                @{ title = "End:";          value = $endLondon.ToString("dd/MM/yyyy HH:mm:ss") },
                 @{ title = "Duration:";     value = "$($global:cleanupResults.Duration) min" },
                 @{ title = "VMs targeted:"; value = "$($global:cleanupResults.VMsTargeted)" },
                 @{ title = "VMs removed:";  value = "$($global:cleanupResults.VMsRemoved)" },
@@ -315,36 +399,44 @@ if ($teamsWebhookUrl) {
 
     # Function to add collapsible sections
     function Add-CollapsibleSection {
-        param($title, $items)
-        if ($items.Count -gt 0) {
-            $itemList = $items | ForEach-Object { @{ type="TextBlock"; text="• $_"; wrap=$true; spacing="None" } }
-            $toggleId = ($title -replace '[^0-9a-zA-Z]', '') + "_toggle"
-
-            return @{
-                type = "Container"
-                items = @(
-                    @{
-                        type = "ActionSet"
-                        actions = @(
-                            @{
-                                type = "Action.ToggleVisibility"
-                                title = $title
-                                target = @(@{ elementId = $toggleId })
-                            }
-                        )
-                    },
-                    @{
-                        type      = "Container"
-                        id        = $toggleId
-                        isVisible = $false
-                        items     = $itemList
-                    }
-                )
+    param($title, $items)
+    if ($items.Count -gt 0) {
+        $itemList = $items | ForEach-Object {
+            @{
+                type   = "TextBlock"
+                text   = "• $_"
+                wrap   = $true
+                spacing= "None"
             }
         }
-        return $null
-    }
+        $toggleId = ($title -replace '[^0-9a-zA-Z]', '') + "_toggle"
 
+        return @{
+            type = "Container"
+            items = @(
+                @{
+                    type = "ActionSet"
+                    actions = @(
+                        @{
+                            type   = "Action.ToggleVisibility"
+                            title  = $title
+                            target = @(@{ elementId = $toggleId })
+                        }
+                    )
+                },
+                @{
+                    type      = "Container"
+                    id        = $toggleId
+                    isVisible = $false
+                    items     = $itemList
+                }
+            )
+        }
+    }
+    return $null
+}
+
+  # Collapsible sections for failed/skipped resources
     $sections = @(
         Add-CollapsibleSection -title "❌ Failed VMs"     -items $global:cleanupResults.FailedVMs
         Add-CollapsibleSection -title "⚠️ Skipped VMs"   -items $global:cleanupResults.SkippedVMs
@@ -352,7 +444,14 @@ if ($teamsWebhookUrl) {
         Add-CollapsibleSection -title "⚠️ Skipped VNets" -items $global:cleanupResults.SkippedVNets
     ) | Where-Object { $_ -ne $null }
 
-    $cardBody += $sections
+  # Collapsible sections for resource groups removed
+    $rgSections = @(
+        Add-CollapsibleSection -title "✅ VMs removed from RGs"  -items $global:cleanupResults.VMsRemovedRGs
+        Add-CollapsibleSection -title "✅ NSGs removed from RGs" -items $global:cleanupResults.NSGsRemovedRGs
+        Add-CollapsibleSection -title "✅ VNets removed from RGs" -items $global:cleanupResults.VNetsRemovedRGs
+    ) | Where-Object { $_ -ne $null }
+
+    $cardBody += $sections + $rgSections
 
     $payload = @{
         type       = "message"

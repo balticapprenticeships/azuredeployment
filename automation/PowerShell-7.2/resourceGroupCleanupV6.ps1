@@ -1,5 +1,5 @@
 <#
-.VERSION    4.1.0
+.VERSION    4.3.1
 .AUTHOR     Chris Langford
 .COPYRIGHT  (c) 2025 Chris Langford. All rights reserved.
 .TAGS       Azure Automation, PowerShell Runbook, DevOps
@@ -9,11 +9,25 @@
 #>
 
 param(
+    # Master toggle for cleanup (required, must be $true or $false explicitly)
     [Parameter(Mandatory=$true)]
-    [bool] $performCleanup = $false,
+    [ValidateNotNull()]
+    [bool] $cleanupEnabled,
 
+    # Teams webhook URL (optional, must be https:// if provided)
     [Parameter(Mandatory=$false)]
-    [string] $teamsWebhookUrl
+    [ValidatePattern('^https://.*')]
+    [string] $teamsWebhookUrl,
+
+    # Execution mode: Sequential (safe) or Parallel (faster, riskier)
+    [Parameter(Mandatory=$true)]
+    [ValidateNotNull()]
+    [bool] $ParallelMode,
+
+    # Throttle for parallel jobs (only matters if ExecutionMode = Parallel)
+    [Parameter(Mandatory=$false)]
+    [ValidateRange(1, 20)]
+    [int] $ThrottleLimit = 5  # <-- new parameter (default 5)
 )
 
 #–– Preferences ––
@@ -24,12 +38,25 @@ $InformationPreference = 'Continue'
 
 # Set teamsWebhookUrl from automation variable if not provided
 if (-not $teamsWebhookUrl) {
-    $teamsWebhookUrl = Get-AzAutomationVariable -Name 'TeamsWebhookUrl'
+    try {
+        $teamsWebhookUrl = Get-AutomationVariable -Name 'TeamWebhookUrlWeeklyCleanup'
+    }
+    catch {
+        Write-Verbose "No Teams webhook URL provided or found in automation variables."
+    }
 }
 
 #–– Start Transcript ––
 $transcript = Join-Path $env:TEMP "CleanupRun_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
 Start-Transcript -Path $transcript -Force
+
+# Log execution mode
+if ($ParallelMode) {
+    Write-Information "Execution Mode: Parallel (ThrottleLimit=$ThrottleLimit)" -Tags CleanupRun
+}
+else {
+    Write-Information "Execution Mode: Sequential" -Tags CleanupRun
+}
 
 $global:cleanupResults = @{
     StartTime      = Get-Date
@@ -38,6 +65,7 @@ $global:cleanupResults = @{
     VMsTargeted    = 0
     VMsRemoved     = 0
     SkippedVMs     = @()
+    SkippedNSGs    = @()
     FailedVMs      = @()
     SkippedVNets   = @()
     FailedNSGs     = @()
@@ -57,15 +85,15 @@ catch {
     throw
 }
 
-if (-not $performCleanup) {
-    Write-Information "performCleanup flag is False. No resources will be removed." -Tags CleanupRun
+if (-not $cleanupEnabled) {
+    Write-Information "cleanupEnabled flag is False. No resources will be removed." -Tags CleanupRun
     Stop-Transcript
     return
 }
 
 #–– Functions ––
 function Remove-BootDiagnostics {
-    param([Microsoft.Azure.Management.Compute.Models.VirtualMachine]$VM)
+    param($VM)
 
     try {
         $uri = $VM.DiagnosticsProfile.BootDiagnostics.StorageUri
@@ -90,7 +118,7 @@ function Remove-BootDiagnostics {
 }
 
 function Remove-VMAndDependencies {
-    param([Microsoft.Azure.Management.Compute.Models.VirtualMachine]$VM)
+    param($VM)
 
     try {
         Write-Information "Starting cleanup for VM '$($VM.Name)' in RG '$($VM.ResourceGroupName)'." -Tags VM
@@ -130,7 +158,7 @@ function Remove-VMAndDependencies {
 
 function Remove-NSGs {
     try {
-        $nsgs = Get-AzNetworkSecurityGroup | Where-Object { $_.Tags['Cleanup'] -ieq 'Enabled' }
+        $nsgs = Get-AzNetworkSecurityGroup | Where-Object { $_.Tags -and $_.Tags['Cleanup'] -ieq 'Enabled' }
         foreach ($nsg in $nsgs) {
             Write-Information "Removing NSG '$($nsg.Name)' in RG '$($nsg.ResourceGroupName)'." -Tags NSG
             Remove-AzNetworkSecurityGroup -Name $nsg.Name -ResourceGroupName $nsg.ResourceGroupName -Force -ErrorAction SilentlyContinue
@@ -145,7 +173,7 @@ function Remove-NSGs {
 
 function Remove-VirtualNetworks {
     try {
-        $vnets = Get-AzVirtualNetwork | Where-Object { $_.Tags['Cleanup'] -ieq 'Enabled' }
+        $vnets = Get-AzVirtualNetwork | Where-Object { $_.Tags -and $_.Tags['Cleanup'] -ieq 'Enabled' }
         foreach ($vnet in $vnets) {
             Write-Information "Checking subnets for VNet '$($vnet.Name)'." -Tags VNet
             $busy = $false
@@ -174,15 +202,35 @@ function Remove-VirtualNetworks {
     }
 }
 
-#–– Parallel VM Cleanup ––
-$vmList = Get-AzVM | Where-Object { $_.Tags['Cleanup'] -ieq 'Enabled' }
+#–– VM Cleanup ––
+$vmList = Get-AzVM | Where-Object { $_.Tags -and $_.Tags['Cleanup'] -ieq 'Enabled' }
 $global:cleanupResults.VMsTargeted = $vmList.Count
 
 if ($vmList) {
-    $vmList | ForEach-Object -Parallel {
-        param($vm)
-        Remove-VMAndDependencies -VM $vm
-    } -ThrottleLimit 5
+    if ($ParallelMode) {
+        Write-Information "Running VM cleanup in PARALLEL mode (ThrottleLimit=$ThrottleLimit)." -Tags VM
+
+        # Export the function bodies as ScriptBlocks so they can be recreated inside parallel runspaces
+        $removeVMScript   = (Get-Item -Path Function:\Remove-VMAndDependencies).ScriptBlock
+        $removeBootScript = (Get-Item -Path Function:\Remove-BootDiagnostics).ScriptBlock
+
+        $vmList | ForEach-Object -Parallel {
+            param($vm, $removeVMScript, $removeBootScript)
+
+            # Recreate the functions in this runspace so they can be invoked normally
+            Set-Item -Path Function:\Remove-BootDiagnostics -Value $removeBootScript
+            Set-Item -Path Function:\Remove-VMAndDependencies -Value $removeVMScript
+
+            # Run cleanup
+            Remove-VMAndDependencies -VM $vm
+        } -ArgumentList $using:removeVMScript, $using:removeBootScript -ThrottleLimit $ThrottleLimit
+    }
+    else {
+        Write-Information "Running VM cleanup in SEQUENTIAL mode." -Tags VM
+        foreach ($vm in $vmList) {
+            Remove-VMAndDependencies -VM $vm
+        }
+    }
 }
 else {
     Write-Information "No VMs found with Cleanup=Enabled tag." -Tags VM
@@ -200,7 +248,7 @@ Write-Information "Cleanup completed at $($global:cleanupResults.EndTime) (Durat
 
 Stop-Transcript
 
-#–– Teams Notification with true collapsible sections ––
+#–– Teams Notification with collapsible sections ––
 if ($teamsWebhookUrl) {
 
     # Build summary line
@@ -224,6 +272,9 @@ if ($teamsWebhookUrl) {
         $statusColor = "Good"
     }
 
+    # Execution mode string
+    $executionModeText = if ($ParallelMode) { "Parallel (ThrottleLimit=$ThrottleLimit)" } else { "Sequential" }
+
     # Adaptive Card body
     $cardBody = @(
         @{
@@ -242,6 +293,14 @@ if ($teamsWebhookUrl) {
             spacing = "Small"
         },
         @{
+            type  = "TextBlock"
+            text  = "Execution Mode: $executionModeText"
+            weight= "Bolder"
+            size  = "Small"
+            wrap  = $true
+            spacing = "Small"
+        },
+        @{
             type = "FactSet"
             facts = @(
                 @{ title = "Start:";        value = "$($global:cleanupResults.StartTime)" },
@@ -254,6 +313,7 @@ if ($teamsWebhookUrl) {
         }
     )
 
+    # Function to add collapsible sections
     function Add-CollapsibleSection {
         param($title, $items)
         if ($items.Count -gt 0) {
@@ -286,9 +346,9 @@ if ($teamsWebhookUrl) {
     }
 
     $sections = @(
-        Add-CollapsibleSection -title "❌ Failed VMs"     -items $global:cleanupResults.FailedVMs,
-        Add-CollapsibleSection -title "⚠️ Skipped VMs"   -items $global:cleanupResults.SkippedVMs,
-        Add-CollapsibleSection -title "❌ NSG Errors"    -items $global:cleanupResults.FailedNSGs,
+        Add-CollapsibleSection -title "❌ Failed VMs"     -items $global:cleanupResults.FailedVMs
+        Add-CollapsibleSection -title "⚠️ Skipped VMs"   -items $global:cleanupResults.SkippedVMs
+        Add-CollapsibleSection -title "❌ NSG Errors"    -items $global:cleanupResults.FailedNSGs
         Add-CollapsibleSection -title "⚠️ Skipped VNets" -items $global:cleanupResults.SkippedVNets
     ) | Where-Object { $_ -ne $null }
 
