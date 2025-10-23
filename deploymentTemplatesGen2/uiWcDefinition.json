@@ -231,13 +231,17 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "June",
-                                    "value": "4.6.25"
+                                    "label": "September",
+                                    "value": "4.9.25"
                                 },
                                 {
-                                    "label": "May",
-                                    "value": "4.5.25"
-                                }
+                                    "label": "August",
+                                    "value": "4.3.25"
+                                },
+                                {
+                                    "label": "July",
+                                    "value": "4.2.25"
+                                } 
                             ],
                             "required": true
                         },

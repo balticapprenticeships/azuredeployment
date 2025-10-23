@@ -161,12 +161,9 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
-                "4.6.25",
-                "4.5.25",
-                "4.4.25",
-                "4.3.25",
-                "4.2.25",
-                "3.11.24"
+                "4.9.25",
+                "4.8.25",
+                "4.7.25"
             ],
             "metadata": {
                 "description": "Lab image version"

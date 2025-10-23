@@ -140,21 +140,17 @@
                                     "value": "latest"
                                 },
                                 {
-                                    "label": "June",
-                                    "value": "4.6.25"
+                                    "label": "September",
+                                    "value": "4.9.25"
                                 },
                                 {
-                                    "label": "March",
+                                    "label": "August",
                                     "value": "4.3.25"
                                 },
                                 {
-                                    "label": "February",
+                                    "label": "July",
                                     "value": "4.2.25"
-                                },
-                                {
-                                    "label": "January",
-                                    "value": "4.01.25"
-                                }                         
+                                }                        
                             ],
                             "required": true
                         },
