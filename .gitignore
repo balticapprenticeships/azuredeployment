@@ -12,6 +12,7 @@
 [Dd]ev/
 [Aa]rchive/
 _[Dd]ev
+*_[Dd]ev
 _[Aa]rchive
 # Azure Functions artifacts
 bin
