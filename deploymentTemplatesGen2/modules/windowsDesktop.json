@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.1.1",
+    "contentVersion": "3.1.2.0",
     "parameters": {
         "location": {
             "type": "string"
@@ -107,7 +107,7 @@
                 "galleryImageDefinitionName": "BA-Win10-Courses"
             },
             "ExamTesting": {
-                "galleryImageDefinitionName": "BA-Testing"
+                "galleryImageDefinitionName": "BA-ExamImage"
             },
             "DataLevel3": {
                 "galleryImageDefinitionName": "BA-DataCourses"
