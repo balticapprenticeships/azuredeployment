@@ -1,7 +1,7 @@
 ################################################################
 # Script to configure Windows lab environment using DSC        #
 # Author: Chris Langford                                       #
-# Version: 6.3.0                                               #
+# Version: 6.4.0                                               #
 ################################################################
 
 Configuration BaWinDesktopLabCfg {
@@ -69,6 +69,70 @@ Configuration BaWinDesktopLabCfg {
 }
 
 Configuration BaDataBootCampLabCfg {
+    [CmdletBinding()]
+
+    param (
+        [Parameter(Mandatory = $true)]
+        [System.Management.Automation.PSCredential]
+        [System.Management.Automation.Credential()]
+        $Credential
+    )
+
+    Import-DscResource -ModuleName ComputerManagementDsc, xPSDesiredStateConfiguration
+
+    Node localhost {
+        LocalConfigurationmanager {
+            RebootNodeIfNeeded = $true
+        }
+
+        # This resource block creates a local User
+        xUser "CreateUserAccount"
+        {
+            Ensure = "Present"
+            UserName = Split-Path -Path $Credential.Username -Leaf
+            Password = $Credential
+            FullName = "Baltic Apprentice"
+            Description = "Baltic Apprentice User Account"
+            PasswordNeverExpires = $true
+            PasswordChangeRequired = $false
+            PasswordChangeNotAllowed = $true
+        }
+
+        # This resource block adds a user to specific groups
+        xGroup "AddToUserGroup"
+        {
+            Ensure = "Present"
+            GroupName = "Users"
+            MembersToInclude = Split-Path -Path $Credential.Username -Leaf
+            DependsOn = "[xUser]CreateUserAccount"
+        }
+
+        # This resource block adds a user to specific groups
+        xGroup "AddToRemoteDesktopUserGroup"
+        {
+            Ensure = "Present"
+            GroupName = "Remote Desktop Users"
+            MembersToInclude = Split-Path -Path $Credential.Username -Leaf
+            DependsOn = "[xUser]CreateUserAccount"
+        }        
+        
+        # This resource block ensures that the file or command is executed
+        xScript "RemoveArtifacts"
+        {
+            SetScript = {
+                Remove-Item -Path "C:\workflow-artifacts\" -Recurse -Force -ErrorAction SilentlyContinue
+                Remove-Item -Path "C:\workflow-artifacts" -Force -ErrorAction SilentlyContinue   
+                Remove-Item -Path "C:\workflow-artifacts.zip" -Force -ErrorAction SilentlyContinue 
+            }
+            TestScript = { $false}
+            GetScript = {
+                # Do not return anything, just a placeholder
+            }
+        }
+    }
+}
+
+Configuration BaExamImageLabCfg {
     [CmdletBinding()]
 
     param (
@@ -388,7 +452,7 @@ Configuration BaDataLevel4SqlLabCfg {
             Features = 'SQLENGINE'
             SourcePath = 'C:\sqlBuildArtifacts\SQLServer2022-Dev'
             SQLCollation = 'Latin1_General_CI_AS'
-            SQLSysAdminAccounts = @('Administrators','BalticApprentice')
+            SQLSysAdminAccounts = @('Administrators', (Split-Path -Path $Credential.Username -Leaf))
             InstallSharedDir = 'C:\Program Files\Microsoft SQL Server'
             InstallSharedWOWDir = 'C:\Program Files (x86)\Microsoft SQL Server'
             InstanceDir = 'C:\Program Files\Microsoft SQL Server'
