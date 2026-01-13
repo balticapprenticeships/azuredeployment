@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Modules
 
+## [3.1.2.0] 13.1.26
+### Change
+- [windowsDesktop]
+  Changed Exam image from Testing (w10) to ExamImage (W11)
+
 ## [3.1.4.0] 13.8.25
 ### Change
 - [serverMain]
