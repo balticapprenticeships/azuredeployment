@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
-    "currentVersion": "3.1.6.1",
+    "currentVersion": "3.1.7.0",
     "parameters": {
         "config": {
             "isWizard": true
@@ -60,7 +60,7 @@
 								},
 								{
 									"label": "Exams",
-									"value": "mtaExams"
+									"value": "exams"
 								},
 								{
 									"label": "Bootcamp",
@@ -189,14 +189,18 @@
                         "constraints": {
                             "allowedValues": [
                                 {
-                                    "label": "MTA/C&G Exams",
+                                    "label": "Microsoft Exams",
+                                    "value": "ExamImage"
+                                },
+                                {
+                                    "label": "MOS Exams",
                                     "value": "ExamTesting"
                                 }                                
                             ],
                             "required": true
                         },
                         "toolTip": "Here you can select the operating system for your virtual machine(s).",
-                        "visible": "[equals(steps('osConfig').programme, 'mtaExams')]"
+                        "visible": "[equals(steps('osConfig').programme, 'exams')]"
                     },
 					{
                         "name": "courseImageBootcamp",
@@ -229,6 +233,18 @@
                                 {
                                     "label": "Latest",
                                     "value": "latest"
+                                },
+                                {
+                                    "label": "December",
+                                    "value": "4.12.25"
+                                },
+                                {
+                                    "label": "November",
+                                    "value": "4.11.25"
+                                },
+                                {
+                                    "label": "October",
+                                    "value": "4.10.25"
                                 },
                                 {
                                     "label": "September",

@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "3.1.3.0",
+    "contentVersion": "3.1.4.0",
     "parameters": {
         "location": {
             "type": "string",
@@ -82,7 +82,7 @@
                 "l3Data",
                 "l4Data",
                 "l4SoftDev",
-                "mtaExams",
+                "exams",
                 "bootcamp"
             ]
         },
@@ -138,7 +138,8 @@
             "defaultValue": "NoValue",
             "allowedValues": [
                 "NoValue",
-                "ExamTesting"
+                "ExamTesting",
+                "ExamImage"
             ],
             "metadata": {
                 "description": "Choose the exam to proctor"
@@ -161,6 +162,9 @@
             "defaultValue": "latest",
             "allowedValues": [
                 "latest",
+                "4.12.25",
+                "4.11.25",
+                "4.10.25",
                 "4.9.25",
                 "4.8.25",
                 "4.7.25"
@@ -372,7 +376,7 @@
             "l4SoftDev": {
                 "courseImageDefinitionName": "[parameters('l4SoftDevCourse')]"
             },
-            "mtaExams": {
+            "exams": {
                 "courseImageDefinitionName": "[parameters('examCourse')]"
             },
             "bootcamp": {
@@ -548,7 +552,7 @@
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(variables('_artifactsLocation'), variables('_moduleRepo'), '/windowsDesktop.json')]",
-                    "contentVersion": "3.1.2.0"
+                    "contentVersion": "3.1.3.0"
                 },
                 "parameters": {
                     "location": {

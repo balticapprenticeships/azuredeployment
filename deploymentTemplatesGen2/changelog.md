@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Modules
 
+## [3.1.3.0] 13.4.26
+### Change
+- [windowsDesktop]
+  Reinstated the Testing image for MOS exams and added the ExamImage
+
 ## [3.1.2.0] 13.1.26
 ### Change
 - [windowsDesktop]
@@ -158,10 +163,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Windows Client User Interface
 
+## [3.1.7.0] 14.1.26
+### Change
+- [uiWCDefinition]
+  Changed programme mtaExam to exam
+  Added new course 'ExamImage' to examImage
+
+## [3.1.4.0] 14.1.26
+### Change
+- [desktopMain]
+  Updated ImageVersion
+  Changed courseImageValue matExam to exam
+  Added examCourse ExamImage
+
 ## [3.1.6.1] 22.9.25
 ### Change
 - [uiWCDefinition]
-  ChangedSWAP5UE% version to 5.4.4
+  ChangedSWAP5UE5 version to 5.4.4
 
 ## [3.1.6.0] 13.8.25
 ### Change
